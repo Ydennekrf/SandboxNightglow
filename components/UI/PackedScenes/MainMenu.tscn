@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc4iix4f1il4d"]
+
+[ext_resource type="Script" path="res://components/UI/MainMenu.cs" id="1_fpx5a"]
+[ext_resource type="Theme" uid="uid://dw0w0ibeie6kp" path="res://components/UI/PackedScenes/MainMenuButtons.tres" id="2_t6vub"]
+[ext_resource type="FontFile" uid="uid://dks6per1025ac" path="res://ArtAssets/Fonts/ManaSeedTitle.ttf" id="2_xy5nr"]
+[ext_resource type="PackedScene" uid="uid://ba6q0m2q683ex" path="res://components/UI/PackedScenes/save_slot.tscn" id="4_gl53k"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("NewGameButton", "LoadGameButton", "QuitButton", "MenuOptions", "LoadOptions")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_fpx5a")
+NewGameButton = NodePath("MarginContainer/VBoxContainer2/VBoxContainer/NewGameButton")
+LoadGameButton = NodePath("MarginContainer/VBoxContainer2/VBoxContainer/LoadGameButton")
+QuitButton = NodePath("MarginContainer/VBoxContainer2/VBoxContainer/QuitButton")
+MenuOptions = NodePath("MarginContainer/VBoxContainer2")
+LoadOptions = NodePath("MarginContainer/LoadGameSlots")
+LoadOptionButton = ExtResource("4_gl53k")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -147.5
+offset_top = -210.0
+offset_right = 147.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_xy5nr")
+theme_override_font_sizes/font_size = 12
+text = "NightGlow:
+Whispers of Astrasoul"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NewGameButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_t6vub")
+theme_override_fonts/font = ExtResource("2_xy5nr")
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_t6vub")
+theme_override_fonts/font = ExtResource("2_xy5nr")
+text = "Load Game"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_t6vub")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_xy5nr")
+text = "Quit Game"
+
+[node name="LoadGameSlots" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2

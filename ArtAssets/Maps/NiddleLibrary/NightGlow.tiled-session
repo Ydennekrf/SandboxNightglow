@@ -1,0 +1,120 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "TileSets/Autumn Forest/sample map/TSX files/collision & alpha.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/TSXFILES/iconic castle.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "TileSets/TSXFiles/bonus_shadows.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/collision_alpha.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/cozy furnishings 16x32.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/cozy furnishings 16x48.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/cozy furnishings 32x32.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/cozy furnishings 48x32.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/cozy furnishings variable size.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/fortified keep, interior v01.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/grand library v01.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/home interiors, half-timber.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/home interiors, timber roof.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/iconic castle.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "TileSets/TSXFiles/steampunk manor.tsx": {
+            "scaleInEditor": 1
+        },
+        "TileSets/bonus shadows (desaturated).tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/cozy furnishings 16x32.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/cozy furnishings 16x48.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/cozy furnishings 32x32.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/cozy furnishings 48x32.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/cozy furnishings variable size.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/fortified keep, interior v01.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/grand library v01.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "TileSets/home interiors, half-timber.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/home interiors, timber roof.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSets/steampunk manor.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "last.externalTilesetPath": "E:/GameProject/NewTiledMapsApril/TileSets/TSXFiles",
+    "last.imagePath": "E:/GameProject/NewTiledMapsApril/TileSets/Iconic Castle/packaged",
+    "map.fixedSize": false,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+    ],
+    "project": "NightGlow.tiled-project",
+    "recentFiles": [
+        "TileSets/TSXFiles/iconic castle.tsx",
+        "TileSets/TSXFiles/steampunk manor.tsx",
+        "TileSets/TSXFiles/home interiors, timber roof.tsx",
+        "TileSets/TSXFiles/home interiors, half-timber.tsx",
+        "TileSets/TSXFiles/grand library v01.tsx",
+        "TileSets/TSXFiles/fortified keep, interior v01.tsx",
+        "TileSets/TSXFiles/cozy furnishings 32x32.tsx",
+        "TileSets/TSXFiles/cozy furnishings variable size.tsx",
+        "TileSets/TSXFiles/cozy furnishings 48x32.tsx",
+        "TileSets/TSXFiles/cozy furnishings 16x48.tsx",
+        "TileSets/TSXFiles/cozy furnishings 16x32.tsx",
+        "TileSets/TSXFiles/collision_alpha.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.type": 0
+}

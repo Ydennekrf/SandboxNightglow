@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="1">
+ <tileset firstgid="1" source="TSX files/fortified keep, interior v01.tsx"/>
+ <tileset firstgid="257" source="TSX files/fortified keep, doors 32x32.tsx"/>
+ <tileset firstgid="265" source="TSX files/collision &amp; alpha.tsx"/>
+ <layer id="1" name="Under Sprite 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAArUIAFLJHCmAqWkN6NSd4DE+FK1jeMUYLWSol7Zv9Tp/9HNvP7AoCyAFCICIKZBmKa2aqNYi6SZOBcUn7gDdI7ut5hiZ9QWFJ5zgzhYPx6gjHNzg0409AqK6RgPRLcFwOQ1v1QueC8Pczh/pAYwEAl1gUZTGHY+8OUBXqNDYglgOQAKmBk0HEfCI4k7EKlGkcmUz2zIpz33HZ5mfJNZHocvVLXPmp///Km7X1K+kDT9Jx/wqf+tW15jVQdsZlZgn9LXtT+fq3RL2fj2/19I1tk7dKXTAfd7e5AX4f/rFO/UBa3uP6nT61+zseO7FWfj7NzsI16C/F/+kY78BNAZ2AGf8zKrg3WbWXWY/PmKT/dGqgWZihpyn3WYH
+  </data>
+ </layer>
+ <layer id="7" name="Under Sprite 2" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAApUCANgAV3gAAABYZ4gAAABoxwAAgId3xwCHxwCk1OQYoOAaQweAAlQaPDjO5c40ikrO5QCIe/GmkrMW7QOXBAbTk7t8lHmxRNPn/pINz5/7SxaRhhg=
+  </data>
+ </layer>
+ <layer id="8" name="Sprite Layer" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAkUAAAgAAQC8qZwQ
+  </data>
+ </layer>
+ <layer id="9" name="Over Sprite 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAuUBAMgApQAAALXGAACAAMb2AACAxlEAAABTpABRDQApQAUAApDwZ2ATrh8O2tGBXYFJQMdX9cU1eqVTRlTHBg==
+  </data>
+ </layer>
+ <layer id="10" name="Over Sprite 2" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAqUAAEAA5QAAgADlAAMAV0DFoFYiVI4N
+  </data>
+ </layer>
+ <layer id="2" name="Collision Layer" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAn0CAJgACQELAQAKARobAQAaCQkBCQEJHKBAzwPAAozsHOEszwe6YiMivrxD0Nc0YkLxfuezXhEHLIaaBEjiIWcGq0e0T2vXDdH9ledR78WBgjo=
+  </data>
+ </layer>
+</map>

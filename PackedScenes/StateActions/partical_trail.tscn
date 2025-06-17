@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://drjcmyc5akvos"]
+
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/AfterImageAction.cs" id="1_yghw0"]
+
+[node name="ParticalTrail" type="Node"]
+script = ExtResource("1_yghw0")
+SpawnInterval = 0.1
+Lifetime = 0.15

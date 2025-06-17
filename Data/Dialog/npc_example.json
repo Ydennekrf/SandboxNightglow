@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "npc_example",
+  "nodes": [
+    {
+      "nodeId": "greet",
+      "speaker": "NPC Example",
+      "portraitPath": "res://ArtAssets/Characters/NPC/Portraits/Icon1.png",
+      "text": "Hello, {playerName}.",
+      "choices": [
+        {
+          "choiceId": "hello",
+          "text": "Hello!",
+          "nextNodeId": "quest_intro"
+        },
+        {
+          "choiceId": "store",
+          "text": "What do you have to sell?",
+          "actions": [
+            { "type": "OpenStore" }
+          ],
+          "nextNodeId": null
+        },
+        {
+          "choiceId": "rude",
+          "text": "I have nothing good to say to you.",
+          "actions": [
+            { "type": "AdjustFriendship", "targetNpcId": "npc_example", "delta": -2 }
+          ],
+          "nextNodeId": "angry_farewell"
+        }
+      ]
+    },
+
+    {
+      "nodeId": "quest_intro",
+      "speaker": "NPC Example",
+      "portraitPath": "res://ArtAssets/Characters/NPC/Portraits/Icon2.png",
+      "text": "I need someone to fetch five healing herbs. Will you help?",
+      "choices": [
+        {
+          "choiceId": "accept",
+          "text": "Sure, I'll help.",
+          "actions": [
+            { "type": "StartQuest", "questId": "fetch_healing_herbs" }
+          ],
+          "nextNodeId": null
+        },
+        {
+          "choiceId": "decline",
+          "text": "Not right now.",
+          "nextNodeId": null
+        }
+      ]
+    },
+
+    {
+      "nodeId": "angry_farewell",
+      "speaker": "NPC Example",
+      "portraitPath": "res://ArtAssets/Characters/NPC/Portraits/Icon3.png",
+      "text": "Then be gone!",
+      "choices": []
+    }
+  ]
+}

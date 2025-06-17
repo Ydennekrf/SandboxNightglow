@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfyn3g18n450w"]
+
+[ext_resource type="Script" path="res://components/Interact/Base/NPCInteractable.cs" id="1_scrfo"]
+[ext_resource type="Texture2D" uid="uid://bo4sqiofw8omo" path="res://ArtAssets/Characters/NPC/Adults/npc dandy v00.png" id="2_m7y04"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7q54"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 36
+collision_mask = 3
+script = ExtResource("1_scrfo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m7y04")
+hframes = 4
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("CircleShape2D_a7q54")

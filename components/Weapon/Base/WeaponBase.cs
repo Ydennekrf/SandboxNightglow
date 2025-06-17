@@ -1,0 +1,92 @@
+using Godot;
+using System.Collections.Generic;
+
+/// Base class for all pixel-art weapons.  Inherit this script—don’t modify it
+/// per weapon; just tweak the exported fields in the Inspector.
+///
+///   RustyShortSword.tscn      → inherits WeaponBase
+///   IronAxe.tscn              → inherits WeaponBase
+///
+/// Every concrete scene must keep the same child names:
+///   Art     ← Sprite2D   (frame set by body AnimationPlayer)
+///   Hitbox  ← Area2D     (Monitoring toggled ON/OFF by body AnimationPlayer)
+///
+/// No additional AnimationPlayer lives in the weapon scene.
+[GlobalClass]
+public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your node-based interface
+{
+    /* ───────────────────────────  Inspector fields  ───────────────────────── */
+
+    [Export] public Texture2D ArtTexture;        // sprite sheet that matches body grid
+
+    [Export] public int Damage = 1;              // raw damage dealt when Hitbox is ON
+
+    // Enum-key/Int-value dictionary – Godot 4.3 shows dropdown for keys
+    [Export] public Godot.Collections.Array<StatDelta> StatBuffs = new();
+
+    [Export] public Godot.Collections.Array<NodePath> ExtraActionPaths = new();
+
+    private readonly List<IStateAction> _weaponActions = new();
+
+    /* ─────────────────────────────  Cached children  ──────────────────────── */
+    private Sprite2D _art;
+    private Area2D  _hitbox;
+
+    /* ───────────────────────────────  Runtime init  ───────────────────────── */
+    public override void _Ready()
+    {
+        _art = GetNode<Sprite2D>("Art");
+        _hitbox = GetNode<Area2D>("Hitbox");
+
+        _art.Texture = ArtTexture;               // fill the sprite
+
+        // Damage callback only when Hitbox monitoring is enabled by AnimationPlayer
+        _hitbox.BodyEntered += body =>
+        {
+            if (body.IsInGroup("enemy_hurtbox"))
+                body.Call("TakeDamage", Damage);
+        };
+        
+        foreach (var p in ExtraActionPaths)
+                {
+                    if (GetNode(p) is IStateAction act)
+                        _weaponActions.Add(act);
+                    else
+                        GD.PushError($"{Name}: path {p} does not implement IStateAction");
+                }
+    }
+
+    /* ───────────────────────────  IWeapon interface  ─────────────────────── */
+
+  public Dictionary<StatType,int> GetStatMods()
+    {
+        var dict = new Dictionary<StatType,int>();
+
+        foreach (var buff in StatBuffs)
+            dict[buff.Type] = buff.Delta;   // last entry wins if duplicates
+
+        return dict;
+    }
+
+    public void OnEquip(Entity owner, StateMachine fsm)
+    {
+        // Apply buffs
+        foreach (var b in StatBuffs)
+            owner.Data.AddModifier(b.Type, b.Delta);
+
+        var attackState = fsm.GetState(StateType.Attack);   // helper you likely have
+        foreach (var a in _weaponActions)
+            attackState.AddAction(a, runEnter:true); 
+
+        //  If you registered FSM actions from WeaponComponent, do it here
+        //  fsm.RegisterAction("Swing", () => _hitbox.Monitoring = true);
+    }
+
+    public void OnUnequip(Entity owner, StateMachine fsm)
+    {
+       foreach (var b in StatBuffs)
+            owner.Data.AddModifier(b.Type, -b.Delta);
+
+        // fsm.RemoveAction("Swing");
+    }
+}

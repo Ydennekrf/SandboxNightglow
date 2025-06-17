@@ -1,0 +1,1 @@
+public record ItemStack(string ItemId, int Count);

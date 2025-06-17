@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba6q0m2q683ex"]
+
+[ext_resource type="Texture2D" uid="uid://bfillcp8ngfp3" path="res://ArtAssets/Characters/NPC/Portraits/Icon8.png" id="1_37ean"]
+[ext_resource type="Script" path="res://components/UI/SaveSlotButton.cs" id="1_p46jm"]
+[ext_resource type="FontFile" uid="uid://dks6per1025ac" path="res://ArtAssets/Fonts/ManaSeedTitle.ttf" id="2_2t2ts"]
+[ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="3_6hdvd"]
+
+[node name="Button" type="Button"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 65.0
+grow_horizontal = 2
+scale = Vector2(0.995407, 1)
+icon_alignment = 1
+script = ExtResource("1_p46jm")
+PortraitPath = NodePath("MarginContainer/HBoxContainer/PlayerPortrait")
+PlayerNamePath = NodePath("MarginContainer/HBoxContainer/SaveData/Top/PlayerName")
+PlayerScenePath = NodePath("MarginContainer/HBoxContainer/SaveData/Middle/CurrentScene")
+PlayerTimePath = NodePath("MarginContainer/HBoxContainer/SaveData/Bottom/PlayTime")
+PlayerLevelPath = NodePath("MarginContainer/HBoxContainer/SaveData/Top/PlayerLevel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PlayerPortrait" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_37ean")
+
+[node name="SaveData" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/HBoxContainer/SaveData"]
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="MarginContainer/HBoxContainer/SaveData/Top"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2t2ts")
+theme_override_font_sizes/font_size = 10
+text = "Name: Selene"
+
+[node name="PlayerLevel" type="Label" parent="MarginContainer/HBoxContainer/SaveData/Top"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2t2ts")
+theme_override_font_sizes/font_size = 10
+text = "lvl: 2"
+
+[node name="Middle" type="HBoxContainer" parent="MarginContainer/HBoxContainer/SaveData"]
+layout_mode = 2
+
+[node name="CurrentScene" type="Label" parent="MarginContainer/HBoxContainer/SaveData/Middle"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hdvd")
+theme_override_font_sizes/font_size = 10
+text = "Phosphor Forest"
+
+[node name="Bottom" type="HBoxContainer" parent="MarginContainer/HBoxContainer/SaveData"]
+layout_mode = 2
+
+[node name="PlayTime" type="Label" parent="MarginContainer/HBoxContainer/SaveData/Bottom"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hdvd")
+theme_override_font_sizes/font_size = 8
+text = "1:25"

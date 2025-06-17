@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cery6gp0nwjms"]
+
+[ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="1_481lp"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(50, 16)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_colors/icon_hover_color = Color(0.168072, 0.208889, 0.360463, 1)
+theme_override_constants/icon_max_width = 125
+theme_override_fonts/font = ExtResource("1_481lp")
+theme_override_font_sizes/font_size = 8
+text = "This is a test Button."
+alignment = 0
+autowrap_mode = 3
+icon_alignment = 1

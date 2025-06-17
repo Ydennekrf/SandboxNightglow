@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://caqvscu4l6erb"]
+
+[ext_resource type="Script" path="res://components/Weapon/Base/WeaponBase.cs" id="1_kh684"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bi6f2"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_kh684")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_bi6f2")
+
+[node name="ActionContainer" type="Node2D" parent="."]
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Overlay" type="Sprite2D" parent="Sprites"]

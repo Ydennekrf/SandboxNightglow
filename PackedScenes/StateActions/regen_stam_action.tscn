@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://fi85q2kjwj1n"]
+
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/RegenStatAction.cs" id="1_sgkfv"]
+
+[node name="RegenStamAction" type="Node"]
+script = ExtResource("1_sgkfv")
+RegenRatePerSecond = 2.0
+RegenDelay = 5.0

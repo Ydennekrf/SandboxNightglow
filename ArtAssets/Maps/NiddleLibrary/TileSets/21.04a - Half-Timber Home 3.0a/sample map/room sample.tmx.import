@@ -1,0 +1,23 @@
+[remap]
+
+importer="YATI"
+type="PackedScene"
+uid="uid://ckc7ma2ldq1w7"
+path="res://.godot/imported/room sample.tmx-9bc3aeaeda7667f28deb0009f398f1a1.tscn"
+
+[deps]
+
+source_file="res://ArtAssets/Maps/NiddleLibrary/TileSets/21.04a - Half-Timber Home 3.0a/sample map/room sample.tmx"
+dest_files=["res://.godot/imported/room sample.tmx-9bc3aeaeda7667f28deb0009f398f1a1.tscn"]
+
+[params]
+
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=false
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor=""
+save_tileset_to=""

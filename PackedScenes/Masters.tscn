@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhue363l64m3e"]
+
+[ext_resource type="Script" path="res://Managers/GameManager.cs" id="1_c61up"]
+[ext_resource type="Script" path="res://Managers/PlayerManager.cs" id="2_apnev"]
+[ext_resource type="Script" path="res://Managers/EventManager.cs" id="3_dev8h"]
+[ext_resource type="Resource" uid="uid://diiufb4rn7fq" path="res://components/Entity/EntityData/NewPlayerStats.tres" id="3_h7q25"]
+[ext_resource type="Script" path="res://Managers/SceneManager.cs" id="4_f01uk"]
+[ext_resource type="Script" path="res://Managers/DialogManager.cs" id="6_1tshf"]
+[ext_resource type="Script" path="res://Managers/WorldStateManager.cs" id="7_2clhb"]
+[ext_resource type="Script" path="res://Managers/InventoryManager.cs" id="7_to40a"]
+[ext_resource type="PackedScene" uid="uid://3ldy0e5kwjan" path="res://components/Interact/Scenes/DialogPanel.tscn" id="8_qws1r"]
+
+[node name="Masters" type="Node2D"]
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="Managers"]
+script = ExtResource("1_c61up")
+
+[node name="PlayerManager" type="Node" parent="Managers"]
+script = ExtResource("2_apnev")
+PlayerBaseStats = ExtResource("3_h7q25")
+
+[node name="EventManager" type="Node" parent="Managers"]
+script = ExtResource("3_dev8h")
+
+[node name="SceneManager" type="Node" parent="Managers"]
+script = ExtResource("4_f01uk")
+
+[node name="WorldStateManager" type="Node" parent="Managers"]
+script = ExtResource("7_2clhb")
+
+[node name="InventoryManager" type="Node" parent="Managers"]
+script = ExtResource("7_to40a")
+
+[node name="CurrentScene" type="Node" parent="."]
+
+[node name="DialogManager" type="CanvasLayer" parent="."]
+script = ExtResource("6_1tshf")
+DialoguePanelScene = ExtResource("8_qws1r")

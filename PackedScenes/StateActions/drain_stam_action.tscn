@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://crk7g07qubm83"]
+
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/DrainStatAction.cs" id="1_cjo83"]
+
+[node name="DrainStamAction" type="Node"]
+script = ExtResource("1_cjo83")

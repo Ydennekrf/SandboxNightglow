@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://d0jvedd6wvpa4"]
+
+[ext_resource type="Resource" uid="uid://by5fab8k7xext" path="res://components/Inventory/Scripts/ItemActions/MinorHealth.tres" id="1_alotw"]
+[ext_resource type="Script" path="res://components/Inventory/Scripts/InventoryItem/InventoryItem.cs" id="1_t30tp"]
+[ext_resource type="Texture2D" uid="uid://d0ds0dyjv048q" path="res://ArtAssets/InventoryItems/Consume/HealthPotion.tres" id="1_ti5x7"]
+
+[resource]
+script = ExtResource("1_t30tp")
+ItemId = "Health_Potion"
+ItemName = "Health Potion"
+ItemDescription = "Heals the player for 25 HP"
+ItemValue = 25
+IconSprite = ExtResource("1_ti5x7")
+ItemStackSize = 10
+Rarity = 1
+Actions = [ExtResource("1_alotw")]

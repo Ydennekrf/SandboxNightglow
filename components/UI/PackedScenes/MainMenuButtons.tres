@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dw0w0ibeie6kp"]
+
+[ext_resource type="FontFile" uid="uid://dks6per1025ac" path="res://ArtAssets/Fonts/ManaSeedTitle.ttf" id="1_qlpdr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1dg71"]
+bg_color = Color(0.160784, 0.501961, 0.776471, 0.117647)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.164706)
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+anti_aliasing = false
+
+[resource]
+default_font = ExtResource("1_qlpdr")
+default_font_size = 13
+Button/styles/normal = SubResource("StyleBoxFlat_1dg71")

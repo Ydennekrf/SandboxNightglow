@@ -1,0 +1,419 @@
+[gd_scene load_steps=48 format=3 uid="uid://0vqyqo8a8pko"]
+
+[ext_resource type="Script" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
+[ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="2_ronss"]
+[ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="3_s6smw"]
+[ext_resource type="Script" path="res://components/Interact/Base/InteractComponent.cs" id="4_okwjl"]
+[ext_resource type="Texture2D" uid="uid://nni364y1g417" path="res://ArtAssets/ParticleEffects/35.png" id="5_nideg"]
+[ext_resource type="Script" path="res://components/Objects/ParticleEffectControllers/DashTrailController.cs" id="6_7sg8g"]
+[ext_resource type="Script" path="res://components/StateMachine/Base/StateMachine.cs" id="7_q74sc"]
+[ext_resource type="Script" path="res://components/StateMachine/Base/BaseState.cs" id="8_aidl1"]
+[ext_resource type="PackedScene" uid="uid://27yxonnj2ai" path="res://PackedScenes/StateActions/animation_action.tscn" id="9_lde1q"]
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/DirectionalAnimationAction.cs" id="9_rhlmw"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/InputStartMovingTransition.cs" id="10_mnbqb"]
+[ext_resource type="PackedScene" uid="uid://fi85q2kjwj1n" path="res://PackedScenes/StateActions/regen_stam_action.tscn" id="11_52e1j"]
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/RegenStatAction.cs" id="11_ltfp6"]
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/MoveInputAction.cs" id="12_juare"]
+[ext_resource type="PackedScene" uid="uid://ccva3tctd1tp0" path="res://PackedScenes/StateActions/input_move_action.tscn" id="12_yuc3g"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/EnterRunTransition.cs" id="13_v14er"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/InputStopMovingTransition.cs" id="14_gjvvf"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/CanDashTransition.cs" id="15_dt6fk"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/ReleaseRunTransition.cs" id="17_qfxql"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/StatCompareTransition.cs" id="18_7t2al"]
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/ConsumeStatOnEnterAction.cs" id="19_1mwic"]
+[ext_resource type="PackedScene" uid="uid://crk7g07qubm83" path="res://PackedScenes/StateActions/drain_stam_action.tscn" id="19_q6cxk"]
+[ext_resource type="PackedScene" uid="uid://cdtol0n8j68jg" path="res://PackedScenes/StateActions/dash_action.tscn" id="23_jwllm"]
+[ext_resource type="PackedScene" uid="uid://06tl335nih2t" path="res://PackedScenes/StateActions/timed_immune.tscn" id="24_dk5uy"]
+[ext_resource type="PackedScene" uid="uid://drjcmyc5akvos" path="res://PackedScenes/StateActions/partical_trail.tscn" id="25_q6urk"]
+[ext_resource type="Script" path="res://components/Entity/EntityData/EntityData.cs" id="25_rnmem"]
+[ext_resource type="PackedScene" uid="uid://bbh2mhcvkrc1x" path="res://PackedScenes/StateActions/timed_exit.tscn" id="26_aoxm0"]
+[ext_resource type="Script" path="res://components/Entity/StatTrackers/StamTracker.cs" id="26_cww3d"]
+[ext_resource type="Script" path="res://components/Inventory/base/InventoryComponent.cs" id="26_sh6nv"]
+[ext_resource type="Script" path="res://components/Inventory/base/InventoryWindow.cs" id="28_p0128"]
+[ext_resource type="Texture2D" uid="uid://xgnnmrrr31xu" path="res://ArtAssets/UI/Dialog/DialogFrame.png" id="28_x33qj"]
+[ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://components/UI/PackedScenes/inventory_slot.tscn" id="29_nb2id"]
+[ext_resource type="Script" path="res://Managers/UIManager.cs" id="30_j0osh"]
+[ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="32_rsx4e"]
+[ext_resource type="PackedScene" uid="uid://bed1eumrhp0xy" path="res://PackedScenes/UI/ToastNotification.tscn" id="32_xf44x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_invm3"]
+radius = 24.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_la3de"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_4nfmh"]
+_data = [Vector2(0.0549451, 0.916844), 0.0, 0.0, 0, 0, Vector2(0.222527, 0.438699), 0.0, 0.0, 0, 0, Vector2(0.43956, 0.43177), 0.0, 0.0, 0, 0, Vector2(0.667582, 0.161514), 0.0, 0.0, 0, 0, Vector2(0.903846, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_01wmy"]
+curve = SubResource("Curve_4nfmh")
+
+[sub_resource type="Gradient" id="Gradient_mb4kp"]
+offsets = PackedFloat32Array(0, 0.0744048, 0.270833, 0.583333, 0.818452, 1)
+colors = PackedColorArray(1, 1, 1, 0.807843, 0.843137, 0.917647, 0.482353, 0.796078, 0.721569, 0.768627, 0.301961, 0.807843, 0.52549, 0.631373, 0.247059, 0.815686, 0.392157, 0.462745, 0.156863, 0.847059, 0.305882, 0.352941, 0.0901961, 0.784314)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6k451"]
+gradient = SubResource("Gradient_mb4kp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_erdcm"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+color = Color(0.626111, 0.751714, 0.196761, 0.623529)
+color_ramp = SubResource("GradientTexture1D_6k451")
+alpha_curve = SubResource("CurveTexture_01wmy")
+anim_speed_min = 0.56
+anim_speed_max = 0.56
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3qtn"]
+radius = 7.07107
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54hjb"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pe4la"]
+bg_color = Color(0.0826779, 0.458595, 0.0508197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jwob"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5lm8"]
+bg_color = Color(0.682336, 0, 0.11352, 1)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
+motion_mode = 1
+script = ExtResource("1_66ygv")
+WepUpDraw = NodePath("Sprites/WepUpDraw")
+WepDownDraw = NodePath("Sprites/WepDownDraw")
+WepUpStow = NodePath("Sprites/WepUpStow")
+WepDownStow = NodePath("Sprites/WepDownStow")
+Hair = NodePath("Sprites/Hair")
+Clothes = NodePath("Sprites/Clothes")
+Body = NodePath("Sprites/Body")
+OneHandBody = ExtResource("3_s6smw")
+ActionsAnimPath = NodePath("Actions")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Actions" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("2_ronss")
+}
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="WepUpStow" type="Sprite2D" parent="Sprites"]
+
+[node name="WepUpDraw" type="Sprite2D" parent="Sprites"]
+
+[node name="Hair" type="Sprite2D" parent="Sprites"]
+
+[node name="Clothes" type="Sprite2D" parent="Sprites"]
+
+[node name="Body" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("3_s6smw")
+hframes = 65
+vframes = 6
+
+[node name="WepDownStow" type="Sprite2D" parent="Sprites"]
+
+[node name="WepDownDraw" type="Sprite2D" parent="Sprites"]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 96
+script = ExtResource("4_okwjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_invm3")
+debug_color = Color(0.533167, 0.569459, 0.054255, 0.42)
+
+[node name="Animators" type="Node2D" parent="."]
+
+[node name="Interact" type="Node2D" parent="Animators"]
+
+[node name="DashTrail" type="GPUParticles2D" parent="Animators"]
+material = SubResource("CanvasItemMaterial_la3de")
+position = Vector2(0, 10)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_erdcm")
+texture = ExtResource("5_nideg")
+lifetime = 0.2
+one_shot = true
+speed_scale = 0.75
+fixed_fps = 24
+visibility_rect = Rect2(-32, -32, 64, 64)
+draw_order = 0
+trail_lifetime = 0.4
+script = ExtResource("6_7sg8g")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("7_q74sc")
+InitialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+ActionPaths = [NodePath("AnimationAction"), NodePath("RegenStamAction")]
+TransitionPaths = [NodePath("IdleToWalkTransition")]
+
+[node name="AnimationAction" parent="StateMachine/Idle" instance=ExtResource("9_lde1q")]
+
+[node name="IdleToWalkTransition" type="Node" parent="StateMachine/Idle"]
+script = ExtResource("10_mnbqb")
+TargetPath = NodePath("../../Walk")
+
+[node name="RegenStamAction" parent="StateMachine/Idle" instance=ExtResource("11_52e1j")]
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+StateId = 3
+ActionPaths = [NodePath("InputMoveAction"), NodePath("AnimationAction"), NodePath("RegenStamAction")]
+TransitionPaths = [NodePath("WalkToIdleTransition"), NodePath("WalkToRunTransition"), NodePath("WalkToDodgeTransition")]
+
+[node name="InputMoveAction" parent="StateMachine/Walk" instance=ExtResource("12_yuc3g")]
+
+[node name="AnimationAction" type="Node" parent="StateMachine/Walk"]
+script = ExtResource("9_rhlmw")
+
+[node name="RegenStamAction" type="Node" parent="StateMachine/Walk"]
+script = ExtResource("11_ltfp6")
+RegenRatePerSecond = 0.25
+RegenDelay = 5.0
+
+[node name="WalkToRunTransition" type="Node" parent="StateMachine/Walk"]
+script = ExtResource("13_v14er")
+TargetPath = NodePath("../../Run")
+
+[node name="WalkToIdleTransition" type="Node" parent="StateMachine/Walk"]
+script = ExtResource("14_gjvvf")
+TargetPath = NodePath("../../Idle")
+
+[node name="WalkToDodgeTransition" type="Node" parent="StateMachine/Walk"]
+script = ExtResource("15_dt6fk")
+TargetPath = NodePath("../../Dodge")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+StateId = 4
+ActionPaths = [NodePath("InputMoveAction"), NodePath("AnimationAction"), NodePath("DrainStamAction")]
+TransitionPaths = [NodePath("BtnReleaseTransition"), NodePath("StamLowTransition"), NodePath("RunToDodgeTransition")]
+
+[node name="InputMoveAction" type="Node" parent="StateMachine/Run"]
+script = ExtResource("12_juare")
+SpeedModifier = 1.8
+
+[node name="AnimationAction" type="Node" parent="StateMachine/Run"]
+script = ExtResource("9_rhlmw")
+
+[node name="DrainStamAction" parent="StateMachine/Run" instance=ExtResource("19_q6cxk")]
+
+[node name="BtnReleaseTransition" type="Node" parent="StateMachine/Run"]
+script = ExtResource("17_qfxql")
+TargetPath = NodePath("../../Walk")
+
+[node name="StamLowTransition" type="Node" parent="StateMachine/Run"]
+script = ExtResource("18_7t2al")
+TargetPath = NodePath("../../Walk")
+
+[node name="RunToDodgeTransition" type="Node" parent="StateMachine/Run"]
+script = ExtResource("15_dt6fk")
+TargetPath = NodePath("../../Dodge")
+
+[node name="Dodge" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+StateId = 5
+ActionPaths = [NodePath("AnimationAction"), NodePath("DrainStamAction"), NodePath("DashAction"), NodePath("TimedImmune"), NodePath("ParticalTrail")]
+TransitionPaths = [NodePath("TimedExit")]
+
+[node name="AnimationAction" type="Node" parent="StateMachine/Dodge"]
+script = ExtResource("9_rhlmw")
+
+[node name="DrainStamAction" type="Node" parent="StateMachine/Dodge"]
+script = ExtResource("19_1mwic")
+
+[node name="DashAction" parent="StateMachine/Dodge" instance=ExtResource("23_jwllm")]
+
+[node name="TimedImmune" parent="StateMachine/Dodge" instance=ExtResource("24_dk5uy")]
+
+[node name="ParticalTrail" parent="StateMachine/Dodge" instance=ExtResource("25_q6urk")]
+
+[node name="TimedExit" parent="StateMachine/Dodge" instance=ExtResource("26_aoxm0")]
+
+[node name="Open" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+StateId = 7
+
+[node name="AnimationAction" type="Node" parent="StateMachine/Open"]
+script = ExtResource("9_rhlmw")
+
+[node name="Node2" type="Node" parent="StateMachine/Open"]
+
+[node name="Node3" type="Node" parent="StateMachine/Open"]
+
+[node name="Harvest" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+StateId = 9
+
+[node name="AnimationAction" type="Node" parent="StateMachine/Harvest"]
+script = ExtResource("9_rhlmw")
+
+[node name="Node2" type="Node" parent="StateMachine/Harvest"]
+
+[node name="Node3" type="Node" parent="StateMachine/Harvest"]
+
+[node name="Pickup" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+
+[node name="Node" type="Node" parent="StateMachine/Pickup"]
+
+[node name="Node2" type="Node" parent="StateMachine/Pickup"]
+
+[node name="Node3" type="Node" parent="StateMachine/Pickup"]
+
+[node name="Dialog" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+StateId = 8
+
+[node name="AnimationAction" type="Node" parent="StateMachine/Dialog"]
+script = ExtResource("9_rhlmw")
+
+[node name="Node2" type="Node" parent="StateMachine/Dialog"]
+
+[node name="Node3" type="Node" parent="StateMachine/Dialog"]
+
+[node name="Attack" type="Node" parent="StateMachine"]
+
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource("25_rnmem")
+
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource("26_sh6nv")
+MaxSlots = 21
+
+[node name="WeaponContainer" type="Node2D" parent="."]
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="Controller" type="Node2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_c3qtn")
+
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_stack")]
+script = ExtResource("30_j0osh")
+_labelScene = ExtResource("32_xf44x")
+_stack = NodePath("MarginContainer/HBoxContainer/Stack")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Save" type="Button" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("32_rsx4e")
+theme_override_font_sizes/font_size = 16
+text = "Save"
+
+[node name="StamLbl" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("32_rsx4e")
+theme_override_font_sizes/font_size = 16
+text = "Stam:"
+
+[node name="Stam" type="ProgressBar" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_54hjb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pe4la")
+step = 1.0
+allow_greater = true
+show_percentage = false
+script = ExtResource("26_cww3d")
+TargetToTrack = 5
+
+[node name="HealthLbl" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("32_rsx4e")
+theme_override_font_sizes/font_size = 16
+text = "HP:"
+
+[node name="Health" type="ProgressBar" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_2jwob")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a5lm8")
+step = 1.0
+allow_greater = true
+show_percentage = false
+script = ExtResource("26_cww3d")
+TargetToTrack = 1
+
+[node name="Stack" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="InventoryUI" type="MarginContainer" parent="UI" node_paths=PackedStringArray("_grid")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 55.0
+offset_top = 33.0
+offset_right = -45.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("28_p0128")
+_inventoryPath = NodePath("../../Inventory")
+_grid = NodePath("VBoxContainer/HBoxContainer2/GridContainer")
+_slotScene = ExtResource("29_nb2id")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/InventoryUI"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("28_x33qj")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InventoryUI"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/InventoryUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/InventoryUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GridContainer" type="GridContainer" parent="UI/InventoryUI/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(210, 100)
+layout_mode = 2
+columns = 7

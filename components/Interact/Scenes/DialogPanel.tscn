@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://3ldy0e5kwjan"]
+
+[ext_resource type="Texture2D" uid="uid://mrqqt80opvaj" path="res://ArtAssets/UI/Inventory/Inventory_background.png" id="1_8ud84"]
+[ext_resource type="Texture2D" uid="uid://xgnnmrrr31xu" path="res://ArtAssets/UI/Dialog/DialogFrame.png" id="2_my75o"]
+[ext_resource type="PackedScene" uid="uid://cery6gp0nwjms" path="res://components/Interact/Scenes/BtnChoice.tscn" id="2_pwj05"]
+[ext_resource type="Script" path="res://components/Interact/UI/DialogPanel.cs" id="2_ueio1"]
+[ext_resource type="Texture2D" uid="uid://bugo5jritaqks" path="res://ArtAssets/UI/Inventory/Inventory_select.png" id="4_wfp8g"]
+[ext_resource type="Texture2D" uid="uid://dlwhrsttrspjb" path="res://ArtAssets/Characters/NPC/Portraits/Icon1.png" id="5_x456p"]
+[ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="7_ihw8m"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ueio1")
+PortraitPath = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer2/Portrait/TextureRect")
+NamePath = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer2/NinePatchRect/SpeakerName")
+TextPath = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/RichTextLabel")
+ChoiceBoxPath = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/ChoiceBox")
+ChoiceButtonScene = ExtResource("2_pwj05")
+
+[node name="Panel" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -75.0
+offset_right = 125.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("1_8ud84")
+region_rect = Rect2(-0.153099, -0.0685587, 20.2212, 20.1373)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -7.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_my75o")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer2/Portrait"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_x456p")
+expand_mode = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(15, 12)
+layout_mode = 2
+texture = ExtResource("4_wfp8g")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="SpeakerName" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer2/NinePatchRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.042
+anchor_top = 0.235
+anchor_right = 0.923
+anchor_bottom = 0.743
+offset_left = -0.0160003
+offset_top = -2.82
+offset_right = 2.696
+offset_bottom = 3.084
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_ihw8m")
+theme_override_font_sizes/font_size = 8
+text = "Speaker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_ihw8m")
+theme_override_font_sizes/normal_font_size = 8
+text = "Displayed text shows up here for the dialog."
+fit_content = true
+
+[node name="ChoiceBox" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3

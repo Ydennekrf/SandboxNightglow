@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="1">
+ <tileset firstgid="1" source="TSX files/fortified keep, exterior v01.tsx"/>
+ <tileset firstgid="257" source="TSX files/fortified keep, doors 32x32.tsx"/>
+ <tileset firstgid="265" source="TSX files/bonus summer grass and dirt.tsx"/>
+ <tileset firstgid="295" source="TSX files/collision &amp; alpha.tsx"/>
+ <layer id="8" name="Under Sprite 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAkUJAGIMJTBgV4Y1wMz5+bnW81IWE1nzxA6J8klsDZyzQhFtT1CF4iRa8NKXOryX7FvdAYAQmQIZDghNzDkOY1HRwvKVzTIpOUlV21jjSjB9ACftClbBBXyhD/RRn+gbMLh+cSfYTo3OUy5RPSLnIac49ombzeYjR7j7wUPDXVD+8nECgXcwOHzhKiIypVMnfZTNfO65xzEgnhFOqHFloS4xV9ZggjNE6xgRsARIRiJEUSmNoTAHBzzMG1vifm2doKBhLmxHP6UXuHVXPO5JUSYzdtjXbu3V8zqt92o5lEhN8x+4uU5jmY93RU1x4x3xAKJY5l74+qSEsL6Ot4gr6PW/fsSzvX9ddU0i+Zur3+tkdy2tyZXo8sjzFO3ZYR55V6sneM85SWfz3Ah8
+  </data>
+ </layer>
+ <layer id="9" name="Under Sprite 2" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAuUBAIgA7bb9Dg1ghW0AAIAIGAAAABKgwHYd0AIMJvQ9qOKILL3MZYCnUN7VU76bF8MGLyxPB0CbRFTIu8gJcw==
+  </data>
+ </layer>
+ <layer id="7" name="Sprite Layer" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAo0AACgAdQB1AAMA80DFD1CEQ3Vs
+  </data>
+ </layer>
+ <layer id="1" name="Over Sprite 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAk0CAPAAAAAA7QAAAP0A7QAlNf17AAAASHwAiwAAAFiMSFgUoPCWqc0wA84DTdSTUeI8SEhwRbExR9I2bOygFHRELhYjMzp5s1E7tMg=
+  </data>
+ </layer>
+ <layer id="2" name="Over Sprite 2" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAjUBAIAAWGhCAAAAQwAAAEQAUlQACCDwAne3sOJkbEA7oFh8AcXGIx5s
+  </data>
+ </layer>
+ <layer id="4" name="Collision Layer" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAgUDAHgAJwE4OClLSgEnATg4JwEsoJDtwAILSK4DQCOZV8qzkgulX6GDSCsRQZO4q7EyPX85LglOIIIHk4gETQxsiJu5X4kVTzBYT4h3/RoJE0igg28ajnO+pRL6nN4de+CkLQ==
+  </data>
+ </layer>
+</map>

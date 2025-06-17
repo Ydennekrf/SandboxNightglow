@@ -1,0 +1,6286 @@
+fileFormatVersion: 2
+guid: 566bb351348a6a546a62a0460420162f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908b46a5dbf268d4999230357c1f03bf
+      internalID: 1972269626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43bb5336827bb3449a6889c1fa473a6e
+      internalID: 1170102046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8329ca5e9b09442a039433fbddadf3
+      internalID: 1034036177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_7
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5698a18a08a8efc4084ec832297813e8
+      internalID: 2045545947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_8
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9484d5699a5a9d54eb639ff10d92c77f
+      internalID: 390195194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_9
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c508c7d36c276c408efa0f34c78f40d
+      internalID: 1900781745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_10
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 448
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70033ee6589251d4f86885f4bb57b9f5
+      internalID: -686583154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38deebb4199bc4d468688189198d92bb
+      internalID: -660232503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 496
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 355cc33ba7ccb864f8ddc65582d647be
+      internalID: -16404474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_15
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9baa4724ab163445bf09aaf91b8dfca
+      internalID: -17956390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_17
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 621480ff6e2f5d74cbbf15bcec8af0e2
+      internalID: -1584710134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e97b82a248e1948a5726e63a1efcd7
+      internalID: -1110794121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_19
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a3ef61e5d4991a45819a9cc2cfce710
+      internalID: 612510709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d0da2b5759ae74458dbd2e91fcb4004
+      internalID: -418080649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_21
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cbe0f82533952d4d8d888fdbef32990
+      internalID: 1427108606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_22
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71ddfe5e6462a084a962dfe64250fed9
+      internalID: -1135018669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_23
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef8aa651c570ce40bec59403c83d243
+      internalID: 950651097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_26
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac1785e1869aaa84c985019ef9d2fd58
+      internalID: 2077503289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_27
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d43ab650b4b9e34da769d1e12598165
+      internalID: 2008785333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_28
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4108b96844bd91547a820e85c5c99648
+      internalID: 1475626343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 480
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7605df58820b1224586bfc144aca5002
+      internalID: 361192558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_31
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09ff3d8a5a77080458c474ef7c3663ac
+      internalID: -415735773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36aa8bb9191493d47aeb61f9e8ddc5e3
+      internalID: -714285717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_33
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81acec8b5c8181746affe6cd773eb15a
+      internalID: 106617860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f781b1489c30804d9ec9c9bd69b53a0
+      internalID: -1834394348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_35
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae6be20932591f47a31c33dfd8f753c
+      internalID: 1098345454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbb95ac4126da7948af6b01ab4ac3af6
+      internalID: -1530870362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_37
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f3b25d01d333d48a1ea3f021540806
+      internalID: 1923480361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_38
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52ac2af42d899d743a58de18c3ab827f
+      internalID: -1523896424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_39
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979fd34a2a3bae2479c8a05bc9227ee7
+      internalID: 1545993280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_40
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e1df36ba6f1c374797e0c1eb481da15
+      internalID: 396801715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_41
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce01617109f4551409f8f4da653d56e9
+      internalID: 1528397994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_42
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06e7733de29af9f47926b0ed4e015e35
+      internalID: 1985146889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_45
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cdc6648a6642b745b68c0e8c2026309
+      internalID: -1389397954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_46
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e8728855fc436b4292583f4a9f7e09e
+      internalID: -1654616899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_47
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1116886226f414c97bb31108d65f00
+      internalID: -867035913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_48
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 464
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2467458ccd1cc74789ae2f7094fa560
+      internalID: -1948244915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_50
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ddf7172b282ea4499cb05c1e8f76c8c
+      internalID: -706294261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_51
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75859e7d2bfcced41aa015962470de0d
+      internalID: 1862180886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_52
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 900181c1a1a71d04dab2e1941121f75f
+      internalID: -1882148441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_53
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80228d77e0b5221489f9795d42b65016
+      internalID: 510159130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_54
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9969bedad9a10e644b10779725bd387c
+      internalID: 86592654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_55
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a1ec8211c2a280499fbe61f41d56b13
+      internalID: -1315515009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_56
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4b09e26d09cb8e489194a2ac4f35c43
+      internalID: 1893042586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_57
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25246ab46280d3e4ea445dbe35154569
+      internalID: -1009357351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_58
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c9b801cec663c49b764084176d904c
+      internalID: 1061232633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_59
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c78bac86ea8035949a7f2b799aef32c1
+      internalID: 1566257822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_60
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ea4184cb42baa43848fc1bdc25262a
+      internalID: 1360722742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_61
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fc019cccd7f76c49950a1cbaed93cd0
+      internalID: 99333475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_64
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 416
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 256ce2ae724f5f647913d9dfb5cfe3e5
+      internalID: -241634563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_66
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 416
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afa8034c55f259240858256fd0b64174
+      internalID: -170089998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8126900f9f1064344be45d0213725bc4
+      internalID: 395235860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_71
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abfa28e460322074c9ea3bb62dc99cec
+      internalID: -1877995574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_72
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5339a0866d1acce4280319b9bf68e3d4
+      internalID: 910107166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_73
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c057ef74e96a77d4983753c3988efc77
+      internalID: -169122178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_74
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e4d4b608f7f2b24c9d75bbd2fd83929
+      internalID: -2093098291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_75
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2107b9a1231e1946990c23887f8ebc1
+      internalID: -572771967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_76
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1302ced9538de6d449121222e954bd49
+      internalID: -1105339886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_77
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7603e5913d728e24081c246f3a3ee435
+      internalID: 125934987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_78
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e41ae0559b93240be3207e269375cc
+      internalID: -731985579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_79
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b9808767e64444b93716c6d89d3331
+      internalID: -1056737488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_80
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c80655544fa3d0747b4483b950959bf7
+      internalID: -724017162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_81
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 432
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f59047e5f79fac4aac0e4489a4c5783
+      internalID: 1485590363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_82
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 400
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fd2fc06fef145b4880928f5773d4cd0
+      internalID: 1127944501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_84
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 400
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfc4754b9d899064b95f1cdaf4e87c4f
+      internalID: 2073038974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_96
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9401ecbf0534dc4d915b4b8c49f0a65
+      internalID: 1612820427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_97
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e79b9e84e291a46a8b83e5fc041446
+      internalID: 609676590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_98
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f883dfe2bcc57304f8a6122c1a7fdf7b
+      internalID: 47088282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_99
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7fd06b9be7b1b248b3f5fbc77cf46bf
+      internalID: -643353456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_100
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f50c177c7073b140aebabe19e36dc13
+      internalID: -860464997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_101
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c010bf0b7b128849b30189e42082285
+      internalID: -1841243743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_102
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e7d831f41a6e5b4594f5cdf01d51595
+      internalID: -2116546322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_103
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 274ed5300e5b932408069c9bff5301d6
+      internalID: -1489750843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_104
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb1ecd2f5c935c4b9b6a50e4dce7a46
+      internalID: -889107810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_105
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 400
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb3a1fb1616135142bff5b20fe02a460
+      internalID: 420132111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_106
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 400
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44da61668ea6fbf4d93944f698d04164
+      internalID: -2088375116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_107
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 400
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 241e65709a7cb324dab4620d0b3d7f36
+      internalID: -911516798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_117
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 416
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbdfe16f0145d474e9c3b85a32375d76
+      internalID: -1015266583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_119
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 400
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83b33a449244d6a4e9fad7db90a947ac
+      internalID: -1951132338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_121
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 400
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 124660a11f615b647a020dd400e88102
+      internalID: 635441039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_123
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e10ccc0dc3ccd545924c7bdf0b5eeb6
+      internalID: 1089786853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_124
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8db93cd34ed79d244856dff7754cd059
+      internalID: -1402050145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_125
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a1bb8d47c4a6c943a62f1c2757f58ee
+      internalID: -1925743113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_126
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cbe6b2673d743344bd6eff251aee3b9
+      internalID: -1493431589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_127
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3db56fff1be8d4b9f2c3c03d290c4a
+      internalID: 1584556957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_128
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a08544036f7970419dc3240fd4c7dea
+      internalID: 1164927716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_129
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1918d3b157929764f877712fb22260a3
+      internalID: 467070960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_130
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4fc95d22b6435f44b410c2d7afa730c
+      internalID: -828172142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_131
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396422c858ca6cb49a5f5925653a87bd
+      internalID: 1685530321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_139
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877f880ec6739a448ad11fe3fbf2132e
+      internalID: 1089927779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_145
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae72ca7784a9a1478545442e432357f
+      internalID: 369082169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_146
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e84816bb374907d47b65f18daa379f4d
+      internalID: -681919340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_147
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89aa659f8343eb4486efa7784472fb4
+      internalID: -339904475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_148
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ef8ab2625ec124d9de88c11e78291d
+      internalID: 1740020183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_149
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 368
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdc3f4408b8d82942a51e327ce341ebd
+      internalID: 880600453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_150
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 368
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46d372cf84df38644a7fccf5336d9a42
+      internalID: -1736579493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_151
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f3fd74b4213d404f9c57bf64bb88fa4
+      internalID: -1039150783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_152
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52461c56f2f9fc944aa585dc1ef71171
+      internalID: -1813059381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_153
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e889316e051605e42bd9d6898e5f22d8
+      internalID: -652202492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_154
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b015faf563ffd44796dedd09e818095
+      internalID: -164389375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_155
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab6eca936d398a84ea4fb004b9ad41e2
+      internalID: 1766600745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_156
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe5a1edf640f00e48898c3f7f757edd9
+      internalID: 769374314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_157
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 352
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41327511dd34b284eb309f276c66d3e2
+      internalID: 2133328825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_159
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 352
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fdc6a8c4bc1e5d499aa3a0a6e9333d5
+      internalID: -1865003964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_161
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19de646b2d6a1744891fae1c6ac81b9b
+      internalID: -533574087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_164
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c65162907e8e52746b365da77ff7f6a3
+      internalID: -415363166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_166
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 368
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a92452e96cd5e1f49afcd784a44dfa1f
+      internalID: -1824314621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_168
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 368
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9205122964a0a4dba2039187100a2b
+      internalID: 1031476106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_170
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad541b4761c1d674b892ea519c36dbce
+      internalID: -154915846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_171
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e20c18d14a309b94d8a12c07196b6b77
+      internalID: 472909578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_172
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bfa77c51b8ad4340bd164ae295fade1
+      internalID: -808865205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_173
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 352
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ead19d20ff648de42899fe61a36cc316
+      internalID: -1019144303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_176
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 352
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1095a17103bc548a62617a35128f6a
+      internalID: 83902926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_177
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db7a00996f880154ca177535a8e6760b
+      internalID: -1493514039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_178
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a718c980ea31a845a7848f47f1c8f89
+      internalID: -893898666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_179
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d36acc478b4fb554cbe629c2e61bf98c
+      internalID: -1703464781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_180
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa6ec4cafc2b8ed4db7ace778af1268c
+      internalID: -739163764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_181
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf1f9f3519e66634d88160269f150634
+      internalID: 2069593062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_190
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6531223d00f0c2941aa1c742a4571f8e
+      internalID: -1403773711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_193
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8dab3c64b79bf74eb1f92bf0ec455f3
+      internalID: -1723364514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_198
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d87d4bd2993b1a4f9b04cb34216ca0e
+      internalID: -394932158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_199
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee53d699169fa5948b5e22690008715b
+      internalID: 1499814167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_200
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de2b707448fe85a408db2a827407b51c
+      internalID: -1684457134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_201
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53252a2e6465cfa4fb13b42fed0dbaea
+      internalID: -1513459846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_203
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 352
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1463b508b8691a40a8749a081265cff
+      internalID: -302377765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_205
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 352
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e21619277e270224a9f244af11532183
+      internalID: 1936301098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_248
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f52cf062016e0e438cafbdc6c9cb731
+      internalID: 2131516869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_249
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eaac5f7a56c2134f98200d9a25b26a5
+      internalID: 867669102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_250
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e77723dd435efd458af5ba7c344315a
+      internalID: -1038733287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_251
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac93cf72f07c61d43a5d0e1d6b17e32a
+      internalID: -1360379916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_252
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cebc6f82678e9d49b0a1ee1cc4bd226
+      internalID: 1432552042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_253
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af7c16877efa1174f85e534ac2cda5dd
+      internalID: 959540970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_254
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea11f453bf65e5e4097c7d2ad8637e84
+      internalID: -942924152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_255
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be723604d4ff0c74a827057116de787f
+      internalID: 446971153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_278
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8931a6aa409dc86458c5305ad827a36f
+      internalID: -1804271240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_279
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00070b7dd217f3741a146992d4c43095
+      internalID: -48393211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_280
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31bf1ae11ff53244786c2e88540fa029
+      internalID: -1399090832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_281
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6831da60c12d8a4d9a5fec3efb8cbf8
+      internalID: 1711674008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_282
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 432cbae33fcefbc42be514e110cfcd8a
+      internalID: -31182844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_283
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186cc660f8b94f84689c268e311d4456
+      internalID: 2033367935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_284
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e219e4230f3fbe24b8c012a7a4d5f136
+      internalID: 1061822059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_285
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56239eeca970e2c4f95e72e877303524
+      internalID: -1699059945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_286
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc4544c22ccf8cf48b3c6d533ab1071d
+      internalID: -394994939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_287
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de7c62b5b3fc831479193397c2c48336
+      internalID: -2073531563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_288
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cdf007088072ee4289d631bd37a13c3
+      internalID: -1758322672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_289
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b02ae494c1d087e4992016eea8aaf38d
+      internalID: 28847260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_290
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cbf44f6248165a4a81b941129dd3b24
+      internalID: 1313706193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_291
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82b4806938a868540bb1c8f6af09f516
+      internalID: -1992497591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_293
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18071e958a6045246884f66bbf556fa2
+      internalID: -986170048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_295
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 240
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c44ceea4c73250e4eb46cd50a628649a
+      internalID: -849233556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_297
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c59b013b44f9587449454ae1881ac0ae
+      internalID: 1640658980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_301
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d74470aee9200043b71304b368fca59
+      internalID: 960671439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_302
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae18b39f1a401b4395ee83a508a0ead
+      internalID: 953788495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_303
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 690152198fdcde84a933b958da82961a
+      internalID: 1341721481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_304
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 671195a70f5f1394d89faa0f000fd151
+      internalID: 1733606783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_305
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80d4f8f1750df434ab5b2569f93d68c5
+      internalID: -918500502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_306
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b608a9d2b94786341aea52a9b6363ba4
+      internalID: 1503867498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_307
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae4b1910fe623a846a7329a536e6c53a
+      internalID: 1751540384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_308
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a94ebd54cc6c93459b4b29ef2c0116d
+      internalID: 626186926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_309
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1143944e8611cd74e95dc32a8a47ba05
+      internalID: 154573771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_310
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc8fe36850b96e47b407418abe4d9cb
+      internalID: 179469507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_311
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77852c3f02753ad418f626b1d64447d5
+      internalID: 626030779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_312
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e954f8c85df47d43ad67e183f6aa410
+      internalID: -1410965940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_313
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c920a8bf0dbb97458ccd3772b0c924b
+      internalID: 1493965430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_314
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b317bc1bc05a913449bc7e841cafc3f5
+      internalID: -350464858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_324
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3e01745d20479f4f86c023d140b1c95
+      internalID: -999665427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_325
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d289cda8ab197c40b2bf1a1b667d9f8
+      internalID: 109033629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_326
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9130b79dcbccee4f8bfbfb1c2a3eb19
+      internalID: 1753818134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_327
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa61b68bba6d5f247979160d80888bbd
+      internalID: -1681446341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_328
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a187062f7756df942a9b75b09a33154a
+      internalID: 514803406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_329
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829b6dd7c24b34648987b8c52e21c4c9
+      internalID: -397683394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_330
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5ddcb34bf664348a3bce1f0079be12
+      internalID: -92036217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_331
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 899dae7126564cc44ac42da7190b0a21
+      internalID: 207015343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_332
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3abab904187c4c40af3ebaba64e9da5
+      internalID: 1425385333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_333
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e8093cf7414d6446abb28ae6e7ddb60
+      internalID: 1716441658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_334
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5753b03b6816092468c97eb2ab48d474
+      internalID: -1074205677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_335
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9240861748b463e4b825dcfdcef07c2b
+      internalID: -66624462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_336
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72adbb6281e085140b6d8ebd0e4544fa
+      internalID: 1027853483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_337
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfd78183a0e163b41b6295e2dd58198a
+      internalID: 18833299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_392
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 176
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 081f3d70769c3d54a8b3e361302ae479
+      internalID: 201075582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_394
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 176
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f78f7d2c7d7c7d24baa8dae2d0af2d31
+      internalID: 1859439358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_402
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 176
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a7c61721628dde43a60a804b8bc084d
+      internalID: 2055696875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_403
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 176
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce27cff2507d09b44b43690c983f64da
+      internalID: 413551956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_405
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 176
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae570aeaba91a44458a5a72403e57648
+      internalID: -523947072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_407
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 176
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7573bd571e2cd334d9f8b54fab328b63
+      internalID: 876283561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_409
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 176
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ff18096cacb0c3428fa598b11968a25
+      internalID: -580066278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_411
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 176
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ec1907ef0d25184489ae7a33c673ef5
+      internalID: -1157625025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_413
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 176
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3f63529338659c4abd96e8e59164994
+      internalID: -181389893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_414
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 176
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49aab848173c2fd4ab16dd815c1e54e2
+      internalID: -1191228534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_416
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 176
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bc174f95a66cf34e8031d797764ef64
+      internalID: -26844566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_417
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 176
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ddd04181ebf7c345993a3ce827d4ff0
+      internalID: -1560865594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_418
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 176
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e63a4bfd5727b944b514419327c7137
+      internalID: 1809225915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_420
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 176
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b780bb9ec5dd7af4894d575891d13b3d
+      internalID: 914774154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_424
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4788c4333166f794895b06cd7284bbc7
+      internalID: 754296016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_425
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339fd7035205b1b4ea3505829dfd6ae8
+      internalID: 2065686029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_426
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54ba19c324e23e74f8f1f2c064f47cc1
+      internalID: -248092146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_427
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eada47bd64f0b9e43a513e04914b9c58
+      internalID: 1416856014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_428
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d718b74887eb0b4eb967a26489fb1d2
+      internalID: 1207239911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_429
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eeec3598d07aea4fbafbecb522fb018
+      internalID: -835055015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_430
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99f2ad9bba803154b9643ec8a13ee20f
+      internalID: -1744413005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_450
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68e04f2418e9f154b9960b2535a2b82b
+      internalID: -595411093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_459
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 144
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0b58b74954f37b4cb14c5454e9437e2
+      internalID: -978268425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_460
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dcd03a6fa4cfa944a7a846fb4bb4572
+      internalID: 2088191236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_461
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 144
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2809e9ea2a78c64b905827196872fbb
+      internalID: -498883032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_462
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e60cd8098613c24f93150be16d545f9
+      internalID: 1911282804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_463
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 144
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed355324e1ba4a41b73ceadbd037f7a
+      internalID: -669290584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_465
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 144
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3667f24ac4f7eb488e21628decc47ee
+      internalID: 1479689508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_466
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 144
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8ad8ddc1ddb13c48b7e3d2805a5b3f4
+      internalID: -1165227373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_469
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4756339f27f841d4f89545500ae25749
+      internalID: -980594947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_470
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ecb85d0c22ade448c0a23f3c1a8822
+      internalID: 936714452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_533
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 113185115713080419f27386c6d8021d
+      internalID: 1484171049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_535
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26cf2f696a9405b409c50973d5769969
+      internalID: -2127741359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_543
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 80
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f4a649af8f50324487c6a6c94f6dd59
+      internalID: 1088467333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_544
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 80
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8081a0fbfa25b4d8d7bd93f2b9d313
+      internalID: -1535871516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_546
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 80
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3015e692f8661645afd98e01a9b07f7
+      internalID: -1547612096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_548
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 80
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a891bba8562e70a4d90b3f4de395fd9e
+      internalID: -887896112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_550
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 80
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa68f74e46d3fe74ea3d0ffe607c3dc8
+      internalID: -133603977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_552
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 80
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2ae449c7e8ca75489892ace8c0298a2
+      internalID: 1317732792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_554
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 80
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51855654f5052924a9b0dd07d78d6735
+      internalID: 1935749505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_555
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 80
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33ddf8b21e683fa4daca9217942c2e1d
+      internalID: -588081026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_557
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 80
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c3cdf73853c944196403830646a9ec
+      internalID: 1385199783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_558
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 80
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c51d672d6d1adf74ab60cec9a3ea7eb0
+      internalID: -1420060206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_559
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 80
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70f295c03d2129e44ab1f1916d8b3f77
+      internalID: -1600460662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_561
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 80
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37c5848bf7fe61b418ef02629a82b606
+      internalID: 1763048924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_565
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b32c7243d58565b479accb76504850b2
+      internalID: -1265380148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_566
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3f603e3060bb4b4ca77a27b2aa49b0a
+      internalID: 827225815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_567
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8211885ce281b744e86e6d72d6b83cff
+      internalID: -822319987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_568
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8269b69a53014c14d8d2e861eadf4649
+      internalID: -102254678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_569
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4876856c14823ba478c7cd800692ef0c
+      internalID: -251864674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_570
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98d70fcd69ae38b42816a372a6e2d2cc
+      internalID: -2115367381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_571
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c5ef4146b5ce14fbfa56b05e59843b
+      internalID: 1337720079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_591
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05064cc1d9d18034ca28755e72b744b4
+      internalID: -723643418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_600
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 48
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e3944cc094f8384e9ed8f184d8f5f84
+      internalID: -193098344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_601
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b584d0849955c8408d7bcb33ded5ddf
+      internalID: -885713635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_602
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 48
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9077f7f44b594945940d3bbfe3051be
+      internalID: 2083872627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_603
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f55ed7f6f5cc44580e1b31e2c8c38c
+      internalID: -1503466128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_604
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 985821fe21dc2c141a60109f8cc13fb7
+      internalID: 282532250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_606
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 64
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d43b8161ae456b4c8fd95e80c5c2145
+      internalID: 1748964278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_608
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 48
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec9e7c277045e74bb514ffe0f6daac2
+      internalID: -1175205074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_609
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 48
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53c13def3cce12543b69ec02d0647f2b
+      internalID: -459502808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_652
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea122d1e45f01714a81ecd3d0daac824
+      internalID: 292707584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_654
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e27df631994fc04589e67b74fc2e0db
+      internalID: -1461538171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_655
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c49a79cee52aef34e877c7c91ffca88b
+      internalID: -334478603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_656
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76abc7265b84fc54da6e4a1130c94d93
+      internalID: -5084708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_658
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b4a6b061ef4a744aec3210849723cc
+      internalID: -286273327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_660
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d71e18e7c3909624a9d5579639684b02
+      internalID: 872369772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_662
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 338c0a2a43bc6cc4abd39b6d188dbf7f
+      internalID: 204809176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_664
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 16
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0b659541f16c61408966c355e45556f
+      internalID: -2089676569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_666
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2a1b7d65e8c404184c68817535c65a
+      internalID: -1930665656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_670
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 16
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df72b7f3aaab9946a15d34d4e67bb8b
+      internalID: 304268108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_674
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca212e67ea8a124698235aa50230609
+      internalID: -2147148919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_676
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc87eb38e6c893744800d47318805fa7
+      internalID: 2026880850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_677
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ab7f24899e21744bdcc794719d8958
+      internalID: 807181985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_678
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45a11841a3a3094385a0fce0c9a42be
+      internalID: 902638580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_679
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abed85a0244d7724e8eeac5359908401
+      internalID: -1702759821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_680
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f048957fc9ecfa49bb9a0f13e9c68ab
+      internalID: -1793928937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_681
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb2799c42c2b44d468cb71ab825804ae
+      internalID: 2093057595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_682
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a7a58225ac5d1d488935410f1053cc8
+      internalID: 1461220309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_683
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e49a5fa837ba937458bcadac5bd01216
+      internalID: 1569306433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_689
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4055ea847c2a6a40854b50c44608fa4
+      internalID: 1916517932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: home exteriors, thatch roof v1_690
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994d8ee4028de274f9095499e60dca63
+      internalID: -210199224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      home exteriors, thatch roof v1_0: -774742461
+      home exteriors, thatch roof v1_1: 96396188
+      home exteriors, thatch roof v1_10: -686583154
+      home exteriors, thatch roof v1_100: -860464997
+      home exteriors, thatch roof v1_101: -1841243743
+      home exteriors, thatch roof v1_102: -2116546322
+      home exteriors, thatch roof v1_103: -1489750843
+      home exteriors, thatch roof v1_104: -889107810
+      home exteriors, thatch roof v1_105: 420132111
+      home exteriors, thatch roof v1_106: -2088375116
+      home exteriors, thatch roof v1_107: -911516798
+      home exteriors, thatch roof v1_108: -1971427840
+      home exteriors, thatch roof v1_109: -783393165
+      home exteriors, thatch roof v1_11: -3076710
+      home exteriors, thatch roof v1_110: -85183587
+      home exteriors, thatch roof v1_111: 968856244
+      home exteriors, thatch roof v1_112: 2113622378
+      home exteriors, thatch roof v1_113: -725841395
+      home exteriors, thatch roof v1_114: 1331279544
+      home exteriors, thatch roof v1_115: 705953673
+      home exteriors, thatch roof v1_116: 2107872629
+      home exteriors, thatch roof v1_117: -1015266583
+      home exteriors, thatch roof v1_118: -353763598
+      home exteriors, thatch roof v1_119: -1951132338
+      home exteriors, thatch roof v1_12: -660232503
+      home exteriors, thatch roof v1_120: 1731320540
+      home exteriors, thatch roof v1_121: 635441039
+      home exteriors, thatch roof v1_122: 1371879511
+      home exteriors, thatch roof v1_123: 1089786853
+      home exteriors, thatch roof v1_124: -1402050145
+      home exteriors, thatch roof v1_125: -1925743113
+      home exteriors, thatch roof v1_126: -1493431589
+      home exteriors, thatch roof v1_127: 1584556957
+      home exteriors, thatch roof v1_128: 1164927716
+      home exteriors, thatch roof v1_129: 467070960
+      home exteriors, thatch roof v1_13: -16404474
+      home exteriors, thatch roof v1_130: -828172142
+      home exteriors, thatch roof v1_131: 1685530321
+      home exteriors, thatch roof v1_132: -1546964704
+      home exteriors, thatch roof v1_133: 1621308889
+      home exteriors, thatch roof v1_134: -961084239
+      home exteriors, thatch roof v1_135: 2056647673
+      home exteriors, thatch roof v1_136: -101277746
+      home exteriors, thatch roof v1_137: -1444499252
+      home exteriors, thatch roof v1_138: -1147610136
+      home exteriors, thatch roof v1_139: 1089927779
+      home exteriors, thatch roof v1_14: -908154900
+      home exteriors, thatch roof v1_140: -921819505
+      home exteriors, thatch roof v1_141: -69064287
+      home exteriors, thatch roof v1_142: 849990990
+      home exteriors, thatch roof v1_143: -1032534835
+      home exteriors, thatch roof v1_144: 1688528404
+      home exteriors, thatch roof v1_145: 369082169
+      home exteriors, thatch roof v1_146: -681919340
+      home exteriors, thatch roof v1_147: -339904475
+      home exteriors, thatch roof v1_148: 1740020183
+      home exteriors, thatch roof v1_149: 880600453
+      home exteriors, thatch roof v1_15: -17956390
+      home exteriors, thatch roof v1_150: -1736579493
+      home exteriors, thatch roof v1_151: -1039150783
+      home exteriors, thatch roof v1_152: -1813059381
+      home exteriors, thatch roof v1_153: -652202492
+      home exteriors, thatch roof v1_154: -164389375
+      home exteriors, thatch roof v1_155: 1766600745
+      home exteriors, thatch roof v1_156: 769374314
+      home exteriors, thatch roof v1_157: 2133328825
+      home exteriors, thatch roof v1_158: -1128478501
+      home exteriors, thatch roof v1_159: -1865003964
+      home exteriors, thatch roof v1_16: -1623841606
+      home exteriors, thatch roof v1_160: -2144941600
+      home exteriors, thatch roof v1_161: -533574087
+      home exteriors, thatch roof v1_162: -299628306
+      home exteriors, thatch roof v1_163: -195313842
+      home exteriors, thatch roof v1_164: -415363166
+      home exteriors, thatch roof v1_165: -1696114938
+      home exteriors, thatch roof v1_166: -1824314621
+      home exteriors, thatch roof v1_167: -289090110
+      home exteriors, thatch roof v1_168: 1031476106
+      home exteriors, thatch roof v1_169: -215041100
+      home exteriors, thatch roof v1_17: -1584710134
+      home exteriors, thatch roof v1_170: -154915846
+      home exteriors, thatch roof v1_171: 472909578
+      home exteriors, thatch roof v1_172: -808865205
+      home exteriors, thatch roof v1_173: -1019144303
+      home exteriors, thatch roof v1_174: -1075418927
+      home exteriors, thatch roof v1_175: 1998386294
+      home exteriors, thatch roof v1_176: 83902926
+      home exteriors, thatch roof v1_177: -1493514039
+      home exteriors, thatch roof v1_178: -893898666
+      home exteriors, thatch roof v1_179: -1703464781
+      home exteriors, thatch roof v1_18: -1110794121
+      home exteriors, thatch roof v1_180: -739163764
+      home exteriors, thatch roof v1_181: 2069593062
+      home exteriors, thatch roof v1_182: 2054569996
+      home exteriors, thatch roof v1_183: 1684026274
+      home exteriors, thatch roof v1_184: -1848364606
+      home exteriors, thatch roof v1_185: 2035518264
+      home exteriors, thatch roof v1_186: -1884100353
+      home exteriors, thatch roof v1_187: 1169439215
+      home exteriors, thatch roof v1_188: 417737713
+      home exteriors, thatch roof v1_189: -90082875
+      home exteriors, thatch roof v1_19: 612510709
+      home exteriors, thatch roof v1_190: -1403773711
+      home exteriors, thatch roof v1_191: -774441851
+      home exteriors, thatch roof v1_192: -555033229
+      home exteriors, thatch roof v1_193: -1723364514
+      home exteriors, thatch roof v1_194: 2144349707
+      home exteriors, thatch roof v1_195: -656672229
+      home exteriors, thatch roof v1_196: -41066782
+      home exteriors, thatch roof v1_197: -1365530667
+      home exteriors, thatch roof v1_198: -394932158
+      home exteriors, thatch roof v1_199: 1499814167
+      home exteriors, thatch roof v1_2: -58827950
+      home exteriors, thatch roof v1_20: -418080649
+      home exteriors, thatch roof v1_200: -1684457134
+      home exteriors, thatch roof v1_201: -1513459846
+      home exteriors, thatch roof v1_202: -1734905298
+      home exteriors, thatch roof v1_203: -302377765
+      home exteriors, thatch roof v1_204: -767035465
+      home exteriors, thatch roof v1_205: 1936301098
+      home exteriors, thatch roof v1_206: -2119025953
+      home exteriors, thatch roof v1_207: 2021822015
+      home exteriors, thatch roof v1_208: -1235464748
+      home exteriors, thatch roof v1_209: -1342583692
+      home exteriors, thatch roof v1_21: 1427108606
+      home exteriors, thatch roof v1_210: -1287218957
+      home exteriors, thatch roof v1_211: -1903569640
+      home exteriors, thatch roof v1_212: 226552683
+      home exteriors, thatch roof v1_213: -1711183935
+      home exteriors, thatch roof v1_214: 1004440687
+      home exteriors, thatch roof v1_215: -902544550
+      home exteriors, thatch roof v1_216: 700396639
+      home exteriors, thatch roof v1_217: 1489313916
+      home exteriors, thatch roof v1_218: -1575443128
+      home exteriors, thatch roof v1_219: 1941728259
+      home exteriors, thatch roof v1_22: -1135018669
+      home exteriors, thatch roof v1_220: 1072432327
+      home exteriors, thatch roof v1_221: -631903412
+      home exteriors, thatch roof v1_222: 1772013880
+      home exteriors, thatch roof v1_223: -1775320924
+      home exteriors, thatch roof v1_224: 520076569
+      home exteriors, thatch roof v1_225: -1279494227
+      home exteriors, thatch roof v1_226: -1235508493
+      home exteriors, thatch roof v1_227: 1668705531
+      home exteriors, thatch roof v1_228: -766122401
+      home exteriors, thatch roof v1_229: -950352504
+      home exteriors, thatch roof v1_23: 950651097
+      home exteriors, thatch roof v1_230: 917191339
+      home exteriors, thatch roof v1_231: -1503195298
+      home exteriors, thatch roof v1_232: 829379805
+      home exteriors, thatch roof v1_233: -1134448904
+      home exteriors, thatch roof v1_234: -949807509
+      home exteriors, thatch roof v1_235: 1775682569
+      home exteriors, thatch roof v1_236: 1465191116
+      home exteriors, thatch roof v1_237: -722867888
+      home exteriors, thatch roof v1_238: -428006860
+      home exteriors, thatch roof v1_239: -1354940762
+      home exteriors, thatch roof v1_24: 364364279
+      home exteriors, thatch roof v1_240: -329319341
+      home exteriors, thatch roof v1_241: -1442126581
+      home exteriors, thatch roof v1_242: 1009918821
+      home exteriors, thatch roof v1_243: -1194656815
+      home exteriors, thatch roof v1_244: 239136804
+      home exteriors, thatch roof v1_245: -177551432
+      home exteriors, thatch roof v1_246: 271030615
+      home exteriors, thatch roof v1_247: 1890184924
+      home exteriors, thatch roof v1_248: 2131516869
+      home exteriors, thatch roof v1_249: 867669102
+      home exteriors, thatch roof v1_25: -689358840
+      home exteriors, thatch roof v1_250: -1038733287
+      home exteriors, thatch roof v1_251: -1360379916
+      home exteriors, thatch roof v1_252: 1432552042
+      home exteriors, thatch roof v1_253: 959540970
+      home exteriors, thatch roof v1_254: -942924152
+      home exteriors, thatch roof v1_255: 446971153
+      home exteriors, thatch roof v1_256: 42961831
+      home exteriors, thatch roof v1_257: 811392153
+      home exteriors, thatch roof v1_258: -1019402397
+      home exteriors, thatch roof v1_259: 1264653857
+      home exteriors, thatch roof v1_26: 2077503289
+      home exteriors, thatch roof v1_260: -1503991561
+      home exteriors, thatch roof v1_261: 1316317323
+      home exteriors, thatch roof v1_262: 2002375216
+      home exteriors, thatch roof v1_263: 1112906141
+      home exteriors, thatch roof v1_264: 1257375647
+      home exteriors, thatch roof v1_265: -78034357
+      home exteriors, thatch roof v1_266: -1655244748
+      home exteriors, thatch roof v1_267: -1665934958
+      home exteriors, thatch roof v1_268: 1061661108
+      home exteriors, thatch roof v1_269: -1681366304
+      home exteriors, thatch roof v1_27: 2008785333
+      home exteriors, thatch roof v1_270: 1316613893
+      home exteriors, thatch roof v1_271: 1878125521
+      home exteriors, thatch roof v1_272: -1860337661
+      home exteriors, thatch roof v1_273: 720096415
+      home exteriors, thatch roof v1_274: -1436828546
+      home exteriors, thatch roof v1_275: -1168325446
+      home exteriors, thatch roof v1_276: -1574188400
+      home exteriors, thatch roof v1_277: -1591155589
+      home exteriors, thatch roof v1_278: -1804271240
+      home exteriors, thatch roof v1_279: -48393211
+      home exteriors, thatch roof v1_28: 1475626343
+      home exteriors, thatch roof v1_280: -1399090832
+      home exteriors, thatch roof v1_281: 1711674008
+      home exteriors, thatch roof v1_282: -31182844
+      home exteriors, thatch roof v1_283: 2033367935
+      home exteriors, thatch roof v1_284: 1061822059
+      home exteriors, thatch roof v1_285: -1699059945
+      home exteriors, thatch roof v1_286: -394994939
+      home exteriors, thatch roof v1_287: -2073531563
+      home exteriors, thatch roof v1_288: -1758322672
+      home exteriors, thatch roof v1_289: 28847260
+      home exteriors, thatch roof v1_29: 361192558
+      home exteriors, thatch roof v1_290: 1313706193
+      home exteriors, thatch roof v1_291: -1992497591
+      home exteriors, thatch roof v1_292: 265453373
+      home exteriors, thatch roof v1_293: -986170048
+      home exteriors, thatch roof v1_294: -1347150163
+      home exteriors, thatch roof v1_295: -849233556
+      home exteriors, thatch roof v1_296: -1129628565
+      home exteriors, thatch roof v1_297: 1640658980
+      home exteriors, thatch roof v1_298: 2106692670
+      home exteriors, thatch roof v1_299: -1603012053
+      home exteriors, thatch roof v1_3: -2097324237
+      home exteriors, thatch roof v1_30: 1003731017
+      home exteriors, thatch roof v1_300: -1075653828
+      home exteriors, thatch roof v1_301: 960671439
+      home exteriors, thatch roof v1_302: 953788495
+      home exteriors, thatch roof v1_303: 1341721481
+      home exteriors, thatch roof v1_304: 1733606783
+      home exteriors, thatch roof v1_305: -918500502
+      home exteriors, thatch roof v1_306: 1503867498
+      home exteriors, thatch roof v1_307: 1751540384
+      home exteriors, thatch roof v1_308: 626186926
+      home exteriors, thatch roof v1_309: 154573771
+      home exteriors, thatch roof v1_31: -415735773
+      home exteriors, thatch roof v1_310: 179469507
+      home exteriors, thatch roof v1_311: 626030779
+      home exteriors, thatch roof v1_312: -1410965940
+      home exteriors, thatch roof v1_313: 1493965430
+      home exteriors, thatch roof v1_314: -350464858
+      home exteriors, thatch roof v1_315: 28265293
+      home exteriors, thatch roof v1_316: 1250598166
+      home exteriors, thatch roof v1_317: -1672696567
+      home exteriors, thatch roof v1_318: -1914715079
+      home exteriors, thatch roof v1_319: 1388316925
+      home exteriors, thatch roof v1_32: -714285717
+      home exteriors, thatch roof v1_320: -1740640593
+      home exteriors, thatch roof v1_321: 66754145
+      home exteriors, thatch roof v1_322: 2035561215
+      home exteriors, thatch roof v1_323: 1146393088
+      home exteriors, thatch roof v1_324: -999665427
+      home exteriors, thatch roof v1_325: 109033629
+      home exteriors, thatch roof v1_326: 1753818134
+      home exteriors, thatch roof v1_327: -1681446341
+      home exteriors, thatch roof v1_328: 514803406
+      home exteriors, thatch roof v1_329: -397683394
+      home exteriors, thatch roof v1_33: 106617860
+      home exteriors, thatch roof v1_330: -92036217
+      home exteriors, thatch roof v1_331: 207015343
+      home exteriors, thatch roof v1_332: 1425385333
+      home exteriors, thatch roof v1_333: 1716441658
+      home exteriors, thatch roof v1_334: -1074205677
+      home exteriors, thatch roof v1_335: -66624462
+      home exteriors, thatch roof v1_336: 1027853483
+      home exteriors, thatch roof v1_337: 18833299
+      home exteriors, thatch roof v1_338: 705664864
+      home exteriors, thatch roof v1_339: -583529021
+      home exteriors, thatch roof v1_34: -1834394348
+      home exteriors, thatch roof v1_340: -1283901169
+      home exteriors, thatch roof v1_341: -237084981
+      home exteriors, thatch roof v1_342: 1977346488
+      home exteriors, thatch roof v1_343: -719536343
+      home exteriors, thatch roof v1_344: 1109130904
+      home exteriors, thatch roof v1_345: -1454950222
+      home exteriors, thatch roof v1_346: 805907269
+      home exteriors, thatch roof v1_347: -1596949802
+      home exteriors, thatch roof v1_348: -1850651280
+      home exteriors, thatch roof v1_349: -1685729683
+      home exteriors, thatch roof v1_35: 1098345454
+      home exteriors, thatch roof v1_350: -22007072
+      home exteriors, thatch roof v1_351: 1084458926
+      home exteriors, thatch roof v1_352: 1730156550
+      home exteriors, thatch roof v1_353: -771524106
+      home exteriors, thatch roof v1_354: -2119579511
+      home exteriors, thatch roof v1_355: -108605237
+      home exteriors, thatch roof v1_356: 1808606860
+      home exteriors, thatch roof v1_357: 2056679009
+      home exteriors, thatch roof v1_358: -1739730403
+      home exteriors, thatch roof v1_359: -963989167
+      home exteriors, thatch roof v1_36: -1530870362
+      home exteriors, thatch roof v1_360: -303278207
+      home exteriors, thatch roof v1_361: 23558858
+      home exteriors, thatch roof v1_362: -201104488
+      home exteriors, thatch roof v1_363: 1408407767
+      home exteriors, thatch roof v1_364: -1737871539
+      home exteriors, thatch roof v1_365: -1217584522
+      home exteriors, thatch roof v1_366: -1952196600
+      home exteriors, thatch roof v1_367: -1361661719
+      home exteriors, thatch roof v1_368: 1602397128
+      home exteriors, thatch roof v1_369: -760790664
+      home exteriors, thatch roof v1_37: 1923480361
+      home exteriors, thatch roof v1_370: 141453297
+      home exteriors, thatch roof v1_371: 790321426
+      home exteriors, thatch roof v1_372: -2035383191
+      home exteriors, thatch roof v1_373: 1603375359
+      home exteriors, thatch roof v1_374: -1893804202
+      home exteriors, thatch roof v1_375: -1945825218
+      home exteriors, thatch roof v1_376: -1986638813
+      home exteriors, thatch roof v1_377: 234683052
+      home exteriors, thatch roof v1_378: -1255559873
+      home exteriors, thatch roof v1_379: -747816590
+      home exteriors, thatch roof v1_38: -1523896424
+      home exteriors, thatch roof v1_380: 1724877813
+      home exteriors, thatch roof v1_381: -678584429
+      home exteriors, thatch roof v1_382: -384759566
+      home exteriors, thatch roof v1_383: -552126738
+      home exteriors, thatch roof v1_384: 1281363615
+      home exteriors, thatch roof v1_385: -978519900
+      home exteriors, thatch roof v1_386: -215996648
+      home exteriors, thatch roof v1_387: 807871256
+      home exteriors, thatch roof v1_388: 351428887
+      home exteriors, thatch roof v1_389: -1964934845
+      home exteriors, thatch roof v1_39: 1545993280
+      home exteriors, thatch roof v1_390: -2015872655
+      home exteriors, thatch roof v1_391: -2119381468
+      home exteriors, thatch roof v1_392: 201075582
+      home exteriors, thatch roof v1_393: 1531484580
+      home exteriors, thatch roof v1_394: 1859439358
+      home exteriors, thatch roof v1_395: 544862075
+      home exteriors, thatch roof v1_396: -197155587
+      home exteriors, thatch roof v1_397: 1645495376
+      home exteriors, thatch roof v1_398: -1426830627
+      home exteriors, thatch roof v1_399: -46981782
+      home exteriors, thatch roof v1_4: 1972269626
+      home exteriors, thatch roof v1_40: 396801715
+      home exteriors, thatch roof v1_400: -1207332496
+      home exteriors, thatch roof v1_401: 618486684
+      home exteriors, thatch roof v1_402: 2055696875
+      home exteriors, thatch roof v1_403: 413551956
+      home exteriors, thatch roof v1_404: 2139707811
+      home exteriors, thatch roof v1_405: -523947072
+      home exteriors, thatch roof v1_406: 705204339
+      home exteriors, thatch roof v1_407: 876283561
+      home exteriors, thatch roof v1_408: -1027893019
+      home exteriors, thatch roof v1_409: -580066278
+      home exteriors, thatch roof v1_41: 1528397994
+      home exteriors, thatch roof v1_410: 1821885091
+      home exteriors, thatch roof v1_411: -1157625025
+      home exteriors, thatch roof v1_412: -83741835
+      home exteriors, thatch roof v1_413: -181389893
+      home exteriors, thatch roof v1_414: -1191228534
+      home exteriors, thatch roof v1_415: 1511969868
+      home exteriors, thatch roof v1_416: -26844566
+      home exteriors, thatch roof v1_417: -1560865594
+      home exteriors, thatch roof v1_418: 1809225915
+      home exteriors, thatch roof v1_419: 1738921555
+      home exteriors, thatch roof v1_42: 1985146889
+      home exteriors, thatch roof v1_420: 914774154
+      home exteriors, thatch roof v1_421: -972393366
+      home exteriors, thatch roof v1_422: -645234964
+      home exteriors, thatch roof v1_423: -1335993199
+      home exteriors, thatch roof v1_424: 754296016
+      home exteriors, thatch roof v1_425: 2065686029
+      home exteriors, thatch roof v1_426: -248092146
+      home exteriors, thatch roof v1_427: 1416856014
+      home exteriors, thatch roof v1_428: 1207239911
+      home exteriors, thatch roof v1_429: -835055015
+      home exteriors, thatch roof v1_43: 323603071
+      home exteriors, thatch roof v1_430: -1744413005
+      home exteriors, thatch roof v1_431: 915600810
+      home exteriors, thatch roof v1_432: 584456984
+      home exteriors, thatch roof v1_433: -522058361
+      home exteriors, thatch roof v1_434: -250036890
+      home exteriors, thatch roof v1_435: -1818909460
+      home exteriors, thatch roof v1_436: -1703644418
+      home exteriors, thatch roof v1_437: -1288486832
+      home exteriors, thatch roof v1_438: 813891514
+      home exteriors, thatch roof v1_439: 505624912
+      home exteriors, thatch roof v1_44: 1501830683
+      home exteriors, thatch roof v1_440: 1773232267
+      home exteriors, thatch roof v1_441: -526516187
+      home exteriors, thatch roof v1_442: -1763762503
+      home exteriors, thatch roof v1_443: -1931136552
+      home exteriors, thatch roof v1_444: -1837288601
+      home exteriors, thatch roof v1_445: 1811294759
+      home exteriors, thatch roof v1_446: -1369482508
+      home exteriors, thatch roof v1_447: 614631686
+      home exteriors, thatch roof v1_448: 263458176
+      home exteriors, thatch roof v1_449: 1636042285
+      home exteriors, thatch roof v1_45: -1389397954
+      home exteriors, thatch roof v1_450: -595411093
+      home exteriors, thatch roof v1_451: 1491382242
+      home exteriors, thatch roof v1_452: -963133251
+      home exteriors, thatch roof v1_453: -121025858
+      home exteriors, thatch roof v1_454: 1385344748
+      home exteriors, thatch roof v1_455: 199378754
+      home exteriors, thatch roof v1_456: -341188858
+      home exteriors, thatch roof v1_457: 1554291764
+      home exteriors, thatch roof v1_458: -47665552
+      home exteriors, thatch roof v1_459: -978268425
+      home exteriors, thatch roof v1_46: -1654616899
+      home exteriors, thatch roof v1_460: 2088191236
+      home exteriors, thatch roof v1_461: -498883032
+      home exteriors, thatch roof v1_462: 1911282804
+      home exteriors, thatch roof v1_463: -669290584
+      home exteriors, thatch roof v1_464: 1696819420
+      home exteriors, thatch roof v1_465: 1479689508
+      home exteriors, thatch roof v1_466: -1165227373
+      home exteriors, thatch roof v1_467: 25488417
+      home exteriors, thatch roof v1_468: 616768289
+      home exteriors, thatch roof v1_469: -980594947
+      home exteriors, thatch roof v1_47: -867035913
+      home exteriors, thatch roof v1_470: 936714452
+      home exteriors, thatch roof v1_471: -618477009
+      home exteriors, thatch roof v1_472: -1166465461
+      home exteriors, thatch roof v1_473: 1853844839
+      home exteriors, thatch roof v1_474: 782775361
+      home exteriors, thatch roof v1_475: -175529732
+      home exteriors, thatch roof v1_476: -240169219
+      home exteriors, thatch roof v1_477: 1099270611
+      home exteriors, thatch roof v1_478: 760719898
+      home exteriors, thatch roof v1_479: -1539059386
+      home exteriors, thatch roof v1_48: -1948244915
+      home exteriors, thatch roof v1_480: -1277746687
+      home exteriors, thatch roof v1_481: 1220727849
+      home exteriors, thatch roof v1_482: -1061314109
+      home exteriors, thatch roof v1_483: 2028218512
+      home exteriors, thatch roof v1_484: -2015580620
+      home exteriors, thatch roof v1_485: -1602401168
+      home exteriors, thatch roof v1_486: -1768342322
+      home exteriors, thatch roof v1_487: 1270585560
+      home exteriors, thatch roof v1_488: 571916628
+      home exteriors, thatch roof v1_489: 430978435
+      home exteriors, thatch roof v1_49: -468569814
+      home exteriors, thatch roof v1_490: 446875906
+      home exteriors, thatch roof v1_491: 146284
+      home exteriors, thatch roof v1_492: 1617832875
+      home exteriors, thatch roof v1_493: 1917362223
+      home exteriors, thatch roof v1_494: 664329590
+      home exteriors, thatch roof v1_495: 676382609
+      home exteriors, thatch roof v1_496: -334650503
+      home exteriors, thatch roof v1_497: 468905384
+      home exteriors, thatch roof v1_498: -1852917443
+      home exteriors, thatch roof v1_499: 487409233
+      home exteriors, thatch roof v1_5: 1170102046
+      home exteriors, thatch roof v1_50: -706294261
+      home exteriors, thatch roof v1_500: -1205655699
+      home exteriors, thatch roof v1_501: 2087631336
+      home exteriors, thatch roof v1_502: 635926797
+      home exteriors, thatch roof v1_503: 857769912
+      home exteriors, thatch roof v1_504: 1527537466
+      home exteriors, thatch roof v1_505: 1675364144
+      home exteriors, thatch roof v1_506: -1807498756
+      home exteriors, thatch roof v1_507: 497464036
+      home exteriors, thatch roof v1_508: 43395043
+      home exteriors, thatch roof v1_509: -1719954835
+      home exteriors, thatch roof v1_51: 1862180886
+      home exteriors, thatch roof v1_510: -50304550
+      home exteriors, thatch roof v1_511: -597933988
+      home exteriors, thatch roof v1_512: -1511809106
+      home exteriors, thatch roof v1_513: -1529634890
+      home exteriors, thatch roof v1_514: 1218279863
+      home exteriors, thatch roof v1_515: 619657069
+      home exteriors, thatch roof v1_516: 443056963
+      home exteriors, thatch roof v1_517: 960243969
+      home exteriors, thatch roof v1_518: 621888238
+      home exteriors, thatch roof v1_519: 1959785399
+      home exteriors, thatch roof v1_52: -1882148441
+      home exteriors, thatch roof v1_520: -1496676582
+      home exteriors, thatch roof v1_521: -203354870
+      home exteriors, thatch roof v1_522: -1408521228
+      home exteriors, thatch roof v1_523: 1464859948
+      home exteriors, thatch roof v1_524: 238016328
+      home exteriors, thatch roof v1_525: -923560543
+      home exteriors, thatch roof v1_526: 1084172226
+      home exteriors, thatch roof v1_527: 1753245530
+      home exteriors, thatch roof v1_528: -1287940564
+      home exteriors, thatch roof v1_529: 497086075
+      home exteriors, thatch roof v1_53: 510159130
+      home exteriors, thatch roof v1_530: -2067917855
+      home exteriors, thatch roof v1_531: -451278161
+      home exteriors, thatch roof v1_532: 802306758
+      home exteriors, thatch roof v1_533: 1484171049
+      home exteriors, thatch roof v1_534: 1122383286
+      home exteriors, thatch roof v1_535: -2127741359
+      home exteriors, thatch roof v1_536: 769456696
+      home exteriors, thatch roof v1_537: 1965591185
+      home exteriors, thatch roof v1_538: 1451157471
+      home exteriors, thatch roof v1_539: -570598535
+      home exteriors, thatch roof v1_54: 86592654
+      home exteriors, thatch roof v1_540: -2126416934
+      home exteriors, thatch roof v1_541: 877892973
+      home exteriors, thatch roof v1_542: -1806925262
+      home exteriors, thatch roof v1_543: 1088467333
+      home exteriors, thatch roof v1_544: -1535871516
+      home exteriors, thatch roof v1_545: 131760570
+      home exteriors, thatch roof v1_546: -1547612096
+      home exteriors, thatch roof v1_547: 229803191
+      home exteriors, thatch roof v1_548: -887896112
+      home exteriors, thatch roof v1_549: -820332882
+      home exteriors, thatch roof v1_55: -1315515009
+      home exteriors, thatch roof v1_550: -133603977
+      home exteriors, thatch roof v1_551: 971796862
+      home exteriors, thatch roof v1_552: 1317732792
+      home exteriors, thatch roof v1_553: 1722644662
+      home exteriors, thatch roof v1_554: 1935749505
+      home exteriors, thatch roof v1_555: -588081026
+      home exteriors, thatch roof v1_556: -1668472010
+      home exteriors, thatch roof v1_557: 1385199783
+      home exteriors, thatch roof v1_558: -1420060206
+      home exteriors, thatch roof v1_559: -1600460662
+      home exteriors, thatch roof v1_56: 1893042586
+      home exteriors, thatch roof v1_560: 2038299054
+      home exteriors, thatch roof v1_561: 1763048924
+      home exteriors, thatch roof v1_562: -953570576
+      home exteriors, thatch roof v1_563: -1004518373
+      home exteriors, thatch roof v1_564: 829881637
+      home exteriors, thatch roof v1_565: -1265380148
+      home exteriors, thatch roof v1_566: 827225815
+      home exteriors, thatch roof v1_567: -822319987
+      home exteriors, thatch roof v1_568: -102254678
+      home exteriors, thatch roof v1_569: -251864674
+      home exteriors, thatch roof v1_57: -1009357351
+      home exteriors, thatch roof v1_570: -2115367381
+      home exteriors, thatch roof v1_571: 1337720079
+      home exteriors, thatch roof v1_572: -1731580043
+      home exteriors, thatch roof v1_573: -252755121
+      home exteriors, thatch roof v1_574: 793204153
+      home exteriors, thatch roof v1_575: 911140808
+      home exteriors, thatch roof v1_576: -1266538243
+      home exteriors, thatch roof v1_577: 1738445229
+      home exteriors, thatch roof v1_578: -126091276
+      home exteriors, thatch roof v1_579: 489327667
+      home exteriors, thatch roof v1_58: 1061232633
+      home exteriors, thatch roof v1_580: 269507575
+      home exteriors, thatch roof v1_581: 1895543612
+      home exteriors, thatch roof v1_582: 632959644
+      home exteriors, thatch roof v1_583: 743211530
+      home exteriors, thatch roof v1_584: -1529053996
+      home exteriors, thatch roof v1_585: -132660214
+      home exteriors, thatch roof v1_586: 2044756013
+      home exteriors, thatch roof v1_587: 302291736
+      home exteriors, thatch roof v1_588: -646002014
+      home exteriors, thatch roof v1_589: 65148850
+      home exteriors, thatch roof v1_59: 1566257822
+      home exteriors, thatch roof v1_590: 905189239
+      home exteriors, thatch roof v1_591: -723643418
+      home exteriors, thatch roof v1_592: 1897184166
+      home exteriors, thatch roof v1_593: 615358678
+      home exteriors, thatch roof v1_594: 584181043
+      home exteriors, thatch roof v1_595: -813131822
+      home exteriors, thatch roof v1_596: 14810861
+      home exteriors, thatch roof v1_597: -1377166791
+      home exteriors, thatch roof v1_598: -1957365048
+      home exteriors, thatch roof v1_599: 1963823635
+      home exteriors, thatch roof v1_6: 1034036177
+      home exteriors, thatch roof v1_60: 1360722742
+      home exteriors, thatch roof v1_600: -193098344
+      home exteriors, thatch roof v1_601: -885713635
+      home exteriors, thatch roof v1_602: 2083872627
+      home exteriors, thatch roof v1_603: -1503466128
+      home exteriors, thatch roof v1_604: 282532250
+      home exteriors, thatch roof v1_605: 1169446604
+      home exteriors, thatch roof v1_606: 1748964278
+      home exteriors, thatch roof v1_607: -1372529013
+      home exteriors, thatch roof v1_608: -1175205074
+      home exteriors, thatch roof v1_609: -459502808
+      home exteriors, thatch roof v1_61: 99333475
+      home exteriors, thatch roof v1_610: -1924492104
+      home exteriors, thatch roof v1_611: 892118514
+      home exteriors, thatch roof v1_612: 1776158671
+      home exteriors, thatch roof v1_613: -726516669
+      home exteriors, thatch roof v1_614: -356920407
+      home exteriors, thatch roof v1_615: -1321931041
+      home exteriors, thatch roof v1_616: -651043977
+      home exteriors, thatch roof v1_617: 996993290
+      home exteriors, thatch roof v1_618: 1809955368
+      home exteriors, thatch roof v1_619: 80821620
+      home exteriors, thatch roof v1_62: 1824733414
+      home exteriors, thatch roof v1_620: 1065766703
+      home exteriors, thatch roof v1_621: 580199501
+      home exteriors, thatch roof v1_622: -667623877
+      home exteriors, thatch roof v1_623: 693754020
+      home exteriors, thatch roof v1_624: -387845918
+      home exteriors, thatch roof v1_625: -446327493
+      home exteriors, thatch roof v1_626: 709318223
+      home exteriors, thatch roof v1_627: 68039595
+      home exteriors, thatch roof v1_628: -1562643611
+      home exteriors, thatch roof v1_629: 46075220
+      home exteriors, thatch roof v1_63: 141242531
+      home exteriors, thatch roof v1_630: -1123111215
+      home exteriors, thatch roof v1_631: 1814677691
+      home exteriors, thatch roof v1_632: -2134729945
+      home exteriors, thatch roof v1_633: -2063060923
+      home exteriors, thatch roof v1_634: -148286564
+      home exteriors, thatch roof v1_635: 1147319292
+      home exteriors, thatch roof v1_636: 1569414138
+      home exteriors, thatch roof v1_637: -1359639629
+      home exteriors, thatch roof v1_638: 497215104
+      home exteriors, thatch roof v1_639: -1970181123
+      home exteriors, thatch roof v1_64: -241634563
+      home exteriors, thatch roof v1_640: 1058786714
+      home exteriors, thatch roof v1_641: -64174369
+      home exteriors, thatch roof v1_642: 1722784518
+      home exteriors, thatch roof v1_643: 67477638
+      home exteriors, thatch roof v1_644: 330504054
+      home exteriors, thatch roof v1_645: -646237705
+      home exteriors, thatch roof v1_646: 356932531
+      home exteriors, thatch roof v1_647: -1308741340
+      home exteriors, thatch roof v1_648: -1575814028
+      home exteriors, thatch roof v1_649: -1897682340
+      home exteriors, thatch roof v1_65: -233497062
+      home exteriors, thatch roof v1_650: 778603592
+      home exteriors, thatch roof v1_651: -374068400
+      home exteriors, thatch roof v1_652: 292707584
+      home exteriors, thatch roof v1_653: 92675534
+      home exteriors, thatch roof v1_654: -1461538171
+      home exteriors, thatch roof v1_655: -334478603
+      home exteriors, thatch roof v1_656: -5084708
+      home exteriors, thatch roof v1_657: -1950949508
+      home exteriors, thatch roof v1_658: -286273327
+      home exteriors, thatch roof v1_659: -2028392415
+      home exteriors, thatch roof v1_66: -170089998
+      home exteriors, thatch roof v1_660: 872369772
+      home exteriors, thatch roof v1_661: -996485559
+      home exteriors, thatch roof v1_662: 204809176
+      home exteriors, thatch roof v1_663: -960217515
+      home exteriors, thatch roof v1_664: -2089676569
+      home exteriors, thatch roof v1_665: -576627041
+      home exteriors, thatch roof v1_666: -1930665656
+      home exteriors, thatch roof v1_667: 833935042
+      home exteriors, thatch roof v1_668: 1250904668
+      home exteriors, thatch roof v1_669: -2123749179
+      home exteriors, thatch roof v1_67: 606999566
+      home exteriors, thatch roof v1_670: 304268108
+      home exteriors, thatch roof v1_671: -1326728019
+      home exteriors, thatch roof v1_672: 1997476609
+      home exteriors, thatch roof v1_673: -320084690
+      home exteriors, thatch roof v1_674: -2147148919
+      home exteriors, thatch roof v1_675: 2033169670
+      home exteriors, thatch roof v1_676: 2026880850
+      home exteriors, thatch roof v1_677: 807181985
+      home exteriors, thatch roof v1_678: 902638580
+      home exteriors, thatch roof v1_679: -1702759821
+      home exteriors, thatch roof v1_68: -1180877059
+      home exteriors, thatch roof v1_680: -1793928937
+      home exteriors, thatch roof v1_681: 2093057595
+      home exteriors, thatch roof v1_682: 1461220309
+      home exteriors, thatch roof v1_683: 1569306433
+      home exteriors, thatch roof v1_684: 1954756703
+      home exteriors, thatch roof v1_685: 896728752
+      home exteriors, thatch roof v1_686: 1445899261
+      home exteriors, thatch roof v1_687: 1579905222
+      home exteriors, thatch roof v1_688: -57124537
+      home exteriors, thatch roof v1_689: 1916517932
+      home exteriors, thatch roof v1_69: -894439449
+      home exteriors, thatch roof v1_690: -210199224
+      home exteriors, thatch roof v1_7: 2045545947
+      home exteriors, thatch roof v1_70: 395235860
+      home exteriors, thatch roof v1_71: -1877995574
+      home exteriors, thatch roof v1_72: 910107166
+      home exteriors, thatch roof v1_73: -169122178
+      home exteriors, thatch roof v1_74: -2093098291
+      home exteriors, thatch roof v1_75: -572771967
+      home exteriors, thatch roof v1_76: -1105339886
+      home exteriors, thatch roof v1_77: 125934987
+      home exteriors, thatch roof v1_78: -731985579
+      home exteriors, thatch roof v1_79: -1056737488
+      home exteriors, thatch roof v1_8: 390195194
+      home exteriors, thatch roof v1_80: -724017162
+      home exteriors, thatch roof v1_81: 1485590363
+      home exteriors, thatch roof v1_82: 1127944501
+      home exteriors, thatch roof v1_83: -1478990534
+      home exteriors, thatch roof v1_84: 2073038974
+      home exteriors, thatch roof v1_85: -580295919
+      home exteriors, thatch roof v1_86: -608844304
+      home exteriors, thatch roof v1_87: 1961737559
+      home exteriors, thatch roof v1_88: -1234524641
+      home exteriors, thatch roof v1_89: -418150690
+      home exteriors, thatch roof v1_9: 1900781745
+      home exteriors, thatch roof v1_90: 1760996547
+      home exteriors, thatch roof v1_91: 445715209
+      home exteriors, thatch roof v1_92: -690719219
+      home exteriors, thatch roof v1_93: -497847786
+      home exteriors, thatch roof v1_94: -1256454709
+      home exteriors, thatch roof v1_95: -549314115
+      home exteriors, thatch roof v1_96: 1612820427
+      home exteriors, thatch roof v1_97: 609676590
+      home exteriors, thatch roof v1_98: 47088282
+      home exteriors, thatch roof v1_99: -643353456
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
