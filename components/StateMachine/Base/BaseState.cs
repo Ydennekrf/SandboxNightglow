@@ -17,7 +17,10 @@ public partial class BaseState : Node
     protected List<IStateTransition> _transitions = new();
     protected List<IStateAction>      _runtimeAdded = new();
 
-    private Entity _ownerCache;
+    public string InputActionName { get; private set; } = "";
+    public void   SetInputAction(string action) => InputActionName = action;
+
+    protected Entity _ownerCache;
 
     public override void _Ready()
     {

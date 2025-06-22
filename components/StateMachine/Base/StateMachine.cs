@@ -10,6 +10,10 @@ public partial class StateMachine : Node
     [Export] public NodePath InitialState;
     private Entity owner;
 
+    public ComboTracker MeleeTracker  { get; set; }
+    public ComboTracker MagicTracker  { get; set; }
+    public string       LastAttackButton { get; set; } = "";
+
     private readonly Stack<BaseState> _stack = new();
 
     public override void _Ready()
@@ -25,6 +29,11 @@ public partial class StateMachine : Node
     {
 
         Advance((float)delta);
+        if (MeleeTracker != null)
+            MeleeTracker.TimerRemaining = MathF.Max(0, MeleeTracker.TimerRemaining - (float)delta);
+
+        if (MagicTracker != null)
+            MagicTracker.TimerRemaining = MathF.Max(0, MagicTracker.TimerRemaining - (float)delta);
     }
 
     private void Advance(float d)

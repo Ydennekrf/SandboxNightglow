@@ -30,7 +30,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
     /* ─────────────────────────────  Cached children  ──────────────────────── */
     private Sprite2D _art;
-    private Area2D  _hitbox;
+    private Area2D _hitbox;
 
     /* ───────────────────────────────  Runtime init  ───────────────────────── */
     public override void _Ready()
@@ -46,21 +46,21 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
             if (body.IsInGroup("enemy_hurtbox"))
                 body.Call("TakeDamage", Damage);
         };
-        
+
         foreach (var p in ExtraActionPaths)
-                {
-                    if (GetNode(p) is IStateAction act)
-                        _weaponActions.Add(act);
-                    else
-                        GD.PushError($"{Name}: path {p} does not implement IStateAction");
-                }
+        {
+            if (GetNode(p) is IStateAction act)
+                _weaponActions.Add(act);
+            else
+                GD.PushError($"{Name}: path {p} does not implement IStateAction");
+        }
     }
 
     /* ───────────────────────────  IWeapon interface  ─────────────────────── */
 
-  public Dictionary<StatType,int> GetStatMods()
+    public Dictionary<StatType, int> GetStatMods()
     {
-        var dict = new Dictionary<StatType,int>();
+        var dict = new Dictionary<StatType, int>();
 
         foreach (var buff in StatBuffs)
             dict[buff.Type] = buff.Delta;   // last entry wins if duplicates
@@ -74,9 +74,12 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
         foreach (var b in StatBuffs)
             owner.Data.AddModifier(b.Type, b.Delta);
 
+        fsm.MeleeTracker = new ComboTracker(GatherPhases("Actions/MeleePhases"));
+        fsm.MagicTracker = new ComboTracker(GatherPhases("Actions/MagicPhases"));
+
         var attackState = fsm.GetState(StateType.Attack);   // helper you likely have
         foreach (var a in _weaponActions)
-            attackState.AddAction(a, runEnter:true); 
+            attackState.AddAction(a, runEnter: true);
 
         //  If you registered FSM actions from WeaponComponent, do it here
         //  fsm.RegisterAction("Swing", () => _hitbox.Monitoring = true);
@@ -84,9 +87,22 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
     public void OnUnequip(Entity owner, StateMachine fsm)
     {
-       foreach (var b in StatBuffs)
+        foreach (var b in StatBuffs)
             owner.Data.AddModifier(b.Type, -b.Delta);
 
         // fsm.RemoveAction("Swing");
     }
+    
+    private List<ComboPhase> GatherPhases(string containerPath)
+        {
+            var list = new List<ComboPhase>();
+
+            if (GetNodeOrNull<Node>(containerPath) is Node cont)
+            {
+                foreach (var child in cont.GetChildren())
+                    if (child is ComboPhase phase)
+                        list.Add(phase);
+            }
+            return list;
+        }
 }

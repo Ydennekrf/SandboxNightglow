@@ -1,9 +1,11 @@
-[gd_scene load_steps=48 format=3 uid="uid://0vqyqo8a8pko"]
+[gd_scene load_steps=51 format=3 uid="uid://0vqyqo8a8pko"]
 
 [ext_resource type="Script" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="2_ronss"]
 [ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="3_s6smw"]
+[ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="4_gl0v2"]
 [ext_resource type="Script" path="res://components/Interact/Base/InteractComponent.cs" id="4_okwjl"]
+[ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="4_r246n"]
 [ext_resource type="Texture2D" uid="uid://nni364y1g417" path="res://ArtAssets/ParticleEffects/35.png" id="5_nideg"]
 [ext_resource type="Script" path="res://components/Objects/ParticleEffectControllers/DashTrailController.cs" id="6_7sg8g"]
 [ext_resource type="Script" path="res://components/StateMachine/Base/StateMachine.cs" id="7_q74sc"]
@@ -31,6 +33,7 @@
 [ext_resource type="Script" path="res://components/Inventory/base/InventoryComponent.cs" id="26_sh6nv"]
 [ext_resource type="Script" path="res://components/Inventory/base/InventoryWindow.cs" id="28_p0128"]
 [ext_resource type="Texture2D" uid="uid://xgnnmrrr31xu" path="res://ArtAssets/UI/Dialog/DialogFrame.png" id="28_x33qj"]
+[ext_resource type="Script" path="res://components/Weapon/Base/WeaponComponent.cs" id="29_geumn"]
 [ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://components/UI/PackedScenes/inventory_slot.tscn" id="29_nb2id"]
 [ext_resource type="Script" path="res://Managers/UIManager.cs" id="30_j0osh"]
 [ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="32_rsx4e"]
@@ -104,25 +107,34 @@ ActionsAnimPath = NodePath("Actions")
 libraries = {
 "": ExtResource("2_ronss")
 }
+autoplay = "Idle_Right"
 
 [node name="Sprites" type="Node2D" parent="."]
 
-[node name="WepUpStow" type="Sprite2D" parent="Sprites"]
+[node name="WepDownStow" type="Sprite2D" parent="Sprites"]
 
-[node name="WepUpDraw" type="Sprite2D" parent="Sprites"]
-
-[node name="Hair" type="Sprite2D" parent="Sprites"]
-
-[node name="Clothes" type="Sprite2D" parent="Sprites"]
+[node name="WepDownDraw" type="Sprite2D" parent="Sprites"]
 
 [node name="Body" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("3_s6smw")
 hframes = 65
 vframes = 6
 
-[node name="WepDownStow" type="Sprite2D" parent="Sprites"]
+[node name="Clothes" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("4_r246n")
+hframes = 65
+vframes = 6
+frame = 52
 
-[node name="WepDownDraw" type="Sprite2D" parent="Sprites"]
+[node name="Hair" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("4_gl0v2")
+hframes = 65
+vframes = 6
+frame = 52
+
+[node name="WepUpStow" type="Sprite2D" parent="Sprites"]
+
+[node name="WepUpDraw" type="Sprite2D" parent="Sprites"]
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 16
@@ -297,9 +309,10 @@ script = ExtResource("25_rnmem")
 script = ExtResource("26_sh6nv")
 MaxSlots = 21
 
-[node name="WeaponContainer" type="Node2D" parent="."]
+[node name="WeaponHolder" type="Node2D" parent="."]
 
-[node name="Weapon" type="Node2D" parent="."]
+[node name="WeaponComponent" type="Node2D" parent="."]
+script = ExtResource("29_geumn")
 
 [node name="Controller" type="Node2D" parent="."]
 
@@ -387,8 +400,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("28_p0128")
 _inventoryPath = NodePath("../../Inventory")
-_grid = NodePath("VBoxContainer/HBoxContainer2/GridContainer")
 _slotScene = ExtResource("29_nb2id")
+_grid = NodePath("VBoxContainer/HBoxContainer2/GridContainer")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/InventoryUI"]
 custom_minimum_size = Vector2(200, 100)
