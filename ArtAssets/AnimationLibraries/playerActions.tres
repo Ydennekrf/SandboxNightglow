@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=24 format=3 uid="uid://bbnwy2a1oolb8"]
+[gd_resource type="AnimationLibrary" load_steps=38 format=3 uid="uid://bbnwy2a1oolb8"]
 
 [sub_resource type="Animation" id="Animation_4h7gd"]
 resource_name = "Dodge_Down"
@@ -700,6 +700,540 @@ tracks/6/keys = {
 "values": [Vector2i(36, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_narpw"]
+resource_name = "Melee1_Down"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_r8b5s"]
+resource_name = "Melee1_Right"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_2vc0w"]
+resource_name = "Melee1_Up"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_qw01k"]
+resource_name = "Melee2_Down"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_urswa"]
+resource_name = "Melee2_Right"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_e2den"]
+resource_name = "Melee2_Up"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+}
+
 [sub_resource type="Animation" id="Animation_ie4pe"]
 length = 0.001
 tracks/0/type = "value"
@@ -713,6 +1247,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pu00b"]
@@ -1427,8 +1973,8 @@ tracks/6/keys = {
 "values": [Vector2i(41, 0), Vector2i(41, 1), Vector2i(41, 2), Vector2i(41, 3), Vector2i(41, 4), Vector2i(41, 5)]
 }
 
-[sub_resource type="Animation" id="Animation_narpw"]
-resource_name = "Melee1_Down"
+[sub_resource type="Animation" id="Animation_kkfix"]
+resource_name = "Melee2_Left"
 length = 0.81
 loop_mode = 1
 tracks/0/type = "value"
@@ -1441,7 +1987,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+"values": [Vector2i(54, 0), Vector2i(54, 1), Vector2i(54, 2), Vector2i(54, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1453,7 +1999,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+"values": [Vector2i(54, 0), Vector2i(54, 1), Vector2i(54, 2), Vector2i(54, 3)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1465,7 +2011,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+"values": [Vector2i(54, 0), Vector2i(54, 1), Vector2i(54, 2), Vector2i(54, 3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1477,7 +2023,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+"values": [Vector2i(54, 0), Vector2i(54, 1), Vector2i(54, 2), Vector2i(54, 3)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1489,7 +2035,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+"values": [Vector2i(54, 0), Vector2i(54, 1), Vector2i(54, 2), Vector2i(54, 3)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1501,7 +2047,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+"values": [Vector2i(54, 0), Vector2i(54, 1), Vector2i(54, 2), Vector2i(54, 3)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1513,11 +2059,11 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(49, 0), Vector2i(49, 1), Vector2i(49, 2), Vector2i(49, 3)]
+"values": [Vector2i(54, 0), Vector2i(54, 1), Vector2i(54, 2), Vector2i(54, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_qw01k"]
-resource_name = "Melee2_Down"
+[sub_resource type="Animation" id="Animation_bif1m"]
+resource_name = "Melee1_Left"
 length = 0.81
 loop_mode = 1
 tracks/0/type = "value"
@@ -1530,7 +2076,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+"values": [Vector2i(55, 0), Vector2i(55, 1), Vector2i(55, 2), Vector2i(55, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1542,7 +2088,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+"values": [Vector2i(55, 0), Vector2i(55, 1), Vector2i(55, 2), Vector2i(55, 3)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1554,7 +2100,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+"values": [Vector2i(55, 0), Vector2i(55, 1), Vector2i(55, 2), Vector2i(55, 3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1566,7 +2112,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+"values": [Vector2i(55, 0), Vector2i(55, 1), Vector2i(55, 2), Vector2i(55, 3)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1578,7 +2124,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+"values": [Vector2i(55, 0), Vector2i(55, 1), Vector2i(55, 2), Vector2i(55, 3)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1590,7 +2136,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+"values": [Vector2i(55, 0), Vector2i(55, 1), Vector2i(55, 2), Vector2i(55, 3)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1602,11 +2148,11 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(48, 0), Vector2i(48, 1), Vector2i(48, 2), Vector2i(48, 3)]
+"values": [Vector2i(55, 0), Vector2i(55, 1), Vector2i(55, 2), Vector2i(55, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_2vc0w"]
-resource_name = "Melee1_Up"
+[sub_resource type="Animation" id="Animation_dukbg"]
+resource_name = "MeleeThrust_Down"
 length = 0.81
 loop_mode = 1
 tracks/0/type = "value"
@@ -1619,7 +2165,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+"values": [Vector2i(56, 0), Vector2i(56, 1), Vector2i(56, 2), Vector2i(56, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1631,7 +2177,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+"values": [Vector2i(56, 0), Vector2i(56, 1), Vector2i(56, 2), Vector2i(56, 3)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1643,7 +2189,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+"values": [Vector2i(56, 0), Vector2i(56, 1), Vector2i(56, 2), Vector2i(56, 3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1655,7 +2201,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+"values": [Vector2i(56, 0), Vector2i(56, 1), Vector2i(56, 2), Vector2i(56, 3)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1667,7 +2213,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+"values": [Vector2i(56, 0), Vector2i(56, 1), Vector2i(56, 2), Vector2i(56, 3)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1679,7 +2225,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+"values": [Vector2i(56, 0), Vector2i(56, 1), Vector2i(56, 2), Vector2i(56, 3)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1691,11 +2237,11 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(51, 0), Vector2i(51, 1), Vector2i(51, 2), Vector2i(51, 3)]
+"values": [Vector2i(56, 0), Vector2i(56, 1), Vector2i(56, 2), Vector2i(56, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_e2den"]
-resource_name = "Melee2_Up"
+[sub_resource type="Animation" id="Animation_lwxgx"]
+resource_name = "Magic1_Down"
 length = 0.81
 loop_mode = 1
 tracks/0/type = "value"
@@ -1708,7 +2254,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+"values": [Vector2i(57, 0), Vector2i(57, 1), Vector2i(57, 2), Vector2i(57, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1720,7 +2266,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+"values": [Vector2i(57, 0), Vector2i(57, 1), Vector2i(57, 2), Vector2i(57, 3)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1732,7 +2278,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+"values": [Vector2i(57, 0), Vector2i(57, 1), Vector2i(57, 2), Vector2i(57, 3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1744,7 +2290,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+"values": [Vector2i(57, 0), Vector2i(57, 1), Vector2i(57, 2), Vector2i(57, 3)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1756,7 +2302,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+"values": [Vector2i(57, 0), Vector2i(57, 1), Vector2i(57, 2), Vector2i(57, 3)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1768,7 +2314,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+"values": [Vector2i(57, 0), Vector2i(57, 1), Vector2i(57, 2), Vector2i(57, 3)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1780,11 +2326,11 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(50, 0), Vector2i(50, 1), Vector2i(50, 2), Vector2i(50, 3)]
+"values": [Vector2i(57, 0), Vector2i(57, 1), Vector2i(57, 2), Vector2i(57, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_urswa"]
-resource_name = "Melee2_Right"
+[sub_resource type="Animation" id="Animation_3rok6"]
+resource_name = "MeleeThrust_Up"
 length = 0.81
 loop_mode = 1
 tracks/0/type = "value"
@@ -1797,7 +2343,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+"values": [Vector2i(58, 0), Vector2i(58, 1), Vector2i(58, 2), Vector2i(58, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1809,7 +2355,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+"values": [Vector2i(58, 0), Vector2i(58, 1), Vector2i(58, 2), Vector2i(58, 3)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1821,7 +2367,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+"values": [Vector2i(58, 0), Vector2i(58, 1), Vector2i(58, 2), Vector2i(58, 3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1833,7 +2379,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+"values": [Vector2i(58, 0), Vector2i(58, 1), Vector2i(58, 2), Vector2i(58, 3)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1845,7 +2391,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+"values": [Vector2i(58, 0), Vector2i(58, 1), Vector2i(58, 2), Vector2i(58, 3)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1857,7 +2403,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+"values": [Vector2i(58, 0), Vector2i(58, 1), Vector2i(58, 2), Vector2i(58, 3)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1869,11 +2415,11 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(52, 0), Vector2i(52, 1), Vector2i(52, 2), Vector2i(52, 3)]
+"values": [Vector2i(58, 0), Vector2i(58, 1), Vector2i(58, 2), Vector2i(58, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_r8b5s"]
-resource_name = "Melee1_Right"
+[sub_resource type="Animation" id="Animation_kr6lr"]
+resource_name = "Magic1_Up"
 length = 0.81
 loop_mode = 1
 tracks/0/type = "value"
@@ -1886,7 +2432,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+"values": [Vector2i(59, 0), Vector2i(59, 1), Vector2i(59, 2), Vector2i(59, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1898,7 +2444,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+"values": [Vector2i(59, 0), Vector2i(59, 1), Vector2i(59, 2), Vector2i(59, 3)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1910,7 +2456,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+"values": [Vector2i(59, 0), Vector2i(59, 1), Vector2i(59, 2), Vector2i(59, 3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1922,7 +2468,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+"values": [Vector2i(59, 0), Vector2i(59, 1), Vector2i(59, 2), Vector2i(59, 3)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1934,7 +2480,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+"values": [Vector2i(59, 0), Vector2i(59, 1), Vector2i(59, 2), Vector2i(59, 3)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1946,7 +2492,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+"values": [Vector2i(59, 0), Vector2i(59, 1), Vector2i(59, 2), Vector2i(59, 3)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1958,7 +2504,767 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(53, 0), Vector2i(53, 1), Vector2i(53, 2), Vector2i(53, 3)]
+"values": [Vector2i(59, 0), Vector2i(59, 1), Vector2i(59, 2), Vector2i(59, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_6ncku"]
+resource_name = "MeleeThrust_Right"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(60, 0), Vector2i(60, 1), Vector2i(60, 2), Vector2i(60, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(60, 0), Vector2i(60, 1), Vector2i(60, 2), Vector2i(60, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(60, 0), Vector2i(60, 1), Vector2i(60, 2), Vector2i(60, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(60, 0), Vector2i(60, 1), Vector2i(60, 2), Vector2i(60, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(60, 0), Vector2i(60, 1), Vector2i(60, 2), Vector2i(60, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(60, 0), Vector2i(60, 1), Vector2i(60, 2), Vector2i(60, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(60, 0), Vector2i(60, 1), Vector2i(60, 2), Vector2i(60, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_mv8oa"]
+resource_name = "Magic1_Right"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(61, 0), Vector2i(61, 1), Vector2i(61, 2), Vector2i(61, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(61, 0), Vector2i(61, 1), Vector2i(61, 2), Vector2i(61, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(61, 0), Vector2i(61, 1), Vector2i(61, 2), Vector2i(61, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(61, 0), Vector2i(61, 1), Vector2i(61, 2), Vector2i(61, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(61, 0), Vector2i(61, 1), Vector2i(61, 2), Vector2i(61, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(61, 0), Vector2i(61, 1), Vector2i(61, 2), Vector2i(61, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(61, 0), Vector2i(61, 1), Vector2i(61, 2), Vector2i(61, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_q01be"]
+resource_name = "MeleeThrust_Left"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(62, 0), Vector2i(62, 1), Vector2i(62, 2), Vector2i(62, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(62, 0), Vector2i(62, 1), Vector2i(62, 2), Vector2i(62, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(62, 0), Vector2i(62, 1), Vector2i(62, 2), Vector2i(62, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(62, 0), Vector2i(62, 1), Vector2i(62, 2), Vector2i(62, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(62, 0), Vector2i(62, 1), Vector2i(62, 2), Vector2i(62, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(62, 0), Vector2i(62, 1), Vector2i(62, 2), Vector2i(62, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(62, 0), Vector2i(62, 1), Vector2i(62, 2), Vector2i(62, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_f505k"]
+resource_name = "Magic1_Left"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(63, 0), Vector2i(63, 1), Vector2i(63, 2), Vector2i(63, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(63, 0), Vector2i(63, 1), Vector2i(63, 2), Vector2i(63, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(63, 0), Vector2i(63, 1), Vector2i(63, 2), Vector2i(63, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(63, 0), Vector2i(63, 1), Vector2i(63, 2), Vector2i(63, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(63, 0), Vector2i(63, 1), Vector2i(63, 2), Vector2i(63, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(63, 0), Vector2i(63, 1), Vector2i(63, 2), Vector2i(63, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(63, 0), Vector2i(63, 1), Vector2i(63, 2), Vector2i(63, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_u13ba"]
+resource_name = "MeleeJump_Left"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 0), Vector2i(1, 1), Vector2i(6, 1), Vector2i(62, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 0), Vector2i(1, 1), Vector2i(6, 1), Vector2i(62, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 0), Vector2i(1, 1), Vector2i(6, 1), Vector2i(62, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 0), Vector2i(6, 0), Vector2i(6, 1), Vector2i(62, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 0), Vector2i(6, 0), Vector2i(6, 1), Vector2i(62, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 0), Vector2i(6, 0), Vector2i(6, 1), Vector2i(62, 2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 0), Vector2i(6, 0), Vector2i(6, 1), Vector2i(62, 2)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(0.138696, 0.033493),
+"update": 0,
+"values": [Vector2(0, 10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i56rl"]
+resource_name = "MeleeJump_Down"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(19, 0), Vector2i(12, 1), Vector2i(19, 1), Vector2i(56, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(19, 0), Vector2i(12, 1), Vector2i(19, 1), Vector2i(56, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(19, 0), Vector2i(12, 1), Vector2i(19, 1), Vector2i(56, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(19, 0), Vector2i(19, 1), Vector2i(19, 2), Vector2i(56, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(19, 0), Vector2i(18, 0), Vector2i(19, 1), Vector2i(56, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(19, 0), Vector2i(18, 0), Vector2i(19, 1), Vector2i(56, 2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(19, 0), Vector2i(18, 0), Vector2i(19, 1), Vector2i(56, 2)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(0.138696, 0.033493),
+"update": 0,
+"values": [Vector2(0, 10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4i7c6"]
+resource_name = "MeleeJump_Up"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(43, 0), Vector2i(37, 1), Vector2i(42, 0), Vector2i(58, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(43, 0), Vector2i(37, 1), Vector2i(42, 0), Vector2i(58, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(43, 0), Vector2i(37, 1), Vector2i(42, 0), Vector2i(58, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(43, 0), Vector2i(30, 0), Vector2i(42, 0), Vector2i(58, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(43, 0), Vector2i(30, 0), Vector2i(42, 0), Vector2i(58, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(43, 0), Vector2i(30, 0), Vector2i(42, 0), Vector2i(58, 2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(43, 0), Vector2i(30, 0), Vector2i(42, 0), Vector2i(58, 2)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(0.138696, 0.033493),
+"update": 0,
+"values": [Vector2(0, 10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_if214"]
+resource_name = "MeleeJump_Right"
+length = 0.81
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(31, 0), Vector2i(25, 1), Vector2i(30, 1), Vector2i(60, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Clothes:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(31, 0), Vector2i(25, 1), Vector2i(30, 1), Vector2i(60, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Hair:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(31, 0), Vector2i(25, 1), Vector2i(30, 1), Vector2i(60, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/WepDownStow:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(31, 0), Vector2i(30, 0), Vector2i(30, 1), Vector2i(60, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/WepDownDraw:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(31, 0), Vector2i(30, 0), Vector2i(30, 1), Vector2i(60, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/WepUpStow:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(31, 0), Vector2i(30, 0), Vector2i(30, 1), Vector2i(60, 2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/WepUpDraw:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.135, 0.27, 0.405),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(31, 0), Vector2i(30, 0), Vector2i(30, 1), Vector2i(60, 2)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(0.138696, 0.033493),
+"update": 0,
+"values": [Vector2(0, 10), Vector2(0, 0)]
 }
 
 [resource]
@@ -1971,12 +3277,26 @@ _data = {
 "Idle_Left": SubResource("Animation_oiveh"),
 "Idle_Right": SubResource("Animation_dq5hp"),
 "Idle_Up": SubResource("Animation_4ap1u"),
+"Magic1_Down": SubResource("Animation_lwxgx"),
+"Magic1_Left": SubResource("Animation_f505k"),
+"Magic1_Right": SubResource("Animation_mv8oa"),
+"Magic1_Up": SubResource("Animation_kr6lr"),
 "Melee1_Down": SubResource("Animation_narpw"),
+"Melee1_Left": SubResource("Animation_bif1m"),
 "Melee1_Right": SubResource("Animation_r8b5s"),
 "Melee1_Up": SubResource("Animation_2vc0w"),
 "Melee2_Down": SubResource("Animation_qw01k"),
+"Melee2_Left": SubResource("Animation_kkfix"),
 "Melee2_Right": SubResource("Animation_urswa"),
 "Melee2_Up": SubResource("Animation_e2den"),
+"MeleeJump_Down": SubResource("Animation_i56rl"),
+"MeleeJump_Left": SubResource("Animation_u13ba"),
+"MeleeJump_Right": SubResource("Animation_if214"),
+"MeleeJump_Up": SubResource("Animation_4i7c6"),
+"MeleeThrust_Down": SubResource("Animation_dukbg"),
+"MeleeThrust_Left": SubResource("Animation_q01be"),
+"MeleeThrust_Right": SubResource("Animation_6ncku"),
+"MeleeThrust_Up": SubResource("Animation_3rok6"),
 "RESET": SubResource("Animation_ie4pe"),
 "Run_Down": SubResource("Animation_pu00b"),
 "Run_Left": SubResource("Animation_ryiy2"),

@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://caqvscu4l6erb"]
+[gd_scene load_steps=5 format=3 uid="uid://caqvscu4l6erb"]
 
 [ext_resource type="Script" path="res://components/Weapon/Base/WeaponBase.cs" id="1_kh684"]
+[ext_resource type="Script" path="res://components/Weapon/Resources/StatDelta.cs" id="2_tfew2"]
+
+[sub_resource type="Resource" id="Resource_n6ks8"]
+script = ExtResource("2_tfew2")
+Type = 0
+Delta = 100
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bi6f2"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_kh684")
+Damage = 10
+StatBuffs = [SubResource("Resource_n6ks8")]
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -14,6 +22,8 @@ shape = SubResource("CapsuleShape2D_bi6f2")
 
 [node name="ActionContainer" type="Node2D" parent="."]
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="ComboPhases" type="Node2D" parent="."]
 
-[node name="Overlay" type="Sprite2D" parent="Sprites"]
+[node name="Melee" type="Node2D" parent="ComboPhases"]
+
+[node name="Magic" type="Node2D" parent="ComboPhases"]
