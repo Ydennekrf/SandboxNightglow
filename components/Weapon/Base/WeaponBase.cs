@@ -17,7 +17,11 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 {
     /* ───────────────────────────  Inspector fields  ───────────────────────── */
 
-    [Export] public Texture2D ArtTexture;        // sprite sheet that matches body grid
+    [Export] public Texture2D WepUpStow;
+    [Export] public Texture2D WepUpDraw;
+    [Export] public Texture2D WepDownStow;
+    [Export] public Texture2D WepDownDraw;
+    [Export] public Texture2D AbilityOverlay;
 
     [Export] public int Damage = 1;              // raw damage dealt when Hitbox is ON
 
@@ -29,16 +33,13 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
     private readonly List<IStateAction> _weaponActions = new();
 
     /* ─────────────────────────────  Cached children  ──────────────────────── */
-    private Sprite2D _art;
     private Area2D _hitbox;
 
     /* ───────────────────────────────  Runtime init  ───────────────────────── */
     public override void _Ready()
     {
-        _art = GetNode<Sprite2D>("Art");
         _hitbox = GetNode<Area2D>("Hitbox");
 
-        _art.Texture = ArtTexture;               // fill the sprite
 
         // Damage callback only when Hitbox monitoring is enabled by AnimationPlayer
         _hitbox.BodyEntered += body =>
@@ -73,11 +74,12 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
         // Apply buffs
         foreach (var b in StatBuffs)
             owner.Data.AddModifier(b.Type, b.Delta);
+        // get new weapons combo phases
+        fsm.MeleeTracker = new ComboTracker(GatherPhases("ComboPhases/Melee"));
+        fsm.MagicTracker = new ComboTracker(GatherPhases("ComboPhases/Magic"));
 
-        fsm.MeleeTracker = new ComboTracker(GatherPhases("Actions/MeleePhases"));
-        fsm.MagicTracker = new ComboTracker(GatherPhases("Actions/MagicPhases"));
-
-        var attackState = fsm.GetState(StateType.Attack);   // helper you likely have
+        var attackState = fsm.GetState(StateType.Attack);
+         // add the Attack State actions that are attached to the weapon scene
         foreach (var a in _weaponActions)
             attackState.AddAction(a, runEnter: true);
 
