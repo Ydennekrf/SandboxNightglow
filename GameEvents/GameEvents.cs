@@ -4,8 +4,6 @@ public enum GameEvent
 	ToastMessage,
 	EquipmentChanged,
 	InventoryChange,
-	EquipItem,
-	UnEquipItem,
 	UseItem,
 	PickupItem,
 	DropItem,

@@ -5,12 +5,25 @@ public static class WeaponRegistry
 {
     /// Key = ItemId used by InventoryComponent  (e.g. "rusty_short_sword")
     /// Val = PackedScene path                  (e.g. "res://Weapons/RustyShortSword.tscn")
+    /// 
+
+    private static readonly Dictionary<string, WeaponItem> Weapons = new();
     public static readonly Dictionary<StringName, string> WeaponPaths = new()
     {
         { "rusty_short_sword", "res://Weapons/RustyShortSword.tscn" },
         { "iron_axe",          "res://Weapons/IronAxe.tscn"        }
         // add more here...
     };
+
+    public static void LoadAll()
+{
+    foreach (var path in DirAccess.GetFilesAt("res://Data/Items/Weapons"))
+    {
+        if (!path.EndsWith(".tres")) continue;
+        var item = GD.Load<WeaponItem>(path);
+        Weapons[item.ItemId] = item;
+    }
+}
 
     /// Optional editor check – call once in a unit-test or on project startup
     public static void ValidateAll()

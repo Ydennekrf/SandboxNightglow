@@ -8,6 +8,8 @@ public partial class Player : Entity
 	public int PlayerId { get; private set; }
 	public int SaveSlotId { get; set; }
 
+	private CollisionShape2D _hitShape;
+
 	#region Sprites
 
 	[Export] public NodePath WepUpDraw;
@@ -42,15 +44,17 @@ public partial class Player : Entity
 		var saveButton = GetNode<Button>("UI/MarginContainer/HBoxContainer/VBoxContainer/Save");
 		saveButton.Pressed += OnSavePressed;
 
+		_hitShape = GetNode<CollisionShape2D>("HitBoxArea/CollisionShape2D");
+		_hitShape.Disabled = true;
 		EventManager.I.Subscribe<EquipmentChange>(GameEvent.EquipmentChanged, SetCurrentSprites);
-		
+
 
 	}
 
-    public override void _ExitTree()
-    {
-       EventManager.I.Unsubscribe<EquipmentChange>(GameEvent.EquipmentChanged, SetCurrentSprites);
-    }
+	public override void _ExitTree()
+	{
+		EventManager.I.Unsubscribe<EquipmentChange>(GameEvent.EquipmentChanged, SetCurrentSprites);
+	}
 
 	private void OnSavePressed()
 	{
@@ -80,11 +84,11 @@ public partial class Player : Entity
 		{
 			case WeaponItem w:
 
-					// _wepDownDraw.Texture = w.WepDownDraw;
-					// _wepDownStow.Texture = w.WepDownStow;
-					// _wepUpDraw.Texture = w.WepUpDraw;
-					// _wepUpStow.Texture = w.WepUpStow;
-				
+				// _wepDownDraw.Texture = w.WepDownDraw;
+				// _wepDownStow.Texture = w.WepDownStow;
+				// _wepUpDraw.Texture = w.WepUpDraw;
+				// _wepUpStow.Texture = w.WepUpStow;
+
 
 				if (w.type == BodyType.OneHanded)
 				{
@@ -102,9 +106,9 @@ public partial class Player : Entity
 				break;
 			case ArmorItem a:
 
-					_clothes.Texture = a.Clothes;
+				_clothes.Texture = a.Clothes;
 
-				
+
 
 				if (a.type == BodyType.OneHanded)
 				{
@@ -122,8 +126,37 @@ public partial class Player : Entity
 			default:
 				break;
 
-        // Add more cases if you later have BowItem, StaffItem, etc.
+				// Add more cases if you later have BowItem, StaffItem, etc.
 		}
 	}
 
+
+public void ActivateHitBox(
+    float width,      // rectangle size X
+    float height,     // rectangle size Y
+    float forward,    // distance straight ahead
+    float activeSecs = 0.1f) // lifetime before auto-disable
+{
+    // resize or create the rectangle
+    var rect = _hitShape.Shape as RectangleShape2D ?? new RectangleShape2D();
+    rect.Size = new Vector2(width, height);
+    _hitShape.Shape = rect;
+
+    // calculate offset purely by facing
+    Vector2 offset = FacingDirection switch        // ← you already track Facing
+    {
+        Facing.Down  => new Vector2(0,  forward),
+        Facing.Up    => new Vector2(0, -forward),
+        Facing.Left  => new Vector2(-forward, 0),
+        Facing.Right => new Vector2( forward, 0),
+        _            => Vector2.Zero
+    };
+    _hitShape.Position = offset;
+
+    // enable & schedule auto-disable
+    _hitShape.Disabled = false;
+    var t = CreateTween();
+    t.TweenCallback(Callable.From(() => _hitShape.Disabled = true))
+     .SetDelay(activeSecs);
+}
 } 

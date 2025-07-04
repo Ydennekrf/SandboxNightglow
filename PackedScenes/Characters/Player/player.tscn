@@ -1,15 +1,19 @@
-[gd_scene load_steps=51 format=3 uid="uid://0vqyqo8a8pko"]
+[gd_scene load_steps=55 format=3 uid="uid://0vqyqo8a8pko"]
 
 [ext_resource type="Script" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="2_ronss"]
 [ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="3_s6smw"]
+[ext_resource type="Texture2D" uid="uid://bef5qto4k6etg" path="res://ArtAssets/Characters/Selene/StowDown/Selene_Wepdwn_Sword_Stow.png" id="4_8ejgb"]
 [ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="4_gl0v2"]
 [ext_resource type="Script" path="res://components/Interact/Base/InteractComponent.cs" id="4_okwjl"]
 [ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="4_r246n"]
+[ext_resource type="Texture2D" uid="uid://0gj6rki8fv5f" path="res://ArtAssets/Characters/Selene/WepDown/Selene_Wepdwn_Sword_Draw.png" id="5_cw1ca"]
 [ext_resource type="Texture2D" uid="uid://nni364y1g417" path="res://ArtAssets/ParticleEffects/35.png" id="5_nideg"]
 [ext_resource type="Script" path="res://components/Objects/ParticleEffectControllers/DashTrailController.cs" id="6_7sg8g"]
 [ext_resource type="Script" path="res://components/StateMachine/Base/StateMachine.cs" id="7_q74sc"]
 [ext_resource type="Script" path="res://components/StateMachine/Base/BaseState.cs" id="8_aidl1"]
+[ext_resource type="Texture2D" uid="uid://ccfhp3xjilnmv" path="res://ArtAssets/Characters/Selene/StowUp/Selene_Wepup_Sword_Stow.png" id="8_yo844"]
+[ext_resource type="Texture2D" uid="uid://cm4xgavwsb7fq" path="res://ArtAssets/Characters/Selene/WepUp/Selene_Wepup_Sword_Draw.png" id="9_fhxjg"]
 [ext_resource type="PackedScene" uid="uid://27yxonnj2ai" path="res://PackedScenes/StateActions/animation_action.tscn" id="9_lde1q"]
 [ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/DirectionalAnimationAction.cs" id="9_rhlmw"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/InputStartMovingTransition.cs" id="10_mnbqb"]
@@ -112,8 +116,16 @@ autoplay = "Idle_Right"
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="WepDownStow" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("4_8ejgb")
+hframes = 65
+vframes = 6
+frame = 251
 
 [node name="WepDownDraw" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("5_cw1ca")
+hframes = 65
+vframes = 6
+frame = 251
 
 [node name="Body" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("3_s6smw")
@@ -124,17 +136,25 @@ vframes = 6
 texture = ExtResource("4_r246n")
 hframes = 65
 vframes = 6
-frame = 52
+frame = 251
 
 [node name="Hair" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("4_gl0v2")
 hframes = 65
 vframes = 6
-frame = 52
+frame = 251
 
 [node name="WepUpStow" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("8_yo844")
+hframes = 66
+vframes = 6
+frame = 254
 
 [node name="WepUpDraw" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("9_fhxjg")
+hframes = 65
+vframes = 6
+frame = 251
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 16
@@ -145,6 +165,11 @@ script = ExtResource("4_okwjl")
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_invm3")
 debug_color = Color(0.533167, 0.569459, 0.054255, 0.42)
+
+[node name="HitBoxArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxArea"]
+position = Vector2(0, 15)
 
 [node name="Animators" type="Node2D" parent="."]
 
@@ -317,7 +342,7 @@ script = ExtResource("29_geumn")
 [node name="Controller" type="Node2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_c3qtn")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_stack")]
@@ -400,8 +425,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("28_p0128")
 _inventoryPath = NodePath("../../Inventory")
-_slotScene = ExtResource("29_nb2id")
 _grid = NodePath("VBoxContainer/HBoxContainer2/GridContainer")
+_slotScene = ExtResource("29_nb2id")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/InventoryUI"]
 custom_minimum_size = Vector2(200, 100)
