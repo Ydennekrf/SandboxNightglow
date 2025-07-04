@@ -42,14 +42,14 @@ public partial class Player : Entity
 		var saveButton = GetNode<Button>("UI/MarginContainer/HBoxContainer/VBoxContainer/Save");
 		saveButton.Pressed += OnSavePressed;
 
-		EventManager.I.Subscribe<EquipmentChange>(GameEvent.EquipItem, SetCurrentSprites);
+		EventManager.I.Subscribe<EquipmentChange>(GameEvent.EquipmentChanged, SetCurrentSprites);
 		
 
 	}
 
     public override void _ExitTree()
     {
-       EventManager.I.Unsubscribe<EquipmentChange>(GameEvent.EquipItem, SetCurrentSprites);
+       EventManager.I.Unsubscribe<EquipmentChange>(GameEvent.EquipmentChanged, SetCurrentSprites);
     }
 
 	private void OnSavePressed()
