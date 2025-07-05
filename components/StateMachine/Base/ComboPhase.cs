@@ -11,6 +11,12 @@ public partial class ComboPhase : Node, IStateAction
 
     // Drop other nodes (IPhaseAction) into this for custom effects
     [Export] public Godot.Collections.Array<NodePath> EffectPaths = new();
+    
+    [ExportGroup("HitBox")]
+    [Export] public float Width      = 32;
+    [Export] public float Height     = 12;
+    [Export] public float Forward    = 28;
+    [Export] public float ActiveSecs = 0.10f;
 
     private AnimationPlayer _anim;
     private List<IPhaseAction> _effects = new();

@@ -20,6 +20,7 @@ public enum GameEvent
 	DialogEnded,
 	DialogChoiceSelected,
 	SaveRequested,
-	LoadRequested
+	LoadRequested,
+	Hit
 
 }

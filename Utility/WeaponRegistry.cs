@@ -7,7 +7,7 @@ public static class WeaponRegistry
     /// Val = PackedScene path                  (e.g. "res://Weapons/RustyShortSword.tscn")
     /// 
 
-    private static readonly Dictionary<string, WeaponItem> Weapons = new();
+    private static readonly Dictionary<string, PackedScene> WeaponCache = new();
     public static readonly Dictionary<StringName, string> WeaponPaths = new()
     {
         { "rusty_short_sword", "res://Weapons/RustyShortSword.tscn" },
@@ -20,8 +20,9 @@ public static class WeaponRegistry
     foreach (var path in DirAccess.GetFilesAt("res://Data/Items/Weapons"))
     {
         if (!path.EndsWith(".tres")) continue;
-        var item = GD.Load<WeaponItem>(path);
-        Weapons[item.ItemId] = item;
+            string filePath = $"res://Data/Items/Weapons/{path}";
+            string itemId = filePath.GetFile().GetBaseName().ToSnakeCase();
+            WeaponPaths[new StringName(itemId)] = path;
     }
 }
 
@@ -37,22 +38,28 @@ public static class WeaponRegistry
         }
     }
 
-    /// Load + cache so we don’t hit disk repeatedly
-    private static readonly Dictionary<StringName, PackedScene> _cache = new();
-
     public static PackedScene? Load(StringName itemId)
     {
-        if (_cache.TryGetValue(itemId, out var cached))
-            return cached;
+        // 1) Cached?
+        if (WeaponCache.TryGetValue(itemId, out var scene))
+            return scene;
 
+        // 2) Path known?
         if (!WeaponPaths.TryGetValue(itemId, out var path))
         {
-            GD.PrintErr($"WeaponRegistry: no entry for ItemId '{itemId}'");
+            GD.PushError($"WeaponRegistry: no path for ItemId '{itemId}'");
             return null;
         }
 
-        var scene = ResourceLoader.Load<PackedScene>(path);
-        if (scene != null) _cache[itemId] = scene;
+        // 3) Load & cache
+        scene = ResourceLoader.Load<PackedScene>(path);
+        if (scene == null)
+        {
+            GD.PushError($"WeaponRegistry: failed to load PackedScene at {path}");
+            return null;
+        }
+
+        WeaponCache[itemId] = scene;
         return scene;
     }
 }

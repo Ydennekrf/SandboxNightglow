@@ -3,29 +3,32 @@ using Godot;
 public partial class AttackState : BaseState
 {
     private ComboTracker _active;
+    private ComboPhase _current;
 
     public override void Enter(Entity owner, BaseState from)
     {
+        var fsm = owner.GetNode<StateMachine>("StateMachine");
         // decide which button launched the state
         if (Input.IsActionPressed("attack_magic"))
         {
-            _active = owner.GetNode<StateMachine>("StateMachine").MagicTracker;
+            _active = fsm.MagicTracker;
             SetInputAction("attack_magic");
         }
         else
         {
-            _active = owner.GetNode<StateMachine>("StateMachine").MeleeTracker;
+            _active = fsm.MeleeTracker;
             SetInputAction("attack_melee");
         }
 
         // remember for other states if you need
-        owner.GetNode<StateMachine>("StateMachine").LastAttackButton = InputActionName;
+        fsm.LastAttackButton = InputActionName;
+        
 
         // reset combo if timer expired
         if (_active.TimerRemaining <= 0)
             _active.Reset();
 
-        StartPhase(_active.Current);
+        StartPhase(owner, _active.Current);
     }
 
     public override BaseState Tick(Entity owner, float delta, BaseState self)
@@ -36,7 +39,7 @@ public partial class AttackState : BaseState
         {
             _active.Index++;
             if (_active.Index < _active.Phases.Count)
-                StartPhase(_active.Current);
+                StartPhase(owner, _active.Current);
             else
                 _active.Reset();
         }
@@ -49,9 +52,10 @@ public partial class AttackState : BaseState
         return this;
     }
 
-    private void StartPhase(ComboPhase phase)
+    private void StartPhase(Entity owner,ComboPhase phase)
     {
         phase.Enter(_ownerCache, this);
+        owner.ActivePhase = phase;
         _active.TimerRemaining = phase.ComboWindow;
     }
 }

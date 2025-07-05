@@ -1,9 +1,8 @@
-[gd_scene load_steps=55 format=3 uid="uid://0vqyqo8a8pko"]
+[gd_scene load_steps=56 format=3 uid="uid://0vqyqo8a8pko"]
 
 [ext_resource type="Script" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="2_ronss"]
 [ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="3_s6smw"]
-[ext_resource type="Texture2D" uid="uid://bef5qto4k6etg" path="res://ArtAssets/Characters/Selene/StowDown/Selene_Wepdwn_Sword_Stow.png" id="4_8ejgb"]
 [ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="4_gl0v2"]
 [ext_resource type="Script" path="res://components/Interact/Base/InteractComponent.cs" id="4_okwjl"]
 [ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="4_r246n"]
@@ -43,6 +42,7 @@
 [ext_resource type="Script" path="res://Managers/UIManager.cs" id="30_j0osh"]
 [ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="32_rsx4e"]
 [ext_resource type="PackedScene" uid="uid://bed1eumrhp0xy" path="res://PackedScenes/UI/ToastNotification.tscn" id="32_xf44x"]
+[ext_resource type="Script" path="res://components/StateMachine/States/AttackState.cs" id="33_tlntk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_invm3"]
 radius = 24.0
@@ -120,13 +120,13 @@ autoplay = "Idle_Right"
 texture = ExtResource("4_xwnv1")
 hframes = 65
 vframes = 6
-frame = 49
+frame = 243
 
 [node name="WepDownDraw" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("5_hivth")
 hframes = 65
 vframes = 6
-frame = 49
+frame = 243
 
 [node name="Body" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("3_s6smw")
@@ -137,25 +137,25 @@ vframes = 6
 texture = ExtResource("4_r246n")
 hframes = 65
 vframes = 6
-frame = 49
+frame = 243
 
 [node name="Hair" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("4_gl0v2")
 hframes = 65
 vframes = 6
-frame = 49
+frame = 243
 
 [node name="WepUpStow" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("8_akin3")
 hframes = 65
 vframes = 6
-frame = 49
+frame = 243
 
 [node name="WepUpDraw" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("9_a7tkw")
 hframes = 65
 vframes = 6
-frame = 49
+frame = 243
 
 [node name="Overlay" type="Sprite2D" parent="Sprites"]
 
@@ -329,6 +329,8 @@ script = ExtResource("9_rhlmw")
 [node name="Node3" type="Node" parent="StateMachine/Dialog"]
 
 [node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("33_tlntk")
+StateId = 17
 
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("25_rnmem")

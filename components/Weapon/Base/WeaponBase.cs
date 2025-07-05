@@ -44,7 +44,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
         // Damage callback only when Hitbox monitoring is enabled by AnimationPlayer
         _hitbox.BodyEntered += body =>
         {
-            if (body.IsInGroup("enemy_hurtbox"))
+            if (body.IsInGroup("hurtbox"))
                 body.Call("TakeDamage", Damage);
         };
 
@@ -79,12 +79,14 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
         fsm.MagicTracker = new ComboTracker(GatherPhases("ComboPhases/Magic"));
 
         var attackState = fsm.GetState(StateType.Attack);
-         // add the Attack State actions that are attached to the weapon scene
+        // add the Attack State actions that are attached to the weapon scene
         foreach (var a in _weaponActions)
             attackState.AddAction(a, runEnter: true);
 
-        //  If you registered FSM actions from WeaponComponent, do it here
-        //  fsm.RegisterAction("Swing", () => _hitbox.Monitoring = true);
+        if (owner is Player player)
+        {
+            player.SetWeaponSprites(this);
+        }
     }
 
     public void OnUnequip(Entity owner, StateMachine fsm)

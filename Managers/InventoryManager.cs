@@ -12,20 +12,22 @@ public partial class InventoryManager : Node
 
     public override void _EnterTree()
     {
-       
+
 
         if (I != null && I != this)
         {
             QueueFree();
             return;
         }
-         I = this;
+        I = this;
 
         foreach (var file in DirAccess.GetFilesAt("res://Data/Items/"))
             if (file.EndsWith(".tres") || file.EndsWith(".res"))
                 LoadItem($"res://Data/Items/{file}");
 
         GD.Print($"[InventoryManager] Loaded {_db.Count} item defs");
+
+        WeaponRegistry.LoadAll();
     }
 
     public InventoryItem Get(string id) => _db[id];

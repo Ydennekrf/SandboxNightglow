@@ -8,7 +8,7 @@ public partial class Player : Entity
 	public int PlayerId { get; private set; }
 	public int SaveSlotId { get; set; }
 
-	private CollisionShape2D _hitShape;
+
 
 	#region Sprites
 
@@ -44,17 +44,8 @@ public partial class Player : Entity
 		var saveButton = GetNode<Button>("UI/MarginContainer/HBoxContainer/VBoxContainer/Save");
 		saveButton.Pressed += OnSavePressed;
 
-		_hitShape = GetNode<CollisionShape2D>("HitBoxArea/CollisionShape2D");
-		_hitShape.Disabled = true;
-		EventManager.I.Subscribe<EquipmentChange>(GameEvent.EquipmentChanged, SetCurrentSprites);
-
-
 	}
 
-	public override void _ExitTree()
-	{
-		EventManager.I.Unsubscribe<EquipmentChange>(GameEvent.EquipmentChanged, SetCurrentSprites);
-	}
 
 	private void OnSavePressed()
 	{
@@ -71,92 +62,14 @@ public partial class Player : Entity
 		PlayerId = id;
 	}
 
-	private void SetCurrentSprites(EquipmentChange request)
+	public void SetWeaponSprites(WeaponBase weapon)
 	{
-		// fires any time there is a change of equipment, by default is null unless data is passed
-		// this may happen if a trinket is equipped that changes nothing visually
-		InventoryItem Item = InventoryManager.I.Get(request.New.ItemId);
-
-		if (Item == null)
-			return;
-
-		switch (Item)
-		{
-			case WeaponItem w:
-
-				// _wepDownDraw.Texture = w.WepDownDraw;
-				// _wepDownStow.Texture = w.WepDownStow;
-				// _wepUpDraw.Texture = w.WepUpDraw;
-				// _wepUpStow.Texture = w.WepUpStow;
-
-
-				if (w.type == BodyType.OneHanded)
-				{
-					_body.Texture = OneHandBody;
-				}
-				else if (w.type == BodyType.TwoHanded)
-				{
-					_body.Texture = TwoHandBody;
-				}
-				else
-				{
-					_body.Texture = BowBody;
-				}
-
-				break;
-			case ArmorItem a:
-
-				_clothes.Texture = a.Clothes;
-
-
-
-				if (a.type == BodyType.OneHanded)
-				{
-					_body.Texture = OneHandBody;
-				}
-				else if (a.type == BodyType.TwoHanded)
-				{
-					_body.Texture = TwoHandBody;
-				}
-				else
-				{
-					_body.Texture = BowBody;
-				}
-				break;
-			default:
-				break;
-
-				// Add more cases if you later have BowItem, StaffItem, etc.
-		}
+		_wepUpDraw.Texture = weapon.WepUpDraw;
+		_wepDownDraw.Texture = weapon.WepDownDraw;
+		_wepUpStow.Texture = weapon.WepUpStow;
+		_wepDownStow.Texture = weapon.WepDownStow;
 	}
 
 
-public void ActivateHitBox(
-    float width,      // rectangle size X
-    float height,     // rectangle size Y
-    float forward,    // distance straight ahead
-    float activeSecs = 0.1f) // lifetime before auto-disable
-{
-    // resize or create the rectangle
-    var rect = _hitShape.Shape as RectangleShape2D ?? new RectangleShape2D();
-    rect.Size = new Vector2(width, height);
-    _hitShape.Shape = rect;
 
-    // calculate offset purely by facing
-    Vector2 offset = FacingDirection switch        // ← you already track Facing
-    {
-        Facing.Down  => new Vector2(0,  forward),
-        Facing.Up    => new Vector2(0, -forward),
-        Facing.Left  => new Vector2(-forward, 0),
-        Facing.Right => new Vector2( forward, 0),
-        _            => Vector2.Zero
-    };
-    _hitShape.Position = offset;
-
-    // enable & schedule auto-disable
-    _hitShape.Disabled = false;
-    var t = CreateTween();
-    t.TweenCallback(Callable.From(() => _hitShape.Disabled = true))
-     .SetDelay(activeSecs);
-}
 } 
