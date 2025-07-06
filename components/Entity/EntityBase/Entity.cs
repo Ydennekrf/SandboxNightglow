@@ -31,7 +31,7 @@ public partial class Entity : CharacterBody2D
 
     }
 
-    public void TakeDamage(int amount, Entity? attacker = null)
+    public void TakeDamage(int amount, DamageType type ,Entity? attacker = null)
     {
         if (amount <= 0) return;
 

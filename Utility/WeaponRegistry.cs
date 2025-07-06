@@ -10,9 +10,7 @@ public static class WeaponRegistry
     private static readonly Dictionary<string, PackedScene> WeaponCache = new();
     public static readonly Dictionary<StringName, string> WeaponPaths = new()
     {
-        { "rusty_short_sword", "res://Weapons/RustyShortSword.tscn" },
-        { "iron_axe",          "res://Weapons/IronAxe.tscn"        }
-        // add more here...
+
     };
 
     public static void LoadAll()

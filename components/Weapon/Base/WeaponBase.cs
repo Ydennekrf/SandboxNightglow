@@ -17,6 +17,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 {
 	/* ───────────────────────────  Inspector fields  ───────────────────────── */
 
+	private Entity ownerCache;
 	[Export] public Texture2D WepUpStow;
 	[Export] public Texture2D WepUpDraw;
 	[Export] public Texture2D WepDownStow;
@@ -39,13 +40,19 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 	public override void _Ready()
 	{
 		_hitbox = GetNode<Area2D>("Hitbox");
-
+		
 
 		// Damage callback only when Hitbox monitoring is enabled by AnimationPlayer
 		_hitbox.BodyEntered += body =>
 		{
-			if (body.IsInGroup("hurtbox"))
-				body.Call("TakeDamage", Damage);
+			  if (ownerCache == null) return;
+
+			if (body.IsInGroup("Hurtbox") && body.GetParent() is Entity target)
+			{	
+					EventManager.I.Publish(
+					GameEvent.Hit,
+					new HitEvent(ownerCache, target));
+			}
 		};
 
 		foreach (var p in ExtraActionPaths)
@@ -71,6 +78,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
 	public void OnEquip(Entity owner, StateMachine fsm)
 	{
+		ownerCache = owner;
 		// Apply buffs
 		foreach (var b in StatBuffs)
 			owner.Data.AddModifier(b.Type, b.Delta);
@@ -91,6 +99,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
 	public void OnUnequip(Entity owner, StateMachine fsm)
 	{
+		ownerCache = null;
 		foreach (var b in StatBuffs)
 			owner.Data.AddModifier(b.Type, -b.Delta);
 
