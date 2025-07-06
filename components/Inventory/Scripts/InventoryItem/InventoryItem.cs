@@ -15,9 +15,6 @@ public partial class InventoryItem : Resource
     [Export] public int ItemStackSize { get; set; }
     [Export] public ItemRarity Rarity          { get; set; } = ItemRarity.Common;
 
-
-    [Export] public PackedScene WorldPrefab    { get; set; }   // optional pickup scene
-
     // these happen on use
     [Export] public ItemAction[] Actions     { get; set; } = Array.Empty<ItemAction>();
 }

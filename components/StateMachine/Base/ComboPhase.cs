@@ -36,7 +36,7 @@ public partial class ComboPhase : Node, IStateAction
 
 	public void Enter(Entity owner, BaseState state)
 	{
-		_anim = owner.GetNode<AnimationPlayer>("AnimationPlayer");
+		
 		_owner = owner;
 
 		string clip = AnimationName;
@@ -55,7 +55,7 @@ public partial class ComboPhase : Node, IStateAction
 
 
 
-		_anim.Play(clip);
+		_owner._anim.Play(clip);
 
 		foreach (var e in _effects) e.OnPhaseStart(owner, this);
 
@@ -65,13 +65,14 @@ public partial class ComboPhase : Node, IStateAction
 
 	public void Execute(float delta, Entity owner, BaseState state)
 	{
-		float timeLeft = (float)(_anim.CurrentAnimationLength - _anim.CurrentAnimationPosition);
+		
+		float timeLeft = (float)(_owner._anim.CurrentAnimationLength - _owner._anim.CurrentAnimationPosition);
 
 		if (timeLeft < ComboWindow &&
 			Input.IsActionJustPressed(state.InputActionName))
 			QueueNext = true;
 
-		if (_anim.CurrentAnimationPosition >= _anim.CurrentAnimationLength)
+		if (_owner._anim.CurrentAnimationPosition >= _owner._anim.CurrentAnimationLength)
 			IsDone = true;
 	}
 

@@ -3,6 +3,7 @@
 
 using Godot;
 using System.Collections.Generic;
+using System.Data.Common;
 
 public partial class InventoryManager : Node
 {
@@ -25,9 +26,11 @@ public partial class InventoryManager : Node
             if (file.EndsWith(".tres") || file.EndsWith(".res"))
                 LoadItem($"res://Data/Items/{file}");
 
-        GD.Print($"[InventoryManager] Loaded {_db.Count} item defs");
+
 
         WeaponRegistry.LoadAll();
+
+        GD.Print($"[InventoryManager] Loaded {_db.Count} item defs");
     }
 
     public InventoryItem Get(string id) => _db[id];
@@ -40,5 +43,12 @@ public partial class InventoryManager : Node
             GD.PushWarning($"InventoryManager: failed to load {path}");
         else
             _db[data.ItemId] = data;
+    }
+
+    public void AddItem(InventoryItem item)
+    {
+        if (_db.ContainsKey(item.ItemId)) return;
+
+        _db.Add(item.ItemId, item);
     }
 }

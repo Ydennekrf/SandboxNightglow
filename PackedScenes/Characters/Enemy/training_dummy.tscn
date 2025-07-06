@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjdjuph42khg1"]
+
+[ext_resource type="Script" path="res://components/Entity/EntityBase/Entity.cs" id="1_0fnnw"]
+[ext_resource type="Texture2D" uid="uid://cqyevo8ngnftj" path="res://ArtAssets/Characters/Enemies/Slime/slippery slime v01.png" id="2_45r6x"]
+[ext_resource type="Script" path="res://components/Entity/EntityData/EntityData.cs" id="3_p1ow1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uf6kj"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfray"]
+
+[node name="TrainingDummy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_0fnnw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_45r6x")
+hframes = 8
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uf6kj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Hurtbox"]]
+shape = SubResource("CircleShape2D_gfray")
+debug_color = Color(0.95316, 0.183446, 0.303832, 0.42)
+
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource("3_p1ow1")
+
+[node name="StateMachine" type="Node2D" parent="."]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://ggftwfpnrt64"]
+
+[ext_resource type="Script" path="res://components/Weapon/Base/WeaponBase.cs" id="1_fr30h"]
+[ext_resource type="Texture2D" uid="uid://13nfhxsrmcv3" path="res://ArtAssets/InventoryItems/GearIcons/ArmorIcon.tres" id="2_mb7s2"]
+[ext_resource type="Texture2D" uid="uid://ccfhp3xjilnmv" path="res://ArtAssets/Characters/Selene/StowUp/Selene_Wepup_Sword_Stow.png" id="3_d1eb6"]
+[ext_resource type="Texture2D" uid="uid://cm4xgavwsb7fq" path="res://ArtAssets/Characters/Selene/WepUp/Selene_Wepup_Sword_Draw.png" id="4_omx6i"]
+[ext_resource type="Texture2D" uid="uid://bef5qto4k6etg" path="res://ArtAssets/Characters/Selene/StowDown/Selene_Wepdwn_Sword_Stow.png" id="5_0vlf0"]
+[ext_resource type="Texture2D" uid="uid://0gj6rki8fv5f" path="res://ArtAssets/Characters/Selene/WepDown/Selene_Wepdwn_Sword_Draw.png" id="6_brqen"]
+[ext_resource type="Script" path="res://components/Weapon/Resources/StatDelta.cs" id="7_5lpne"]
+[ext_resource type="Script" path="res://components/StateMachine/Base/ComboPhase.cs" id="8_mkemj"]
+[ext_resource type="Script" path="res://components/Weapon/ComboPhaseActions/KnockbackPhaseAction.cs" id="9_kkpmx"]
+
+[sub_resource type="Resource" id="Resource_hc4yu"]
+script = ExtResource("7_5lpne")
+Type = 0
+Delta = 100
+
+[sub_resource type="Resource" id="Resource_v5tq1"]
+script = ExtResource("7_5lpne")
+Type = 4
+Delta = 50
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bi6f2"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_fr30h")
+ItemId = "Knights_Blade"
+ItemName = "Knights Blade"
+ItemValue = 25
+IconSprite = ExtResource("2_mb7s2")
+ItemStackSize = 1
+ItemDescription = "Blade of the captain of the guard, its been well maintained and cared for."
+WepUpStow = ExtResource("3_d1eb6")
+WepUpDraw = ExtResource("4_omx6i")
+WepDownStow = ExtResource("5_0vlf0")
+WepDownDraw = ExtResource("6_brqen")
+Damage = 15
+StatBuffs = [SubResource("Resource_hc4yu"), SubResource("Resource_v5tq1")]
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource("CapsuleShape2D_bi6f2")
+
+[node name="ActionContainer" type="Node2D" parent="."]
+
+[node name="ComboPhases" type="Node2D" parent="."]
+
+[node name="Melee" type="Node2D" parent="ComboPhases"]
+
+[node name="Melee1" type="Node" parent="ComboPhases/Melee"]
+script = ExtResource("8_mkemj")
+AnimationName = "Melee2"
+useDirectional = true
+Damage = 10
+Width = 16.0
+Height = 16.0
+Forward = 1.0
+
+[node name="Melee2" type="Node" parent="ComboPhases/Melee"]
+script = ExtResource("8_mkemj")
+AnimationName = "Melee2"
+useDirectional = true
+Damage = 15
+Width = 16.0
+Height = 16.0
+Forward = 1.0
+
+[node name="KnockBack" type="Node" parent="ComboPhases/Melee/Melee2"]
+script = ExtResource("9_kkpmx")
+Duration = 0.1
+
+[node name="Magic" type="Node2D" parent="ComboPhases"]

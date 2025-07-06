@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://0vqyqo8a8pko"]
+[gd_scene load_steps=53 format=3 uid="uid://0vqyqo8a8pko"]
 
 [ext_resource type="Script" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="2_ronss"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ccva3tctd1tp0" path="res://PackedScenes/StateActions/input_move_action.tscn" id="12_yuc3g"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/EnterRunTransition.cs" id="13_v14er"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/InputStopMovingTransition.cs" id="14_gjvvf"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/AttackInputTransition.cs" id="14_obvq4"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/CanDashTransition.cs" id="15_dt6fk"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/ReleaseRunTransition.cs" id="17_qfxql"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/StatCompareTransition.cs" id="18_7t2al"]
@@ -115,12 +116,12 @@ autoplay = "Idle_Right"
 [node name="WepDownStow" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 12
+frame = 56
 
 [node name="WepDownDraw" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 12
+frame = 56
 
 [node name="Body" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("3_s6smw")
@@ -131,23 +132,23 @@ vframes = 6
 texture = ExtResource("4_r246n")
 hframes = 65
 vframes = 6
-frame = 12
+frame = 56
 
 [node name="Hair" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("4_gl0v2")
 hframes = 65
 vframes = 6
-frame = 12
+frame = 56
 
 [node name="WepUpStow" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 12
+frame = 56
 
 [node name="WepUpDraw" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 12
+frame = 56
 
 [node name="Overlay" type="Sprite2D" parent="Sprites"]
 
@@ -160,11 +161,6 @@ script = ExtResource("4_okwjl")
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_invm3")
 debug_color = Color(0.533167, 0.569459, 0.054255, 0.42)
-
-[node name="HitBoxArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxArea"]
-position = Vector2(0, 15)
 
 [node name="Animators" type="Node2D" parent="."]
 
@@ -193,7 +189,7 @@ InitialState = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
 ActionPaths = [NodePath("AnimationAction"), NodePath("RegenStamAction")]
-TransitionPaths = [NodePath("IdleToWalkTransition")]
+TransitionPaths = [NodePath("IdleToWalkTransition"), NodePath("IdleToAttackTransition")]
 
 [node name="AnimationAction" parent="StateMachine/Idle" instance=ExtResource("9_lde1q")]
 
@@ -203,11 +199,16 @@ TargetPath = NodePath("../../Walk")
 
 [node name="RegenStamAction" parent="StateMachine/Idle" instance=ExtResource("11_52e1j")]
 
+[node name="IdleToAttackTransition" type="Node" parent="StateMachine/Idle"]
+script = ExtResource("14_obvq4")
+TargetStatePath = NodePath("../../Attack")
+StaminaCost = 1
+
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
 StateId = 3
 ActionPaths = [NodePath("InputMoveAction"), NodePath("AnimationAction"), NodePath("RegenStamAction")]
-TransitionPaths = [NodePath("WalkToIdleTransition"), NodePath("WalkToRunTransition"), NodePath("WalkToDodgeTransition")]
+TransitionPaths = [NodePath("WalkToIdleTransition"), NodePath("WalkToRunTransition"), NodePath("WalkToDodgeTransition"), NodePath("WalkToAttackTransition")]
 
 [node name="InputMoveAction" parent="StateMachine/Walk" instance=ExtResource("12_yuc3g")]
 
@@ -218,6 +219,10 @@ script = ExtResource("9_rhlmw")
 script = ExtResource("11_ltfp6")
 RegenRatePerSecond = 0.25
 RegenDelay = 5.0
+
+[node name="WalkToAttackTransition" type="Node" parent="StateMachine/Walk"]
+script = ExtResource("14_obvq4")
+TargetStatePath = NodePath("../../Attack")
 
 [node name="WalkToRunTransition" type="Node" parent="StateMachine/Walk"]
 script = ExtResource("13_v14er")
@@ -235,7 +240,7 @@ TargetPath = NodePath("../../Dodge")
 script = ExtResource("8_aidl1")
 StateId = 4
 ActionPaths = [NodePath("InputMoveAction"), NodePath("AnimationAction"), NodePath("DrainStamAction")]
-TransitionPaths = [NodePath("BtnReleaseTransition"), NodePath("StamLowTransition"), NodePath("RunToDodgeTransition")]
+TransitionPaths = [NodePath("BtnReleaseTransition"), NodePath("StamLowTransition"), NodePath("RunToDodgeTransition"), NodePath("RunToAttackTransition")]
 
 [node name="InputMoveAction" type="Node" parent="StateMachine/Run"]
 script = ExtResource("12_juare")
@@ -257,6 +262,10 @@ TargetPath = NodePath("../../Walk")
 [node name="RunToDodgeTransition" type="Node" parent="StateMachine/Run"]
 script = ExtResource("15_dt6fk")
 TargetPath = NodePath("../../Dodge")
+
+[node name="RunToAttackTransition" type="Node" parent="StateMachine/Run"]
+script = ExtResource("14_obvq4")
+TargetStatePath = NodePath("../../Attack")
 
 [node name="Dodge" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")

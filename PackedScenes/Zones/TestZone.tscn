@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://hsnjkhpgy5jj"]
+[gd_scene load_steps=4 format=3 uid="uid://hsnjkhpgy5jj"]
 
 [ext_resource type="PackedScene" uid="uid://dfyn3g18n450w" path="res://PackedScenes/Characters/NPC/NPCExample.tscn" id="2_qqxdy"]
 [ext_resource type="PackedScene" uid="uid://cjm7mr26hgac2" path="res://PackedScenes/Containers/ItemOnGround.tscn" id="2_yynqs"]
+[ext_resource type="PackedScene" uid="uid://cjdjuph42khg1" path="res://PackedScenes/Characters/Enemy/training_dummy.tscn" id="3_wgrpl"]
 
 [node name="TestZone" type="Node2D"]
 
@@ -18,7 +19,17 @@ position = Vector2(188, 91)
 position = Vector2(127, 104)
 ItemId = &"Rusty_Short_Sword"
 
+[node name="ItemOnGround2" parent="Map/NPCLayer" instance=ExtResource("2_yynqs")]
+position = Vector2(69, 105)
+ItemId = &"Knights_Blade"
+
+[node name="EnemyLayer" type="Node2D" parent="Map"]
+
+[node name="TrainingDummy" parent="Map/EnemyLayer" instance=ExtResource("3_wgrpl")]
+position = Vector2(9, 105)
+
 [node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(-2, -3)
 
 [node name="Start" type="Marker2D" parent="SpawnPoints"]
 position = Vector2(200, 200)

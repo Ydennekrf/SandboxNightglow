@@ -10,7 +10,7 @@ public partial class WeaponComponent : Node
     // ───────────────────────────────────────────────────────────────────────
 
     private Node2D      _holder;      // resolved in _Ready()
-    private Node2D?     _current;     // the weapon scene currently shown
+    public Node2D?     _current;     // the weapon scene currently shown
     private Entity      _owner;       // cached player entity
     private StateMachine _fsm;        // cached state-machine (for OnEquip hooks)
 
@@ -48,6 +48,7 @@ public partial class WeaponComponent : Node
     /* ------------------------------------------------------------------ */
     private void OnEquipmentChange(EquipmentChange e)
     {
+        GD.Print("Weapon COmponent Recieved the Equip CHange EVent");
         // Ignore events for other players or other slots.
         if (e.User != _owner || e.Slot != EquipmentSlot.Weapon)
             return;

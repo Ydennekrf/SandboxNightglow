@@ -43,6 +43,13 @@ public partial class Player : Entity
 
 		var saveButton = GetNode<Button>("UI/MarginContainer/HBoxContainer/VBoxContainer/Save");
 		saveButton.Pressed += OnSavePressed;
+		_wepUpDraw = GetNode<Sprite2D>(WepUpDraw);
+		_wepDownDraw = GetNode<Sprite2D>(WepDownDraw);
+		_wepUpStow = GetNode<Sprite2D>(WepUpStow);
+		_wepDownStow = GetNode<Sprite2D>(WepDownStow);
+		_hair = GetNode<Sprite2D>(Hair);
+		_clothes = GetNode<Sprite2D>(Clothes);
+		_body = GetNode<Sprite2D>(Body);
 
 	}
 
@@ -69,6 +76,8 @@ public partial class Player : Entity
 		_wepUpStow.Texture = weapon.WepUpStow;
 		_wepDownStow.Texture = weapon.WepDownStow;
 	}
+	
+	
 
 
 

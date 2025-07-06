@@ -18,6 +18,16 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 	/* ───────────────────────────  Inspector fields  ───────────────────────── */
 
 	private Entity ownerCache;
+
+	[Export] public string ItemId { get; set; }
+	[Export] public string ItemName { get; set; }
+
+	[Export] public int ItemValue { get; set; }
+	[Export] public Texture2D IconSprite { get; set; }
+	[Export] public int ItemStackSize { get; set; }
+	[Export] public ItemRarity Rarity { get; set; } = ItemRarity.Common;
+
+	[Export(PropertyHint.MultilineText)] public string ItemDescription { get; set; } = string.Empty;
 	[Export] public Texture2D WepUpStow;
 	[Export] public Texture2D WepUpDraw;
 	[Export] public Texture2D WepDownStow;
@@ -35,25 +45,31 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
 	/* ─────────────────────────────  Cached children  ──────────────────────── */
 	private Area2D _hitbox;
+	private CollisionShape2D _hitShape;
 
 	/* ───────────────────────────────  Runtime init  ───────────────────────── */
 	public override void _Ready()
 	{
 		_hitbox = GetNode<Area2D>("Hitbox");
-		
+		_hitShape = (CollisionShape2D)_hitbox.GetChild(0);
+
 
 		// Damage callback only when Hitbox monitoring is enabled by AnimationPlayer
 		_hitbox.BodyEntered += body =>
 		{
-			  if (ownerCache == null) return;
+			GD.Print("Hit occured");
+			if (ownerCache == null) return;
 
 			if (body.IsInGroup("Hurtbox") && body.GetParent() is Entity target)
-			{	
-					EventManager.I.Publish(
-					GameEvent.Hit,
-					new HitEvent(ownerCache, target));
+			{
+					GD.Print("Hit Hurtbox");
+				EventManager.I.Publish(
+				GameEvent.Hit,
+				new HitEvent(ownerCache, target));
 			}
 		};
+
+		
 
 		foreach (var p in ExtraActionPaths)
 		{
@@ -79,6 +95,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 	public void OnEquip(Entity owner, StateMachine fsm)
 	{
 		ownerCache = owner;
+
 		// Apply buffs
 		foreach (var b in StatBuffs)
 			owner.Data.AddModifier(b.Type, b.Delta);
@@ -105,17 +122,54 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
 		// fsm.RemoveAction("Swing");
 	}
-	
-	private List<ComboPhase> GatherPhases(string containerPath)
-		{
-			var list = new List<ComboPhase>();
 
-			if (GetNodeOrNull<Node>(containerPath) is Node cont)
-			{
-				foreach (var child in cont.GetChildren())
-					if (child is ComboPhase phase)
-						list.Add(phase);
-			}
-			return list;
+	private List<ComboPhase> GatherPhases(string containerPath)
+	{
+		var list = new List<ComboPhase>();
+
+		if (GetNodeOrNull<Node>(containerPath) is Node cont)
+		{
+			foreach (var child in cont.GetChildren())
+				if (child is ComboPhase phase)
+					list.Add(phase);
 		}
+		return list;
+	}
+		
+
+	public void ActivateHitBox()
+    {
+        GD.Print($"Current Combo: {ownerCache.ActivePhase.Name} Actions this Phase {ownerCache.ActivePhase.EffectPaths.Count}");
+			ComboPhase p = ownerCache.ActivePhase;
+
+			if (p == null) return;
+
+			var rect = _hitShape.Shape as RectangleShape2D;
+
+			if (rect == null)
+			{
+				rect = new RectangleShape2D();
+				_hitShape.Shape = rect;
+			}
+			rect.Size = new Vector2(p.Width, p.Height);
+
+			Vector2 offset = ownerCache.FacingDirection switch
+		{
+			Facing.Down  => new Vector2( 0,  p.Forward),
+			Facing.Up    => new Vector2( 0, -p.Forward),
+			Facing.Left  => new Vector2(-p.Forward, 0),
+			Facing.Right => new Vector2( p.Forward, 0),
+			_            => Vector2.Zero
+		};
+		_hitShape.Position = offset;
+
+		// 5) Turn the collider on, then auto-disable after the active window
+		_hitShape.Disabled = false;
+
+		var tween = CreateTween();
+		tween.TweenCallback(Callable.From(() => _hitShape.Disabled = true))
+			.SetDelay(p.ActiveSecs);
+
+        
+    }
 }

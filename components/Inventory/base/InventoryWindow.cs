@@ -70,23 +70,21 @@ public partial class InventoryWindow : Control
         }    
     }
 
-    private void FullRefresh()
-    {
-        for (int i = 0; i < _icons.Count; i++)
-            _icons[i].SetStack(_inventory.Slots[i]);
-    }
+   private void FullRefresh()
+{
+    int limit = Mathf.Min(_icons.Count, _inventory.Slots.Count);
+
+    for (int i = 0; i < limit; i++)
+        _icons[i].SetStack(_inventory.Slots[i]);
+
+    /* Optional: hide any surplus icons if the bag shrank */
+    for (int i = limit; i < _icons.Count; i++)
+        _icons[i].SetStack(null);
+}
 
     private void OnInventoryChanged(InventoryChange e)
     {
-        if (e.SlotIndex == -1)
-        {
-            // Bulk refresh – easiest path.
             FullRefresh();
-            return;
-        }
-
-        // Update only the affected slot for efficiency.
-        _icons[e.SlotIndex].SetStack(e.NewValue);
     }
 
     // ---------------------------------------------------------------------

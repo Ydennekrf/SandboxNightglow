@@ -27,6 +27,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="ParksSandbox"
 
+[global_group]
+
+Hurtbox=""
+
 [input]
 
 Run={
@@ -107,6 +111,8 @@ Magic={
 2d_physics/layer_5="PlayerInteract"
 2d_physics/layer_6="NPCInteract"
 2d_physics/layer_7="Interactables"
+2d_physics/layer_8="Player_Attack"
+2d_physics/layer_9="Enemy_Attack"
 
 [rendering]
 

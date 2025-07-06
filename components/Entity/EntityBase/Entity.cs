@@ -13,17 +13,16 @@ public partial class Entity : CharacterBody2D
     public string currentSpawnId { get; protected set; }
 
     public ComboPhase ActivePhase { get; set; }
-    private CollisionShape2D _hitShape;
+    protected CollisionShape2D _hitShape;
     public AnimationPlayer _anim;
-    
+
     private readonly List<IStatusEffect> _effects = new();
 
     public override void _EnterTree()
     {
         _anim = GetNode<AnimationPlayer>(ActionsAnimPath);
         fsm = GetNode<StateMachine>("StateMachine");
-        _hitShape = GetNode<CollisionShape2D>("HitBoxArea/CollisionShape2D");
-        _hitShape.Disabled = true;
+
     }
     public override void _Ready()
     {
@@ -31,7 +30,7 @@ public partial class Entity : CharacterBody2D
 
     }
 
-    public void TakeDamage(int amount, DamageType type ,Entity? attacker = null)
+    public virtual void TakeDamage(int amount, DamageType type, Entity? attacker = null)
     {
         if (amount <= 0) return;
 
@@ -47,6 +46,8 @@ public partial class Entity : CharacterBody2D
         }
 
     }
+
+
 
     public override void _Process(double delta)
     {
@@ -121,40 +122,14 @@ public partial class Entity : CharacterBody2D
         tween.TweenCallback(Callable.From(() => clone.QueueFree()));
     }
 
-
-    public void ActivateHitBox() // lifetime before auto-disable
+    public void ActivateHitBox()
     {
-        ComboPhase p = ActivePhase;
-
-        if (p == null) return;
-
-        var rect = _hitShape.Shape as RectangleShape2D;
-
-        if (rect == null)
-        {
-            rect = new RectangleShape2D();
-            _hitShape.Shape = rect;
-        }
-        rect.Size = new Vector2(p.Width, p.Height);
-
-         Vector2 offset = FacingDirection switch
-    {
-        Facing.Down  => new Vector2( 0,  p.Forward),
-        Facing.Up    => new Vector2( 0, -p.Forward),
-        Facing.Left  => new Vector2(-p.Forward, 0),
-        Facing.Right => new Vector2( p.Forward, 0),
-        _            => Vector2.Zero
-    };
-    _hitShape.Position = offset;
-
-    // 5) Turn the collider on, then auto-disable after the active window
-    _hitShape.Disabled = false;
-
-    var tween = CreateTween();
-    tween.TweenCallback(Callable.From(() => _hitShape.Disabled = true))
-         .SetDelay(p.ActiveSecs);
-
-        
+        GD.Print("Test anim to hit method");
+        var weapon = GetNodeOrNull<WeaponBase>("Weapon");
+        weapon?.ActivateHitBox();
     }
+
+
+    
 
 }

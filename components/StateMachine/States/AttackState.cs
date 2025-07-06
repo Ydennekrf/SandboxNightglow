@@ -7,17 +7,18 @@ public partial class AttackState : BaseState
 
     public override void Enter(Entity owner, BaseState from)
     {
+        
         var fsm = owner.GetNode<StateMachine>("StateMachine");
         // decide which button launched the state
-        if (Input.IsActionPressed("attack_magic"))
+        if (Input.IsActionPressed("Magic"))
         {
             _active = fsm.MagicTracker;
-            SetInputAction("attack_magic");
+            SetInputAction("Magic");
         }
         else
         {
             _active = fsm.MeleeTracker;
-            SetInputAction("attack_melee");
+            SetInputAction("Melee");
         }
 
         // remember for other states if you need
@@ -54,7 +55,7 @@ public partial class AttackState : BaseState
 
     private void StartPhase(Entity owner,ComboPhase phase)
     {
-        phase.Enter(_ownerCache, this);
+        phase.Enter(owner, this);
         owner.ActivePhase = phase;
         _active.TimerRemaining = phase.ComboWindow;
     }

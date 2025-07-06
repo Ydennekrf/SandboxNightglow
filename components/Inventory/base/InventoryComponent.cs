@@ -118,9 +118,9 @@ public partial class InventoryComponent : Node , IInventoryReadOnly
             remove |= act.Execute(owner, this, data);   // execute every action
 
 
-        if (data is IEquippable)
+        if (data is WeaponItem)
         {
-            GD.Print("clicked an equippable item");
+            GD.Print("clicked an weapon item");
             Equip(request.slot);
         }
 
@@ -174,32 +174,48 @@ public partial class InventoryComponent : Node , IInventoryReadOnly
         Old  = oldItem,
         New  = newItem
     };
-
+    GD.Print("Publishing equip event");
     EventManager.I.Publish(GameEvent.EquipmentChanged, payload);
 }
 
 
     public void Equip(int slotIndex)
     {
+        GD.Print("Trying to equip item");
         EquipmentSlot slot;
-        ItemStack newItem = _slots[slotIndex];
-        InventoryItem itemOld = null;
-        InventoryItem item = InventoryManager.I.Get(newItem.ItemId);
-        // item to equip
-        if (item is not IEquippable equip)
-            return;
-        // Weapon, Head, etc.
-        slot = equip.slot;
-        ItemStack oldItem = _eq.GetValueOrDefault(slot);
-        if (oldItem != null)
-        {
-                itemOld = InventoryManager.I.Get(oldItem.ItemId);
-        }
-  
-        _eq[slot] = newItem;          // move to equipment dict
-        _slots[slotIndex] = null;           // clear bag slot
+        ItemStack toEquip = _slots[slotIndex];
 
-        PublishEquipChange(itemOld, item, slot);   // <<< single publish point
+        InventoryItem itemNew = InventoryManager.I.Get(toEquip.ItemId);
+
+        if (itemNew is IEquippable eq)
+        {
+            slot = eq.slot;
+        }
+        else if (itemNew is WeaponItem)
+        {
+            slot = EquipmentSlot.Weapon;
+        }
+        else
+            return;
+        
+
+        ItemStack toUnequip = _eq.GetValueOrDefault(slot);
+        InventoryItem itemOld = toUnequip != null ? InventoryManager.I.Get(toUnequip.ItemId) : null;
+        
+        _eq[slot] = toEquip;
+        _slots.Remove(toEquip);
+
+
+        if (toUnequip != null)
+        {     
+            AddItem(toUnequip.ItemId, 1);
+        }
+
+
+
+        NotifyChange(new InventoryChange(slotIndex, toEquip, toUnequip));
+        PublishEquipChange(itemOld, itemNew, slot);
+        
     }
 
     public void Unequip(EquipmentSlot slot)

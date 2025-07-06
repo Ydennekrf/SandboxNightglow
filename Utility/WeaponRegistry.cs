@@ -14,15 +14,44 @@ public static class WeaponRegistry
     };
 
     public static void LoadAll()
-{
-    foreach (var path in DirAccess.GetFilesAt("res://Data/Items/Weapons"))
     {
-        if (!path.EndsWith(".tres")) continue;
+        WeaponPaths.Clear();
+
+        foreach (var path in DirAccess.GetFilesAt("res://Data/Items/Weapons"))
+        {
+            if (!path.EndsWith(".tscn")) continue;
+
             string filePath = $"res://Data/Items/Weapons/{path}";
-            string itemId = filePath.GetFile().GetBaseName().ToSnakeCase();
-            WeaponPaths[new StringName(itemId)] = path;
+            PackedScene scene = GD.Load<PackedScene>(filePath);
+            if (scene == null) { GD.PushError($"Bad scene: {filePath}"); continue; }
+
+            if (scene.Instantiate() is not WeaponBase wb)
+            {
+                GD.PushError($"{path} doesn’t inherit WeaponBase");
+                continue;
+            }
+
+            StringName id = string.IsNullOrEmpty(wb.ItemId) ? path.GetBaseName().ToSnakeCase() : wb.ItemId;
+
+            WeaponPaths[id] = filePath;
+
+            WeaponItem item = new WeaponItem
+            {
+                ItemId = id,
+                ItemName = wb.ItemName,
+                ItemStackSize = wb.ItemStackSize,
+                IconSprite = wb.IconSprite,
+                ItemValue = wb.ItemValue,
+                ItemDescription = wb.ItemDescription,
+                Rarity = wb.Rarity
+            };
+
+            InventoryManager.I.AddItem(item);
+            wb.QueueFree();
+
+        }
+         GD.Print($"[WeaponRegistry] scenes: {WeaponPaths.Count}");
     }
-}
 
     /// Optional editor check – call once in a unit-test or on project startup
     public static void ValidateAll()
@@ -60,4 +89,7 @@ public static class WeaponRegistry
         WeaponCache[itemId] = scene;
         return scene;
     }
+
+
+ 
 }
