@@ -32,11 +32,21 @@ public partial class ComboPhase : Node, IStateAction
 	{
 		foreach (var p in EffectPaths)
 			if (GetNode(p) is IPhaseAction eff) _effects.Add(eff);
+
+		EventManager.I.Subscribe<HitEvent>(GameEvent.Hit, OnHit);
 	}
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+
+		EventManager.I.Unsubscribe<HitEvent>(GameEvent.Hit, OnHit);
+    }
+
 
 	public void Enter(Entity owner, BaseState state)
 	{
-		
+
 		_owner = owner;
 
 		string clip = AnimationName;

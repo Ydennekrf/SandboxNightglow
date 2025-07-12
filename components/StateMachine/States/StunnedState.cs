@@ -7,13 +7,15 @@ public partial class StunnedState : BaseState
 
     public override void Enter(Entity owner, BaseState from)
     {
-                      // optional: ignore damage during stun
+        // optional: ignore damage during stun
         owner._anim.Play("Stunned");
+        
     }
 
     public override BaseState Tick(Entity owner, float delta, BaseState baseState)
     {
         _timer -= delta;
+        GD.Print($"{owner.Name} Stunned for: {_timer}");
         return _timer <= 0 ? owner.fsm.GetState(StateType.Idle) : this;
     }
 

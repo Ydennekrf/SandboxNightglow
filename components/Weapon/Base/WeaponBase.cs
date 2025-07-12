@@ -55,14 +55,21 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
 
 		// Damage callback only when Hitbox monitoring is enabled by AnimationPlayer
-		_hitbox.BodyEntered += body =>
+		_hitbox.AreaEntered += body =>
 		{
 			GD.Print("Hit occured");
 			if (ownerCache == null) return;
+			bool isGroup = body.IsInGroup("Hurtbox");
+			bool isType = false;
+
+			if (body.GetParent() is Entity)
+			{
+				isType = true;
+			}
 
 			if (body.IsInGroup("Hurtbox") && body.GetParent() is Entity target)
 			{
-					GD.Print("Hit Hurtbox");
+				GD.Print("Hit Hurtbox");
 				EventManager.I.Publish(
 				GameEvent.Hit,
 				new HitEvent(ownerCache, target));

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ggftwfpnrt64"]
+[gd_scene load_steps=12 format=3 uid="uid://ggftwfpnrt64"]
 
 [ext_resource type="Script" path="res://components/Weapon/Base/WeaponBase.cs" id="1_fr30h"]
 [ext_resource type="Texture2D" uid="uid://13nfhxsrmcv3" path="res://ArtAssets/InventoryItems/GearIcons/ArmorIcon.tres" id="2_mb7s2"]
@@ -20,8 +20,6 @@ script = ExtResource("7_5lpne")
 Type = 4
 Delta = 50
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bi6f2"]
-
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_fr30h")
 ItemId = "Knights_Blade"
@@ -42,8 +40,6 @@ collision_layer = 128
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
-shape = SubResource("CapsuleShape2D_bi6f2")
 
 [node name="ActionContainer" type="Node2D" parent="."]
 

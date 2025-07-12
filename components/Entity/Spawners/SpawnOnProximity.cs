@@ -3,8 +3,8 @@ using Godot;
 [Tool]   // so the spawn radius is visible in the editor
 public partial class SpawnOnProximity : Marker2D
 {
-    [Export] public PackedScene NpcScene;           // drag NPCExample1.tscn here
-    [Export] public NodePath    NpcLayerPath;       // point at "/root/TestZone/NPCLayer"
+    [Export] public PackedScene Spawnable;           // drag NPCExample1.tscn here
+    [Export] public NodePath    LayerPath;       // point at "/root/TestZone/NPCLayer"
     [Export] public float       TriggerRadius = 96; // pixels
 
     private Node2D _npcLayer;
@@ -12,7 +12,7 @@ public partial class SpawnOnProximity : Marker2D
 
     public override void _Ready()
     {
-        _npcLayer = GetNode<Node2D>("NPCLayer");
+        _npcLayer = GetNode<Node2D>(LayerPath);
 
         // Create an Area2D child for proximity detection (runtime only)
         var area = new Area2D();
@@ -24,26 +24,26 @@ public partial class SpawnOnProximity : Marker2D
         AddChild(area);
 
         // Listen for player entry
-        area.BodyEntered += OnBodyEntered;
+        area.AreaEntered += OnAreaEntered;
     }
 
-    private void OnBodyEntered(Node body)
+    private void OnAreaEntered(Node body)
     {
         if (_spawned) return;
-        if (!(body is PhysicsBody2D pb && pb.IsInGroup("Player"))) return;
+        if (!(body is CharacterBody2D pb && pb.IsInGroup("Player"))) return;
 
         SpawnNpc();
     }
 
     private void SpawnNpc()
     {
-        if (NpcScene == null)
+        if (Spawnable == null)
         {
             GD.PushError($"{Name}: NpcScene not assigned.");
             return;
         }
 
-        var npc = NpcScene.Instantiate<Node2D>();
+        var npc = Spawnable.Instantiate<Node2D>();
         npc.GlobalPosition = GlobalPosition;
 
         _npcLayer.AddChild(npc);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dx00ikwrd6rfl"]
+[gd_scene load_steps=12 format=3 uid="uid://dx00ikwrd6rfl"]
 
 [ext_resource type="Script" path="res://components/Weapon/Base/WeaponBase.cs" id="1_o5jrm"]
 [ext_resource type="Script" path="res://components/Weapon/Resources/StatDelta.cs" id="2_66vu8"]
@@ -15,8 +15,6 @@
 script = ExtResource("2_66vu8")
 Type = 0
 Delta = 50
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bi6f2"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_o5jrm")
@@ -38,8 +36,6 @@ collision_layer = 128
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
-shape = SubResource("CapsuleShape2D_bi6f2")
 
 [node name="ActionContainer" type="Node2D" parent="."]
 
@@ -51,27 +47,31 @@ shape = SubResource("CapsuleShape2D_bi6f2")
 script = ExtResource("6_84kcg")
 AnimationName = "Melee1"
 useDirectional = true
-Width = 16.0
-Height = 16.0
-Forward = 1.0
+ComboWindow = 0.4
+Height = 32.0
+Forward = 10.0
+ActiveSecs = 0.3
 
 [node name="Melee2" type="Node" parent="ComboPhases/Melee"]
 script = ExtResource("6_84kcg")
 AnimationName = "Melee1"
 useDirectional = true
+ComboWindow = 0.4
 Damage = 10
-Width = 16.0
-Height = 16.0
-Forward = 1.0
+Height = 32.0
+Forward = 10.0
+ActiveSecs = 0.3
 
 [node name="Melee3" type="Node" parent="ComboPhases/Melee"]
 script = ExtResource("6_84kcg")
 AnimationName = "Melee2"
 useDirectional = true
+ComboWindow = 0.4
+Damage = 15
 EffectPaths = [NodePath("Bleed")]
-Width = 16.0
-Height = 16.0
-Forward = 1.0
+Height = 32.0
+Forward = 10.0
+ActiveSecs = 0.3
 
 [node name="Bleed" type="Node" parent="ComboPhases/Melee/Melee3"]
 script = ExtResource("7_4ljoq")
