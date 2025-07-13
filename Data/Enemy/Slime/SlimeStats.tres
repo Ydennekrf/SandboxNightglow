@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://dqk8oe6ff7j16"]
+
+[ext_resource type="Script" path="res://components/Entity/EntityData/BaseStats.cs" id="1_0ci2y"]
+
+[resource]
+script = ExtResource("1_0ci2y")
+MaxHealth = 50
+MaxMana = 0
+MaxStamina = 10
+AttackPower = 5
+DefencePower = 5
+MagicPower = 0
+MagicDefencePower = 0
+MoveSpeed = 10
+AttackSpeed = 1
+MagicSpeed = 1
+Experience = 100

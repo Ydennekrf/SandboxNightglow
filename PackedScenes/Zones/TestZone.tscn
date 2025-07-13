@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://hsnjkhpgy5jj"]
+[gd_scene load_steps=5 format=3 uid="uid://hsnjkhpgy5jj"]
 
 [ext_resource type="PackedScene" uid="uid://dfyn3g18n450w" path="res://PackedScenes/Characters/NPC/NPCExample.tscn" id="2_qqxdy"]
 [ext_resource type="PackedScene" uid="uid://cjm7mr26hgac2" path="res://PackedScenes/Containers/ItemOnGround.tscn" id="2_yynqs"]
 [ext_resource type="PackedScene" uid="uid://cjdjuph42khg1" path="res://PackedScenes/Characters/Enemy/training_dummy.tscn" id="3_wgrpl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1oqb1"]
+vertices = PackedVector2Array(-109.57, 82.0625, -131.594, 35.1406, -138.203, 1.22656, -40.3672, -14.4922, 34.3984, 36.9063, 35.1094, 107.352, 74.75, 146.047, 56.4609, 170.68, -12.0469, 180.344, -33.0469, 156.492, -139.969, 54.4063, -103.43, 128.078, 45.4531, 56.6406, -86.5938, 150.531)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9), PackedInt32Array(0, 10, 1), PackedInt32Array(11, 0, 4, 12, 5, 9, 13)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-152, 57, -119, 87, -113, 132, -92, 160, -38, 166, -16, 191, 62, 180, 88, 145, 46, 104, 56, 55, 42, 30, -38, -25, -150, -7, -142, 34)])
 
 [node name="TestZone" type="Node2D"]
 
@@ -27,6 +32,21 @@ ItemId = &"Knights_Blade"
 
 [node name="TrainingDummy" parent="Map/EnemyLayer" instance=ExtResource("3_wgrpl")]
 position = Vector2(9, 105)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map/EnemyLayer"]
+navigation_polygon = SubResource("NavigationPolygon_1oqb1")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Map/EnemyLayer/NavigationRegion2D"]
+position = Vector2(-41, 71)
+radius = 30.82
+vertices = PackedVector2Array(-18.65, 28.4089, 8.34996, 5.40886, 15.35, -6.59114, -10.65, -7.59114, -69.65, 34.4089, -62.65, 53.4089)
+affect_navigation_mesh = true
+avoidance_layers = 2
+
+[node name="NavigationLink2D" type="NavigationLink2D" parent="Map/EnemyLayer/NavigationRegion2D"]
+position = Vector2(2, -1)
+start_position = Vector2(-101, 59)
+end_position = Vector2(-44, 126)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 position = Vector2(-2, -3)

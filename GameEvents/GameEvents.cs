@@ -21,6 +21,10 @@ public enum GameEvent
 	DialogChoiceSelected,
 	SaveRequested,
 	LoadRequested,
-	Hit
+	Hit,
+	AggroGained,
+	AggroLost,
+	Hurt,
+	Died
 
 }

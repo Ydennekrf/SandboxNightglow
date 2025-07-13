@@ -30,6 +30,9 @@ project/assembly_name="ParksSandbox"
 [global_group]
 
 Hurtbox=""
+AggroRange="for enemies to decide to chase and attack"
+Player="holder group for any player"
+Enemey=""
 
 [input]
 
@@ -113,6 +116,7 @@ Magic={
 2d_physics/layer_7="Interactables"
 2d_physics/layer_8="Player_Attack"
 2d_physics/layer_9="Enemy_Attack"
+2d_physics/layer_10="Enemy_Aggro"
 
 [rendering]
 

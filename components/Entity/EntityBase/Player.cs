@@ -76,8 +76,14 @@ public partial class Player : Entity
 		_wepUpStow.Texture = weapon.WepUpStow;
 		_wepDownStow.Texture = weapon.WepDownStow;
 	}
-	
-	
+
+	public override void Die()
+	{
+		base.Die();
+		// bring up the game over scene using the scene manager
+		// maybe check if any items or equipped gear can save from the death?
+    }
+
 
 
 

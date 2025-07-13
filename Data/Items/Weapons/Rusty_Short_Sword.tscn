@@ -76,6 +76,7 @@ ActiveSecs = 0.3
 [node name="Bleed" type="Node" parent="ComboPhases/Melee/Melee3"]
 script = ExtResource("7_4ljoq")
 Duration = 5.0
+BleedType = 1
 
 [node name="Stun" type="Node" parent="ComboPhases/Melee/Melee3"]
 script = ExtResource("8_x724v")

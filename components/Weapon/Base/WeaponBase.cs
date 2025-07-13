@@ -58,7 +58,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 		_hitbox.AreaEntered += body =>
 		{
 			GD.Print("Hit occured");
-			if (ownerCache == null) return;
+			if (ownerCache == null || ownerCache.IsImmune()) return;
 			bool isGroup = body.IsInGroup("Hurtbox");
 			bool isType = false;
 

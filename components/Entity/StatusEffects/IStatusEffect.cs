@@ -1,5 +1,7 @@
 public interface IStatusEffect
 {
+
+   
     /// Apply first tick immediately when the effect is added.
     void Start(Entity target);
 

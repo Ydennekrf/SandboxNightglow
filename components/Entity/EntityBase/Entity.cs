@@ -6,6 +6,7 @@ public partial class Entity : CharacterBody2D
 {
 
     [Export] public NodePath ActionsAnimPath;
+    [Export] public NodePath NotifyPath;
     public StateMachine fsm { get; private set; }
     public EntityData Data;
 
@@ -15,12 +16,19 @@ public partial class Entity : CharacterBody2D
     public ComboPhase ActivePhase { get; set; }
     protected CollisionShape2D _hitShape;
     public AnimationPlayer _anim;
+    public AnimationPlayer _notify;
 
     private readonly List<IStatusEffect> _effects = new();
+    private Queue<StatusEffectType> _activeStatuses = new();
+    private StatusEffectType _currentStatus = StatusEffectType.None;
+    private bool _statusPlaying = false;
+
+    private bool _isImmune = false;
 
     public override void _EnterTree()
     {
         _anim = GetNode<AnimationPlayer>(ActionsAnimPath);
+        _notify = GetNode<AnimationPlayer>(NotifyPath);
         fsm = GetNode<StateMachine>("StateMachine");
 
     }
@@ -29,6 +37,8 @@ public partial class Entity : CharacterBody2D
 
 
     }
+    
+    public bool IsImmune() => _isImmune;
 
     public virtual void TakeDamage(int amount, DamageType type, Entity? attacker = null)
     {
@@ -38,11 +48,22 @@ public partial class Entity : CharacterBody2D
         // water defending a electric attack takes 2.0 X damage, while Fire Defending electric would stay at 1.0 X
         // and Water Defending Fire would take 0.5 X
 
-        
+
         GD.Print($"{this.Name}: took {amount} points of {type} damage");
         Modulate = Colors.Red;
         CreateTween()
             .TweenProperty(this, "modulate", Colors.White, 0.15f);
+
+
+        // does out check if the damage would take current health below 0.
+        if (Data.EntityStats[StatType.CurrentHealth].Value <= 0)
+        {
+            EventManager.I.Publish(GameEvent.Died, this);
+        }
+        else
+        {
+            EventManager.I.Publish(GameEvent.Hurt, this);
+        }
 
     }
 
@@ -92,8 +113,15 @@ public partial class Entity : CharacterBody2D
     {
         base._Process(delta);
 
+        if (_activeStatuses.Count != 0)
+        {
+            
+            PlayNextStatus();
+        }
+
         for (int i = _effects.Count - 1; i >= 0; i--)
         {
+
             if (_effects[i].Tick((float)delta, this))
                 _effects.RemoveAt(i);   // auto-cleanup
         }
@@ -109,6 +137,26 @@ public partial class Entity : CharacterBody2D
         _effects.Add(effect);
         effect.Start(this);
     }
+    
+    public void AddStatus(StatusEffectType status)
+{
+    if (_activeStatuses.Contains(status)) return;
+
+    _activeStatuses.Enqueue(status);
+
+    if (!_statusPlaying)
+        PlayNextStatus();
+}
+
+    public void PlayNextStatus()
+    {
+        if (_activeStatuses.Count == 0) return;
+
+        _statusPlaying = true;
+        _currentStatus = _activeStatuses.Dequeue();
+
+        _notify.Play(_currentStatus.ToString());
+    }
 
 
     public void UpdateFacing(Vector2 dir)
@@ -121,7 +169,12 @@ public partial class Entity : CharacterBody2D
 
     public void SetImmune(bool toggle)
     {
+        _isImmune = toggle;
+    }
 
+    public virtual void Die()
+    {
+        // do what ever that is the same for both Enemys and players when they die here.
     }
 
     public void SpawnAfterImage(float lifetime = 0.3f, float startAlpha = 0.6f)

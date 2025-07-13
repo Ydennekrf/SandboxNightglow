@@ -5,6 +5,8 @@ public partial class BleedEffect : Node, IStatusEffect
 	public int   DamagePerTick = 1;
 	public float TickRate      = 1.0f;  // seconds
 	public float Duration      = 4.0f;  // seconds
+	public StatusEffectType type;
+
 
 	private float _timer;
 	private float _elapsed;
@@ -22,6 +24,12 @@ public partial class BleedEffect : Node, IStatusEffect
 
 		if (_timer <= 0f)
 		{
+
+			// to ensure the status effect notifier plays
+
+			target.AddStatus(type);
+
+
 			target.TakeDamage(DamagePerTick, DamageType.Slash);
 			_timer = TickRate;
 		}
