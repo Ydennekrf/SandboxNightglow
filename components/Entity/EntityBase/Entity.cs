@@ -69,6 +69,9 @@ public partial class Entity : CharacterBody2D
 
     private float DamageMultiplier(DamageType atkType, DamageType defType)
     {
+
+        // in here we need to check the player's current affinity compared to the attack type
+        // inside each case we need to check it vs the defence type and then set the multiplyer accordingly.
         float dmgMulti;
         switch (atkType)
         {
