@@ -11,7 +11,11 @@ public partial class Enemy : Entity
     public override void _Ready()
     {
         Data = GetNode<EntityData>(statsComponent);
-        Data.Init(baseStats);
+        Data.Init(baseStats, this);
+
+        var weapon = GetNodeOrNull<WeaponBase>("WeaponHolder/Weapon");
+        if (weapon != null)
+        weapon.OnEquip(this, fsm);
     }
 
     /*  Take damage, flash red, stay alive  */

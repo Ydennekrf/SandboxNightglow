@@ -147,7 +147,7 @@ public partial class PlayerManager : Node
 
 	public void SetBaseStats(Player player)
 	{
-		EntityData baseData = new EntityData(PlayerBaseStats);
+		EntityData baseData = new EntityData(PlayerBaseStats, player);
 
 		player.Data = baseData;
 		GD.Print("player base stats set.");

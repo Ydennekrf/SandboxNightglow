@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class HealthBelowMaxTransition : Node, IStateTransition
+public partial class HurtTransition : Node, IStateTransition
 {
     [Export] public BaseState Target { get; set; }
 

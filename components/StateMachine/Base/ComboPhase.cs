@@ -20,7 +20,8 @@ public partial class ComboPhase : Node, IStateAction
 	[Export] public float Height = 12;
 	[Export] public float Forward = 28;
 	[Export] public float ActiveSecs = 0.10f;
-
+	[ExportGroup("Player or Enemy")]
+	[Export] public bool SkipInput = false;
 	private AnimationPlayer _anim;
 	private Entity _owner;
 	private List<IPhaseAction> _effects = new();
@@ -75,15 +76,21 @@ public partial class ComboPhase : Node, IStateAction
 
 	public void Execute(float delta, Entity owner, BaseState state)
 	{
-		
+
 		float timeLeft = (float)(_owner._anim.CurrentAnimationLength - _owner._anim.CurrentAnimationPosition);
 
-		if (timeLeft < ComboWindow &&
-			Input.IsActionJustPressed(state.InputActionName))
-			QueueNext = true;
+		bool wantInput = !SkipInput &&
+                 !string.IsNullOrEmpty(state.InputActionName) &&
+                 Input.IsActionJustPressed(state.InputActionName);
+
+		if (timeLeft < ComboWindow && wantInput)
+    		QueueNext = true;
 
 		if (_owner._anim.CurrentAnimationPosition >= _owner._anim.CurrentAnimationLength)
 			IsDone = true;
+			
+
+		
 	}
 
 	public void Exit(Entity owner)

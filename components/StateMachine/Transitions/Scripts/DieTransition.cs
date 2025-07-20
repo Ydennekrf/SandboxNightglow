@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class HealthZeroTransition : Node, IStateTransition
+public partial class DieTransition : Node, IStateTransition
 {
     [Export] public BaseState Target { get; set; }
 
@@ -13,7 +13,7 @@ public partial class HealthZeroTransition : Node, IStateTransition
 
     private void OnEntityDied(Entity entity)
     {
-        if (entity == Owner.GetParent().GetParent())
+        if (entity != null)
             _died = true;
     }
 

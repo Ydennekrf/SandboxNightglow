@@ -47,13 +47,15 @@ public partial class Entity : CharacterBody2D
         // the entity's Affinity vs the DamageType will dictate the damage modifier.
         // water defending a electric attack takes 2.0 X damage, while Fire Defending electric would stay at 1.0 X
         // and Water Defending Fire would take 0.5 X
-
+        if (amount <= 0) return;
 
         GD.Print($"{this.Name}: took {amount} points of {type} damage");
         Modulate = Colors.Red;
         CreateTween()
             .TweenProperty(this, "modulate", Colors.White, 0.15f);
 
+        var current = Data.EntityStats[StatType.CurrentHealth];
+        current.SetCurrent(Math.Max(0, current.Value - amount));
 
         // does out check if the damage would take current health below 0.
         if (Data.EntityStats[StatType.CurrentHealth].Value <= 0)
@@ -177,6 +179,7 @@ public partial class Entity : CharacterBody2D
 
     public virtual void Die()
     {
+        _effects.Clear();
         // do what ever that is the same for both Enemys and players when they die here.
     }
 

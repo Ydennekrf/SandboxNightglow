@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cjdjuph42khg1"]
+[gd_scene load_steps=57 format=3 uid="uid://cjdjuph42khg1"]
 
 [ext_resource type="Script" path="res://components/Entity/EntityBase/Enemy.cs" id="1_irnus"]
 [ext_resource type="Texture2D" uid="uid://cqyevo8ngnftj" path="res://ArtAssets/Characters/Enemies/Slime/slippery slime v01.png" id="2_45r6x"]
@@ -9,13 +9,23 @@
 [ext_resource type="Script" path="res://components/StateMachine/Base/BaseState.cs" id="5_7a8tt"]
 [ext_resource type="Texture2D" uid="uid://c5c5l2hln12s2" path="res://ArtAssets/Characters/Emoji/mana seed emojis 16x16.png" id="5_wgcwx"]
 [ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/StaticAnimationAction.cs" id="6_bj17b"]
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/DirectionalAnimationAction.cs" id="6_tdu81"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/TimerTransition.cs" id="7_ithoo"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/AggroGainedTransition.cs" id="9_clv4s"]
+[ext_resource type="Script" path="res://components/Weapon/Base/WeaponBase.cs" id="9_m53le"]
+[ext_resource type="Script" path="res://components/StateMachine/Base/ComboPhase.cs" id="10_ifrdg"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/AggroLostTransition.cs" id="10_pvk3s"]
 [ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/EnemyChaseAction.cs" id="10_rykff"]
 [ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/EnemyPatrolAction.cs" id="11_3a8k4"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/HurtTransition.cs" id="12_r4q82"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/DieTransition.cs" id="13_0463u"]
 [ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/TimedImmuneAction.cs" id="15_ga2yf"]
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/WaitDurationAction.cs" id="19_pa6gy"]
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/DieAction.cs" id="19_yahjg"]
+[ext_resource type="Texture2D" uid="uid://dtnhnug4fjpbo" path="res://ArtAssets/UI/Health_03.png" id="21_rybx8"]
+[ext_resource type="Script" path="res://components/StateMachine/States/EnemyAttackState.cs" id="21_y1jk5"]
+[ext_resource type="Texture2D" uid="uid://w44mc3rkqm2k" path="res://ArtAssets/UI/Health_03_Bar01.png" id="22_cberh"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/PlayerInAttackRangeTransition.cs" id="22_q8sl4"]
+[ext_resource type="Script" path="res://components/Entity/Components/StatTracker.cs" id="23_w2pof"]
 
 [sub_resource type="Animation" id="Animation_xkw0s"]
 resource_name = "Attack_Down"
@@ -120,7 +130,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_uxu7i"]
 resource_name = "Die"
-length = 1.4
+length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -136,7 +146,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_d47gy"]
 resource_name = "Hurt"
-length = 0.2
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -274,59 +284,8 @@ tracks/4/keys = {
 "values": []
 }
 
-[sub_resource type="Animation" id="Animation_4xwuq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NotificationSprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NotificationSprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("NotificationSprite:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(13, -21)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("NotificationSprite:frame_coords")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_q2hld"]
-resource_name = "Poison"
+[sub_resource type="Animation" id="Animation_o1mvc"]
+resource_name = "BigSmile"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -337,7 +296,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(3, 6)]
+"values": [Vector2i(2, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -376,8 +335,8 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_k60i6"]
-resource_name = "Healed"
+[sub_resource type="Animation" id="Animation_81hls"]
+resource_name = "Bleed"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -388,7 +347,109 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(2, 6)]
+"values": [Vector2i(4, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NotificationSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(13, -16), Vector2(13, -21), Vector2(13, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NotificationSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.258817, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NotificationSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_hb46r"]
+resource_name = "Blush"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NotificationSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(7, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NotificationSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(13, -16), Vector2(13, -21), Vector2(13, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NotificationSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.258817, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NotificationSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_7pgea"]
+resource_name = "Burn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NotificationSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(4, 6)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -478,6 +539,57 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_n5l1y"]
+resource_name = "Darkness"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NotificationSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(6, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NotificationSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(13, -16), Vector2(13, -21), Vector2(13, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NotificationSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.258817, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NotificationSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_fggl1"]
 resource_name = "Happy"
 tracks/0/type = "value"
@@ -529,8 +641,8 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_o1mvc"]
-resource_name = "BigSmile"
+[sub_resource type="Animation" id="Animation_k60i6"]
+resource_name = "Healed"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -541,7 +653,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(2, 1)]
+"values": [Vector2i(2, 6)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -682,8 +794,8 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_hb46r"]
-resource_name = "Blush"
+[sub_resource type="Animation" id="Animation_q2hld"]
+resource_name = "Poison"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -694,7 +806,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(7, 2)]
+"values": [Vector2i(3, 6)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -731,6 +843,57 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4xwuq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NotificationSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NotificationSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NotificationSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13, -21)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NotificationSprite:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pa0qc"]
@@ -746,159 +909,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(6, 5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NotificationSprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(13, -16), Vector2(13, -21), Vector2(13, -16)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("NotificationSprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 0.258817, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("NotificationSprite:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_n5l1y"]
-resource_name = "Darkness"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NotificationSprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(6, 4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NotificationSprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(13, -16), Vector2(13, -21), Vector2(13, -16)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("NotificationSprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 0.258817, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("NotificationSprite:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_7pgea"]
-resource_name = "Burn"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NotificationSprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(4, 6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NotificationSprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(13, -16), Vector2(13, -21), Vector2(13, -16)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("NotificationSprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 0.258817, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("NotificationSprite:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_81hls"]
-resource_name = "Bleed"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NotificationSprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(4, 6)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -995,6 +1005,20 @@ script = ExtResource("2_721ls")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
 shape = SubResource("CircleShape2D_q24rb")
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("_owner")]
+offset_left = -13.0
+offset_top = -26.0
+offset_right = 51.0
+offset_bottom = -10.0
+scale = Vector2(0.4, 0.4)
+value = 50.0
+rounded = true
+texture_under = ExtResource("21_rybx8")
+texture_progress = ExtResource("22_cberh")
+script = ExtResource("23_w2pof")
+StatToTrack = 1
+_owner = NodePath("..")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_45r6x")
 hframes = 8
@@ -1007,6 +1031,30 @@ hframes = 8
 vframes = 8
 
 [node name="WeaponHolder" type="Node2D" parent="."]
+
+[node name="Weapon" type="Node2D" parent="WeaponHolder"]
+script = ExtResource("9_m53le")
+
+[node name="Hitbox" type="Area2D" parent="WeaponHolder/Weapon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Weapon/Hitbox"]
+
+[node name="ActionContainer" type="Node2D" parent="WeaponHolder/Weapon"]
+
+[node name="ComboPhases" type="Node2D" parent="WeaponHolder/Weapon"]
+
+[node name="Melee" type="Node2D" parent="WeaponHolder/Weapon/ComboPhases"]
+
+[node name="Attack" type="Node" parent="WeaponHolder/Weapon/ComboPhases/Melee"]
+script = ExtResource("10_ifrdg")
+AnimationName = "Attack"
+useDirectional = true
+DmgType = 1
+Height = 32.0
+Forward = 32.0
+SkipInput = true
+
+[node name="Magic" type="Node2D" parent="WeaponHolder/Weapon/ComboPhases"]
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uf6kj")
@@ -1029,25 +1077,32 @@ InitialState = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_7a8tt")
 ActionPaths = [NodePath("Animate")]
-TransitionPaths = [NodePath("TransitionToChase"), NodePath("IdleToPatrol")]
+TransitionPaths = [NodePath("TransitionToChase"), NodePath("IdleToPatrol"), NodePath("TransitionToHurt"), NodePath("TransitionToDie")]
 
 [node name="Animate" type="Node" parent="StateMachine/Idle"]
 script = ExtResource("6_bj17b")
 
 [node name="IdleToPatrol" type="Node" parent="StateMachine/Idle"]
 script = ExtResource("7_ithoo")
-Time = 2.0
 TargetPath = NodePath("../../Patrol")
 
 [node name="TransitionToChase" type="Node" parent="StateMachine/Idle" node_paths=PackedStringArray("Target")]
 script = ExtResource("9_clv4s")
 Target = NodePath("../../Chase")
 
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Idle" node_paths=PackedStringArray("Target")]
+script = ExtResource("12_r4q82")
+Target = NodePath("../../Hurt")
+
+[node name="TransitionToDie" type="Node" parent="StateMachine/Idle" node_paths=PackedStringArray("Target")]
+script = ExtResource("13_0463u")
+Target = NodePath("../../Die")
+
 [node name="Patrol" type="Node" parent="StateMachine"]
 script = ExtResource("5_7a8tt")
 StateId = 1
 ActionPaths = [NodePath("Animate"), NodePath("PatrolAction")]
-TransitionPaths = [NodePath("TransitionToChase")]
+TransitionPaths = [NodePath("TransitionToChase"), NodePath("TransitionToHurt"), NodePath("TransitionToDie")]
 
 [node name="Animate" type="Node" parent="StateMachine/Patrol"]
 script = ExtResource("6_bj17b")
@@ -1060,11 +1115,19 @@ PatrolSpeed = 10.0
 script = ExtResource("9_clv4s")
 Target = NodePath("../../Chase")
 
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Patrol" node_paths=PackedStringArray("Target")]
+script = ExtResource("12_r4q82")
+Target = NodePath("../../Hurt")
+
+[node name="TransitionToDie" type="Node" parent="StateMachine/Patrol" node_paths=PackedStringArray("Target")]
+script = ExtResource("13_0463u")
+Target = NodePath("../../Die")
+
 [node name="Chase" type="Node" parent="StateMachine"]
 script = ExtResource("5_7a8tt")
 StateId = 2
 ActionPaths = [NodePath("Animate"), NodePath("ChaseAction")]
-TransitionPaths = [NodePath("TransitionToPatrol")]
+TransitionPaths = [NodePath("TransitionToPatrol"), NodePath("TransitionToHurt"), NodePath("TransitionToDie"), NodePath("TransitionToAttack")]
 
 [node name="Animate" type="Node" parent="StateMachine/Chase"]
 script = ExtResource("6_bj17b")
@@ -1077,32 +1140,76 @@ MoveSpeed = 25.0
 script = ExtResource("10_pvk3s")
 Target = NodePath("../../Patrol")
 
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("5_7a8tt")
-StateId = 17
-ActionPaths = [NodePath("Animate")]
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Chase" node_paths=PackedStringArray("Target")]
+script = ExtResource("12_r4q82")
+Target = NodePath("../../Hurt")
 
-[node name="Animate" type="Node" parent="StateMachine/Attack"]
-script = ExtResource("6_tdu81")
+[node name="TransitionToDie" type="Node" parent="StateMachine/Chase" node_paths=PackedStringArray("Target")]
+script = ExtResource("13_0463u")
+Target = NodePath("../../Die")
+
+[node name="TransitionToAttack" type="Node" parent="StateMachine/Chase"]
+script = ExtResource("22_q8sl4")
+TargetPath = NodePath("../../Attack")
+Range = 32.0
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("21_y1jk5")
+StateId = 17
+ActionPaths = [NodePath("pauseAction")]
+TransitionPaths = [NodePath("TransitionToHurt"), NodePath("TransitionToDie"), NodePath("transitionToChase"), NodePath("TransitionToPatrol")]
+
+[node name="pauseAction" type="Node" parent="StateMachine/Attack"]
+script = ExtResource("19_pa6gy")
+
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Attack" node_paths=PackedStringArray("Target")]
+script = ExtResource("12_r4q82")
+Target = NodePath("../../Hurt")
+
+[node name="TransitionToDie" type="Node" parent="StateMachine/Attack" node_paths=PackedStringArray("Target")]
+script = ExtResource("13_0463u")
+Target = NodePath("../../Die")
+
+[node name="transitionToChase" type="Node" parent="StateMachine/Attack" node_paths=PackedStringArray("Target")]
+script = ExtResource("9_clv4s")
+Target = NodePath("../../Chase")
+
+[node name="TransitionToPatrol" type="Node" parent="StateMachine/Attack" node_paths=PackedStringArray("Target")]
+script = ExtResource("10_pvk3s")
+Target = NodePath("../../Patrol")
 
 [node name="Range" type="Node" parent="StateMachine"]
+
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Range" node_paths=PackedStringArray("Target")]
+script = ExtResource("12_r4q82")
+Target = NodePath("../../Hurt")
+
+[node name="TransitionToDie" type="Node" parent="StateMachine/Range" node_paths=PackedStringArray("Target")]
+script = ExtResource("13_0463u")
+Target = NodePath("../../Die")
 
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource("5_7a8tt")
 StateId = 18
-ActionPaths = [NodePath("Animate")]
+ActionPaths = [NodePath("Animate"), NodePath("TimedImmune")]
+TransitionPaths = [NodePath("TimedImmune")]
 
 [node name="Animate" type="Node" parent="StateMachine/Hurt"]
 script = ExtResource("6_bj17b")
 
 [node name="TimedImmune" type="Node" parent="StateMachine/Hurt"]
 script = ExtResource("15_ga2yf")
-Duration = 1.25
+TargetPath = NodePath("../../Idle")
+Duration = 0.75
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("5_7a8tt")
 StateId = 19
-ActionPaths = [NodePath("Animate")]
+ActionPaths = [NodePath("Animate"), NodePath("DieAction")]
 
 [node name="Animate" type="Node" parent="StateMachine/Die"]
 script = ExtResource("6_bj17b")
+
+[node name="DieAction" type="Node" parent="StateMachine/Die"]
+script = ExtResource("19_yahjg")
+Duration = 2.0

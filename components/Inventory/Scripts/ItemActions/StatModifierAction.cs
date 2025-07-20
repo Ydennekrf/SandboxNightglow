@@ -27,7 +27,7 @@ public partial class StatModifierAction :  EquipAction
 
         foreach (var kv in Buffs)
         {
-            data.AddModifier(kv.Key, kv.Value);
+            data.AddModifier(kv.Key, kv.Value, wearer);
             _applied[kv.Key] = kv.Value;
         }
 
@@ -42,7 +42,7 @@ public partial class StatModifierAction :  EquipAction
         var data = wearer.Data;
 
         foreach (var kv in _applied)
-            data.AddModifier(kv.Key, -kv.Value);
+            data.AddModifier(kv.Key, -kv.Value, wearer);
 
         _applied.Clear();
 

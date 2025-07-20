@@ -28,8 +28,11 @@ public class Stat
     public int? maxVal { get; }
     public int Value { get; set; }
 
-    public Stat(StatType x, int y, int z)
+    public Entity owner { get; }
+
+    public Stat(StatType x, int y, int z, Entity entity)
     {
+        owner = entity;
         type = x;
         Value = y;
         maxVal = z;
@@ -48,7 +51,7 @@ public class Stat
         }
 
         Value += val;
-        EventManager.I.Publish(GameEvent.StatChange, this);
+        EventManager.I.Publish(GameEvent.StatChange, new StatChange(owner, this));
         return true;
     }
 
@@ -57,7 +60,7 @@ public class Stat
         if (val > maxVal) return;
         
         Value = val;
-        EventManager.I.Publish(GameEvent.StatChange, this);
+        EventManager.I.Publish(GameEvent.StatChange, new StatChange(owner, this));
     }
 
 }

@@ -105,7 +105,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
 		// Apply buffs
 		foreach (var b in StatBuffs)
-			owner.Data.AddModifier(b.Type, b.Delta);
+			owner.Data.AddModifier(b.Type, b.Delta, owner);
 		// get new weapons combo phases
 		fsm.MeleeTracker = new ComboTracker(GatherPhases("ComboPhases/Melee"));
 		fsm.MagicTracker = new ComboTracker(GatherPhases("ComboPhases/Magic"));
@@ -125,7 +125,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 	{
 		ownerCache = null;
 		foreach (var b in StatBuffs)
-			owner.Data.AddModifier(b.Type, -b.Delta);
+			owner.Data.AddModifier(b.Type, -b.Delta, owner);
 
 		// fsm.RemoveAction("Swing");
 	}

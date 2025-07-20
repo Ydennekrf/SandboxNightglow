@@ -1,26 +1,27 @@
 using Godot;
 
 
-public partial class StamTracker : ProgressBar
+public partial class StamTracker : TextureProgressBar
 {
 
     [Export] public StatType TargetToTrack;
+    [Export] public Entity owner;
 
     public override void _Ready()
     {
 
-        EventManager.I.Subscribe<Stat>(GameEvent.StatChange, OnStatChanged);
+        EventManager.I.Subscribe<StatChange>(GameEvent.StatChange, OnStatChanged);
 
     }
 
-    private void OnStatChanged(Stat stat)
+    private void OnStatChanged(StatChange stat)
     {
        
-        if (stat.type == TargetToTrack)
+        if (stat.stat.type == TargetToTrack && stat.owner == owner)
         {
-             GD.Print($"Stat Change EVent Recieved!{stat.type} new Value is: {stat.Value}");
-                MaxValue = (double)stat.maxVal;
-                Value    = (double)stat.Value;
+             GD.Print($"Stat Change EVent Recieved!{stat.stat.type} new Value is: {stat.stat.Value}");
+                MaxValue = (double)stat.stat.maxVal;
+                Value    = (double)stat.stat.Value;
 
         }
         

@@ -74,6 +74,10 @@ public partial class GameManager : Node {
 			if (Enum.TryParse(kv.Key, out StatType t))
 				raw[t] = kv.Value;
 
+		int Pid = PlayerManager.Instance.CreatePlayer();
+		Player loadedPlayer = SceneRegistry.Load("Player")?.Instantiate<Player>();
+		loadedPlayer.SetPlayerId(Pid);
+		
 		// 2)  Create Stat objects with the correct max
 		foreach (var (type, value) in raw)
 		{
@@ -81,32 +85,30 @@ public partial class GameManager : Node {
 			{
 				case StatType.CurrentHealth:
 					int maxHp = raw.GetValueOrDefault(StatType.MaxHealth, value);
-					data.EntityStats[type] = new Stat(type, value, maxHp);
+					data.EntityStats[type] = new Stat(type, value, maxHp, loadedPlayer);
 					break;
 
 				case StatType.CurrentMana:
 					int maxMp = raw.GetValueOrDefault(StatType.MaxMana, value);
-					data.EntityStats[type] = new Stat(type, value, maxMp);
+					data.EntityStats[type] = new Stat(type, value, maxMp, loadedPlayer);
 					break;
 
 				case StatType.CurrentStamina:
 					int maxSta = raw.GetValueOrDefault(StatType.MaxStamina, value);
-					data.EntityStats[type] = new Stat(type, value, maxSta);
+					data.EntityStats[type] = new Stat(type, value, maxSta, loadedPlayer);
 					break;
-					
+
 				case StatType.Experience:
-					data.EntityStats[type] = new Stat(type, value, 999999999);
+					data.EntityStats[type] = new Stat(type, value, 999999999, loadedPlayer);
 					break;
 
 				default:
-					data.EntityStats[type] = new Stat(type, value,999);
+					data.EntityStats[type] = new Stat(type, value, 999, loadedPlayer);
 					break;
 			}
 		}
 
-		int Pid = PlayerManager.Instance.CreatePlayer();
-		Player loadedPlayer = SceneRegistry.Load("Player")?.Instantiate<Player>();
-		loadedPlayer.SetPlayerId(Pid);
+		
 		// set stats here
 		loadedPlayer.SaveSlotId = save.SaveSlot;
 		PlayerManager.Instance.SetLoadedPlayerData(save, data, Pid);
