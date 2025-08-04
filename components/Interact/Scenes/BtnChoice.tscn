@@ -1,17 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cery6gp0nwjms"]
+[gd_scene load_steps=4 format=3 uid="uid://cery6gp0nwjms"]
 
-[ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="1_481lp"]
+[ext_resource type="Theme" uid="uid://bfm0817jb6ei2" path="res://UIThemes/RichTextTheme.tres" id="1_rdh5h"]
+[ext_resource type="StyleBox" uid="uid://dshmwoj7feonb" path="res://UIThemes/ButtonHover.tres" id="2_tfgb4"]
+[ext_resource type="StyleBox" uid="uid://deu56fhe5sjqv" path="res://UIThemes/ButtonRegular.tres" id="3_sgvnj"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(50, 16)
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 16.0
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 0.036
+offset_right = 240.0
+offset_bottom = 7.36
 grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("1_rdh5h")
 theme_override_colors/icon_hover_color = Color(0.168072, 0.208889, 0.360463, 1)
 theme_override_constants/icon_max_width = 125
-theme_override_fonts/font = ExtResource("1_481lp")
-theme_override_font_sizes/font_size = 8
+theme_override_styles/hover = ExtResource("2_tfgb4")
+theme_override_styles/normal = ExtResource("3_sgvnj")
 text = "This is a test Button."
 alignment = 0
 autowrap_mode = 3

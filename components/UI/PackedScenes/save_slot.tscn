@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ba6q0m2q683ex"]
 
 [ext_resource type="Texture2D" uid="uid://bfillcp8ngfp3" path="res://ArtAssets/Characters/NPC/Portraits/Icon8.png" id="1_37ean"]
-[ext_resource type="Script" path="res://components/UI/SaveSlotButton.cs" id="1_p46jm"]
+[ext_resource type="Script" uid="uid://bgm7gh3cr4gvh" path="res://components/UI/SaveSlotButton.cs" id="1_p46jm"]
 [ext_resource type="FontFile" uid="uid://dks6per1025ac" path="res://ArtAssets/Fonts/ManaSeedTitle.ttf" id="2_2t2ts"]
 [ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="3_6hdvd"]
 

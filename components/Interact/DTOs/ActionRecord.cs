@@ -1,0 +1,1 @@
+public record ActionRecord(int ActionId, ActionType Type, string JsonData);

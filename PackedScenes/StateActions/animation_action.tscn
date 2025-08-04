@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://27yxonnj2ai"]
 
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/DirectionalAnimationAction.cs" id="1_ruom8"]
+[ext_resource type="Script" uid="uid://trqg1wr4fogt" path="res://components/StateMachine/Actions/Scripts/DirectionalAnimationAction.cs" id="1_ruom8"]
 
 [node name="AnimationAction" type="Node"]
 script = ExtResource("1_ruom8")

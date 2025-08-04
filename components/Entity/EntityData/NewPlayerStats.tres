@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://diiufb4rn7fq"]
 
-[ext_resource type="Script" path="res://components/Entity/EntityData/BaseStats.cs" id="1_76mlm"]
+[ext_resource type="Script" uid="uid://ohuxclxcgfn8" path="res://components/Entity/EntityData/BaseStats.cs" id="1_76mlm"]
 
 [resource]
 script = ExtResource("1_76mlm")

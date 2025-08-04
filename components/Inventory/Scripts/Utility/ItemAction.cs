@@ -1,7 +1,7 @@
 using Godot;
 
-[GlobalClass]                 // shows up in the “New Resource” dialog
-public abstract partial class ItemAction : Resource, IItemAction
+[GlobalClass]
+public abstract partial class ItemAction : Resource
 {
     /// Return true if the item should be consumed after executing.
     public abstract bool Execute(

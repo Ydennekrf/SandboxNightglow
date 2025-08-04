@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bfm0817jb6ei2"]
+
+[ext_resource type="StyleBox" uid="uid://dshmwoj7feonb" path="res://UIThemes/ButtonHover.tres" id="1_oxk5p"]
+[ext_resource type="StyleBox" uid="uid://deu56fhe5sjqv" path="res://UIThemes/ButtonRegular.tres" id="2_37dx2"]
+[ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="3_cv827"]
+[ext_resource type="Texture2D" uid="uid://xgnnmrrr31xu" path="res://ArtAssets/UI/Dialog/DialogFrame.png" id="3_t7a58"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yh3dc"]
+texture = ExtResource("3_t7a58")
+
+[resource]
+default_base_scale = 0.5
+default_font = ExtResource("3_cv827")
+default_font_size = 16
+Button/styles/hover = ExtResource("1_oxk5p")
+Button/styles/normal = ExtResource("2_37dx2")
+RichTextLabel/font_sizes/normal_font_size = 8
+RichTextLabel/styles/fill = SubResource("StyleBoxTexture_yh3dc")

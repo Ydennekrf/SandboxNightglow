@@ -13,4 +13,6 @@ ItemValue = 25
 IconSprite = ExtResource("1_ti5x7")
 ItemStackSize = 10
 Rarity = 1
+itemType = 0
+AssetPath = ""
 Actions = [ExtResource("1_alotw")]

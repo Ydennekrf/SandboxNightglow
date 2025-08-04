@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dshmwoj7feonb"]
+
+[ext_resource type="Texture2D" uid="uid://cqdwqrmqtew4m" path="res://ArtAssets/UI/Inventory_9Slices.png" id="1_ylbvd"]
+
+[resource]
+texture = ExtResource("1_ylbvd")
+texture_margin_left = 8.24296
+texture_margin_top = 10.2699
+texture_margin_right = 8.10783
+texture_margin_bottom = 8.64835
+modulate_color = Color(0.468, 0.5772, 0.78, 0.788235)

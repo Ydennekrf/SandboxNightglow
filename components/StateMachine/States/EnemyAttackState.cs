@@ -10,6 +10,7 @@ public partial class EnemyAttackState : BaseState
 
     public override void Enter(Entity owner, BaseState from)
     {
+        base.Enter(owner, from);
         var fsm = owner.GetNode<StateMachine>("StateMachine");
         _tracker = fsm.MeleeTracker;      // always melee for AI
         _tracker.Reset();                 // start from first phase
@@ -19,6 +20,7 @@ public partial class EnemyAttackState : BaseState
 
     public override BaseState Tick(Entity owner, float dt, BaseState self)
     {
+        base.Tick(owner, dt, self);
         _phase.Execute(dt, owner, this);
 
         // single-phase AI: leave when anim finishes

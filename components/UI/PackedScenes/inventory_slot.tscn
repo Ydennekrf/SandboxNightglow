@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckmusyefdjgen"]
 
-[ext_resource type="Script" path="res://components/Inventory/UI/ItemIcon.cs" id="1_ip3ur"]
+[ext_resource type="Script" uid="uid://nxn1mw1qaamo" path="res://components/Inventory/UI/ItemIcon.cs" id="1_ip3ur"]
 [ext_resource type="Texture2D" uid="uid://d0tt1kw0iosf6" path="res://ArtAssets/UI/Inventory/Inventory_Slot.png" id="1_slioy"]
 [ext_resource type="Texture2D" uid="uid://13nfhxsrmcv3" path="res://ArtAssets/InventoryItems/GearIcons/ArmorIcon.tres" id="2_b6onm"]
 [ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="3_4sj30"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbh2mhcvkrc1x"]
 
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/TimerTransition.cs" id="1_l2pti"]
+[ext_resource type="Script" uid="uid://srnm5vpm377f" path="res://components/StateMachine/Transitions/Scripts/TimerTransition.cs" id="1_l2pti"]
 
 [node name="TimedExit" type="Node"]
 script = ExtResource("1_l2pti")

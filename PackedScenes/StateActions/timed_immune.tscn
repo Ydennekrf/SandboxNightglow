@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://06tl335nih2t"]
 
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/TimedImmuneAction.cs" id="1_sh2lv"]
+[ext_resource type="Script" uid="uid://q4h1d4x4wgkd" path="res://components/StateMachine/Actions/Scripts/TimedImmuneAction.cs" id="1_sh2lv"]
 
 [node name="TimedImmune" type="Node"]
 script = ExtResource("1_sh2lv")

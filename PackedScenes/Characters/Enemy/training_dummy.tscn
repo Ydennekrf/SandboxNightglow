@@ -30,7 +30,6 @@
 [sub_resource type="Animation" id="Animation_xkw0s"]
 resource_name = "Attack_Down"
 length = 0.9
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,7 +46,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_x2jr6"]
 resource_name = "Attack_Left"
 length = 0.9
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,7 +78,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_6kbqo"]
 resource_name = "Attack_Right"
 length = 0.9
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,7 +94,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_dywro"]
 resource_name = "Attack_Up"
 length = 0.9
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1036,6 +1032,8 @@ vframes = 8
 script = ExtResource("9_m53le")
 
 [node name="Hitbox" type="Area2D" parent="WeaponHolder/Weapon"]
+collision_layer = 256
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Weapon/Hitbox"]
 
@@ -1069,6 +1067,8 @@ debug_color = Color(0.95316, 0.183446, 0.303832, 0.42)
 
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("3_p1ow1")
+
+[node name="Loot" type="Node2D" parent="."]
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("4_gccv4")
@@ -1118,6 +1118,7 @@ Target = NodePath("../../Chase")
 [node name="TransitionToHurt" type="Node" parent="StateMachine/Patrol" node_paths=PackedStringArray("Target")]
 script = ExtResource("12_r4q82")
 Target = NodePath("../../Hurt")
+_parentStateId = 1
 
 [node name="TransitionToDie" type="Node" parent="StateMachine/Patrol" node_paths=PackedStringArray("Target")]
 script = ExtResource("13_0463u")
@@ -1143,6 +1144,7 @@ Target = NodePath("../../Patrol")
 [node name="TransitionToHurt" type="Node" parent="StateMachine/Chase" node_paths=PackedStringArray("Target")]
 script = ExtResource("12_r4q82")
 Target = NodePath("../../Hurt")
+_parentStateId = 2
 
 [node name="TransitionToDie" type="Node" parent="StateMachine/Chase" node_paths=PackedStringArray("Target")]
 script = ExtResource("13_0463u")
@@ -1165,6 +1167,7 @@ script = ExtResource("19_pa6gy")
 [node name="TransitionToHurt" type="Node" parent="StateMachine/Attack" node_paths=PackedStringArray("Target")]
 script = ExtResource("12_r4q82")
 Target = NodePath("../../Hurt")
+_parentStateId = 17
 
 [node name="TransitionToDie" type="Node" parent="StateMachine/Attack" node_paths=PackedStringArray("Target")]
 script = ExtResource("13_0463u")
@@ -1179,10 +1182,6 @@ script = ExtResource("10_pvk3s")
 Target = NodePath("../../Patrol")
 
 [node name="Range" type="Node" parent="StateMachine"]
-
-[node name="TransitionToHurt" type="Node" parent="StateMachine/Range" node_paths=PackedStringArray("Target")]
-script = ExtResource("12_r4q82")
-Target = NodePath("../../Hurt")
 
 [node name="TransitionToDie" type="Node" parent="StateMachine/Range" node_paths=PackedStringArray("Target")]
 script = ExtResource("13_0463u")

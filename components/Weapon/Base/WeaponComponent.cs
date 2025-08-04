@@ -87,7 +87,7 @@ public partial class WeaponComponent : Node
     /* ------------------------------------------------------------------ */
     private PackedScene ResolveScene(StringName itemId)
     {
-         return WeaponRegistry.Load(itemId);
+        return InventoryManager.I.GetGear(InventoryManager.I.Get(itemId));
     }
 }
 

@@ -47,6 +47,7 @@ public partial class Entity : CharacterBody2D
         // the entity's Affinity vs the DamageType will dictate the damage modifier.
         // water defending a electric attack takes 2.0 X damage, while Fire Defending electric would stay at 1.0 X
         // and Water Defending Fire would take 0.5 X
+        if (IsImmune()) return;
         if (amount <= 0) return;
 
         GD.Print($"{this.Name}: took {amount} points of {type} damage");

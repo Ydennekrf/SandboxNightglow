@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="HealAction" load_steps=2 format=3 uid="uid://by5fab8k7xext"]
 
-[ext_resource type="Script" path="res://components/Inventory/Scripts/ItemActions/HealAction.cs" id="1_3vkql"]
+[ext_resource type="Script" uid="uid://colb363q71ang" path="res://components/Inventory/Scripts/ItemActions/HealAction.cs" id="1_3vkql"]
 
 [resource]
 script = ExtResource("1_3vkql")

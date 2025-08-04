@@ -32,7 +32,7 @@ public partial class InventoryComponent : Node , IInventoryReadOnly
         EventManager.I.Subscribe<LoadRequest>(GameEvent.LoadRequested, OnLoad);
         EventManager.I.Subscribe<UseItemRequest>(GameEvent.UseItem, UseSlot);
         EventManager.I.Subscribe<ItemStack>(GameEvent.PickupItem, PickUpItem);
-        AddItem("Health_Potion", 4);
+        AddItem("potion_health_10", 4);
 
     }
 
@@ -118,7 +118,7 @@ public partial class InventoryComponent : Node , IInventoryReadOnly
             remove |= act.Execute(owner, this, data);   // execute every action
 
 
-        if (data is WeaponItem)
+        if (data.itemType == ItemType.Weapon)
         {
             GD.Print("clicked an weapon item");
             Equip(request.slot);
@@ -187,11 +187,11 @@ public partial class InventoryComponent : Node , IInventoryReadOnly
 
         InventoryItem itemNew = InventoryManager.I.Get(toEquip.ItemId);
 
-        if (itemNew is IEquippable eq)
+        if (itemNew.itemType == ItemType.Armor)
         {
-            slot = eq.slot;
+            slot = EquipmentSlot.Armor;
         }
-        else if (itemNew is WeaponItem)
+        else if (itemNew.itemType == ItemType.Weapon)
         {
             slot = EquipmentSlot.Weapon;
         }

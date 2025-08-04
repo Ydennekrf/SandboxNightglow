@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://0vqyqo8a8pko"]
+[gd_scene load_steps=56 format=3 uid="uid://0vqyqo8a8pko"]
 
 [ext_resource type="Script" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="2_ronss"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/EnterRunTransition.cs" id="13_v14er"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/InputStopMovingTransition.cs" id="14_gjvvf"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/AttackInputTransition.cs" id="14_obvq4"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/HurtTransition.cs" id="15_5isvi"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/CanDashTransition.cs" id="15_dt6fk"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/ReleaseRunTransition.cs" id="17_qfxql"]
 [ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/StatCompareTransition.cs" id="18_7t2al"]
@@ -37,6 +38,7 @@
 [ext_resource type="Script" path="res://components/Weapon/Base/WeaponComponent.cs" id="29_geumn"]
 [ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://components/UI/PackedScenes/inventory_slot.tscn" id="29_nb2id"]
 [ext_resource type="Script" path="res://Managers/UIManager.cs" id="30_j0osh"]
+[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/TimedImmuneAction.cs" id="31_i7su4"]
 [ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="32_rsx4e"]
 [ext_resource type="PackedScene" uid="uid://bed1eumrhp0xy" path="res://PackedScenes/UI/ToastNotification.tscn" id="32_xf44x"]
 [ext_resource type="Script" path="res://components/StateMachine/States/AttackState.cs" id="33_tlntk"]
@@ -44,6 +46,9 @@
 [ext_resource type="Texture2D" uid="uid://bk2up3l8kk2qo" path="res://ArtAssets/UI/Settings_Bar02.png" id="38_qxbbp"]
 [ext_resource type="Texture2D" uid="uid://ba83vx1to5ssg" path="res://ArtAssets/UI/Health_01.png" id="40_nl82t"]
 [ext_resource type="Texture2D" uid="uid://boeuc842g4vyw" path="res://ArtAssets/UI/Health_01_Bar01.png" id="41_b1h1f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dw6q6"]
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_invm3"]
 radius = 24.0
@@ -144,13 +149,22 @@ frame = 12
 
 [node name="Overlay" type="Sprite2D" parent="Sprites"]
 
+[node name="HurtBox" type="Area2D" parent="." groups=["Hurtbox"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" groups=["Hurtbox"]]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_dw6q6")
+
 [node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, 4)
 collision_layer = 16
 collision_mask = 96
 script = ExtResource("4_okwjl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(0, 2)
+position = Vector2(1, 3)
 shape = SubResource("CircleShape2D_invm3")
 debug_color = Color(0.533167, 0.569459, 0.054255, 0.42)
 
@@ -181,7 +195,7 @@ InitialState = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
 ActionPaths = [NodePath("AnimationAction"), NodePath("RegenStamAction")]
-TransitionPaths = [NodePath("IdleToWalkTransition"), NodePath("IdleToAttackTransition")]
+TransitionPaths = [NodePath("IdleToWalkTransition"), NodePath("IdleToAttackTransition"), NodePath("TransitionToHurt")]
 
 [node name="AnimationAction" parent="StateMachine/Idle" instance=ExtResource("9_lde1q")]
 
@@ -196,11 +210,15 @@ script = ExtResource("14_obvq4")
 TargetStatePath = NodePath("../../Attack")
 StaminaCost = 1
 
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Idle" node_paths=PackedStringArray("Target")]
+script = ExtResource("15_5isvi")
+Target = NodePath("../../Hurt")
+
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
 StateId = 3
 ActionPaths = [NodePath("InputMoveAction"), NodePath("AnimationAction"), NodePath("RegenStamAction")]
-TransitionPaths = [NodePath("WalkToIdleTransition"), NodePath("WalkToRunTransition"), NodePath("WalkToDodgeTransition"), NodePath("WalkToAttackTransition")]
+TransitionPaths = [NodePath("WalkToIdleTransition"), NodePath("WalkToRunTransition"), NodePath("WalkToDodgeTransition"), NodePath("WalkToAttackTransition"), NodePath("TransitionToHurt")]
 
 [node name="InputMoveAction" parent="StateMachine/Walk" instance=ExtResource("12_yuc3g")]
 
@@ -228,11 +246,16 @@ TargetPath = NodePath("../../Idle")
 script = ExtResource("15_dt6fk")
 TargetPath = NodePath("../../Dodge")
 
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Walk" node_paths=PackedStringArray("Target")]
+script = ExtResource("15_5isvi")
+Target = NodePath("../../Hurt")
+_parentStateId = 3
+
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
 StateId = 4
 ActionPaths = [NodePath("InputMoveAction"), NodePath("AnimationAction"), NodePath("DrainStamAction")]
-TransitionPaths = [NodePath("BtnReleaseTransition"), NodePath("StamLowTransition"), NodePath("RunToDodgeTransition"), NodePath("RunToAttackTransition")]
+TransitionPaths = [NodePath("BtnReleaseTransition"), NodePath("StamLowTransition"), NodePath("RunToDodgeTransition"), NodePath("RunToAttackTransition"), NodePath("TransitionToHurt")]
 
 [node name="InputMoveAction" type="Node" parent="StateMachine/Run"]
 script = ExtResource("12_juare")
@@ -258,6 +281,11 @@ TargetPath = NodePath("../../Dodge")
 [node name="RunToAttackTransition" type="Node" parent="StateMachine/Run"]
 script = ExtResource("14_obvq4")
 TargetStatePath = NodePath("../../Attack")
+
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Run" node_paths=PackedStringArray("Target")]
+script = ExtResource("15_5isvi")
+Target = NodePath("../../Hurt")
+_parentStateId = 4
 
 [node name="Dodge" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
@@ -324,6 +352,20 @@ script = ExtResource("9_rhlmw")
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("33_tlntk")
 StateId = 17
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+StateId = 18
+ActionPaths = [NodePath("DirectionalAnimationAction"), NodePath("TimedImmune")]
+TransitionPaths = [NodePath("TimedImmune")]
+
+[node name="DirectionalAnimationAction" type="Node" parent="StateMachine/Hurt"]
+script = ExtResource("9_rhlmw")
+
+[node name="TimedImmune" type="Node" parent="StateMachine/Hurt"]
+script = ExtResource("31_i7su4")
+TargetPath = NodePath("../../Idle")
+Duration = 0.5
 
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("25_rnmem")
@@ -395,7 +437,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="InventoryUI" type="MarginContainer" parent="UI" node_paths=PackedStringArray("_grid")]
+[node name="InventoryUI" type="MarginContainer" parent="UI" node_paths=PackedStringArray("_grid", "EquipGrid")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -410,7 +452,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("28_p0128")
 _inventoryPath = NodePath("../../Inventory")
-_grid = NodePath("VBoxContainer/HBoxContainer2/GridContainer")
+_grid = NodePath("VBoxContainer/HBoxContainer2/VBoxContainer/GridContainer")
+EquipGrid = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/GridContainer")
 _slotScene = ExtResource("29_nb2id")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/InventoryUI"]
@@ -431,12 +474,22 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InventoryUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="UI/InventoryUI/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+columns = 7
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/InventoryUI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="GridContainer" type="GridContainer" parent="UI/InventoryUI/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InventoryUI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="UI/InventoryUI/VBoxContainer/HBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 2
 columns = 7

@@ -1,0 +1,61 @@
+-- database: ./GameData.db
+
+/* ──────────────────────────────────────────────────────────────── */
+/*  seed_npc_example.sql                                           */
+/* ──────────────────────────────────────────────────────────────── */
+
+PRAGMA foreign_keys = ON;          -- just to be explicit
+BEGIN TRANSACTION;
+
+/* 1 ── NPC row (start node NULL for now) */
+INSERT INTO NPC (npc_id, name, portrait_path, scene_path, start_node_id)
+VALUES ('npc_example', 'NPC Example',
+        'res://ArtAssets/Characters/NPC/Portraits/Icon1.png',
+        NULL, NULL)
+ON CONFLICT(npc_id) DO NOTHING;
+
+/* 2 ── Dialog nodes (FK npc_id is now satisfied) */
+INSERT INTO DialogNode (node_id, npc_id, speaker, portrait_path, text) VALUES
+    ('greet',        'npc_example', 'NPC Example',
+     'res://ArtAssets/Characters/NPC/Portraits/Icon1.png',
+     'Hello, {playerName}.'),
+    ('quest_intro',  'npc_example', 'NPC Example',
+     'res://ArtAssets/Characters/NPC/Portraits/Icon2.png',
+     'I need someone to fetch five healing herbs. Will you help?'),
+    ('angry_farewell','npc_example', 'NPC Example',
+     'res://ArtAssets/Characters/NPC/Portraits/Icon3.png',
+     'Then be gone!')
+ON CONFLICT(node_id) DO NOTHING;
+
+/* 3 ── Patch NPC.start_node_id now that 'greet' exists */
+UPDATE NPC SET start_node_id = 'greet'
+WHERE npc_id = 'npc_example';
+
+/* 4 ── Choices (sort_index keeps JSON order) */
+INSERT INTO Choice (choice_id, node_id, sort_index, text, next_node_id) VALUES
+    ('hello',   'greet',       0, 'Hello!',                       'quest_intro'),
+    ('store',   'greet',       1, 'What do you have to sell?',    NULL),
+    ('rude',    'greet',       2, 'I have nothing good to say…',  'angry_farewell'),
+    ('accept',  'quest_intro', 0, 'Sure, I''ll help.',            NULL),
+    ('decline', 'quest_intro', 1, 'Not right now.',               NULL)
+ON CONFLICT(choice_id) DO NOTHING;
+
+/* 5 ── Actions (AUTOINCREMENT action_id, one row per unique action) */
+INSERT INTO Action (type, json_data) VALUES
+    ('OpenStore',       '{}'),
+    ('AdjustFriendship','{"targetNpcId":"npc_example","delta":-2}'),
+    ('StartQuest',      '{"questId":"fetch_healing_herbs"}');
+
+/* 5b ── ChoiceAction bridge using action lookup sub-queries */
+INSERT OR IGNORE INTO ChoiceAction (choice_id, action_id)
+VALUES
+    ('store',  (SELECT action_id FROM Action WHERE type='OpenStore'       LIMIT 1)),
+    ('rude',   (SELECT action_id FROM Action WHERE type='AdjustFriendship' LIMIT 1)),
+    ('accept', (SELECT action_id FROM Action WHERE type='StartQuest'      LIMIT 1));
+
+COMMIT;
+
+
+
+
+

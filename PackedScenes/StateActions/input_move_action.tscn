@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccva3tctd1tp0"]
 
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/MoveInputAction.cs" id="1_ri5np"]
+[ext_resource type="Script" uid="uid://cb5no1n457ls2" path="res://components/StateMachine/Actions/Scripts/MoveInputAction.cs" id="1_ri5np"]
 
 [node name="InputMoveAction" type="Node"]
 script = ExtResource("1_ri5np")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://caqvscu4l6erb"]
 
-[ext_resource type="Script" path="res://components/Weapon/Base/WeaponBase.cs" id="1_kh684"]
-[ext_resource type="Script" path="res://components/Weapon/Resources/StatDelta.cs" id="2_tfew2"]
+[ext_resource type="Script" uid="uid://coimgp6tdojdh" path="res://components/Weapon/Base/WeaponBase.cs" id="1_kh684"]
+[ext_resource type="Script" uid="uid://dvhk3qceysaay" path="res://components/Weapon/Resources/StatDelta.cs" id="2_tfew2"]
 
 [sub_resource type="Resource" id="Resource_n6ks8"]
 script = ExtResource("2_tfew2")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bed1eumrhp0xy"]
 
 [ext_resource type="Texture2D" uid="uid://bugo5jritaqks" path="res://ArtAssets/UI/Inventory/Inventory_select.png" id="1_5luye"]
-[ext_resource type="Script" path="res://components/Interact/UI/ToastBubble.cs" id="2_0k242"]
-[ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="3_rw2q8"]
+[ext_resource type="Script" uid="uid://dkcdbo8bxv7ua" path="res://components/Interact/UI/ToastBubble.cs" id="2_0k242"]
+[ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="3_pgqn5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0lxnq"]
 texture = ExtResource("1_5luye")
@@ -10,33 +10,6 @@ texture_margin_left = 3.59717
 texture_margin_top = 3.59717
 texture_margin_right = 3.59717
 texture_margin_bottom = 3.76068
-
-[sub_resource type="Animation" id="Animation_cov6m"]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.533333, 0.966667),
-"transitions": PackedFloat32Array(1, 1, 4.14106),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 50)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.533333, 0.966667),
-"transitions": PackedFloat32Array(0.267944, 0.267944, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_rwsus"]
 length = 0.001
@@ -116,11 +89,38 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_cov6m"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 4.14106),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333, 0.966667),
+"transitions": PackedFloat32Array(0.267944, 0.267944, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vhrfv"]
 _data = {
-"RESET": SubResource("Animation_rwsus"),
-"appear": SubResource("Animation_1tird"),
-"fade": SubResource("Animation_cov6m")
+&"RESET": SubResource("Animation_rwsus"),
+&"appear": SubResource("Animation_1tird"),
+&"fade": SubResource("Animation_cov6m")
 }
 
 [node name="Panel" type="Panel" node_paths=PackedStringArray("_anim", "_label")]
@@ -142,9 +142,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 94.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_rw2q8")
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("3_pgqn5")
 theme_override_font_sizes/font_size = 16
 text = "Displayed Text"
 horizontal_alignment = 1

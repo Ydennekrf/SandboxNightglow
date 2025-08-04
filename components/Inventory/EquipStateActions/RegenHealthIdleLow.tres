@@ -1,11 +1,3 @@
-[gd_resource type="Resource" script_class="StatRegenEquip" load_steps=2 format=3 uid="uid://dr02wp26fv6es"]
-
-[ext_resource type="Script" path="res://components/Inventory/EquipStateActions/StatRegenEquip.cs" id="1_4v8wv"]
+[gd_resource type="Resource" format=3 uid="uid://dr02wp26fv6es"]
 
 [resource]
-script = ExtResource("1_4v8wv")
-target = 0
-StatToRegen = 1
-RegenRatePerSecond = 0.2
-RegenDelay = 0.0
-ClampToMax = true
