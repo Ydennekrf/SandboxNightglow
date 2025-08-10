@@ -367,6 +367,14 @@ script = ExtResource("31_i7su4")
 TargetPath = NodePath("../../Idle")
 Duration = 0.5
 
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("8_aidl1")
+StateId = 19
+ActionPaths = [NodePath("DirectionalAnimationAction")]
+
+[node name="DirectionalAnimationAction" type="Node" parent="StateMachine/Die"]
+script = ExtResource("9_rhlmw")
+
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("25_rnmem")
 

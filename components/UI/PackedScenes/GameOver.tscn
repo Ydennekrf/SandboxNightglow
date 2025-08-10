@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://br36xdah6rv0k"]
+
+[ext_resource type="Script" path="res://components/UI/GameOver.cs" id="1_egcgp"]
+[ext_resource type="FontFile" uid="uid://bdqp0oevn5iym" path="res://ArtAssets/Fonts/ManaSeedTitleMono.ttf" id="1_u1uqh"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_egcgp")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -140.0
+offset_right = 72.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_u1uqh")
+text = "Game Over"
+
+[node name="Load" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart
+"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"

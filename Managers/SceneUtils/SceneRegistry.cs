@@ -8,7 +8,9 @@ public static class SceneRegistry
 	public static readonly Dictionary<string, string> ScenePaths = new(){
 		{"Player", "res://PackedScenes/Characters/Player/player.tscn" },
 		{"MainMenu", "res://components/UI/PackedScenes/MainMenu.tscn" },
-		{"TestZone", "res://PackedScenes/Zones/TestZone.tscn" }
+		{"TestZone", "res://PackedScenes/Zones/TestZone.tscn" },
+		{"Slime", "res://PackedScenes/Characters/Enemy/training_dummy.tscn"},
+		{"GameOver" , "res://components/UI/PackedScenes/GameOver.tscn"}
 	};
 
 	public static void ValidateAll()

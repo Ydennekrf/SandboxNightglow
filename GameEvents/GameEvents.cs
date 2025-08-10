@@ -25,6 +25,7 @@ public enum GameEvent
 	AggroGained,
 	AggroLost,
 	Hurt,
-	Died
+	Died,
+	GameOverRequested
 
 }

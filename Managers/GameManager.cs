@@ -2,12 +2,16 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class GameManager : Node {
-	public static GameManager Instance {get; private set;}
+public partial class GameManager : Node
+{
+	public static GameManager Instance { get; private set; }
+	public ImageTexture LastDeathSnapshot { get; private set; }
+	private bool _gameoverHandled;
 
-	public override void _EnterTree() 
+	public override void _EnterTree()
 	{
-		if(Instance != null && Instance != this){
+		if (Instance != null && Instance != this)
+		{
 			QueueFree();
 			return;
 		}
@@ -20,6 +24,7 @@ public partial class GameManager : Node {
 
 	public void ShowMainMenu()
 	{
+		EventManager.I.Subscribe<Entity>(GameEvent.GameOverRequested, OnGameOver);
 		var scene = SceneRegistry.Load("MainMenu");
 		if (scene == null)
 		{
@@ -41,10 +46,15 @@ public partial class GameManager : Node {
 
 		currentScene.CallDeferred("add_child", menu);
 	}
+	public override void _ExitTree()
+	{
+		EventManager.I.Unsubscribe<Entity>(GameEvent.GameOverRequested, OnGameOver);
+	}
+
 
 	public void StartNewGame()
 	{
-		
+
 		GD.Print("Load main scene now");
 		SceneManager.Instance.LoadSceneWithPlayerByKey("TestZone", "Start");
 	}
@@ -52,7 +62,7 @@ public partial class GameManager : Node {
 	public void StartLoadGame(int slot)
 	{
 		PlayerSaveData save = SaveData.Load(slot); // load slot 1
-		
+
 		if (save == null)
 		{
 			GD.Print("No save file found.");
@@ -77,7 +87,7 @@ public partial class GameManager : Node {
 		int Pid = PlayerManager.Instance.CreatePlayer();
 		Player loadedPlayer = SceneRegistry.Load("Player")?.Instantiate<Player>();
 		loadedPlayer.SetPlayerId(Pid);
-		
+
 		// 2)  Create Stat objects with the correct max
 		foreach (var (type, value) in raw)
 		{
@@ -108,7 +118,7 @@ public partial class GameManager : Node {
 			}
 		}
 
-		
+
 		// set stats here
 		loadedPlayer.SaveSlotId = save.SaveSlot;
 		PlayerManager.Instance.SetLoadedPlayerData(save, data, Pid);
@@ -120,4 +130,28 @@ public partial class GameManager : Node {
 	{
 		return SceneRegistry.Load("Player");
 	}
+
+	public void CaptureDeathSnapshot()
+	{
+		var img = GetViewport().GetTexture().GetImage();
+		LastDeathSnapshot = ImageTexture.CreateFromImage(img);
+	}
+
+
+	private void OnGameOver(Entity player)
+	{
+		if (_gameoverHandled) return; // guard against duplicates
+		_gameoverHandled = true;
+		
+
+				// 1) Capture snapshot before pausing or swapping scenes
+		CaptureDeathSnapshot();
+
+		PackedScene scene = SceneRegistry.Load("GameOver");
+
+		Node gameoverscene = scene.Instantiate();
+		// 2) Now fade out and replace scene
+		SceneManager.Instance.ReplaceCurrentScene(gameoverscene);
+
+    }
 }

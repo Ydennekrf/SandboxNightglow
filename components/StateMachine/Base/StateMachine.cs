@@ -10,9 +10,9 @@ public partial class StateMachine : Node
     [Export] public NodePath InitialState;
     private Entity owner;
 
-    public ComboTracker MeleeTracker  { get; set; }
-    public ComboTracker MagicTracker  { get; set; }
-    public string       LastAttackButton { get; set; } = "";
+    public ComboTracker MeleeTracker { get; set; }
+    public ComboTracker MagicTracker { get; set; }
+    public string LastAttackButton { get; set; } = "";
 
     private readonly Stack<BaseState> _stack = new();
 
@@ -23,6 +23,7 @@ public partial class StateMachine : Node
         owner = GetOwner<Entity>();
 
         _current?.Enter(owner, _current);
+        EventManager.I.Subscribe(GameEvent.GameOverRequested, SetPause);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -76,5 +77,14 @@ public partial class StateMachine : Node
 
         _current = _stack.Pop();
         _current.Enter(owner, _current);
+    }
+
+    // for when the player dies pause the state machine for the game over screen
+    private void SetPause()
+    {
+      
+            owner.SetProcess(false);
+            owner.SetPhysicsProcess(false);
+        
     }
 }

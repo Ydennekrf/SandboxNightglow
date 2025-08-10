@@ -61,7 +61,7 @@ public partial class Entity : CharacterBody2D
         // does out check if the damage would take current health below 0.
         if (Data.EntityStats[StatType.CurrentHealth].Value <= 0)
         {
-            EventManager.I.Publish(GameEvent.Died, this);
+            EventManager.I.Publish(GameEvent.Died, new DieEvent{killed = this});
         }
         else
         {
