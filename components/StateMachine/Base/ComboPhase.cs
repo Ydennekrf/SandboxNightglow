@@ -26,6 +26,8 @@ public partial class ComboPhase : Node, IStateAction
 	private Entity _owner;
 	private List<IPhaseAction> _effects = new();
 
+	private readonly HashSet<Entity> _hitThisSwing = new();
+
 	public bool IsDone { get; private set; }
 	public bool QueueNext { get; private set; }
 
@@ -47,7 +49,7 @@ public partial class ComboPhase : Node, IStateAction
 
 	public void Enter(Entity owner, BaseState state)
 	{
-
+		 _hitThisSwing.Clear();
 		_owner = owner;
 
 		string clip = AnimationName;
@@ -102,11 +104,15 @@ public partial class ComboPhase : Node, IStateAction
 
 	private void OnHit(HitEvent payload)
 	{
-		if (payload.attacker != _owner)
-		{
-			return;
-		}
+		
+		if (payload.attacker != _owner) return;
 
-		payload.target.TakeDamage(Damage, DmgType, payload.attacker);
+    // Debounce: only one hit per target per swing
+    	if (_hitThisSwing.Contains(payload.target)) return;
+    	_hitThisSwing.Add(payload.target);
+
+		GD.Print($"=================>>>>>>>> Attacker: {payload.attacker.Name} ===============>>>>> Target: {payload.target.Name}");
+
+		payload.target.TakeDamage(Damage, DmgType, true , payload.attacker);
 	}
 }

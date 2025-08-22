@@ -82,7 +82,13 @@ public partial class Player : Entity
 		base.Die();
 		// bring up the game over scene using the scene manager
 		// maybe check if any items or equipped gear can save from the death?
+	}
+
+    public override void TakeDamage(int amount, DamageType type , bool triggerHurt , Entity attacker = null)
+    {
+        base.TakeDamage(amount, type,triggerHurt , attacker);
     }
+
 
 
 

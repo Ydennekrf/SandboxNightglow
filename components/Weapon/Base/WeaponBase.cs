@@ -146,7 +146,7 @@ public partial class WeaponBase : Node2D, IWeapon           // IWeapon = your no
 
 	public void ActivateHitBox()
     {
-        GD.Print($"Current Combo: {ownerCache.ActivePhase.Name} Actions this Phase {ownerCache.ActivePhase.EffectPaths.Count}");
+        	
 			ComboPhase p = ownerCache.ActivePhase;
 
 			if (p == null) return;

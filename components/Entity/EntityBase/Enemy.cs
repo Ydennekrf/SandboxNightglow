@@ -19,9 +19,9 @@ public partial class Enemy : Entity
     }
 
     /*  Take damage, flash red, stay alive  */
-    public override void TakeDamage(int amount, DamageType type, Entity? attacker = null)
+    public override void TakeDamage(int amount, DamageType type, bool triggerHurt, Entity? attacker = null)
     {
-        base.TakeDamage(amount, type, attacker);
+        base.TakeDamage(amount, type,triggerHurt , attacker);
         // base.TakeDamage(amount,type, attacker);        // runs your default HP logic
 
         // /* Visual: flash red */

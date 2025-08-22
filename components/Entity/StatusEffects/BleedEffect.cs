@@ -30,7 +30,7 @@ public partial class BleedEffect : Node, IStatusEffect
 			target.AddStatus(type);
 
 
-			target.TakeDamage(DamagePerTick, DamageType.Slash);
+			target.TakeDamage(DamagePerTick, DamageType.Slash, false);
 			_timer = TickRate;
 		}
 

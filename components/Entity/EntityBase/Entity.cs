@@ -40,7 +40,7 @@ public partial class Entity : CharacterBody2D
     
     public bool IsImmune() => _isImmune;
 
-    public virtual void TakeDamage(int amount, DamageType type, Entity? attacker = null)
+    public virtual void TakeDamage(int amount, DamageType type, bool triggerHurt , Entity? attacker = null)
     {
         // in here we will check the Entity's gear and see if they have any current resistances to damage types.
         // for magic, the Entity will take an affinity which is dependent on the weapon equipped.
@@ -50,7 +50,7 @@ public partial class Entity : CharacterBody2D
         if (IsImmune()) return;
         if (amount <= 0) return;
 
-        GD.Print($"{this.Name}: took {amount} points of {type} damage");
+        GD.Print($"{this.Name}: took {amount} points of {type} damage, should trigger hurt? {triggerHurt}");
         Modulate = Colors.Red;
         CreateTween()
             .TweenProperty(this, "modulate", Colors.White, 0.15f);
@@ -58,15 +58,11 @@ public partial class Entity : CharacterBody2D
         var current = Data.EntityStats[StatType.CurrentHealth];
         current.SetCurrent(Math.Max(0, current.Value - amount));
 
-        // does out check if the damage would take current health below 0.
-        if (Data.EntityStats[StatType.CurrentHealth].Value <= 0)
-        {
-            EventManager.I.Publish(GameEvent.Died, new DieEvent{killed = this});
-        }
-        else
+        if (triggerHurt)
         {
             EventManager.I.Publish(GameEvent.Hurt, this);
         }
+        
 
     }
 

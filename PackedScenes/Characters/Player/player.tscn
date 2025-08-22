@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://0vqyqo8a8pko"]
+[gd_scene load_steps=57 format=3 uid="uid://0vqyqo8a8pko"]
 
 [ext_resource type="Script" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="2_ronss"]
@@ -41,6 +41,7 @@
 [ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/TimedImmuneAction.cs" id="31_i7su4"]
 [ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="32_rsx4e"]
 [ext_resource type="PackedScene" uid="uid://bed1eumrhp0xy" path="res://PackedScenes/UI/ToastNotification.tscn" id="32_xf44x"]
+[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/GameOverTransition.cs" id="33_q234m"]
 [ext_resource type="Script" path="res://components/StateMachine/States/AttackState.cs" id="33_tlntk"]
 [ext_resource type="Texture2D" uid="uid://dfh64rfbuu6fa" path="res://ArtAssets/UI/Settings.png" id="37_k0jm0"]
 [ext_resource type="Texture2D" uid="uid://bk2up3l8kk2qo" path="res://ArtAssets/UI/Settings_Bar02.png" id="38_qxbbp"]
@@ -113,12 +114,12 @@ autoplay = "Idle_Right"
 [node name="WepDownStow" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 12
+frame = 177
 
 [node name="WepDownDraw" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 12
+frame = 177
 
 [node name="Body" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("3_s6smw")
@@ -129,23 +130,24 @@ vframes = 6
 texture = ExtResource("4_r246n")
 hframes = 65
 vframes = 6
-frame = 12
+frame = 177
 
 [node name="Hair" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("4_gl0v2")
 hframes = 65
 vframes = 6
-frame = 12
+frame = 177
 
 [node name="WepUpStow" type="Sprite2D" parent="Sprites"]
+visible = false
 hframes = 65
 vframes = 6
-frame = 12
+frame = 177
 
 [node name="WepUpDraw" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 12
+frame = 177
 
 [node name="Overlay" type="Sprite2D" parent="Sprites"]
 
@@ -195,7 +197,7 @@ InitialState = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
 ActionPaths = [NodePath("AnimationAction"), NodePath("RegenStamAction")]
-TransitionPaths = [NodePath("IdleToWalkTransition"), NodePath("IdleToAttackTransition"), NodePath("TransitionToHurt")]
+TransitionPaths = [NodePath("TransitionToHurt"), NodePath("IdleToAttackTransition"), NodePath("IdleToWalkTransition")]
 
 [node name="AnimationAction" parent="StateMachine/Idle" instance=ExtResource("9_lde1q")]
 
@@ -210,15 +212,16 @@ script = ExtResource("14_obvq4")
 TargetStatePath = NodePath("../../Attack")
 StaminaCost = 1
 
-[node name="TransitionToHurt" type="Node" parent="StateMachine/Idle" node_paths=PackedStringArray("Target")]
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Idle" node_paths=PackedStringArray("_defaultTarget", "DieTarget")]
 script = ExtResource("15_5isvi")
-Target = NodePath("../../Hurt")
+_defaultTarget = NodePath("../../Hurt")
+DieTarget = NodePath("../../Die")
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
 StateId = 3
 ActionPaths = [NodePath("InputMoveAction"), NodePath("AnimationAction"), NodePath("RegenStamAction")]
-TransitionPaths = [NodePath("WalkToIdleTransition"), NodePath("WalkToRunTransition"), NodePath("WalkToDodgeTransition"), NodePath("WalkToAttackTransition"), NodePath("TransitionToHurt")]
+TransitionPaths = [NodePath("TransitionToHurt"), NodePath("WalkToAttackTransition"), NodePath("WalkToDodgeTransition"), NodePath("WalkToRunTransition"), NodePath("WalkToIdleTransition")]
 
 [node name="InputMoveAction" parent="StateMachine/Walk" instance=ExtResource("12_yuc3g")]
 
@@ -246,16 +249,17 @@ TargetPath = NodePath("../../Idle")
 script = ExtResource("15_dt6fk")
 TargetPath = NodePath("../../Dodge")
 
-[node name="TransitionToHurt" type="Node" parent="StateMachine/Walk" node_paths=PackedStringArray("Target")]
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Walk" node_paths=PackedStringArray("_defaultTarget", "DieTarget")]
 script = ExtResource("15_5isvi")
-Target = NodePath("../../Hurt")
+_defaultTarget = NodePath("../../Hurt")
+DieTarget = NodePath("../../Die")
 _parentStateId = 3
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("8_aidl1")
 StateId = 4
 ActionPaths = [NodePath("InputMoveAction"), NodePath("AnimationAction"), NodePath("DrainStamAction")]
-TransitionPaths = [NodePath("BtnReleaseTransition"), NodePath("StamLowTransition"), NodePath("RunToDodgeTransition"), NodePath("RunToAttackTransition"), NodePath("TransitionToHurt")]
+TransitionPaths = [NodePath("TransitionToHurt"), NodePath("StamLowTransition"), NodePath("BtnReleaseTransition"), NodePath("RunToAttackTransition"), NodePath("RunToDodgeTransition")]
 
 [node name="InputMoveAction" type="Node" parent="StateMachine/Run"]
 script = ExtResource("12_juare")
@@ -282,9 +286,10 @@ TargetPath = NodePath("../../Dodge")
 script = ExtResource("14_obvq4")
 TargetStatePath = NodePath("../../Attack")
 
-[node name="TransitionToHurt" type="Node" parent="StateMachine/Run" node_paths=PackedStringArray("Target")]
+[node name="TransitionToHurt" type="Node" parent="StateMachine/Run" node_paths=PackedStringArray("_defaultTarget", "DieTarget")]
 script = ExtResource("15_5isvi")
-Target = NodePath("../../Hurt")
+_defaultTarget = NodePath("../../Hurt")
+DieTarget = NodePath("../../Die")
 _parentStateId = 4
 
 [node name="Dodge" type="Node" parent="StateMachine"]
@@ -371,9 +376,13 @@ Duration = 0.5
 script = ExtResource("8_aidl1")
 StateId = 19
 ActionPaths = [NodePath("DirectionalAnimationAction")]
+TransitionPaths = [NodePath("GameOverTransition")]
 
 [node name="DirectionalAnimationAction" type="Node" parent="StateMachine/Die"]
 script = ExtResource("9_rhlmw")
+
+[node name="GameOverTransition" type="Node" parent="StateMachine/Die"]
+script = ExtResource("33_q234m")
 
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("25_rnmem")

@@ -61,6 +61,7 @@ public partial class GameManager : Node
 
 	public void StartLoadGame(int slot)
 	{
+		_gameoverHandled = false;
 		PlayerSaveData save = SaveData.Load(slot); // load slot 1
 
 		if (save == null)
