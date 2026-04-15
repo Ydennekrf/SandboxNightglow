@@ -81,6 +81,7 @@ namespace ethra.V1
             dodge.Transitions.Add(new DodgeCompleteTransition(idle, walk, run));
 
             return new List<BaseState> {idle, walk, run, dodge};
+
         }
 
     }
