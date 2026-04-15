@@ -84,10 +84,10 @@ public partial class Player : Entity
 		// maybe check if any items or equipped gear can save from the death?
 	}
 
-    public override void TakeDamage(int amount, DamageType type , bool triggerHurt , Entity attacker = null)
-    {
-        base.TakeDamage(amount, type,triggerHurt , attacker);
-    }
+	public override void TakeDamage(int amount, DamageType type , bool triggerHurt , Entity attacker = null)
+	{
+		base.TakeDamage(amount, type,triggerHurt , attacker);
+	}
 
 
 
