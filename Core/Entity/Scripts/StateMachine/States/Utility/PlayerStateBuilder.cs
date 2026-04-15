@@ -18,6 +18,9 @@ namespace ethra.V1
 
         private static List<BaseState> PlayerLocomotion(Entity owner, float moveSpeed)
         {
+            float runSpeed = moveSpeed * 1.8f;
+            float dodgeSpeed = moveSpeed * 3.0f;
+
             BaseState idle = new BaseState
             (
                 "Idle",
@@ -41,12 +44,43 @@ namespace ethra.V1
                 },
                 baseTransitions: new List<IStateTransition>()
             );
+
+            BaseState run = new BaseState
+            (
+                "Run",
+                owner,
+                baseActions: new List<IStateAction>
+                {
+                    new SetAnimationRequestAction("Run"),
+                    new MoveFromInputAction(runSpeed)
+                },
+                baseTransitions: new List<IStateTransition>()
+            );
+
+            BaseState dodge = new BaseState
+            (
+                "Dodge",
+                owner,
+                baseActions: new List<IStateAction>
+                {
+                    new DodgeMoveAction(dodgeSpeed)
+                },
+                baseTransitions: new List<IStateTransition>()
+            );
             
 
+            idle.Transitions.Add(new DodgePressedTransition(dodge));
             idle.Transitions.Add(new MoveInputNonZeroTransition(walk));
+            idle.Transitions.Add(new RunPressedTransition(run));
+            walk.Transitions.Add(new DodgePressedTransition(dodge));
             walk.Transitions.Add(new MoveInputZeroTransition(idle));
+            walk.Transitions.Add(new RunPressedTransition(run));
+            run.Transitions.Add(new DodgePressedTransition(dodge));
+            run.Transitions.Add(new MoveInputZeroTransition(idle));
+            run.Transitions.Add(new RunReleasedTransition(walk));
+            dodge.Transitions.Add(new DodgeCompleteTransition(idle, walk, run));
 
-            return new List<BaseState> {idle, walk};
+            return new List<BaseState> {idle, walk, run, dodge};
         }
 
     }

@@ -40,6 +40,9 @@ namespace ethra.V1
         }
 
         public bool AttackPressed { get; set; } = false;
+        public bool RunPressed { get; set; } = false;
+        public bool DodgePressed { get; set; } = false;
+        public float DodgeTimerRemaining { get; set; } = 0f;
 
         public Player(IEntityManager entity, ICombat combat, IInventory inventory, IStateMachine fsm): base (entity, combat, fsm)
         {
