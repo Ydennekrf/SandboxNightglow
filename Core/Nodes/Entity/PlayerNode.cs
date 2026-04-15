@@ -46,6 +46,7 @@ namespace ethra.V1
 			float dt = (float)delta;
 
 			_player.MoveInput = Input.GetVector("Left", "Right", "Up", "Down");
+			_player.RunPressed = Input.IsActionPressed("Run");
 			_player.Tick(dt);
 
 			Velocity = _player.DesiredVelocity;
