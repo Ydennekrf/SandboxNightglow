@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=35 format=3 uid="uid://bbnwy2a1oolb8"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://bbnwy2a1oolb8"]
 
 [sub_resource type="Animation" id="Animation_tu0pv"]
 resource_name = "Die_Down"
@@ -358,7 +358,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_4h7gd"]
 resource_name = "Dodge_Down"
-length = 0.75
+length = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -446,7 +446,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_x5ede"]
 resource_name = "Dodge_Left"
-length = 0.75
+length = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -534,7 +534,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_v5v4p"]
 resource_name = "Dodge_Right"
-length = 0.75
+length = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -622,7 +622,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_hdlig"]
 resource_name = "Dodge_Up"
-length = 0.75
+length = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -2307,17 +2307,6 @@ tracks/6/keys = {
 "update": 1,
 "values": [Vector2i(56, 0), Vector2i(56, 1), Vector2i(56, 2), Vector2i(56, 3)]
 }
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("WeaponHolder")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
 
 [sub_resource type="Animation" id="Animation_ie4pe"]
 length = 0.001
@@ -3048,38 +3037,38 @@ tracks/6/keys = {
 
 [resource]
 _data = {
-"Die_Down": SubResource("Animation_tu0pv"),
-"Die_Left": SubResource("Animation_jpq7f"),
-"Die_Right": SubResource("Animation_gns4r"),
-"Die_Up": SubResource("Animation_vqvgf"),
-"Dodge_Down": SubResource("Animation_4h7gd"),
-"Dodge_Left": SubResource("Animation_x5ede"),
-"Dodge_Right": SubResource("Animation_v5v4p"),
-"Dodge_Up": SubResource("Animation_hdlig"),
-"Hurt_Down": SubResource("Animation_6vsh6"),
-"Hurt_Left": SubResource("Animation_q17hk"),
-"Hurt_Right": SubResource("Animation_eo3pc"),
-"Hurt_Up": SubResource("Animation_gdtgn"),
-"Idle_Down": SubResource("Animation_bn1nc"),
-"Idle_Left": SubResource("Animation_oiveh"),
-"Idle_Right": SubResource("Animation_dq5hp"),
-"Idle_Up": SubResource("Animation_4ap1u"),
-"Melee1_Down": SubResource("Animation_narpw"),
-"Melee1_Left": SubResource("Animation_s17lt"),
-"Melee1_Right": SubResource("Animation_r8b5s"),
-"Melee1_Up": SubResource("Animation_2vc0w"),
-"Melee2_Down": SubResource("Animation_qw01k"),
-"Melee2_Left": SubResource("Animation_u7kre"),
-"Melee2_Right": SubResource("Animation_urswa"),
-"Melee2_Up": SubResource("Animation_e2den"),
-"Melee3_Down": SubResource("Animation_y562p"),
-"RESET": SubResource("Animation_ie4pe"),
-"Run_Down": SubResource("Animation_pu00b"),
-"Run_Left": SubResource("Animation_ryiy2"),
-"Run_Right": SubResource("Animation_x3j2t"),
-"Run_Up": SubResource("Animation_my75x"),
-"Walk_Down": SubResource("Animation_5yqe4"),
-"Walk_Left": SubResource("Animation_6iri1"),
-"Walk_Right": SubResource("Animation_7js5r"),
-"Walk_Up": SubResource("Animation_pw3fq")
+&"Die_Down": SubResource("Animation_tu0pv"),
+&"Die_Left": SubResource("Animation_jpq7f"),
+&"Die_Right": SubResource("Animation_gns4r"),
+&"Die_Up": SubResource("Animation_vqvgf"),
+&"Dodge_Down": SubResource("Animation_4h7gd"),
+&"Dodge_Left": SubResource("Animation_x5ede"),
+&"Dodge_Right": SubResource("Animation_v5v4p"),
+&"Dodge_Up": SubResource("Animation_hdlig"),
+&"Hurt_Down": SubResource("Animation_6vsh6"),
+&"Hurt_Left": SubResource("Animation_q17hk"),
+&"Hurt_Right": SubResource("Animation_eo3pc"),
+&"Hurt_Up": SubResource("Animation_gdtgn"),
+&"Idle_Down": SubResource("Animation_bn1nc"),
+&"Idle_Left": SubResource("Animation_oiveh"),
+&"Idle_Right": SubResource("Animation_dq5hp"),
+&"Idle_Up": SubResource("Animation_4ap1u"),
+&"Melee1_Down": SubResource("Animation_narpw"),
+&"Melee1_Left": SubResource("Animation_s17lt"),
+&"Melee1_Right": SubResource("Animation_r8b5s"),
+&"Melee1_Up": SubResource("Animation_2vc0w"),
+&"Melee2_Down": SubResource("Animation_qw01k"),
+&"Melee2_Left": SubResource("Animation_u7kre"),
+&"Melee2_Right": SubResource("Animation_urswa"),
+&"Melee2_Up": SubResource("Animation_e2den"),
+&"Melee3_Down": SubResource("Animation_y562p"),
+&"RESET": SubResource("Animation_ie4pe"),
+&"Run_Down": SubResource("Animation_pu00b"),
+&"Run_Left": SubResource("Animation_ryiy2"),
+&"Run_Right": SubResource("Animation_x3j2t"),
+&"Run_Up": SubResource("Animation_my75x"),
+&"Walk_Down": SubResource("Animation_5yqe4"),
+&"Walk_Left": SubResource("Animation_6iri1"),
+&"Walk_Right": SubResource("Animation_7js5r"),
+&"Walk_Up": SubResource("Animation_pw3fq")
 }

@@ -1,48 +1,48 @@
 [gd_scene load_steps=57 format=3 uid="uid://0vqyqo8a8pko"]
 
-[ext_resource type="Script" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
+[ext_resource type="Script" uid="uid://478qojxl253r" path="res://components/Entity/EntityBase/Player.cs" id="1_66ygv"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="2_ronss"]
 [ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="3_s6smw"]
 [ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="4_gl0v2"]
-[ext_resource type="Script" path="res://components/Interact/Base/InteractComponent.cs" id="4_okwjl"]
+[ext_resource type="Script" uid="uid://c31n207ph0i5b" path="res://components/Interact/Base/InteractComponent.cs" id="4_okwjl"]
 [ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="4_r246n"]
 [ext_resource type="Texture2D" uid="uid://nni364y1g417" path="res://ArtAssets/ParticleEffects/35.png" id="5_nideg"]
-[ext_resource type="Script" path="res://components/Objects/ParticleEffectControllers/DashTrailController.cs" id="6_7sg8g"]
-[ext_resource type="Script" path="res://components/StateMachine/Base/StateMachine.cs" id="7_q74sc"]
-[ext_resource type="Script" path="res://components/StateMachine/Base/BaseState.cs" id="8_aidl1"]
+[ext_resource type="Script" uid="uid://cnossphsjjfmo" path="res://components/Objects/ParticleEffectControllers/DashTrailController.cs" id="6_7sg8g"]
+[ext_resource type="Script" uid="uid://fpo76niexlx1" path="res://components/StateMachine/Base/StateMachine.cs" id="7_q74sc"]
+[ext_resource type="Script" uid="uid://coua0ny2qb3cs" path="res://components/StateMachine/Base/BaseState.cs" id="8_aidl1"]
 [ext_resource type="PackedScene" uid="uid://27yxonnj2ai" path="res://PackedScenes/StateActions/animation_action.tscn" id="9_lde1q"]
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/DirectionalAnimationAction.cs" id="9_rhlmw"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/InputStartMovingTransition.cs" id="10_mnbqb"]
+[ext_resource type="Script" uid="uid://trqg1wr4fogt" path="res://components/StateMachine/Actions/Scripts/DirectionalAnimationAction.cs" id="9_rhlmw"]
+[ext_resource type="Script" uid="uid://e6a22gjk6lv4" path="res://components/StateMachine/Transitions/Scripts/InputStartMovingTransition.cs" id="10_mnbqb"]
 [ext_resource type="PackedScene" uid="uid://fi85q2kjwj1n" path="res://PackedScenes/StateActions/regen_stam_action.tscn" id="11_52e1j"]
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/RegenStatAction.cs" id="11_ltfp6"]
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/MoveInputAction.cs" id="12_juare"]
+[ext_resource type="Script" uid="uid://bw4mhayujl0qp" path="res://components/StateMachine/Actions/Scripts/RegenStatAction.cs" id="11_ltfp6"]
+[ext_resource type="Script" uid="uid://cb5no1n457ls2" path="res://components/StateMachine/Actions/Scripts/MoveInputAction.cs" id="12_juare"]
 [ext_resource type="PackedScene" uid="uid://ccva3tctd1tp0" path="res://PackedScenes/StateActions/input_move_action.tscn" id="12_yuc3g"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/EnterRunTransition.cs" id="13_v14er"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/InputStopMovingTransition.cs" id="14_gjvvf"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/AttackInputTransition.cs" id="14_obvq4"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/HurtTransition.cs" id="15_5isvi"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/CanDashTransition.cs" id="15_dt6fk"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/ReleaseRunTransition.cs" id="17_qfxql"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/StatCompareTransition.cs" id="18_7t2al"]
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/ConsumeStatOnEnterAction.cs" id="19_1mwic"]
+[ext_resource type="Script" uid="uid://csh7dt1swj07x" path="res://components/StateMachine/Transitions/Scripts/EnterRunTransition.cs" id="13_v14er"]
+[ext_resource type="Script" uid="uid://7k8j2mrckqyu" path="res://components/StateMachine/Transitions/Scripts/InputStopMovingTransition.cs" id="14_gjvvf"]
+[ext_resource type="Script" uid="uid://3iamcrl56a7q" path="res://components/StateMachine/Transitions/Scripts/AttackInputTransition.cs" id="14_obvq4"]
+[ext_resource type="Script" uid="uid://dcwbpwdqvtlud" path="res://components/StateMachine/Transitions/Scripts/HurtTransition.cs" id="15_5isvi"]
+[ext_resource type="Script" uid="uid://d0lr5ol12icsh" path="res://components/StateMachine/Transitions/Scripts/CanDashTransition.cs" id="15_dt6fk"]
+[ext_resource type="Script" uid="uid://q54uklb5caoi" path="res://components/StateMachine/Transitions/Scripts/ReleaseRunTransition.cs" id="17_qfxql"]
+[ext_resource type="Script" uid="uid://cln1fwhus5sm0" path="res://components/StateMachine/Transitions/Scripts/StatCompareTransition.cs" id="18_7t2al"]
+[ext_resource type="Script" uid="uid://bso7udo8sj8cp" path="res://components/StateMachine/Actions/Scripts/ConsumeStatOnEnterAction.cs" id="19_1mwic"]
 [ext_resource type="PackedScene" uid="uid://crk7g07qubm83" path="res://PackedScenes/StateActions/drain_stam_action.tscn" id="19_q6cxk"]
 [ext_resource type="PackedScene" uid="uid://cdtol0n8j68jg" path="res://PackedScenes/StateActions/dash_action.tscn" id="23_jwllm"]
 [ext_resource type="PackedScene" uid="uid://06tl335nih2t" path="res://PackedScenes/StateActions/timed_immune.tscn" id="24_dk5uy"]
 [ext_resource type="PackedScene" uid="uid://drjcmyc5akvos" path="res://PackedScenes/StateActions/partical_trail.tscn" id="25_q6urk"]
-[ext_resource type="Script" path="res://components/Entity/EntityData/EntityData.cs" id="25_rnmem"]
+[ext_resource type="Script" uid="uid://bu6l0vdt2661v" path="res://components/Entity/EntityData/EntityData.cs" id="25_rnmem"]
 [ext_resource type="PackedScene" uid="uid://bbh2mhcvkrc1x" path="res://PackedScenes/StateActions/timed_exit.tscn" id="26_aoxm0"]
-[ext_resource type="Script" path="res://components/Entity/StatTrackers/StamTracker.cs" id="26_cww3d"]
-[ext_resource type="Script" path="res://components/Inventory/base/InventoryComponent.cs" id="26_sh6nv"]
-[ext_resource type="Script" path="res://components/Inventory/base/InventoryWindow.cs" id="28_p0128"]
+[ext_resource type="Script" uid="uid://nahsbcmu0if5" path="res://components/Entity/StatTrackers/StamTracker.cs" id="26_cww3d"]
+[ext_resource type="Script" uid="uid://duhjxkwwn2gju" path="res://components/Inventory/base/InventoryComponent.cs" id="26_sh6nv"]
+[ext_resource type="Script" uid="uid://c6cwbqpejo4tw" path="res://components/Inventory/base/InventoryWindow.cs" id="28_p0128"]
 [ext_resource type="Texture2D" uid="uid://xgnnmrrr31xu" path="res://ArtAssets/UI/Dialog/DialogFrame.png" id="28_x33qj"]
-[ext_resource type="Script" path="res://components/Weapon/Base/WeaponComponent.cs" id="29_geumn"]
-[ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://components/UI/PackedScenes/inventory_slot.tscn" id="29_nb2id"]
-[ext_resource type="Script" path="res://Managers/UIManager.cs" id="30_j0osh"]
-[ext_resource type="Script" path="res://components/StateMachine/Actions/Scripts/TimedImmuneAction.cs" id="31_i7su4"]
+[ext_resource type="Script" uid="uid://cltxqersheo4k" path="res://components/Weapon/Base/WeaponComponent.cs" id="29_geumn"]
+[ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://PackedScenes/EthraV1/Core/UI/inventory_slot.tscn" id="29_nb2id"]
+[ext_resource type="Script" uid="uid://0c1tssr2d8mh" path="res://Managers/UIManager.cs" id="30_j0osh"]
+[ext_resource type="Script" uid="uid://q4h1d4x4wgkd" path="res://components/StateMachine/Actions/Scripts/TimedImmuneAction.cs" id="31_i7su4"]
 [ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="32_rsx4e"]
-[ext_resource type="PackedScene" uid="uid://bed1eumrhp0xy" path="res://PackedScenes/UI/ToastNotification.tscn" id="32_xf44x"]
-[ext_resource type="Script" path="res://components/StateMachine/Transitions/Scripts/GameOverTransition.cs" id="33_q234m"]
-[ext_resource type="Script" path="res://components/StateMachine/States/AttackState.cs" id="33_tlntk"]
+[ext_resource type="PackedScene" uid="uid://bed1eumrhp0xy" path="res://PackedScenes/EthraV1/Core/UI/ToastNotification.tscn" id="32_xf44x"]
+[ext_resource type="Script" uid="uid://chvlrhtid6qwa" path="res://components/StateMachine/Transitions/Scripts/GameOverTransition.cs" id="33_q234m"]
+[ext_resource type="Script" uid="uid://cad83ww0mc2k8" path="res://components/StateMachine/States/AttackState.cs" id="33_tlntk"]
 [ext_resource type="Texture2D" uid="uid://dfh64rfbuu6fa" path="res://ArtAssets/UI/Settings.png" id="37_k0jm0"]
 [ext_resource type="Texture2D" uid="uid://bk2up3l8kk2qo" path="res://ArtAssets/UI/Settings_Bar02.png" id="38_qxbbp"]
 [ext_resource type="Texture2D" uid="uid://ba83vx1to5ssg" path="res://ArtAssets/UI/Health_01.png" id="40_nl82t"]
@@ -114,12 +114,12 @@ autoplay = "Idle_Right"
 [node name="WepDownStow" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 177
+frame = 23
 
 [node name="WepDownDraw" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 177
+frame = 23
 
 [node name="Body" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("3_s6smw")
@@ -130,24 +130,24 @@ vframes = 6
 texture = ExtResource("4_r246n")
 hframes = 65
 vframes = 6
-frame = 177
+frame = 23
 
 [node name="Hair" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("4_gl0v2")
 hframes = 65
 vframes = 6
-frame = 177
+frame = 23
 
 [node name="WepUpStow" type="Sprite2D" parent="Sprites"]
 visible = false
 hframes = 65
 vframes = 6
-frame = 177
+frame = 23
 
 [node name="WepUpDraw" type="Sprite2D" parent="Sprites"]
 hframes = 65
 vframes = 6
-frame = 177
+frame = 23
 
 [node name="Overlay" type="Sprite2D" parent="Sprites"]
 
@@ -429,16 +429,15 @@ theme_override_fonts/font = ExtResource("32_rsx4e")
 theme_override_font_sizes/font_size = 16
 text = "Save"
 
-[node name="Health" type="TextureProgressBar" parent="UI/MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("owner")]
+[node name="Health" type="TextureProgressBar" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 allow_greater = true
 texture_under = ExtResource("40_nl82t")
 texture_over = ExtResource("41_b1h1f")
 script = ExtResource("26_cww3d")
 TargetToTrack = 1
-owner = NodePath("../../../../..")
 
-[node name="Stam" type="TextureProgressBar" parent="UI/MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("owner")]
+[node name="Stam" type="TextureProgressBar" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 allow_greater = true
 texture_under = ExtResource("37_k0jm0")
@@ -446,7 +445,6 @@ texture_progress = ExtResource("38_qxbbp")
 tint_progress = Color(0.234478, 0.481785, 0.129114, 1)
 script = ExtResource("26_cww3d")
 TargetToTrack = 5
-owner = NodePath("../../../../..")
 
 [node name="Stack" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

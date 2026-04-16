@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://r5ws7i7wpgqr"]
+
+[ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="1_u0jot"]
+[ext_resource type="PackedScene" uid="uid://dc4iix4f1il4d" path="res://PackedScenes/EthraV1/Core/UI/MainMenu.tscn" id="4_bofv1"]
+
+[node name="MasterNode" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+script = ExtResource("1_u0jot")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menus" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" parent="UI/Menus" instance=ExtResource("4_bofv1")]
+layout_mode = 1

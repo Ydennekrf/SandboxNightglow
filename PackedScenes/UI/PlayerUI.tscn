@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dwddfu5bc1y1q" path="res://ArtAssets/UI/Icons/LootBag_U.png" id="1_01pqg"]
 [ext_resource type="Theme" uid="uid://dps46k28pmrlj" path="res://PackedScenes/UI/PlayerUI.tres" id="1_2hm7f"]
-[ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://components/UI/PackedScenes/inventory_slot.tscn" id="1_10cgu"]
+[ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://PackedScenes/EthraV1/Core/UI/inventory_slot.tscn" id="1_10cgu"]
 [ext_resource type="Texture2D" uid="uid://xgnnmrrr31xu" path="res://ArtAssets/UI/Dialog/DialogFrame.png" id="1_mh124"]
 [ext_resource type="Theme" uid="uid://bfm0817jb6ei2" path="res://UIThemes/RichTextTheme.tres" id="1_sbv0m"]
 [ext_resource type="Texture2D" uid="uid://bt0x73hf2j4dq" path="res://ArtAssets/UI/Icons/18.png" id="2_frx2x"]
@@ -135,7 +135,7 @@ stretch = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
-size = Vector2i(64, 64)
+size = Vector2i(64, 86)
 render_target_update_mode = 4
 
 [node name="PlayerEquip" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer/PlayerView/HBoxContainer"]

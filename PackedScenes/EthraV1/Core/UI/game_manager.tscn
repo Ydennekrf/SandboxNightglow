@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dwvl0gweuelai"]
+
+[ext_resource type="Script" uid="uid://wmfr117kixvl" path="res://Core/Managers/GameManager.cs" id="1_pis2n"]
+[ext_resource type="PackedScene" uid="uid://dhy6gmjchq6nj" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="2_miok2"]
+[ext_resource type="Texture2D" uid="uid://cm4xgavwsb7fq" path="res://ArtAssets/Characters/Selene/WepUp/Selene_Wepup_Sword_Draw.png" id="3_yhwuk"]
+[ext_resource type="Texture2D" uid="uid://0gj6rki8fv5f" path="res://ArtAssets/Characters/Selene/WepDown/Selene_Wepdwn_Sword_Draw.png" id="4_nvftp"]
+[ext_resource type="Texture2D" uid="uid://ccfhp3xjilnmv" path="res://ArtAssets/Characters/Selene/StowUp/Selene_Wepup_Sword_Stow.png" id="5_fv5fx"]
+[ext_resource type="Texture2D" uid="uid://bef5qto4k6etg" path="res://ArtAssets/Characters/Selene/StowDown/Selene_Wepdwn_Sword_Stow.png" id="6_hvpkw"]
+[ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="7_n87bs"]
+[ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="8_gqjgf"]
+[ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="9_l4q3v"]
+[ext_resource type="Texture2D" uid="uid://c5c5l2hln12s2" path="res://ArtAssets/Characters/Emoji/mana seed emojis 16x16.png" id="10_f1clm"]
+
+[node name="GameManager" type="Node" unique_id=737813441]
+script = ExtResource("1_pis2n")
+SceneFolderLocation = "res://PackedScenes/EthraV1/Core/"
+MoveSpeed = 90.0
+hpGain = 10.0
+mpGain = 10.0
+strGain = 1.0
+dexGain = 1.0
+intGain = 1.0
+spiGain = 1.0
+vitGain = 1.0
+lukGain = 1.0
+expGain = 1.0
+hpBase = 100.0
+mpBase = 100.0
+strBase = 10.0
+dexBase = 10.0
+intBase = 10.0
+spiBase = 10.0
+vitBase = 10.0
+lukBase = 10.0
+PlayerScene = ExtResource("2_miok2")
+WepUpDraw = ExtResource("3_yhwuk")
+WepDownDraw = ExtResource("4_nvftp")
+WepUpStow = ExtResource("5_fv5fx")
+WepDownStow = ExtResource("6_hvpkw")
+Hair = ExtResource("7_n87bs")
+Clothes = ExtResource("8_gqjgf")
+Body = ExtResource("9_l4q3v")
+Notify = ExtResource("10_f1clm")

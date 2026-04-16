@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dt2o44hedgl00"]
+
+[node name="LabScene" type="Node2D"]
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" type="Node2D" parent="Entities"]
+
+[node name="Enemies" type="Node2D" parent="Entities"]
+
+[node name="NPCs" type="Node2D" parent="Entities"]
+
+[node name="Interactables" type="Node2D" parent="."]
