@@ -20,27 +20,39 @@ namespace ethra.V1
         public InventoryManager(MasterRepository db)
         {
             _db = db;
+            _itemDict = new Dictionary<int, int>();
         }
 
 
-        public void AddItem(int id)
+        public bool AddItem(int id)
         {
+            InventoryItem itemData = _db.GetItemFromRepo(id);
+            if(itemData == null)
+            {
+                GD.Print($"Unable to add item to inventory. id:{id} not found in repo.");
+                return false;
+            }
+
+            int maxAllowed = itemData.MaxStack > 0 ? itemData.MaxStack : maxStack;
+
             if(_itemDict.TryGetValue(id, out int count))
             {
-                if(count + 1 < maxStack)
+                if(count + 1 <= maxAllowed)
                 {
                      _itemDict[id] = count + 1;
+                     return true;
                 }
                 else
                 {
-                    GD.Print("Unable to add item to inventory. max stack exceeded.");
-                    DropItem(id);
+                    GD.Print($"Unable to add item to inventory. max stack exceeded for id:{id}.");
+                    return false;
                 }
                
             }
             else
             {
                 _itemDict.Add(id, 1);
+                return true;
             }
         }
 
@@ -67,9 +79,16 @@ namespace ethra.V1
 
         public void RestoreSnapshot(object snapshot)
         {
-            if(snapshot is List<int> items)
+            if(snapshot is List<int> listItems)
             {
-                foreach(int i in items)
+                foreach(int i in listItems)
+                {
+                    AddItem(i);
+                }
+            }
+            else if(snapshot is int[] arrayItems)
+            {
+                foreach(int i in arrayItems)
                 {
                     AddItem(i);
                 }
@@ -97,4 +116,3 @@ namespace ethra.V1
 
     }
 }
-

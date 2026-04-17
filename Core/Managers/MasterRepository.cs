@@ -1,28 +1,31 @@
-
-
-
-
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using Godot;
 
 namespace ethra.V1
 {
 	public partial class MasterRepository
-{
-	//=========== fields and Properties ==================//
-	// this scene repo is for game levels
-	private Dictionary<string, PackedScene> _sceneRepo;
+	{
+		public enum RepoLoadType
+		{
+			Items,
+			Dialog,
+			Entity
+		}
 
-	private Dictionary<int, InventoryItem> _itemRepo;
+		//=========== fields and Properties ==================//
+		// this scene repo is for game levels
+		private Dictionary<string, PackedScene> _sceneRepo;
 
+		private Dictionary<int, InventoryItem> _itemRepo;
 
 		public MasterRepository()
 		{
 			_sceneRepo = new Dictionary<string, PackedScene>();
 			_itemRepo = new Dictionary<int, InventoryItem>();
 		}
-
 
 		// dialog repo is a dictionary with and int for id and a DialogNode class object <int, DialogNode>
 
@@ -34,7 +37,7 @@ namespace ethra.V1
 		// ============ public facing methods =================//
 
 		public void FillSceneRepo(string rootPath)
-	{
+		{
 			if (string.IsNullOrWhiteSpace(rootPath))
 			{
 				GD.PushError("FillSceneRepo: rootPath is empty.");
@@ -55,6 +58,64 @@ namespace ethra.V1
 			GD.Print($"FillSceneRepo: loaded {added} scenes from {rootPath}");
 		}
 
+		public void FillSQLRepo(string path)
+		{
+			// the item, dialog and Entity objects will be stored in an SQLite DB the path will determine which table to pull form
+			// likely use a switch statement that will parse the response, create the object type and add it to the proper dictionary
+		}
+
+		public void FillCsvRepo(string path, RepoLoadType loadType, IEnumerable<string> requiredHeaders = null)
+		{
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				GD.PushError("FillCsvRepo: csv path is empty.");
+				return;
+			}
+
+			if (!FileAccess.FileExists(path))
+			{
+				GD.PushError($"FillCsvRepo: file does not exist: {path}");
+				return;
+			}
+
+			var rows = ReadCsvRows(path);
+			if (rows.Count == 0)
+			{
+				GD.PushError($"FillCsvRepo: no rows found in csv: {path}");
+				return;
+			}
+
+			var headers = rows[0];
+			if (!ValidateHeaders(headers, requiredHeaders))
+			{
+				GD.PushError($"FillCsvRepo: required headers missing for {loadType} csv: {path}");
+				return;
+			}
+
+			switch (loadType)
+			{
+				case RepoLoadType.Items:
+					LoadItemsFromCsv(headers, rows, path);
+					break;
+				case RepoLoadType.Dialog:
+					GD.Print($"FillCsvRepo: dialog loader not implemented yet. source={path}");
+					break;
+				case RepoLoadType.Entity:
+					GD.Print($"FillCsvRepo: entity loader not implemented yet. source={path}");
+					break;
+			}
+		}
+
+		public PackedScene GetSceneFromRepo(string sceneName)
+		{
+			if (string.IsNullOrWhiteSpace(sceneName)) return null;
+			return _sceneRepo.TryGetValue(sceneName, out var data) ? data : null;
+		}
+
+		public InventoryItem GetItemFromRepo(int id)
+		{
+			return _itemRepo.TryGetValue(id, out var item) ? item : null;
+		}
 
 		private void ScanDirRecursive(string dirPath, ref int added)
 		{
@@ -101,25 +162,204 @@ namespace ethra.V1
 			dir.ListDirEnd();
 		}
 
-		public void FillSQLRepo(string path)
-	{
-		// the item, dialog and Entity objects will be stored in an SQLite DB the path will determine which table to pull form
-		// likely use a switch statement that will parse the response, create the object type and add it to the proper dictionary
-
-	}
-	
-	public PackedScene GetSceneFromRepo(string sceneName)
+		private bool ValidateHeaders(IReadOnlyList<string> headers, IEnumerable<string> requiredHeaders)
 		{
-			if (string.IsNullOrWhiteSpace(sceneName)) return null;
-			return _sceneRepo.TryGetValue(sceneName, out var data) ? data : null;
+			if (requiredHeaders == null)
+			{
+				return true;
+			}
 
+			HashSet<string> headerSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+			foreach (string header in headers)
+			{
+				headerSet.Add(header.Trim());
+			}
+
+			foreach (string required in requiredHeaders)
+			{
+				if (!headerSet.Contains(required))
+				{
+					GD.PushError($"FillCsvRepo: missing required header '{required}'.");
+					return false;
+				}
+			}
+
+			return true;
 		}
-	
-	public InventoryItem GetItemFromRepo(int id)
+
+		private List<string[]> ReadCsvRows(string path)
 		{
-			return _itemRepo.TryGetValue(id, out var item) ? item : null;
+			List<string[]> rows = new List<string[]>();
+
+			using FileAccess file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+			if (file == null)
+			{
+				GD.PushError($"FillCsvRepo: unable to open file {path}");
+				return rows;
+			}
+
+			while (!file.EofReached())
+			{
+				string line = file.GetLine();
+				if (string.IsNullOrWhiteSpace(line))
+				{
+					continue;
+				}
+
+				rows.Add(ParseCsvLine(line));
+			}
+
+			return rows;
 		}
 
-	   
+		private string[] ParseCsvLine(string line)
+		{
+			List<string> values = new List<string>();
+			StringBuilder token = new StringBuilder();
+			bool inQuotes = false;
+
+			for (int i = 0; i < line.Length; i++)
+			{
+				char c = line[i];
+
+				if (c == '"')
+				{
+					bool isEscapedQuote = inQuotes && i + 1 < line.Length && line[i + 1] == '"';
+					if (isEscapedQuote)
+					{
+						token.Append('"');
+						i++;
+					}
+					else
+					{
+						inQuotes = !inQuotes;
+					}
+					continue;
+				}
+
+				if (c == ',' && !inQuotes)
+				{
+					values.Add(token.ToString().Trim());
+					token.Clear();
+					continue;
+				}
+
+				token.Append(c);
+			}
+
+			values.Add(token.ToString().Trim());
+			return values.ToArray();
+		}
+
+		private void LoadItemsFromCsv(IReadOnlyList<string> headers, IReadOnlyList<string[]> rows, string sourcePath)
+		{
+			Dictionary<string, int> headerIndex = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+			for (int i = 0; i < headers.Count; i++)
+			{
+				headerIndex[headers[i].Trim()] = i;
+			}
+
+			_itemRepo.Clear();
+			int loaded = 0;
+			int skipped = 0;
+
+			for (int rowIndex = 1; rowIndex < rows.Count; rowIndex++)
+			{
+				string[] row = rows[rowIndex];
+
+				if (!TryGetInt(headerIndex, row, "id", out int id))
+				{
+					skipped++;
+					GD.PushError($"LoadItemsFromCsv: row {rowIndex + 1} missing/invalid id.");
+					continue;
+				}
+
+				string name = GetString(headerIndex, row, "name");
+				if (string.IsNullOrWhiteSpace(name))
+				{
+					skipped++;
+					GD.PushError($"LoadItemsFromCsv: row {rowIndex + 1} has empty name for id {id}.");
+					continue;
+				}
+
+					string description = GetString(headerIndex, row, "description");
+					string rarity = GetString(headerIndex, row, "rarity");
+					string category = GetString(headerIndex, row, "category");
+					string subtype = GetString(headerIndex, row, "subtype");
+					int value = GetIntOrDefault(headerIndex, row, "sell_value", 0);
+					int maxStack = GetIntOrDefault(headerIndex, row, "max_stack", 99);
+
+				if (_itemRepo.ContainsKey(id))
+				{
+					skipped++;
+					GD.PushError($"LoadItemsFromCsv: duplicate item id {id} at row {rowIndex + 1}.");
+					continue;
+				}
+
+					InventoryItem item = CreateInventoryItem(
+						id,
+						name,
+						value,
+						description,
+						rarity,
+						category,
+						subtype,
+						maxStack);
+					_itemRepo.Add(id, item);
+					loaded++;
+				}
+
+				GD.Print($"LoadItemsFromCsv: loaded={loaded} skipped={skipped} source={sourcePath}");
+			}
+
+			private InventoryItem CreateInventoryItem(
+				int id,
+				string name,
+				int value,
+				string description,
+				string rarity,
+				string category,
+				string subtype,
+				int maxStack)
+			{
+				if (string.Equals(category, "Crafting", StringComparison.OrdinalIgnoreCase))
+				{
+					return new CraftingItem(id, name, value, description, rarity, subtype, maxStack);
+				}
+
+				return new BasicInventoryItem(id, name, value, description, rarity, category: category, subtype: subtype, maxStack: maxStack);
+			}
+
+		private string GetString(Dictionary<string, int> headerIndex, string[] row, string headerName)
+		{
+			if (!headerIndex.TryGetValue(headerName, out int index))
+			{
+				return string.Empty;
+			}
+
+			if (index < 0 || index >= row.Length)
+			{
+				return string.Empty;
+			}
+
+			return row[index].Trim();
+		}
+
+		private bool TryGetInt(Dictionary<string, int> headerIndex, string[] row, string headerName, out int value)
+		{
+			value = 0;
+			string raw = GetString(headerIndex, row, headerName);
+			return int.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out value);
+		}
+
+		private int GetIntOrDefault(Dictionary<string, int> headerIndex, string[] row, string headerName, int defaultValue)
+		{
+			if (TryGetInt(headerIndex, row, headerName, out int parsed))
+			{
+				return parsed;
+			}
+
+			return defaultValue;
+		}
 	}
 }
