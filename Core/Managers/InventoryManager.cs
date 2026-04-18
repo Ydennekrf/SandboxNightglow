@@ -16,6 +16,7 @@ namespace ethra.V1
         private Dictionary<string, int> _equippedWeaponBySlot;
         private int maxStack = 99;
         private readonly MasterRepository _db;
+        public event Action Changed;
 
 		public string SaveKey => _saveKey;
 
@@ -44,7 +45,7 @@ namespace ethra.V1
                 if(count + 1 <= maxAllowed)
                 {
                      _itemDict[id] = count + 1;
-                    GD.Print($"Item: {itemData.Name} Was added to the player's Inventory. Current Count: {_itemDict[id]}");
+                     NotifyChanged();
                      return true;
                 }
                 else
@@ -57,7 +58,7 @@ namespace ethra.V1
             else
             {
                 _itemDict.Add(id, 1);
-                GD.Print($"Item: {itemData.Name} Was added to the player's Inventory. Current Count: {_itemDict[id]}");
+                NotifyChanged();
                 return true;
             }
         }
@@ -116,12 +117,14 @@ namespace ethra.V1
                 if (itemToUse is ArmorItem armor)
                 {
                     ToggleArmorEquip(armor);
+                    NotifyChanged();
                     return;
                 }
 
                 if (itemToUse is WeaponItem weapon)
                 {
                     ToggleWeaponEquip(weapon);
+                    NotifyChanged();
                     return;
                 }
 
@@ -130,6 +133,7 @@ namespace ethra.V1
                 if (itemToUse is ConsumeItem)
                 {
                     ConsumeOne(id);
+                    NotifyChanged();
                 }
             }
             else
@@ -205,6 +209,26 @@ namespace ethra.V1
             {
                 _itemDict[id] = currentCount - 1;
             }
+        }
+
+        public IReadOnlyDictionary<int, int> GetItemCounts()
+        {
+            return _itemDict;
+        }
+
+        public IReadOnlyDictionary<string, int> GetEquippedWeapons()
+        {
+            return _equippedWeaponBySlot;
+        }
+
+        public IReadOnlyDictionary<string, int> GetEquippedArmor()
+        {
+            return _equippedArmorBySlot;
+        }
+
+        private void NotifyChanged()
+        {
+            Changed?.Invoke();
         }
 
 
