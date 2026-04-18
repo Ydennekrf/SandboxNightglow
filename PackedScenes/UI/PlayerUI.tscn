@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dblf2lc3y1xu1"]
+[gd_scene load_steps=20 format=3 uid="uid://dblf2lc3y1xu1"]
 
 [ext_resource type="Texture2D" uid="uid://dwddfu5bc1y1q" path="res://ArtAssets/UI/Icons/LootBag_U.png" id="1_01pqg"]
 [ext_resource type="Theme" uid="uid://dps46k28pmrlj" path="res://PackedScenes/UI/PlayerUI.tres" id="1_2hm7f"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://d2d8rdvg2v01h" path="res://ArtAssets/UI/Icons/19.png" id="10_d1iv5"]
 [ext_resource type="Texture2D" uid="uid://mrqqt80opvaj" path="res://ArtAssets/UI/Inventory/Inventory_background.png" id="14_c8es7"]
 [ext_resource type="Texture2D" uid="uid://3efrmiudtjk1" path="res://ArtAssets/InventoryItems/GearIcons/tile034.png" id="15_yhkih"]
+[ext_resource type="Script" path="res://components/Inventory/UI/PlayerMenu.cs" id="16_player_menu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ggc4l"]
 content_margin_left = 16.0
@@ -39,7 +40,14 @@ texture_margin_top = 12.0
 texture_margin_right = 12.0
 texture_margin_bottom = 12.0
 
-[node name="PlayerUi" type="Control"]
+[node name="PlayerUi" type="Control" node_paths=PackedStringArray("_inventoryGrid", "_weaponSlot", "_armorSlot", "_descriptionLabel", "_statsStatusLabel")]
+script = ExtResource("16_player_menu")
+_inventoryPath = NodePath("")
+_inventoryGrid = NodePath("NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory")
+_weaponSlot = NodePath("NinePatchRect/VBoxContainer/Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/WeaponEquip")
+_armorSlot = NodePath("NinePatchRect/VBoxContainer/Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/ArmorEquip")
+_descriptionLabel = NodePath("NinePatchRect/VBoxContainer/Inventory/VBoxContainer/ToolTip")
+_statsStatusLabel = NodePath("NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Stats_Status")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,9 +251,11 @@ layout_mode = 2
 [node name="ItemIcon28" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
 layout_mode = 2
 
-[node name="Stats_Status" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2"]
+[node name="Stats_Status" type="RichTextLabel" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_vertical = 3
+fit_content = true
 
 [node name="Map" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 visible = false

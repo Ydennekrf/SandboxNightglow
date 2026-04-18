@@ -118,9 +118,9 @@ public partial class InventoryComponent : Node , IInventoryReadOnly
             remove |= act.Execute(owner, this, data);   // execute every action
 
 
-        if (data.itemType == ItemType.Weapon)
+        if (data.itemType == ItemType.Weapon || data.itemType == ItemType.Armor)
         {
-            GD.Print("clicked an weapon item");
+            GD.Print("clicked an equippable item");
             Equip(request.slot);
         }
 
