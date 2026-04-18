@@ -44,6 +44,7 @@ namespace ethra.V1
                 if(count + 1 <= maxAllowed)
                 {
                      _itemDict[id] = count + 1;
+                    GD.Print($"Item: {itemData.Name} Was added to the player's Inventory. Current Count: {_itemDict[id]}");
                      return true;
                 }
                 else
@@ -56,6 +57,7 @@ namespace ethra.V1
             else
             {
                 _itemDict.Add(id, 1);
+                GD.Print($"Item: {itemData.Name} Was added to the player's Inventory. Current Count: {_itemDict[id]}");
                 return true;
             }
         }
