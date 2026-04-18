@@ -1,71 +1,73 @@
 using Godot;
 using System;
-using ethra.V1;
 
-public partial class InventorySlotView : Button
+namespace ethra.V1
 {
-    [Export] private TextureRect Icon;
-    [Export] private Label QuantityLabel;
-    [Export] private TextureRect Selector;
-
-    public int? ItemId { get; private set; }
-    public int Count { get; private set; }
-    public InventoryItem ItemData { get; private set; }
-
-    public event Action<InventorySlotView> Clicked;
-
-    public override void _Ready()
+    public partial class InventorySlotView : Button
     {
-        Pressed += OnPressed;
-        SetSelected(false);
-    }
+        [Export] private TextureRect Icon;
+        [Export] private Label QuantityLabel;
+        [Export] private TextureRect Selector;
 
-    public void SetEmpty()
-    {
-        ItemId = null;
-        Count = 0;
-        ItemData = null;
+        public int? ItemId { get; private set; }
+        public int Count { get; private set; }
+        public InventoryItem ItemData { get; private set; }
 
-        if (QuantityLabel != null)
+        public event Action<InventorySlotView> Clicked;
+
+        public override void _Ready()
         {
-            QuantityLabel.Text = string.Empty;
+            Pressed += OnPressed;
+            SetSelected(false);
         }
 
-        if (Icon != null)
+        public void SetEmpty()
         {
-            Icon.Visible = false;
+            ItemId = null;
+            Count = 0;
+            ItemData = null;
+
+            if (QuantityLabel != null)
+            {
+                QuantityLabel.Text = string.Empty;
+            }
+
+            if (Icon != null)
+            {
+                Icon.Visible = false;
+            }
+
+            SetSelected(false);
         }
 
-        SetSelected(false);
-    }
-
-    public void SetItem(InventoryItem item, int count)
-    {
-        ItemData = item;
-        ItemId = item?.Id;
-        Count = count;
-
-        if (QuantityLabel != null)
+        public void SetItem(InventoryItem item, int count)
         {
-            QuantityLabel.Text = count > 1 ? count.ToString() : string.Empty;
+            ItemData = item;
+            ItemId = item?.Id;
+            Count = count;
+
+            if (QuantityLabel != null)
+            {
+                QuantityLabel.Text = count > 1 ? count.ToString() : string.Empty;
+            }
+
+            if (Icon != null)
+            {
+                Icon.Visible = item != null;
+            }
         }
 
-        if (Icon != null)
+        public void SetSelected(bool isSelected)
         {
-            Icon.Visible = item != null;
+            if (Selector != null)
+            {
+                Selector.Visible = isSelected;
+            }
         }
-    }
 
-    public void SetSelected(bool isSelected)
-    {
-        if (Selector != null)
+        private void OnPressed()
         {
-            Selector.Visible = isSelected;
+            Clicked?.Invoke(this);
         }
-    }
-
-    private void OnPressed()
-    {
-        Clicked?.Invoke(this);
     }
 }

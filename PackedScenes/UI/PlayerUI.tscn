@@ -194,6 +194,30 @@ layout_mode = 2
 [node name="ItemIcon20" parent="NinePatchRect/VBoxContainer/Inventory/Inventory/VBoxContainer2/Inventory" unique_id=596683145 instance=ExtResource("1_10cgu")]
 layout_mode = 2
 
+[node name="ItemIcon21" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
+layout_mode = 2
+
+[node name="ItemIcon22" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
+layout_mode = 2
+
+[node name="ItemIcon23" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
+layout_mode = 2
+
+[node name="ItemIcon24" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
+layout_mode = 2
+
+[node name="ItemIcon25" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
+layout_mode = 2
+
+[node name="ItemIcon26" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
+layout_mode = 2
+
+[node name="ItemIcon27" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
+layout_mode = 2
+
+[node name="ItemIcon28" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2/Inventory" instance=ExtResource("1_10cgu")]
+layout_mode = 2
+
 [node name="Stats_Status" type="RichTextLabel" parent="NinePatchRect/VBoxContainer/Inventory/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2

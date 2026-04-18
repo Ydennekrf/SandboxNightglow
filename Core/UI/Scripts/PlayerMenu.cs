@@ -2,70 +2,71 @@ using Godot;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ethra.V1;
 
-public partial class PlayerMenu : Control
+namespace ethra.V1
 {
-    [Export] private GridContainer InventoryGrid;
-    [Export] private InventorySlotView EquippedWeaponSlot;
-    [Export] private InventorySlotView EquippedArmorSlot;
-    [Export] private RichTextLabel ToolTip;
-    [Export] private RichTextLabel StatsStatus;
-
-    private readonly List<InventorySlotView> _inventorySlots = new();
-    private InventoryManager _inventory;
-    private MasterRepository _repo;
-    private InventorySlotView _selectedSlot;
-
-    public override void _Ready()
+    public partial class PlayerMenu : Control
     {
-        GameManager gm = GameManager.Instance;
-        if (gm == null)
+        [Export] private GridContainer InventoryGrid;
+        [Export] private InventorySlotView EquippedWeaponSlot;
+        [Export] private InventorySlotView EquippedArmorSlot;
+        [Export] private RichTextLabel ToolTip;
+        [Export] private RichTextLabel StatsStatus;
+
+        private readonly List<InventorySlotView> _inventorySlots = new();
+        private InventoryManager _inventory;
+        private MasterRepository _repo;
+        private InventorySlotView _selectedSlot;
+
+        public override void _Ready()
         {
-            GD.PushWarning("PlayerMenu: GameManager.Instance is null.");
-            return;
+            GameManager gm = GameManager.Instance;
+            if (gm == null)
+            {
+                GD.PushWarning("PlayerMenu: GameManager.Instance is null.");
+                return;
+            }
+
+            _inventory = gm.Inventory;
+            _repo = gm.DB;
+
+            CacheInventorySlots();
+            BindEquipmentSlots();
+
+            if (_inventory != null)
+            {
+                _inventory.Changed += RefreshAll;
+            }
+
+            RefreshAll();
         }
 
-        _inventory = gm.Inventory;
-        _repo = gm.DB;
-
-        CacheInventorySlots();
-        BindEquipmentSlots();
-
-        if (_inventory != null)
+        public override void _ExitTree()
         {
-            _inventory.Changed += RefreshAll;
+            if (_inventory != null)
+            {
+                _inventory.Changed -= RefreshAll;
+            }
+
+            foreach (InventorySlotView slot in _inventorySlots)
+            {
+                slot.Clicked -= OnSlotClicked;
+            }
+
+            if (EquippedWeaponSlot != null)
+            {
+                EquippedWeaponSlot.Clicked -= OnSlotClicked;
+            }
+
+            if (EquippedArmorSlot != null)
+            {
+                EquippedArmorSlot.Clicked -= OnSlotClicked;
+            }
         }
 
-        RefreshAll();
-    }
-
-    public override void _ExitTree()
-    {
-        if (_inventory != null)
+        private void CacheInventorySlots()
         {
-            _inventory.Changed -= RefreshAll;
-        }
-
-        foreach (InventorySlotView slot in _inventorySlots)
-        {
-            slot.Clicked -= OnSlotClicked;
-        }
-
-        if (EquippedWeaponSlot != null)
-        {
-            EquippedWeaponSlot.Clicked -= OnSlotClicked;
-        }
-
-        if (EquippedArmorSlot != null)
-        {
-            EquippedArmorSlot.Clicked -= OnSlotClicked;
-        }
-    }
-
-    private void CacheInventorySlots()
-    {
-        _inventorySlots.Clear();
+            _inventorySlots.Clear();
 
         if (InventoryGrid == null)
         {
@@ -81,30 +82,30 @@ public partial class PlayerMenu : Control
                 _inventorySlots.Add(slot);
             }
         }
-    }
-
-    private void BindEquipmentSlots()
-    {
-        if (EquippedWeaponSlot != null)
-        {
-            EquippedWeaponSlot.Clicked += OnSlotClicked;
         }
+
+        private void BindEquipmentSlots()
+        {
+            if (EquippedWeaponSlot != null)
+            {
+                EquippedWeaponSlot.Clicked += OnSlotClicked;
+            }
 
         if (EquippedArmorSlot != null)
         {
             EquippedArmorSlot.Clicked += OnSlotClicked;
         }
-    }
+        }
 
-    private void RefreshAll()
-    {
-        RefreshInventoryGrid();
-        RefreshEquipmentSlots();
-        RefreshDetails(_selectedSlot);
-    }
+        private void RefreshAll()
+        {
+            RefreshInventoryGrid();
+            RefreshEquipmentSlots();
+            RefreshDetails(_selectedSlot);
+        }
 
-    private void RefreshInventoryGrid()
-    {
+        private void RefreshInventoryGrid()
+        {
         if (_inventory == null || _repo == null)
         {
             return;
@@ -133,10 +134,10 @@ public partial class PlayerMenu : Control
 
             _inventorySlots[i].SetItem(item, entry.Value);
         }
-    }
+        }
 
-    private void RefreshEquipmentSlots()
-    {
+        private void RefreshEquipmentSlots()
+        {
         if (_inventory == null || _repo == null)
         {
             return;
@@ -144,10 +145,10 @@ public partial class PlayerMenu : Control
 
         SetEquipmentSlot(EquippedWeaponSlot, _inventory.GetEquippedWeapons(), "MainHand");
         SetEquipmentSlot(EquippedArmorSlot, _inventory.GetEquippedArmor(), "Armor");
-    }
+        }
 
-    private void SetEquipmentSlot(InventorySlotView slotView, IReadOnlyDictionary<string, int> equipped, string slotKey)
-    {
+        private void SetEquipmentSlot(InventorySlotView slotView, IReadOnlyDictionary<string, int> equipped, string slotKey)
+        {
         if (slotView == null)
         {
             return;
@@ -167,10 +168,10 @@ public partial class PlayerMenu : Control
         }
 
         slotView.SetItem(item, 1);
-    }
+        }
 
-    private void OnSlotClicked(InventorySlotView slot)
-    {
+        private void OnSlotClicked(InventorySlotView slot)
+        {
         SelectSlot(slot);
 
         if (_inventory == null || slot?.ItemId == null)
@@ -183,10 +184,10 @@ public partial class PlayerMenu : Control
             _inventory.UseItem(slot.ItemId.Value);
             RefreshAll();
         }
-    }
+        }
 
-    private void SelectSlot(InventorySlotView slot)
-    {
+        private void SelectSlot(InventorySlotView slot)
+        {
         _selectedSlot = slot;
 
         foreach (InventorySlotView inventorySlot in _inventorySlots)
@@ -205,10 +206,10 @@ public partial class PlayerMenu : Control
         }
 
         RefreshDetails(slot);
-    }
+        }
 
-    private void RefreshDetails(InventorySlotView slot)
-    {
+        private void RefreshDetails(InventorySlotView slot)
+        {
         if (ToolTip == null || StatsStatus == null)
         {
             return;
@@ -242,5 +243,6 @@ public partial class PlayerMenu : Control
         }
 
         StatsStatus.Text = details.ToString();
+        }
     }
 }
