@@ -12,6 +12,8 @@ namespace ethra.V1
         /// <id, count>
         /// </summary>
         private Dictionary<int, int> _itemDict;
+        private Dictionary<string, int> _equippedArmorBySlot;
+        private Dictionary<string, int> _equippedWeaponBySlot;
         private int maxStack = 99;
         private readonly MasterRepository _db;
 
@@ -20,27 +22,41 @@ namespace ethra.V1
         public InventoryManager(MasterRepository db)
         {
             _db = db;
+            _itemDict = new Dictionary<int, int>();
+            _equippedArmorBySlot = new Dictionary<string, int>();
+            _equippedWeaponBySlot = new Dictionary<string, int>();
         }
 
 
-        public void AddItem(int id)
+        public bool AddItem(int id)
         {
+            InventoryItem itemData = _db.GetItemFromRepo(id);
+            if(itemData == null)
+            {
+                GD.Print($"Unable to add item to inventory. id:{id} not found in repo.");
+                return false;
+            }
+
+            int maxAllowed = itemData.MaxStack > 0 ? itemData.MaxStack : maxStack;
+
             if(_itemDict.TryGetValue(id, out int count))
             {
-                if(count + 1 < maxStack)
+                if(count + 1 <= maxAllowed)
                 {
                      _itemDict[id] = count + 1;
+                     return true;
                 }
                 else
                 {
-                    GD.Print("Unable to add item to inventory. max stack exceeded.");
-                    DropItem(id);
+                    GD.Print($"Unable to add item to inventory. max stack exceeded for id:{id}.");
+                    return false;
                 }
                
             }
             else
             {
                 _itemDict.Add(id, 1);
+                return true;
             }
         }
 
@@ -67,9 +83,16 @@ namespace ethra.V1
 
         public void RestoreSnapshot(object snapshot)
         {
-            if(snapshot is List<int> items)
+            if(snapshot is List<int> listItems)
             {
-                foreach(int i in items)
+                foreach(int i in listItems)
+                {
+                    AddItem(i);
+                }
+            }
+            else if(snapshot is int[] arrayItems)
+            {
+                foreach(int i in arrayItems)
                 {
                     AddItem(i);
                 }
@@ -78,11 +101,34 @@ namespace ethra.V1
 
         public void UseItem(int id)
         {
-            IInventoryItem itemToUse = _db.GetItemFromRepo(id);
+            if(!_itemDict.TryGetValue(id, out int count) || count <= 0)
+            {
+                GD.Print($"Unable to use item. id:{id} is not in inventory.");
+                return;
+            }
+
+            InventoryItem itemToUse = _db.GetItemFromRepo(id);
 
             if(itemToUse != null)
             {
+                if (itemToUse is ArmorItem armor)
+                {
+                    ToggleArmorEquip(armor);
+                    return;
+                }
+
+                if (itemToUse is WeaponItem weapon)
+                {
+                    ToggleWeaponEquip(weapon);
+                    return;
+                }
+
                 itemToUse.Use();
+
+                if (itemToUse is ConsumeItem)
+                {
+                    ConsumeOne(id);
+                }
             }
             else
             {
@@ -94,7 +140,71 @@ namespace ethra.V1
             //then set the UI as dirty forcing it to update.
         }
 
+        private void ToggleArmorEquip(ArmorItem armor)
+        {
+            string slot = string.IsNullOrWhiteSpace(armor.ArmorSlot) ? "Armor" : armor.ArmorSlot;
+
+            if (_equippedArmorBySlot.TryGetValue(slot, out int equippedId))
+            {
+                if (equippedId == armor.Id)
+                {
+                    armor.Unequip();
+                    _equippedArmorBySlot.Remove(slot);
+                    return;
+                }
+
+                InventoryItem currentlyEquipped = _db.GetItemFromRepo(equippedId);
+                if (currentlyEquipped is ArmorItem equippedArmor)
+                {
+                    equippedArmor.Unequip();
+                }
+            }
+
+            armor.Equip();
+            _equippedArmorBySlot[slot] = armor.Id;
+        }
+
+        private void ToggleWeaponEquip(WeaponItem weapon)
+        {
+            string slot = weapon.WeaponSlot;
+
+            if (_equippedWeaponBySlot.TryGetValue(slot, out int equippedId))
+            {
+                if (equippedId == weapon.Id)
+                {
+                    weapon.Unequip();
+                    _equippedWeaponBySlot.Remove(slot);
+                    return;
+                }
+
+                InventoryItem currentlyEquipped = _db.GetItemFromRepo(equippedId);
+                if (currentlyEquipped is WeaponItem equippedWeapon)
+                {
+                    equippedWeapon.Unequip();
+                }
+            }
+
+            weapon.Equip();
+            _equippedWeaponBySlot[slot] = weapon.Id;
+        }
+
+        private void ConsumeOne(int id)
+        {
+            if(!_itemDict.TryGetValue(id, out int currentCount) || currentCount <= 0)
+            {
+                return;
+            }
+
+            if(currentCount == 1)
+            {
+                _itemDict.Remove(id);
+            }
+            else
+            {
+                _itemDict[id] = currentCount - 1;
+            }
+        }
+
 
     }
 }
-

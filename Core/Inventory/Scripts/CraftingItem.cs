@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ethra.V1
 {
-    public class ConsumeItem : InventoryItem
+    public class CraftingItem : InventoryItem
     {
-        public string ConsumeType => Subtype;
+        public string MaterialType => Subtype;
 
-        public ConsumeItem(
+        public CraftingItem(
             int id,
             string name,
             int value,
@@ -16,13 +16,13 @@ namespace ethra.V1
             string subtype,
             int maxStack,
             List<ItemEffects> effects = null)
-            : base(id, name, value, description, rarity, effects, category: "Consumable", subtype: subtype, maxStack: maxStack)
+            : base(id, name, value, description, rarity, effects, category: "Crafting", subtype: subtype, maxStack: maxStack)
         {
         }
 
         public override void Use()
         {
-            GD.Print($"Consumed item '{Name}' [{ConsumeType}].");
+            GD.Print($"Crafting item '{Name}' cannot be used directly.");
         }
     }
 }
