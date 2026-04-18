@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c6r5ptg4y016x"
+
+[deps]
+
+files=["res://Core/Inventory/Data/items_seed.name.translation", "res://Core/Inventory/Data/items_seed.description.translation", "res://Core/Inventory/Data/items_seed.rarity.translation", "res://Core/Inventory/Data/items_seed.sell.translation", "res://Core/Inventory/Data/items_seed.category.translation", "res://Core/Inventory/Data/items_seed.subtype.translation", "res://Core/Inventory/Data/items_seed.max.translation"]
+
+source_file="res://Core/Inventory/Data/items_seed.csv"
+dest_files=["res://Core/Inventory/Data/items_seed.name.translation", "res://Core/Inventory/Data/items_seed.description.translation", "res://Core/Inventory/Data/items_seed.rarity.translation", "res://Core/Inventory/Data/items_seed.sell.translation", "res://Core/Inventory/Data/items_seed.category.translation", "res://Core/Inventory/Data/items_seed.subtype.translation", "res://Core/Inventory/Data/items_seed.max.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

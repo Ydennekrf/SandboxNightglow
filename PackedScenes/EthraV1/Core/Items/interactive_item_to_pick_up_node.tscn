@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dr4ixq45ut42j"]
+
+[ext_resource type="Script" uid="uid://whjpkf0bks5c" path="res://Core/Nodes/Interactable/ItemPickup.cs" id="1_tcoob"]
+
+[node name="InteractiveItemToPickUpNode" type="Node2D" unique_id=1520722146]
+
+[node name="InteractiveItemToPickup" type="Area2D" parent="." unique_id=1011575317]
+position = Vector2(-143, 16)
+script = ExtResource("1_tcoob")

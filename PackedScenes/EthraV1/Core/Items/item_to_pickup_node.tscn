@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dnbsikqrs42nh"]
+
+[ext_resource type="Script" uid="uid://whjpkf0bks5c" path="res://Core/Nodes/Interactable/ItemPickup.cs" id="1_nald6"]
+[ext_resource type="Texture2D" uid="uid://d0ds0dyjv048q" path="res://ArtAssets/InventoryItems/Consume/HealthPotion.tres" id="2_u6mw2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0kblc"]
+radius = 8.0
+
+[node name="ItemToPickup" type="Area2D" unique_id=1912205516]
+script = ExtResource("1_nald6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=56144550]
+shape = SubResource("CircleShape2D_0kblc")
+debug_color = Color(0.6044868, 0.48877764, 0.026754921, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=733459122]
+position = Vector2(-4.7683716e-07, 4.7683716e-07)
+texture = ExtResource("2_u6mw2")
