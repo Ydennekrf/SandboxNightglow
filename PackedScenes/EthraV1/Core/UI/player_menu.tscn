@@ -1,15 +1,22 @@
 [gd_scene format=3 uid="uid://yvmcay2n7e48"]
 
 [ext_resource type="Theme" uid="uid://bfm0817jb6ei2" path="res://UIThemes/RichTextTheme.tres" id="1_1cogp"]
+[ext_resource type="Script" uid="uid://bj21w5i3ajy51" path="res://Core/UI/Scripts/PlayerMenu.cs" id="1_iopfa"]
 [ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://PackedScenes/EthraV1/Core/UI/inventory_slot.tscn" id="2_iopfa"]
 
-[node name="PlayerMenu" type="Control" unique_id=1599526513]
+[node name="PlayerMenu" type="Control" unique_id=1599526513 node_paths=PackedStringArray("InventoryGrid", "EquippedWeaponSlot", "EquippedArmorSlot", "ToolTip", "StatsStatus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_iopfa")
+InventoryGrid = NodePath("Inventory/VBoxContainer2/Inventory")
+EquippedWeaponSlot = NodePath("Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/WeaponEquip")
+EquippedArmorSlot = NodePath("Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/ArmorEquip")
+ToolTip = NodePath("Inventory/VBoxContainer/ToolTip")
+StatsStatus = NodePath("Inventory/VBoxContainer2/Stats_Status")
 
 [node name="Inventory" type="HBoxContainer" parent="." unique_id=1378165437]
 layout_mode = 1
@@ -140,6 +147,6 @@ layout_mode = 2
 [node name="ItemIcon20" parent="Inventory/VBoxContainer2/Inventory" unique_id=1558700999 instance=ExtResource("2_iopfa")]
 layout_mode = 2
 
-[node name="Stats_Status" type="HBoxContainer" parent="Inventory/VBoxContainer2" unique_id=1400275383]
+[node name="Stats_Status" type="RichTextLabel" parent="Inventory/VBoxContainer2" unique_id=1440752302]
 layout_mode = 2
 size_flags_vertical = 3

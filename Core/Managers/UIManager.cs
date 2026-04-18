@@ -22,6 +22,7 @@ namespace ethra.V1
 
 		public void ShowOnlyHud() => _root?.ShowOnlyHud();
 		public void ShowOnlyMainMenu() => _root?.ShowOnlyMainMenu();
+		public void ShowOnlyPlayerMenu() => _root?.ShowOnlyPlayerMenu();
 
 		public void Register(IUIRefresh ui)
 		{
