@@ -7,11 +7,24 @@ namespace ethra.V1
         [Export] public int ItemId { get; set; }
         [Export] public int Quantity { get; set; } = 1;
         [Export] public bool RequireInteract { get; set; } = true;
+        [Export] public NodePath SpritePath { get; set; } = "Sprite2D";
+        [Export] public Texture2D PickupTexture { get; set; }
 
         private bool _playerInside;
+        private Sprite2D _sprite;
 
         public override void _Ready()
         {
+            _sprite = GetNodeOrNull<Sprite2D>(SpritePath);
+            if (_sprite == null)
+            {
+                GD.PushWarning($"ItemPickup: Sprite2D not found at path '{SpritePath}'.");
+            }
+            else if (PickupTexture != null)
+            {
+                _sprite.Texture = PickupTexture;
+            }
+
             BodyEntered += OnBodyEntered;
             BodyExited += OnBodyExited;
         }

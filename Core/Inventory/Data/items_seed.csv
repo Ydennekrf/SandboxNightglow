@@ -1,4 +1,8 @@
 id,name,description,rarity,sell_value,category,subtype,max_stack
 1001,Small Health Potion,Restores a small amount of HP,Common,5,Consumable,Potion,99
 2001,Rusted Sword,An old blade with low durability,Common,10,Weapon,Sword,1
+2002,Iron Longsword,Reliable steel blade,Uncommon,18,Weapon,Sword,1
 3001,Copper Ore,Base crafting ore,Common,2,Crafting,Ore,99
+4001,Leather Cap,Simple head protection,Common,8,Armor,Head,1
+4002,Traveler Hood,Lightweight hood armor,Uncommon,12,Armor,Head,1
+4101,Padded Vest,Simple chest protection,Common,9,Armor,Chest,1

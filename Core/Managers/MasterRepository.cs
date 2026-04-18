@@ -327,6 +327,21 @@ namespace ethra.V1
 					return new CraftingItem(id, name, value, description, rarity, subtype, maxStack);
 				}
 
+				if (string.Equals(category, "Consumable", StringComparison.OrdinalIgnoreCase))
+				{
+					return new ConsumeItem(id, name, value, description, rarity, subtype, maxStack);
+				}
+
+				if (string.Equals(category, "Armor", StringComparison.OrdinalIgnoreCase))
+				{
+					return new ArmorItem(id, name, value, description, rarity, subtype, maxStack);
+				}
+
+				if (string.Equals(category, "Weapon", StringComparison.OrdinalIgnoreCase))
+				{
+					return new WeaponItem(id, name, value, description, rarity, maxStack);
+				}
+
 				return new BasicInventoryItem(id, name, value, description, rarity, category: category, subtype: subtype, maxStack: maxStack);
 			}
 

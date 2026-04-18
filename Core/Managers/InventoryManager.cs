@@ -12,6 +12,8 @@ namespace ethra.V1
         /// <id, count>
         /// </summary>
         private Dictionary<int, int> _itemDict;
+        private Dictionary<string, int> _equippedArmorBySlot;
+        private Dictionary<string, int> _equippedWeaponBySlot;
         private int maxStack = 99;
         private readonly MasterRepository _db;
 
@@ -21,6 +23,8 @@ namespace ethra.V1
         {
             _db = db;
             _itemDict = new Dictionary<int, int>();
+            _equippedArmorBySlot = new Dictionary<string, int>();
+            _equippedWeaponBySlot = new Dictionary<string, int>();
         }
 
 
@@ -97,11 +101,34 @@ namespace ethra.V1
 
         public void UseItem(int id)
         {
-            IInventoryItem itemToUse = _db.GetItemFromRepo(id);
+            if(!_itemDict.TryGetValue(id, out int count) || count <= 0)
+            {
+                GD.Print($"Unable to use item. id:{id} is not in inventory.");
+                return;
+            }
+
+            InventoryItem itemToUse = _db.GetItemFromRepo(id);
 
             if(itemToUse != null)
             {
+                if (itemToUse is ArmorItem armor)
+                {
+                    ToggleArmorEquip(armor);
+                    return;
+                }
+
+                if (itemToUse is WeaponItem weapon)
+                {
+                    ToggleWeaponEquip(weapon);
+                    return;
+                }
+
                 itemToUse.Use();
+
+                if (itemToUse is ConsumeItem)
+                {
+                    ConsumeOne(id);
+                }
             }
             else
             {
@@ -111,6 +138,71 @@ namespace ethra.V1
 
             // at this point check what type of item to know if you consume it on use, and drop the count of the inventory and call
             //then set the UI as dirty forcing it to update.
+        }
+
+        private void ToggleArmorEquip(ArmorItem armor)
+        {
+            string slot = string.IsNullOrWhiteSpace(armor.ArmorSlot) ? "Armor" : armor.ArmorSlot;
+
+            if (_equippedArmorBySlot.TryGetValue(slot, out int equippedId))
+            {
+                if (equippedId == armor.Id)
+                {
+                    armor.Unequip();
+                    _equippedArmorBySlot.Remove(slot);
+                    return;
+                }
+
+                InventoryItem currentlyEquipped = _db.GetItemFromRepo(equippedId);
+                if (currentlyEquipped is ArmorItem equippedArmor)
+                {
+                    equippedArmor.Unequip();
+                }
+            }
+
+            armor.Equip();
+            _equippedArmorBySlot[slot] = armor.Id;
+        }
+
+        private void ToggleWeaponEquip(WeaponItem weapon)
+        {
+            string slot = weapon.WeaponSlot;
+
+            if (_equippedWeaponBySlot.TryGetValue(slot, out int equippedId))
+            {
+                if (equippedId == weapon.Id)
+                {
+                    weapon.Unequip();
+                    _equippedWeaponBySlot.Remove(slot);
+                    return;
+                }
+
+                InventoryItem currentlyEquipped = _db.GetItemFromRepo(equippedId);
+                if (currentlyEquipped is WeaponItem equippedWeapon)
+                {
+                    equippedWeapon.Unequip();
+                }
+            }
+
+            weapon.Equip();
+            _equippedWeaponBySlot[slot] = weapon.Id;
+        }
+
+        private void ConsumeOne(int id)
+        {
+            if(!_itemDict.TryGetValue(id, out int currentCount) || currentCount <= 0)
+            {
+                return;
+            }
+
+            if(currentCount == 1)
+            {
+                _itemDict.Remove(id);
+            }
+            else
+            {
+                _itemDict[id] = currentCount - 1;
+            }
         }
 
 
