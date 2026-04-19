@@ -23,6 +23,11 @@ namespace ethra.V1
             _owner = owner;
         }
 
+       public void SetOwner(Entity owner)
+       {
+            _owner = owner;
+       }
+
         
     }
 }

@@ -64,12 +64,14 @@ namespace ethra.V1
 	[ExportGroup("Scene folder Path")]
 	[Export] public string SceneFolderLocation;
 
-	[ExportGroup("SQLite Connection Strings")]
+	[ExportGroup("Repository Data Sources")]
 
-	[ExportSubgroup("Dialog Table Connection")]
-	[Export] public string DialogConn;
-	[ExportSubgroup("Item Table Connection")]
-	[Export] public string ItemConn;
+	[ExportSubgroup("Dialog CSV")]
+	[Export] public string DialogCsvPath = string.Empty;
+	[ExportSubgroup("Item CSV")]
+	[Export] public string ItemCsvPath = "res://Core/Inventory/Data/items_seed.csv";
+	[ExportSubgroup("Item Effects CSV")]
+	[Export] public string ItemEffectsCsvPath = "res://Core/Inventory/Data/item_effects_seed.csv";
 
 	[ExportGroup("Player Exports")]
 		[ExportSubgroup("StateMachine")]
@@ -189,6 +191,7 @@ namespace ethra.V1
 			registerManager(_ui);
 
 			GetAllItems();
+			GetAllItemEffects();
 			GetAllDialog();
 			GetAllScenes();
 
@@ -207,7 +210,30 @@ namespace ethra.V1
 	public void GetAllItems()
 		{
 		// this will get called after all the manager's have been initialized and start loading all the game item refrences into the master repository
-		DB.FillSQLRepo(ItemConn);
+		if (string.IsNullOrWhiteSpace(ItemCsvPath))
+		{
+			GD.PushWarning("GetAllItems: ItemCsvPath is empty. Skipping item csv load.");
+			return;
+		}
+
+				DB.FillCsvRepo(ItemCsvPath, MasterRepository.RepoLoadType.Items, new[]
+						{
+							"id", "name", "category", "description", "rarity", "sell_value", "subtype", "max_stack"
+						});
+					}
+
+		public void GetAllItemEffects()
+		{
+			if (string.IsNullOrWhiteSpace(ItemEffectsCsvPath))
+			{
+				GD.PushWarning("GetAllItemEffects: ItemEffectsCsvPath is empty. Skipping item effects csv load.");
+				return;
+			}
+
+			DB.FillCsvRepo(ItemEffectsCsvPath, MasterRepository.RepoLoadType.ItemEffects, new[]
+				{
+					"item_id", "effect_type", "effect_stat", "effect_power"
+				});
 		}
 
 	public void GetAllScenes()
@@ -219,7 +245,13 @@ namespace ethra.V1
 		public void GetAllDialog()
 		{
 			// loads all the dialog trees into the master repository
-			DB.FillSQLRepo(DialogConn);
+			if (string.IsNullOrWhiteSpace(DialogCsvPath))
+			{
+				GD.PushWarning("GetAllDialog: DialogCsvPath is empty. Skipping dialog csv load.");
+				return;
+			}
+
+			DB.FillCsvRepo(DialogCsvPath, MasterRepository.RepoLoadType.Dialog);
 		}
 		#endregion
 
@@ -566,9 +598,9 @@ namespace ethra.V1
 		   _inventory.UseItem(id);
 		}
 
-		public void AddItem(int id)
+		public bool AddItem(int id)
 		{
-			_inventory.AddItem(id);
+			return _inventory.AddItem(id);
 		}
 
 		public void DropItem(int id)
