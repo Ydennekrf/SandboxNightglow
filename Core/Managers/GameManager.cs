@@ -236,6 +236,12 @@ namespace ethra.V1
 				});
 		}
 
+			DB.FillCsvRepo(ItemCsvPath, MasterRepository.RepoLoadType.Items, new[]
+				{
+					"id", "name", "category", "description", "rarity", "sell_value", "subtype", "max_stack"
+				});
+			}
+
 	public void GetAllScenes()
 		{
 		// this will get called after all the manager's have been initialized and start loading all the scene object refrences into the master repository

@@ -16,6 +16,7 @@ namespace ethra.V1
         private Dictionary<string, int> _equippedWeaponBySlot;
         private int maxStack = 99;
         private readonly MasterRepository _db;
+        public event Action Changed;
 
 		public string SaveKey => _saveKey;
 

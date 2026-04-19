@@ -32,11 +32,7 @@ namespace ethra.V1
                 }
             }
 
-            if (Owner is IStats stats && string.Equals(ConsumeType, "Potion", System.StringComparison.OrdinalIgnoreCase))
-            {
-                healAmount = 25;
-                stats.CurHP = healAmount;
-            }
+        
 
             GD.Print($"Consumed item '{Name}' [{ConsumeType}] heal={healAmount}.");
         }

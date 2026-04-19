@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dps46k28pmrlj"]
+[gd_resource type="Theme" format=3 uid="uid://dps46k28pmrlj"]
 
 [ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="1_csf4c"]
 [ext_resource type="Texture2D" uid="uid://bugo5jritaqks" path="res://ArtAssets/UI/Inventory/Inventory_select.png" id="2_rc4cd"]

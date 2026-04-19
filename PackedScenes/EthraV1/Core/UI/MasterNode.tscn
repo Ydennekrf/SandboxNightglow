@@ -1,17 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://r5ws7i7wpgqr"]
+[gd_scene format=3 uid="uid://r5ws7i7wpgqr"]
 
 [ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="1_u0jot"]
+[ext_resource type="PackedScene" uid="uid://yvmcay2n7e48" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="3_gvsuk"]
 [ext_resource type="PackedScene" uid="uid://dc4iix4f1il4d" path="res://PackedScenes/EthraV1/Core/UI/MainMenu.tscn" id="4_bofv1"]
 
-[node name="MasterNode" type="Node2D"]
+[node name="MasterNode" type="Node2D" unique_id=189862781]
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1121559835]
 
-[node name="UI" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
+[node name="UI" type="CanvasLayer" parent="." unique_id=1579572259]
 script = ExtResource("1_u0jot")
+PlayerMenuPath = NodePath("PlayerMenu")
 
-[node name="Hud" type="Control" parent="UI"]
+[node name="Hud" type="Control" parent="UI" unique_id=799160224]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +20,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menus" type="Control" parent="UI"]
+[node name="PlayerMenu" parent="UI" unique_id=1599526513 instance=ExtResource("3_gvsuk")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = -160.0
+offset_bottom = -120.0
+
+[node name="Menus" type="Control" parent="UI" unique_id=539584969]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,5 +40,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainMenu" parent="UI/Menus" instance=ExtResource("4_bofv1")]
+[node name="MainMenu" parent="UI/Menus" unique_id=677484270 instance=ExtResource("4_bofv1")]
 layout_mode = 1

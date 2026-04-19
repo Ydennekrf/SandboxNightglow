@@ -22,8 +22,10 @@ namespace ethra.V1
 
 		public void ShowOnlyHud() => _root?.ShowOnlyHud();
 		public void ShowOnlyMainMenu() => _root?.ShowOnlyMainMenu();
+		public void ShowPlayerMenu(bool show) => _root?.ShowPlayerMenu(show);
+        public void TogglePlayerMenu() => _root?.TogglePlayerMenu();
 
-		public void Register(IUIRefresh ui)
+        public void Register(IUIRefresh ui)
 		{
 			if (!_uiNodeList.Contains(ui))
 				_uiNodeList.Add(ui);
@@ -50,12 +52,26 @@ namespace ethra.V1
 
 		public void Resolve()
 		{
-			RefreshUI();
+            HandleMenuInput();
+            RefreshUI();
 		}
 
 		public void Resolve(object obj)
 		{
 			
 		}
-	}
+        private void HandleMenuInput()
+        {
+            if (_root == null)
+                return;
+
+            if (!Input.IsActionJustPressed("Inventory_Toggle"))
+                return;
+
+            if (_root.MainMenu != null && _root.MainMenu.Visible)
+                return;
+
+            _root.TogglePlayerMenu();
+        }
+    }
 }

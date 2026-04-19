@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://yvmcay2n7e48"]
+
+[ext_resource type="Theme" uid="uid://bfm0817jb6ei2" path="res://UIThemes/RichTextTheme.tres" id="1_1cogp"]
+[ext_resource type="Script" uid="uid://bj21w5i3ajy51" path="res://Core/UI/Scripts/PlayerMenu.cs" id="1_iopfa"]
+[ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://PackedScenes/EthraV1/Core/UI/inventory_slot.tscn" id="2_iopfa"]
+
+[node name="PlayerMenu" type="Control" unique_id=1599526513 node_paths=PackedStringArray("InventoryGrid", "EquippedWeaponSlot", "EquippedArmorSlot", "ToolTip", "StatsStatus")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_iopfa")
+InventoryGrid = NodePath("Inventory/VBoxContainer2/Inventory")
+EquippedWeaponSlot = NodePath("Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/WeaponEquip")
+EquippedArmorSlot = NodePath("Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/ArmorEquip")
+ToolTip = NodePath("Inventory/VBoxContainer/ToolTip")
+StatsStatus = NodePath("Inventory/VBoxContainer2/Stats_Status")
+metadata/_edit_use_anchors_ = true
+
+[node name="Inventory" type="HBoxContainer" parent="." unique_id=1378165437]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -105.0
+offset_right = 126.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory" unique_id=408643377]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ToolTip" type="RichTextLabel" parent="Inventory/VBoxContainer" unique_id=325175506]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_1cogp")
+text = "test
+"
+
+[node name="PlayerView" type="VBoxContainer" parent="Inventory/VBoxContainer" unique_id=853358363]
+layout_mode = 2
+
+[node name="PlayerName" type="RichTextLabel" parent="Inventory/VBoxContainer/PlayerView" unique_id=1189304491]
+clip_contents = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme = ExtResource("1_1cogp")
+text = "Player Name"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Inventory/VBoxContainer/PlayerView" unique_id=1097285038]
+layout_mode = 2
+
+[node name="PlayerViewer" type="SubViewportContainer" parent="Inventory/VBoxContainer/PlayerView/HBoxContainer" unique_id=1612107017]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerViewer" unique_id=993539417]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(64, 86)
+render_target_update_mode = 4
+
+[node name="PlayerEquip" type="VBoxContainer" parent="Inventory/VBoxContainer/PlayerView/HBoxContainer" unique_id=1373317233]
+layout_mode = 2
+
+[node name="WeaponEquip" parent="Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip" unique_id=1482478631 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ArmorEquip" parent="Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip" unique_id=126576481 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="TrinketEquip" parent="Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip" unique_id=189252268 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Inventory" unique_id=109437071]
+layout_mode = 2
+
+[node name="Inventory" type="GridContainer" parent="Inventory/VBoxContainer2" unique_id=236063755]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 5
+
+[node name="ItemIcon" parent="Inventory/VBoxContainer2/Inventory" unique_id=616822728 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon2" parent="Inventory/VBoxContainer2/Inventory" unique_id=762777772 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon3" parent="Inventory/VBoxContainer2/Inventory" unique_id=410287301 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon4" parent="Inventory/VBoxContainer2/Inventory" unique_id=935274994 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon5" parent="Inventory/VBoxContainer2/Inventory" unique_id=2073069989 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon6" parent="Inventory/VBoxContainer2/Inventory" unique_id=440460379 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon7" parent="Inventory/VBoxContainer2/Inventory" unique_id=275276054 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon8" parent="Inventory/VBoxContainer2/Inventory" unique_id=373025489 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon9" parent="Inventory/VBoxContainer2/Inventory" unique_id=2118453232 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon10" parent="Inventory/VBoxContainer2/Inventory" unique_id=736348011 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon11" parent="Inventory/VBoxContainer2/Inventory" unique_id=1074487468 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon12" parent="Inventory/VBoxContainer2/Inventory" unique_id=1862282260 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon13" parent="Inventory/VBoxContainer2/Inventory" unique_id=728369755 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon14" parent="Inventory/VBoxContainer2/Inventory" unique_id=905913186 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon15" parent="Inventory/VBoxContainer2/Inventory" unique_id=898657695 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon16" parent="Inventory/VBoxContainer2/Inventory" unique_id=70422768 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon17" parent="Inventory/VBoxContainer2/Inventory" unique_id=678935213 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon18" parent="Inventory/VBoxContainer2/Inventory" unique_id=108022000 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon19" parent="Inventory/VBoxContainer2/Inventory" unique_id=528345013 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="ItemIcon20" parent="Inventory/VBoxContainer2/Inventory" unique_id=1558700999 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="Stats_Status" type="RichTextLabel" parent="Inventory/VBoxContainer2" unique_id=1440752302]
+layout_mode = 2
+size_flags_vertical = 3

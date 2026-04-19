@@ -5,43 +5,12 @@
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="3_eeh2a"]
 [ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="4_oa31a"]
 [ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="5_q6p3m"]
-[ext_resource type="Texture2D" uid="uid://nni364y1g417" path="res://ArtAssets/ParticleEffects/35.png" id="7_o0l0n"]
-[ext_resource type="Script" uid="uid://cnossphsjjfmo" path="res://components/Objects/ParticleEffectControllers/DashTrailController.cs" id="8_twmay"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw6q6"]
 radius = 9.84886
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_invm3"]
 radius = 24.0
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_la3de"]
-particles_animation = true
-particles_anim_h_frames = 6
-particles_anim_v_frames = 2
-particles_anim_loop = true
-
-[sub_resource type="Curve" id="Curve_4nfmh"]
-_data = [Vector2(0.0549451, 0.916844), 0.0, 0.0, 0, 0, Vector2(0.222527, 0.438699), 0.0, 0.0, 0, 0, Vector2(0.43956, 0.43177), 0.0, 0.0, 0, 0, Vector2(0.667582, 0.161514), 0.0, 0.0, 0, 0, Vector2(0.903846, 0), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="CurveTexture" id="CurveTexture_01wmy"]
-curve = SubResource("Curve_4nfmh")
-
-[sub_resource type="Gradient" id="Gradient_mb4kp"]
-offsets = PackedFloat32Array(0, 0.0744048, 0.270833, 0.583333, 0.818452, 1)
-colors = PackedColorArray(1, 1, 1, 0.807843, 0.843137, 0.917647, 0.482353, 0.796078, 0.721569, 0.768627, 0.301961, 0.807843, 0.52549, 0.631373, 0.247059, 0.815686, 0.392157, 0.462745, 0.156863, 0.847059, 0.305882, 0.352941, 0.0901961, 0.784314)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6k451"]
-gradient = SubResource("Gradient_mb4kp")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_erdcm"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-color = Color(0.626111, 0.751714, 0.196761, 0.623529)
-color_ramp = SubResource("GradientTexture1D_6k451")
-alpha_curve = SubResource("CurveTexture_01wmy")
-anim_speed_min = 0.56
-anim_speed_max = 0.56
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3qtn"]
 radius = 7.07107
@@ -124,22 +93,6 @@ debug_color = Color(0.533167, 0.569459, 0.054255, 0.42)
 [node name="Animators" type="Node2D" parent="." unique_id=1052029930]
 
 [node name="Interact" type="Node2D" parent="Animators" unique_id=876700589]
-
-[node name="DashTrail" type="GPUParticles2D" parent="Animators" unique_id=1753686892]
-material = SubResource("CanvasItemMaterial_la3de")
-position = Vector2(0, 10)
-emitting = false
-amount = 10
-texture = ExtResource("7_o0l0n")
-lifetime = 0.2
-one_shot = true
-speed_scale = 0.75
-fixed_fps = 24
-visibility_rect = Rect2(-32, -32, 64, 64)
-draw_order = 0
-trail_lifetime = 0.4
-process_material = SubResource("ParticleProcessMaterial_erdcm")
-script = ExtResource("8_twmay")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=606065868]
 position = Vector2(0, 7)

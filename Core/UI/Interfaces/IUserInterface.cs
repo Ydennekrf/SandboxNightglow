@@ -9,5 +9,9 @@ namespace ethra.V1
     {
         public List<IUIRefresh> UINodeList { get; set; }
         void RefreshUI();
+        void ShowOnlyHud();
+        void ShowOnlyMainMenu();
+        void ShowPlayerMenu(bool show);
+        void TogglePlayerMenu();
     }
 }
