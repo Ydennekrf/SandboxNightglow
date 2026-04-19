@@ -11,6 +11,7 @@ namespace ethra.V1
 		public enum RepoLoadType
 		{
 			Items,
+			ItemEffects,
 			Dialog,
 			Entity
 		}
@@ -92,14 +93,17 @@ namespace ethra.V1
 				return;
 			}
 
-			switch (loadType)
-			{
-				case RepoLoadType.Items:
-					LoadItemsFromCsv(headers, rows, path);
-					break;
-				case RepoLoadType.Dialog:
-					GD.Print($"FillCsvRepo: dialog loader not implemented yet. source={path}");
-					break;
+				switch (loadType)
+				{
+					case RepoLoadType.Items:
+						LoadItemsFromCsv(headers, rows, path);
+						break;
+					case RepoLoadType.ItemEffects:
+						LoadItemEffectsFromCsv(headers, rows, path);
+						break;
+					case RepoLoadType.Dialog:
+						GD.Print($"FillCsvRepo: dialog loader not implemented yet. source={path}");
+						break;
 				case RepoLoadType.Entity:
 					GD.Print($"FillCsvRepo: entity loader not implemented yet. source={path}");
 					break;
@@ -284,13 +288,13 @@ namespace ethra.V1
 
 					string description = GetString(headerIndex, row, "description");
 					string rarity = GetString(headerIndex, row, "rarity");
-					string category = GetString(headerIndex, row, "category");
-					string subtype = GetString(headerIndex, row, "subtype");
-					int value = GetIntOrDefault(headerIndex, row, "sell_value", 0);
-					int maxStack = GetIntOrDefault(headerIndex, row, "max_stack", 99);
+						string category = GetString(headerIndex, row, "category");
+						string subtype = GetString(headerIndex, row, "subtype");
+						int value = GetIntOrDefault(headerIndex, row, "sell_value", 0);
+						int maxStack = GetIntOrDefault(headerIndex, row, "max_stack", 99);
 
-				if (_itemRepo.ContainsKey(id))
-				{
+					if (_itemRepo.ContainsKey(id))
+					{
 					skipped++;
 					GD.PushError($"LoadItemsFromCsv: duplicate item id {id} at row {rowIndex + 1}.");
 					continue;
@@ -300,19 +304,20 @@ namespace ethra.V1
 						id,
 						name,
 						value,
-						description,
-						rarity,
-						category,
-						subtype,
-						maxStack);
-					_itemRepo.Add(id, item);
-					loaded++;
-				}
+								description,
+								rarity,
+								category,
+								subtype,
+								maxStack,
+								new List<ItemEffects>());
+							_itemRepo.Add(id, item);
+							loaded++;
+						}
 
 				GD.Print($"LoadItemsFromCsv: loaded={loaded} skipped={skipped} source={sourcePath}");
 			}
 
-			private InventoryItem CreateInventoryItem(
+		private InventoryItem CreateInventoryItem(
 				int id,
 				string name,
 				int value,
@@ -320,30 +325,98 @@ namespace ethra.V1
 				string rarity,
 				string category,
 				string subtype,
-				int maxStack)
+				int maxStack,
+				List<ItemEffects> effects)
 			{
 				if (string.Equals(category, "Crafting", StringComparison.OrdinalIgnoreCase))
 				{
-					return new CraftingItem(id, name, value, description, rarity, subtype, maxStack);
+					return new CraftingItem(id, name, value, description, rarity, subtype, maxStack, effects);
 				}
 
 				if (string.Equals(category, "Consumable", StringComparison.OrdinalIgnoreCase))
 				{
-					return new ConsumeItem(id, name, value, description, rarity, subtype, maxStack);
+					return new ConsumeItem(id, name, value, description, rarity, subtype, maxStack, effects);
 				}
 
 				if (string.Equals(category, "Armor", StringComparison.OrdinalIgnoreCase))
 				{
-					return new ArmorItem(id, name, value, description, rarity, subtype, maxStack);
+					return new ArmorItem(id, name, value, description, rarity, subtype, maxStack, effects);
 				}
 
 				if (string.Equals(category, "Weapon", StringComparison.OrdinalIgnoreCase))
 				{
-					return new WeaponItem(id, name, value, description, rarity, maxStack);
+					return new WeaponItem(id, name, value, description, rarity, maxStack, effects);
 				}
 
-				return new BasicInventoryItem(id, name, value, description, rarity, category: category, subtype: subtype, maxStack: maxStack);
+				return new BasicInventoryItem(id, name, value, description, rarity, effects, category: category, subtype: subtype, maxStack: maxStack);
 			}
+
+		private void LoadItemEffectsFromCsv(IReadOnlyList<string> headers, IReadOnlyList<string[]> rows, string sourcePath)
+		{
+			Dictionary<string, int> headerIndex = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+			for (int i = 0; i < headers.Count; i++)
+			{
+				headerIndex[headers[i].Trim()] = i;
+			}
+
+			int loaded = 0;
+			int skipped = 0;
+
+			for (int rowIndex = 1; rowIndex < rows.Count; rowIndex++)
+			{
+				string[] row = rows[rowIndex];
+				if (!TryGetInt(headerIndex, row, "item_id", out int itemId))
+				{
+					skipped++;
+					GD.PushError($"LoadItemEffectsFromCsv: row {rowIndex + 1} missing/invalid item_id.");
+					continue;
+				}
+
+				if (!_itemRepo.TryGetValue(itemId, out InventoryItem item))
+				{
+					skipped++;
+					GD.PushError($"LoadItemEffectsFromCsv: item {itemId} not found in item repo.");
+					continue;
+				}
+
+				string effectType = GetString(headerIndex, row, "effect_type");
+				string effectStat = GetString(headerIndex, row, "effect_stat");
+				int effectPower = GetIntOrDefault(headerIndex, row, "effect_power", 0);
+
+				ItemEffects effect = BuildEffect(effectType, effectStat, effectPower);
+				if (effect == null)
+				{
+					skipped++;
+					continue;
+				}
+
+				item.Effects.Add(effect);
+				loaded++;
+			}
+
+			GD.Print($"LoadItemEffectsFromCsv: loaded={loaded} skipped={skipped} source={sourcePath}");
+		}
+
+		private ItemEffects BuildEffect(string effectType, string effectStat, int effectPower)
+		{
+			if (string.IsNullOrWhiteSpace(effectType) || string.IsNullOrWhiteSpace(effectStat) || effectPower == 0)
+			{
+				return null;
+			}
+
+			string effectName = $"{effectType}:{effectStat}";
+
+			if (string.Equals(effectType, "plus", StringComparison.OrdinalIgnoreCase))
+			{
+				return new PlusStat(effectStat, effectPower, effectName, null);
+			}
+			if (string.Equals(effectType, "minus", StringComparison.OrdinalIgnoreCase))
+			{
+				return new MinusStat(effectStat, effectPower, effectName, null);
+			}
+
+			return null;
+		}
 
 		private string GetString(Dictionary<string, int> headerIndex, string[] row, string headerName)
 		{

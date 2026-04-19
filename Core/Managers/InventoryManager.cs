@@ -45,7 +45,6 @@ namespace ethra.V1
                 if(count + 1 <= maxAllowed)
                 {
                      _itemDict[id] = count + 1;
-                     NotifyChanged();
                      return true;
                 }
                 else
@@ -58,34 +57,66 @@ namespace ethra.V1
             else
             {
                 _itemDict.Add(id, 1);
-                NotifyChanged();
                 return true;
             }
         }
 
         public object CaptureSnapshot()
         {
-            List<int> items = new List<int>();
-            foreach(int id in _itemDict.Keys)
+            InventorySave save = new InventorySave();
+
+            foreach(var kvp in _itemDict)
             {
-                int count = _itemDict[id];
-                for(int i =0; i < count; i++)
+                if (kvp.Value <= 0)
                 {
-                    items.Add(id);
+                    continue;
                 }
+
+                save.Items.Add(new InventoryStackEntry
+                {
+                    ItemId = kvp.Key,
+                    Quantity = kvp.Value
+                });
             }
-            return items.ToArray();
+
+            save.EquippedArmorBySlot = new Dictionary<string, int>(_equippedArmorBySlot);
+            save.EquippedWeaponBySlot = new Dictionary<string, int>(_equippedWeaponBySlot);
+            return save;
         }
 
         public void DropItem(int id)
         {
-            throw new NotImplementedException();
-            // this will require a spawner manager or something.
+            if(!_itemDict.TryGetValue(id, out int currentCount) || currentCount <= 0)
+            {
+                GD.Print($"DropItem: item id:{id} is not in inventory.");
+                return;
+            }
+
+            if (currentCount == 1)
+            {
+                _itemDict.Remove(id);
+                UnequipItemIfNeeded(id);
+            }
+            else
+            {
+                _itemDict[id] = currentCount - 1;
+            }
+
+            GD.Print($"Dropped item id:{id}. Remaining quantity: {_itemDict.GetValueOrDefault(id, 0)}");
         }
 
 
         public void RestoreSnapshot(object snapshot)
         {
+            ClearAllEquipment();
+            _itemDict.Clear();
+
+            if(snapshot is InventorySave inventorySave)
+            {
+                RestoreFromInventorySave(inventorySave);
+                return;
+            }
+
             if(snapshot is List<int> listItems)
             {
                 foreach(int i in listItems)
@@ -114,17 +145,21 @@ namespace ethra.V1
 
             if(itemToUse != null)
             {
+                Player player = GameManager.Instance?.GetPlayer();
+                if (player != null)
+                {
+                    itemToUse.SetOwner(player);
+                }
+
                 if (itemToUse is ArmorItem armor)
                 {
                     ToggleArmorEquip(armor);
-                    NotifyChanged();
                     return;
                 }
 
                 if (itemToUse is WeaponItem weapon)
                 {
                     ToggleWeaponEquip(weapon);
-                    NotifyChanged();
                     return;
                 }
 
@@ -132,8 +167,8 @@ namespace ethra.V1
 
                 if (itemToUse is ConsumeItem)
                 {
-                    ConsumeOne(id);
-                    NotifyChanged();
+                    int remaining = ConsumeOne(id);
+                    GD.Print($"Consumed item id:{id}. Remaining quantity: {remaining}");
                 }
             }
             else
@@ -194,41 +229,159 @@ namespace ethra.V1
             _equippedWeaponBySlot[slot] = weapon.Id;
         }
 
-        private void ConsumeOne(int id)
+        private int ConsumeOne(int id)
         {
             if(!_itemDict.TryGetValue(id, out int currentCount) || currentCount <= 0)
             {
-                return;
+                return 0;
             }
 
             if(currentCount == 1)
             {
                 _itemDict.Remove(id);
+                return 0;
             }
             else
             {
-                _itemDict[id] = currentCount - 1;
+                int remaining = currentCount - 1;
+                _itemDict[id] = remaining;
+                return remaining;
             }
         }
 
-        public IReadOnlyDictionary<int, int> GetItemCounts()
+        private void RestoreFromInventorySave(InventorySave save)
         {
-            return _itemDict;
+            if (save?.Items != null)
+            {
+                foreach (InventoryStackEntry entry in save.Items)
+                {
+                    if (entry == null || entry.Quantity <= 0)
+                    {
+                        continue;
+                    }
+
+                    for (int i = 0; i < entry.Quantity; i++)
+                    {
+                        AddItem(entry.ItemId);
+                    }
+                }
+            }
+
+            if (save?.EquippedArmorBySlot != null)
+            {
+                foreach (var kvp in save.EquippedArmorBySlot)
+                {
+                    if (!_itemDict.TryGetValue(kvp.Value, out int qty) || qty <= 0)
+                    {
+                        continue;
+                    }
+
+                    InventoryItem item = _db.GetItemFromRepo(kvp.Value);
+                    if (item is not ArmorItem armor)
+                    {
+                        continue;
+                    }
+
+                    Player player = GameManager.Instance?.GetPlayer();
+                    if (player != null)
+                    {
+                        armor.SetOwner(player);
+                    }
+
+                    armor.Equip();
+                    _equippedArmorBySlot[kvp.Key] = kvp.Value;
+                }
+            }
+
+            if (save?.EquippedWeaponBySlot != null)
+            {
+                foreach (var kvp in save.EquippedWeaponBySlot)
+                {
+                    if (!_itemDict.TryGetValue(kvp.Value, out int qty) || qty <= 0)
+                    {
+                        continue;
+                    }
+
+                    InventoryItem item = _db.GetItemFromRepo(kvp.Value);
+                    if (item is not WeaponItem weapon)
+                    {
+                        continue;
+                    }
+
+                    Player player = GameManager.Instance?.GetPlayer();
+                    if (player != null)
+                    {
+                        weapon.SetOwner(player);
+                    }
+
+                    weapon.Equip();
+                    _equippedWeaponBySlot[kvp.Key] = kvp.Value;
+                }
+            }
         }
 
-        public IReadOnlyDictionary<string, int> GetEquippedWeapons()
+        private void UnequipItemIfNeeded(int id)
         {
-            return _equippedWeaponBySlot;
+            InventoryItem item = _db.GetItemFromRepo(id);
+
+            if (item is ArmorItem armor)
+            {
+                armor.Unequip();
+                string foundSlot = null;
+                foreach (var slot in _equippedArmorBySlot)
+                {
+                    if (slot.Value == id)
+                    {
+                        foundSlot = slot.Key;
+                        break;
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(foundSlot))
+                {
+                    _equippedArmorBySlot.Remove(foundSlot);
+                }
+            }
+            else if (item is WeaponItem weapon)
+            {
+                weapon.Unequip();
+                string foundSlot = null;
+                foreach (var slot in _equippedWeaponBySlot)
+                {
+                    if (slot.Value == id)
+                    {
+                        foundSlot = slot.Key;
+                        break;
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(foundSlot))
+                {
+                    _equippedWeaponBySlot.Remove(foundSlot);
+                }
+            }
         }
 
-        public IReadOnlyDictionary<string, int> GetEquippedArmor()
+        private void ClearAllEquipment()
         {
-            return _equippedArmorBySlot;
-        }
+            foreach (var kvp in _equippedArmorBySlot)
+            {
+                if (_db.GetItemFromRepo(kvp.Value) is ArmorItem armor)
+                {
+                    armor.Unequip();
+                }
+            }
 
-        private void NotifyChanged()
-        {
-            Changed?.Invoke();
+            foreach (var kvp in _equippedWeaponBySlot)
+            {
+                if (_db.GetItemFromRepo(kvp.Value) is WeaponItem weapon)
+                {
+                    weapon.Unequip();
+                }
+            }
+
+            _equippedArmorBySlot.Clear();
+            _equippedWeaponBySlot.Clear();
         }
 
 

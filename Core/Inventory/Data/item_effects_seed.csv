@@ -1,0 +1,7 @@
+item_id,effect_type,effect_stat,effect_power
+2001,plus,str,2
+2002,plus,str,4
+2002,plus,dex,1
+4001,plus,vit,1
+4002,plus,dex,2
+4101,plus,vit,3

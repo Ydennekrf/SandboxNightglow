@@ -25,12 +25,38 @@ namespace ethra.V1
 
         public void Equip()
         {
+            if (_isEquipped)
+            {
+                return;
+            }
+
+            foreach (ItemEffects effect in Effects)
+            {
+                if (effect is IEffect itemEffect)
+                {
+                    itemEffect.ResolveItemEffect();
+                }
+            }
+
             _isEquipped = true;
             GD.Print($"Equipped armor '{Name}' in slot '{ArmorSlot}'.");
         }
 
         public void Unequip()
         {
+            if (!_isEquipped)
+            {
+                return;
+            }
+
+            foreach (ItemEffects effect in Effects)
+            {
+                if (effect is IEffect itemEffect)
+                {
+                    itemEffect.RemoveItemEffect();
+                }
+            }
+
             _isEquipped = false;
             GD.Print($"Unequipped armor '{Name}' from slot '{ArmorSlot}'.");
         }

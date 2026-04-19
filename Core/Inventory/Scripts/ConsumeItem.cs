@@ -22,7 +22,19 @@ namespace ethra.V1
 
         public override void Use()
         {
-            GD.Print($"Consumed item '{Name}' [{ConsumeType}].");
+            int healAmount = 0;
+
+            foreach (ItemEffects effect in Effects)
+            {
+                if (effect is IEffect itemEffect)
+                {
+                    itemEffect.ResolveItemEffect();
+                }
+            }
+
+        
+
+            GD.Print($"Consumed item '{Name}' [{ConsumeType}] heal={healAmount}.");
         }
     }
 }

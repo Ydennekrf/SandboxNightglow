@@ -81,5 +81,15 @@ namespace ethra.V1
             string ownerName = _owner != null ? _owner.Name : "None";
             GD.Print($"===Item Used=== : {Name} on {ownerName}");
         }
+
+        public void SetOwner(Entity owner)
+        {
+            _owner = owner;
+
+            foreach (ItemEffects effect in _effects)
+            {
+                effect.SetOwner(owner);
+            }
+        }
     }
 }
