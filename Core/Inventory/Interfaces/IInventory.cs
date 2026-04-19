@@ -7,7 +7,7 @@ namespace ethra.V1
         
         void UseItem(int id);
 
-        void AddItem(int id);
+        bool AddItem(int id);
 
         void DropItem(int id);
 

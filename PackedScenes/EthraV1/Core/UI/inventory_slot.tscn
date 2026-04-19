@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckmusyefdjgen"]
+[gd_scene load_steps=8 format=3 uid="uid://ckmusyefdjgen"]
 
 [ext_resource type="Texture2D" uid="uid://d0tt1kw0iosf6" path="res://ArtAssets/UI/Inventory/Inventory_Slot.png" id="1_slioy"]
 [ext_resource type="Texture2D" uid="uid://13nfhxsrmcv3" path="res://ArtAssets/InventoryItems/GearIcons/ArmorIcon.tres" id="2_b6onm"]
 [ext_resource type="FontFile" uid="uid://82lve5ogo12m" path="res://ArtAssets/Fonts/m5x7.ttf" id="3_4sj30"]
 [ext_resource type="Texture2D" uid="uid://egj4yak4x2ve" path="res://ArtAssets/UI/Inventory/MenuIndicate.tres" id="4_daruc"]
+[ext_resource type="Script" path="res://Core/UI/Scripts/InventorySlotView.cs" id="5_s7vbf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ikqg"]
 bg_color = Color(0.993338, 0.844762, 0.620774, 1)
@@ -30,6 +31,7 @@ offset_right = 0.07999992
 offset_bottom = 0.07999992
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_s7vbf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

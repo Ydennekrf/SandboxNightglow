@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://r5ws7i7wpgqr"]
+[gd_scene load_steps=4 format=3 uid="uid://r5ws7i7wpgqr"]
 
 [ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="1_u0jot"]
+[ext_resource type="PackedScene" uid="uid://dblf2lc3y1xu1" path="res://PackedScenes/UI/PlayerUI.tscn" id="2_6yhy2"]
 [ext_resource type="PackedScene" uid="uid://dc4iix4f1il4d" path="res://PackedScenes/EthraV1/Core/UI/MainMenu.tscn" id="4_bofv1"]
 
 [node name="MasterNode" type="Node2D"]
@@ -18,6 +19,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PlayerUi" parent="UI/Hud" instance=ExtResource("2_6yhy2")]
+visible = false
+layout_mode = 1
 
 [node name="Menus" type="Control" parent="UI"]
 layout_mode = 3
