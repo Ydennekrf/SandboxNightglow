@@ -290,6 +290,11 @@ namespace ethra.V1
 					string rarity = GetString(headerIndex, row, "rarity");
 						string category = GetString(headerIndex, row, "category");
 						string subtype = GetString(headerIndex, row, "subtype");
+						string iconPath = GetString(headerIndex, row, "icon_path");
+						string weaponUpDrawPath = GetString(headerIndex, row, "weapon_up_draw_path");
+						string weaponDownDrawPath = GetString(headerIndex, row, "weapon_down_draw_path");
+						string weaponUpStowPath = GetString(headerIndex, row, "weapon_up_stow_path");
+						string weaponDownStowPath = GetString(headerIndex, row, "weapon_down_stow_path");
 						int value = GetIntOrDefault(headerIndex, row, "sell_value", 0);
 						int maxStack = GetIntOrDefault(headerIndex, row, "max_stack", 99);
 
@@ -309,7 +314,12 @@ namespace ethra.V1
 								category,
 								subtype,
 								maxStack,
-								new List<ItemEffects>());
+								new List<ItemEffects>(),
+								iconPath,
+								weaponUpDrawPath,
+								weaponDownDrawPath,
+								weaponUpStowPath,
+								weaponDownStowPath);
 							_itemRepo.Add(id, item);
 							loaded++;
 						}
@@ -326,29 +336,46 @@ namespace ethra.V1
 				string category,
 				string subtype,
 				int maxStack,
-				List<ItemEffects> effects)
+				List<ItemEffects> effects,
+				string iconPath,
+				string weaponUpDrawPath,
+				string weaponDownDrawPath,
+				string weaponUpStowPath,
+				string weaponDownStowPath)
 			{
 				if (string.Equals(category, "Crafting", StringComparison.OrdinalIgnoreCase))
 				{
-					return new CraftingItem(id, name, value, description, rarity, subtype, maxStack, effects);
+					return new CraftingItem(id, name, value, description, rarity, subtype, maxStack, effects, iconPath);
 				}
 
 				if (string.Equals(category, "Consumable", StringComparison.OrdinalIgnoreCase))
 				{
-					return new ConsumeItem(id, name, value, description, rarity, subtype, maxStack, effects);
+					return new ConsumeItem(id, name, value, description, rarity, subtype, maxStack, effects, iconPath);
 				}
 
 				if (string.Equals(category, "Armor", StringComparison.OrdinalIgnoreCase))
 				{
-					return new ArmorItem(id, name, value, description, rarity, subtype, maxStack, effects);
+					return new ArmorItem(id, name, value, description, rarity, subtype, maxStack, effects, iconPath);
 				}
 
 				if (string.Equals(category, "Weapon", StringComparison.OrdinalIgnoreCase))
 				{
-					return new WeaponItem(id, name, value, description, rarity, maxStack, effects);
+					return new WeaponItem(
+						id,
+						name,
+						value,
+						description,
+						rarity,
+						maxStack,
+						effects,
+						iconPath,
+						weaponUpDrawPath,
+						weaponDownDrawPath,
+						weaponUpStowPath,
+						weaponDownStowPath);
 				}
 
-				return new BasicInventoryItem(id, name, value, description, rarity, effects, category: category, subtype: subtype, maxStack: maxStack);
+				return new BasicInventoryItem(id, name, value, description, rarity, effects, category: category, subtype: subtype, maxStack: maxStack, iconPath: iconPath);
 			}
 
 		private void LoadItemEffectsFromCsv(IReadOnlyList<string> headers, IReadOnlyList<string[]> rows, string sourcePath)

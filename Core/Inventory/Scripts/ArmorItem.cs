@@ -18,8 +18,9 @@ namespace ethra.V1
             string rarity,
             string slot,
             int maxStack,
-            List<ItemEffects> effects = null)
-            : base(id, name, value, description, rarity, effects, category: "Armor", subtype: slot, maxStack: maxStack)
+            List<ItemEffects> effects = null,
+            string iconPath = "")
+            : base(id, name, value, description, rarity, effects, category: "Armor", subtype: slot, maxStack: maxStack, iconPath: iconPath)
         {
         }
 

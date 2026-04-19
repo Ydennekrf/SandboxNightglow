@@ -218,7 +218,7 @@ namespace ethra.V1
 
 				DB.FillCsvRepo(ItemCsvPath, MasterRepository.RepoLoadType.Items, new[]
 						{
-							"id", "name", "category", "description", "rarity", "sell_value", "subtype", "max_stack"
+							"id", "name", "category", "description", "rarity", "sell_value", "subtype", "max_stack", "icon_path", "weapon_up_draw_path", "weapon_down_draw_path", "weapon_up_stow_path", "weapon_down_stow_path"
 						});
 					}
 
@@ -235,12 +235,6 @@ namespace ethra.V1
 					"item_id", "effect_type", "effect_stat", "effect_power"
 				});
 		}
-
-			DB.FillCsvRepo(ItemCsvPath, MasterRepository.RepoLoadType.Items, new[]
-				{
-					"id", "name", "category", "description", "rarity", "sell_value", "subtype", "max_stack"
-				});
-			}
 
 	public void GetAllScenes()
 		{
