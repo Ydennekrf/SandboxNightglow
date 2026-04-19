@@ -70,6 +70,8 @@ namespace ethra.V1
 	[Export] public string DialogCsvPath = string.Empty;
 	[ExportSubgroup("Item CSV")]
 	[Export] public string ItemCsvPath = "res://Core/Inventory/Data/items_seed.csv";
+	[ExportSubgroup("Item Effects CSV")]
+	[Export] public string ItemEffectsCsvPath = "res://Core/Inventory/Data/item_effects_seed.csv";
 
 	[ExportGroup("Player Exports")]
 		[ExportSubgroup("StateMachine")]
@@ -189,6 +191,7 @@ namespace ethra.V1
 			registerManager(_ui);
 
 			GetAllItems();
+			GetAllItemEffects();
 			GetAllDialog();
 			GetAllScenes();
 
@@ -211,6 +214,26 @@ namespace ethra.V1
 		{
 			GD.PushWarning("GetAllItems: ItemCsvPath is empty. Skipping item csv load.");
 			return;
+		}
+
+				DB.FillCsvRepo(ItemCsvPath, MasterRepository.RepoLoadType.Items, new[]
+						{
+							"id", "name", "category", "description", "rarity", "sell_value", "subtype", "max_stack"
+						});
+					}
+
+		public void GetAllItemEffects()
+		{
+			if (string.IsNullOrWhiteSpace(ItemEffectsCsvPath))
+			{
+				GD.PushWarning("GetAllItemEffects: ItemEffectsCsvPath is empty. Skipping item effects csv load.");
+				return;
+			}
+
+			DB.FillCsvRepo(ItemEffectsCsvPath, MasterRepository.RepoLoadType.ItemEffects, new[]
+				{
+					"item_id", "effect_type", "effect_stat", "effect_power"
+				});
 		}
 
 			DB.FillCsvRepo(ItemCsvPath, MasterRepository.RepoLoadType.Items, new[]
