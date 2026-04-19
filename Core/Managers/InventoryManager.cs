@@ -7,6 +7,7 @@ namespace ethra.V1
 {
     public partial class InventoryManager :  ISaveable, IInventory
 	{
+        private const bool DebugWeaponVisuals = true;
 		private string _saveKey = "Inventory";
         /// <summary>
         /// <id, count>
@@ -45,6 +46,7 @@ namespace ethra.V1
                 if(count + 1 <= maxAllowed)
                 {
                      _itemDict[id] = count + 1;
+                     Changed?.Invoke();
                      return true;
                 }
                 else
@@ -57,6 +59,7 @@ namespace ethra.V1
             else
             {
                 _itemDict.Add(id, 1);
+                Changed?.Invoke();
                 return true;
             }
         }
@@ -103,6 +106,7 @@ namespace ethra.V1
             }
 
             GD.Print($"Dropped item id:{id}. Remaining quantity: {_itemDict.GetValueOrDefault(id, 0)}");
+            Changed?.Invoke();
         }
 
 
@@ -114,6 +118,7 @@ namespace ethra.V1
             if(snapshot is InventorySave inventorySave)
             {
                 RestoreFromInventorySave(inventorySave);
+                Changed?.Invoke();
                 return;
             }
 
@@ -131,6 +136,8 @@ namespace ethra.V1
                     AddItem(i);
                 }
             }
+
+            Changed?.Invoke();
         }
 
         public void UseItem(int id)
@@ -154,12 +161,14 @@ namespace ethra.V1
                 if (itemToUse is ArmorItem armor)
                 {
                     ToggleArmorEquip(armor);
+                    Changed?.Invoke();
                     return;
                 }
 
                 if (itemToUse is WeaponItem weapon)
                 {
                     ToggleWeaponEquip(weapon);
+                    Changed?.Invoke();
                     return;
                 }
 
@@ -169,6 +178,7 @@ namespace ethra.V1
                 {
                     int remaining = ConsumeOne(id);
                     GD.Print($"Consumed item id:{id}. Remaining quantity: {remaining}");
+                    Changed?.Invoke();
                 }
             }
             else
@@ -215,6 +225,7 @@ namespace ethra.V1
                 {
                     weapon.Unequip();
                     _equippedWeaponBySlot.Remove(slot);
+                    ApplyEquippedWeaponVisuals();
                     return;
                 }
 
@@ -227,6 +238,7 @@ namespace ethra.V1
 
             weapon.Equip();
             _equippedWeaponBySlot[slot] = weapon.Id;
+            ApplyEquippedWeaponVisuals();
         }
 
         private int ConsumeOne(int id)
@@ -318,6 +330,8 @@ namespace ethra.V1
                     _equippedWeaponBySlot[kvp.Key] = kvp.Value;
                 }
             }
+
+            ApplyEquippedWeaponVisuals();
         }
 
         private void UnequipItemIfNeeded(int id)
@@ -345,6 +359,7 @@ namespace ethra.V1
             else if (item is WeaponItem weapon)
             {
                 weapon.Unequip();
+                ApplyEquippedWeaponVisuals();
                 string foundSlot = null;
                 foreach (var slot in _equippedWeaponBySlot)
                 {
@@ -382,6 +397,78 @@ namespace ethra.V1
 
             _equippedArmorBySlot.Clear();
             _equippedWeaponBySlot.Clear();
+            ApplyEquippedWeaponVisuals();
+        }
+
+        public IReadOnlyDictionary<int, int> GetItemCounts()
+        {
+            return new Dictionary<int, int>(_itemDict);
+        }
+
+        public IReadOnlyDictionary<string, int> GetEquippedArmor()
+        {
+            return new Dictionary<string, int>(_equippedArmorBySlot);
+        }
+
+        public IReadOnlyDictionary<string, int> GetEquippedWeapons()
+        {
+            return new Dictionary<string, int>(_equippedWeaponBySlot);
+        }
+
+        private void ApplyEquippedWeaponVisuals()
+        {
+            GameManager gm = GameManager.Instance;
+            if (gm == null)
+            {
+                if (DebugWeaponVisuals)
+                {
+                    GD.Print("InventoryManager.ApplyEquippedWeaponVisuals: skipped (GameManager.Instance is null).");
+                }
+                return;
+            }
+
+            SceneTree tree = gm.GetTree();
+            if (tree == null)
+            {
+                if (DebugWeaponVisuals)
+                {
+                    GD.Print("InventoryManager.ApplyEquippedWeaponVisuals: skipped (SceneTree is null).");
+                }
+                return;
+            }
+
+            PlayerNode playerNode = tree.GetFirstNodeInGroup("Player") as PlayerNode;
+            if (playerNode == null)
+            {
+                if (DebugWeaponVisuals)
+                {
+                    GD.Print("InventoryManager.ApplyEquippedWeaponVisuals: skipped (no PlayerNode in group 'Player').");
+                }
+                return;
+            }
+
+            if (_equippedWeaponBySlot.TryGetValue("MainHand", out int weaponId)
+                && _db.GetItemFromRepo(weaponId) is WeaponItem weapon)
+            {
+                if (DebugWeaponVisuals)
+                {
+                    GD.Print($"InventoryManager.ApplyEquippedWeaponVisuals: applying weapon id={weaponId} name='{weapon.Name}'.");
+                }
+
+                playerNode.ApplyWeaponSprites(
+                    weapon.WeaponUpDraw ?? gm.WepUpDraw,
+                    weapon.WeaponDownDraw ?? gm.WepDownDraw,
+                    weapon.WeaponUpStow ?? gm.WepUpStow,
+                    weapon.WeaponDownStow ?? gm.WepDownStow);
+                return;
+            }
+
+            if (DebugWeaponVisuals)
+            {
+                GD.Print("InventoryManager.ApplyEquippedWeaponVisuals: no equipped MainHand weapon, applying GameManager fallback sprites.");
+            }
+
+            playerNode.ApplyWeaponSprites(gm.WepUpDraw, gm.WepDownDraw, gm.WepUpStow, gm.WepDownStow);
         }
 
 

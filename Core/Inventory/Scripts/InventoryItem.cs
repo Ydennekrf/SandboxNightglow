@@ -13,6 +13,8 @@ namespace ethra.V1
         protected string _category;
         protected string _subtype;
         protected int _maxStack = 99;
+        protected string _iconPath;
+        protected Texture2D _icon;
         protected List<ItemEffects> _effects;
         protected int _resolveOrder = 15;
         protected Entity _owner;
@@ -25,6 +27,8 @@ namespace ethra.V1
         public string Category => _category;
         public string Subtype => _subtype;
         public int MaxStack => _maxStack;
+        public string IconPath => _iconPath;
+        public Texture2D Icon => _icon;
         public List<ItemEffects> Effects => _effects;
         public Entity Owner => _owner;
 
@@ -35,7 +39,7 @@ namespace ethra.V1
             _effects = new List<ItemEffects>();
         }
 
-        protected InventoryItem(int id, string name, int value, string description, string rarity, List<ItemEffects> effects = null, string category = "", string subtype = "", int maxStack = 99)
+        protected InventoryItem(int id, string name, int value, string description, string rarity, List<ItemEffects> effects = null, string category = "", string subtype = "", int maxStack = 99, string iconPath = "")
         {
             _id = id;
             _name = name;
@@ -45,7 +49,25 @@ namespace ethra.V1
             _category = category;
             _subtype = subtype;
             _maxStack = maxStack > 0 ? maxStack : 99;
+            _iconPath = iconPath;
+            _icon = LoadTexture(iconPath);
             _effects = effects ?? new List<ItemEffects>();
+        }
+
+        protected static Texture2D LoadTexture(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return null;
+            }
+
+            Texture2D texture = ResourceLoader.Load<Texture2D>(path);
+            if (texture == null)
+            {
+                GD.PushWarning($"InventoryItem: failed to load icon texture at '{path}'.");
+            }
+
+            return texture;
         }
 
         public ItemInfo GetInfo()

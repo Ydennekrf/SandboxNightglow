@@ -35,6 +35,7 @@ namespace ethra.V1
             if (Icon != null)
             {
                 Icon.Visible = false;
+                Icon.Texture = null;
             }
 
             SetSelected(false);
@@ -54,6 +55,7 @@ namespace ethra.V1
             if (Icon != null)
             {
                 Icon.Visible = item != null;
+                Icon.Texture = item?.Icon;
             }
         }
 
