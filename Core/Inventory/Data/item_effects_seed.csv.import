@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://p7w3bw6lwvvy"
+
+[deps]
+
+files=["res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation"]
+
+source_file="res://Core/Inventory/Data/item_effects_seed.csv"
+dest_files=["res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

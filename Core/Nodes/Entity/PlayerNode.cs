@@ -86,22 +86,22 @@ namespace ethra.V1
 
 		public void ApplyWeaponSprites(Texture2D upDraw, Texture2D downDraw, Texture2D upStow, Texture2D downStow)
 		{
-			if (_wepUpDraw != null && upDraw != null)
+			if (_wepUpDraw != null)
 			{
 				_wepUpDraw.Texture = upDraw;
 			}
 
-			if (_wepDownDraw != null && downDraw != null)
+			if (_wepDownDraw != null)
 			{
 				_wepDownDraw.Texture = downDraw;
 			}
 
-			if (_wepUpStow != null && upStow != null)
+			if (_wepUpStow != null)
 			{
 				_wepUpStow.Texture = upStow;
 			}
 
-			if (_wepDownStow != null && downStow != null)
+			if (_wepDownStow != null)
 			{
 				_wepDownStow.Texture = downStow;
 			}
