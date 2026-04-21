@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 ## Purpose
 
@@ -61,6 +61,36 @@ When fixing a bug or adding a feature:
 - avoid unrelated cleanups
 - avoid broad renames unless necessary
 - preserve public APIs unless the task requires changing them
+
+### 5. Plan Node Default
+ - Enter Plan mode for ANY non-trivial task (3+ steps or architectural decisions)
+ -if something goes sideways, STOP and re-plan immediately - dont keep pushing
+ - Use plan mode for verification steps, not just building
+ - Write detailed steps up from to reduce ambiguity
+
+### 6. Subagent Strategy
+ - Use subagents liberally to keep main context window clean
+ - Offload research, exploration, and parallel analysis to subagents
+ - For complex problems, throw more compute at it via subagents
+ - One tack per subagent for focused execution
+
+### 7. Self-improvment loop
+ - Write rules for yourself that prevent the same mistake
+ - Ruthlessly iterate on these lessons until the mistake rate drops
+ - Review lessons at start for relevant project
+
+### 8. Verification before done
+ - Ask yourself would a staff engineer approve this?
+ - Run tests check logs, demonstrate correctness
+### 9. Demand Elegance (Balanced)
+ - for non trivial challenges: pause and ask "is there a more elegant way?"
+ - if a fix feels hacky: "knowing everything i know now, implement the elegant solution"
+ - Skip this for simple, chivious fixes - dont over-engineer
+ - Challenge your own work before presenting it
+
+### Core Principals
+1. **Simplicity first**: make every change as simple as possible. Impact minimal code.
+2. **No Laziness**: Find root causes. No Temporary fixes. Senior Developer Standards
 
 ---
 
