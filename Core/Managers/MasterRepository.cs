@@ -295,6 +295,7 @@ namespace ethra.V1
 						string weaponDownDrawPath = GetString(headerIndex, row, "weapon_down_draw_path");
 						string weaponUpStowPath = GetString(headerIndex, row, "weapon_up_stow_path");
 						string weaponDownStowPath = GetString(headerIndex, row, "weapon_down_stow_path");
+						string comboProfilePath = GetString(headerIndex, row, "combo_profile_path");
 						int value = GetIntOrDefault(headerIndex, row, "sell_value", 0);
 						int maxStack = GetIntOrDefault(headerIndex, row, "max_stack", 99);
 
@@ -319,7 +320,8 @@ namespace ethra.V1
 								weaponUpDrawPath,
 								weaponDownDrawPath,
 								weaponUpStowPath,
-								weaponDownStowPath);
+								weaponDownStowPath,
+								comboProfilePath);
 							_itemRepo.Add(id, item);
 							loaded++;
 						}
@@ -341,7 +343,8 @@ namespace ethra.V1
 				string weaponUpDrawPath,
 				string weaponDownDrawPath,
 				string weaponUpStowPath,
-				string weaponDownStowPath)
+				string weaponDownStowPath,
+				string comboProfilePath)
 			{
 				if (string.Equals(category, "Crafting", StringComparison.OrdinalIgnoreCase))
 				{
@@ -372,7 +375,8 @@ namespace ethra.V1
 						weaponUpDrawPath,
 						weaponDownDrawPath,
 						weaponUpStowPath,
-						weaponDownStowPath);
+						weaponDownStowPath,
+						comboProfilePath);
 				}
 
 				return new BasicInventoryItem(id, name, value, description, rarity, effects, category: category, subtype: subtype, maxStack: maxStack, iconPath: iconPath);

@@ -22,9 +22,49 @@ namespace ethra.V1
         private int _luk;
 
         public int MaxHP {get{return _maxHP;} set{_maxHP = value;}}
-        public int CurHP {get{return _curHP;} set{if(_curHP + value > _maxHP){_curHP = _maxHP;} else {_curHP += value;}}}
+        public int CurHP
+        {
+            get { return _curHP; }
+            set
+            {
+                int next = _curHP + value;
+                if (next > _maxHP)
+                {
+                    _curHP = _maxHP;
+                    return;
+                }
+
+                if (next < 0)
+                {
+                    _curHP = 0;
+                    return;
+                }
+
+                _curHP = next;
+            }
+        }
         public int MaxMana {get{return _maxMana;} set{_maxMana = value;}}
-        public int CurMana {get{return _curMana;} set{if(_curMana + value > _maxMana){_curMana = _maxMana;} else {_curMana += value;}}}
+        public int CurMana
+        {
+            get { return _curMana; }
+            set
+            {
+                int next = _curMana + value;
+                if (next > _maxMana)
+                {
+                    _curMana = _maxMana;
+                    return;
+                }
+
+                if (next < 0)
+                {
+                    _curMana = 0;
+                    return;
+                }
+
+                _curMana = next;
+            }
+        }
         public int Strength {get{return _str;} set {if(_str + value > 99){_str = 99;} else{_str = value;}}}
         public int Dexterity {get{return _dex;} set {if(_dex + value > 99){_dex = 99;} else{_dex = value;}}}
         public int Intelligence {get{return _int;} set {if(_int + value > 99){_int = 99;} else{_int = value;}}}

@@ -69,18 +69,33 @@ namespace ethra.V1
             );
             
 
+            BaseState attack = new BaseState
+            (
+                "Attack",
+                owner,
+                baseActions: new List<IStateAction>
+                {
+                    new AttackAction()
+                },
+                baseTransitions: new List<IStateTransition>()
+            );
+            
             idle.Transitions.Add(new DodgePressedTransition(dodge));
             idle.Transitions.Add(new MoveInputNonZeroTransition(walk));
             idle.Transitions.Add(new RunPressedTransition(run));
+            idle.Transitions.Add(new AttackPressedTransition(attack));
             walk.Transitions.Add(new DodgePressedTransition(dodge));
             walk.Transitions.Add(new MoveInputZeroTransition(idle));
             walk.Transitions.Add(new RunPressedTransition(run));
+            walk.Transitions.Add(new AttackPressedTransition(attack));
             run.Transitions.Add(new DodgePressedTransition(dodge));
             run.Transitions.Add(new MoveInputZeroTransition(idle));
             run.Transitions.Add(new RunReleasedTransition(walk));
+            run.Transitions.Add(new AttackPressedTransition(attack));
             dodge.Transitions.Add(new DodgeCompleteTransition(idle, walk, run));
+            attack.Transitions.Add(new AttackCompleteTransition(idle, walk, run));
 
-            return new List<BaseState> {idle, walk, run, dodge};
+            return new List<BaseState> {idle, walk, run, dodge, attack};
 
         }
 
