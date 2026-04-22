@@ -77,7 +77,13 @@ namespace ethra.V1
 			_player.Tick(dt);
 			ApplyAttackOverlay(_player.CurrentAttackOverlay);
 
-			Velocity = _player.DesiredVelocity;
+			Vector2 desiredVelocity = _player.DesiredVelocity;
+			if (_gm?.Combat != null)
+			{
+				desiredVelocity = _gm.Combat.ResolveMovementVelocity(_player, desiredVelocity);
+			}
+
+			Velocity = desiredVelocity;
 
 			MoveAndSlide();
 
