@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="WeaponComboResource" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://Core/Combat/Scripts/WeaponComboResource.cs" id="1"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/ComboPhaseResource.cs" id="2"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/AttackPayloadResource.cs" id="3"]
+
+[sub_resource type="Resource" id="AttackPayloadResource_melee_1"]
+script = ExtResource("3")
+OverlayMode = 1
+ManaCost = 0
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+ElementType = ""
+BasePower = 1.0
+EffectIds = Array[String]([])
+EffectDurationSeconds = 0.0
+
+[sub_resource type="Resource" id="AttackPayloadResource_magic_1"]
+script = ExtResource("3")
+OverlayMode = 2
+ManaCost = 8
+DeliveryShapeId = "Cone"
+DamageType = "Elemental"
+ElementType = "Ice"
+BasePower = 1.1
+EffectIds = Array[String](["Slow"])
+EffectDurationSeconds = 5.0
+
+[sub_resource type="Resource" id="AttackPayloadResource_melee_2"]
+script = ExtResource("3")
+OverlayMode = 1
+ManaCost = 0
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+ElementType = ""
+BasePower = 1.2
+EffectIds = Array[String](["Knockback"])
+EffectDurationSeconds = 0.0
+
+[sub_resource type="Resource" id="ComboPhaseResource_a"]
+script = ExtResource("2")
+SharedAnimationName = "Melee1"
+PreferFacingSuffix = true
+DurationOverrideSeconds = 0.0
+ActiveWindowStart = 0.0
+ActiveWindowEnd = 0.0
+BufferWindowStart = 0.0
+BufferWindowEnd = 0.0
+MeleePayload = SubResource("AttackPayloadResource_melee_1")
+MagicPayload = SubResource("AttackPayloadResource_magic_1")
+
+[sub_resource type="Resource" id="ComboPhaseResource_b"]
+script = ExtResource("2")
+SharedAnimationName = "Melee2"
+PreferFacingSuffix = true
+DurationOverrideSeconds = 0.0
+ActiveWindowStart = 0.0
+ActiveWindowEnd = 0.0
+BufferWindowStart = 0.0
+BufferWindowEnd = 0.0
+MeleePayload = SubResource("AttackPayloadResource_melee_2")
+MagicPayload = SubResource("AttackPayloadResource_magic_1")
+
+[sub_resource type="Resource" id="ComboPhaseResource_c"]
+script = ExtResource("2")
+SharedAnimationName = "Melee3"
+PreferFacingSuffix = true
+DurationOverrideSeconds = 0.0
+ActiveWindowStart = 0.0
+ActiveWindowEnd = 0.0
+BufferWindowStart = 0.0
+BufferWindowEnd = 0.0
+MeleePayload = SubResource("AttackPayloadResource_melee_2")
+MagicPayload = SubResource("AttackPayloadResource_magic_1")
+
+[resource]
+script = ExtResource("1")
+Phases = Array[Resource]([SubResource("ComboPhaseResource_a"), SubResource("ComboPhaseResource_b"), SubResource("ComboPhaseResource_c")])

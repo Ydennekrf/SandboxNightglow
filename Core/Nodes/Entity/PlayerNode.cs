@@ -8,10 +8,13 @@ namespace ethra.V1
 	public partial class PlayerNode : CharacterBody2D
 	{
 		private const bool DebugWeaponVisuals = true;
+		private const bool DebugCombatInput = true;
+		private const bool DebugCombatFeedback = true;
 		private Player _player;
 		private AnimationPlayer _anim;
 		private GameManager _gm;
 		private string _lastAnim = "";
+		private AttackOverlayMode _lastOverlayMode = AttackOverlayMode.None;
 
 		#region Sprites
 
@@ -60,7 +63,19 @@ namespace ethra.V1
 			_player.MoveInput = Input.GetVector("Left", "Right", "Up", "Down");
 			_player.RunPressed = Input.IsActionPressed("Run");
 			_player.DodgePressed = Input.IsActionJustPressed("Dodge");
+			_player.MeleePressed = Input.IsActionJustPressed("Attack");
+			_player.MagicPressed = Input.IsActionJustPressed("MagicAttack");
+			_player.AttackPressed = _player.MeleePressed || _player.MagicPressed;
+			if (_player.AttackPressed)
+			{
+				_player.PendingAttackInput = _player.MagicPressed ? AttackInputType.Magic : AttackInputType.Melee;
+				if (DebugCombatInput)
+				{
+					GD.Print($"PlayerNode: attack input queued type={_player.PendingAttackInput} phase={_player.AttackPhase}");
+				}
+			}
 			_player.Tick(dt);
+			ApplyAttackOverlay(_player.CurrentAttackOverlay);
 
 			Velocity = _player.DesiredVelocity;
 
@@ -81,6 +96,24 @@ namespace ethra.V1
 				{
 					GD.PushWarning($"Animation not found: '{animName}'");
 				}
+			}
+		}
+
+
+		private void ApplyAttackOverlay(AttackOverlayMode mode)
+		{
+			if (_overlay == null)
+			{
+				return;
+			}
+
+			// Temporary visual toggle until dedicated melee/magic overlay textures are wired.
+			_overlay.Visible = mode == AttackOverlayMode.Magic;
+
+			if (DebugCombatFeedback && mode != _lastOverlayMode)
+			{
+				GD.Print($"PlayerNode: overlay mode changed {_lastOverlayMode} -> {mode}");
+				_lastOverlayMode = mode;
 			}
 		}
 
