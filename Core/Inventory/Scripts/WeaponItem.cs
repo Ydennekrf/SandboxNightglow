@@ -113,6 +113,8 @@ namespace ethra.V1
                 GD.Print($"WeaponItem: loaded combo profile '{path}' with phaseCount={profile.Phases?.Count ?? 0}.");
             }
 
+            ComboProfileValidator.EmitToGodotLog(profile, $"Weapon '{path}'");
+
             return profile;
         }
     }

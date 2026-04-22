@@ -24,6 +24,7 @@ namespace ethra.V1
         private readonly Dictionary<string, Func<AttackPayloadPacket, IReadOnlyList<Entity>>> _deliveryHandlers = new(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<string, Action<Entity, AttackPayloadPacket, string>> _effectHandlers = new(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<Entity, Dictionary<string, StatusRuntime>> _activeStatuses = new();
+        private readonly Dictionary<Entity, Vector2> _knockbackVelocities = new();
         private readonly RandomNumberGenerator _rng = new();
 
         public string SaveKey => _saveKey;
@@ -84,6 +85,11 @@ namespace ethra.V1
         public bool CanHit(Entity attacker, Entity target, string abilityId)
         {
             if (attacker == null || target == null)
+            {
+                return false;
+            }
+
+            if (HasStatus(attacker, "Stun"))
             {
                 return false;
             }
@@ -196,6 +202,46 @@ namespace ethra.V1
             {
                 _activeStatuses.Remove(target);
             }
+
+            if (string.Equals(statusId, "Knockback", StringComparison.OrdinalIgnoreCase))
+            {
+                _knockbackVelocities.Remove(target);
+            }
+        }
+
+        public bool HasStatus(Entity target, string statusId)
+        {
+            if (target == null || string.IsNullOrWhiteSpace(statusId))
+            {
+                return false;
+            }
+
+            return _activeStatuses.TryGetValue(target, out Dictionary<string, StatusRuntime> statusMap)
+                && statusMap.TryGetValue(statusId, out StatusRuntime runtime)
+                && runtime.Stacks > 0;
+        }
+
+        public Vector2 ResolveMovementVelocity(Entity target, Vector2 desiredVelocity)
+        {
+            if (target == null)
+            {
+                return desiredVelocity;
+            }
+
+            Vector2 finalVelocity = desiredVelocity;
+            if (HasStatus(target, "Stun") || HasStatus(target, "Root"))
+            {
+                finalVelocity = Vector2.Zero;
+            }
+
+            finalVelocity *= GetSlowMultiplier(target);
+
+            if (_knockbackVelocities.TryGetValue(target, out Vector2 knockback))
+            {
+                finalVelocity += knockback;
+            }
+
+            return finalVelocity;
         }
 
         public void Resolve()
@@ -302,16 +348,23 @@ namespace ethra.V1
             _deliveryHandlers["Linear"] = packet => GetEnemyTargets();
 
             _effectHandlers["Knockback"] = (target, packet, effectId) =>
-                ApplyStatus(target, "Knockback", 1, packet.Payload.EffectDurationSeconds, packet.Source);
+            {
+                ApplyKnockbackImpulse(target, packet);
+
+                if (packet.Payload.EffectDurationSeconds > 0f)
+                {
+                    ApplyStatus(target, effectId, 1, packet.Payload.EffectDurationSeconds, packet.Source);
+                }
+            };
 
             _effectHandlers["Slow"] = (target, packet, effectId) =>
-                ApplyStatus(target, "Slow", 1, packet.Payload.EffectDurationSeconds, packet.Source);
+                ApplyStatus(target, effectId, 1, packet.Payload.EffectDurationSeconds, packet.Source);
 
             _effectHandlers["Stun"] = (target, packet, effectId) =>
-                ApplyStatus(target, "Stun", 1, packet.Payload.EffectDurationSeconds, packet.Source);
+                ApplyStatus(target, effectId, 1, packet.Payload.EffectDurationSeconds, packet.Source);
 
             _effectHandlers["Root"] = (target, packet, effectId) =>
-                ApplyStatus(target, "Root", 1, packet.Payload.EffectDurationSeconds, packet.Source);
+                ApplyStatus(target, effectId, 1, packet.Payload.EffectDurationSeconds, packet.Source);
         }
 
         private List<Entity> GetEnemyTargets()
@@ -392,6 +445,7 @@ namespace ethra.V1
         {
             if (delta <= 0f || _activeStatuses.Count == 0)
             {
+                TickKnockback(delta);
                 return;
             }
 
@@ -417,6 +471,69 @@ namespace ethra.V1
             foreach ((Entity target, string status) in expired)
             {
                 RemoveStatus(target, status, int.MaxValue);
+            }
+
+            TickKnockback(delta);
+        }
+
+        private float GetSlowMultiplier(Entity target)
+        {
+            if (!_activeStatuses.TryGetValue(target, out Dictionary<string, StatusRuntime> statusMap))
+            {
+                return 1f;
+            }
+
+            if (!statusMap.TryGetValue("Slow", out StatusRuntime runtime) || runtime.Stacks <= 0)
+            {
+                return 1f;
+            }
+
+            float multiplier = 1f - 0.35f * runtime.Stacks;
+            return Mathf.Clamp(multiplier, 0.2f, 1f);
+        }
+
+        private void ApplyKnockbackImpulse(Entity target, AttackPayloadPacket packet)
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            Vector2 direction = packet.ForwardDirection;
+            if (direction.LengthSquared() <= 0.0001f)
+            {
+                direction = Vector2.Right;
+            }
+
+            direction = direction.Normalized();
+            const float impulseSpeed = 220f;
+            _knockbackVelocities[target] = direction * impulseSpeed;
+        }
+
+        private void TickKnockback(float delta)
+        {
+            if (delta <= 0f || _knockbackVelocities.Count == 0)
+            {
+                return;
+            }
+
+            List<Entity> completed = new();
+            foreach ((Entity target, Vector2 velocity) in _knockbackVelocities)
+            {
+                Vector2 damped = velocity.MoveToward(Vector2.Zero, 900f * delta);
+                if (damped.LengthSquared() <= 0.01f)
+                {
+                    completed.Add(target);
+                }
+                else
+                {
+                    _knockbackVelocities[target] = damped;
+                }
+            }
+
+            foreach (Entity entity in completed)
+            {
+                _knockbackVelocities.Remove(entity);
             }
         }
 
