@@ -43,6 +43,7 @@ namespace ethra.V1
 		// ==== Game Manager specific fields =====//
 
 	private int _saveslot;
+	private const int StarterWeaponItemId = 2001;
 
 	private List<IResolveable> _resolveList;
 	public int ResolveOrder => _resolveOrder;
@@ -289,20 +290,80 @@ namespace ethra.V1
 	}
 
 	public Player CreatePlayerModel()
-{
-	// Create the FSM here so the flow is explicit
-	IStateMachine fsm = new StateMachine();
+	{
+		// Create the FSM here so the flow is explicit
+		IStateMachine fsm = new StateMachine();
 
-	// Delegate actual construction to EntityManager
-	Player player = _entity.CreatePlayer(
-		combat: _combat,
-		inventory: _inventory,
-		fsm: fsm
-	);
-			
+		// Delegate actual construction to EntityManager
+		Player player = _entity.CreatePlayer(
+			combat: _combat,
+			inventory: _inventory,
+			fsm: fsm
+		);
 
-	return player;
-}
+		InitializeNewGamePlayer(player);
+		EquipStarterWeapon(player);
+		EnsureStarterEnemyRegistered();
+
+		return player;
+	}
+
+	private void InitializeNewGamePlayer(Player player)
+	{
+		if (player == null)
+		{
+			return;
+		}
+
+		player.SetName("Player");
+		player.InitializeStats(
+			maxHp: ToStat(hpBase),
+			maxMana: ToStat(mpBase),
+			strength: ToStat(strBase),
+			dexterity: ToStat(dexBase),
+			intelligence: ToStat(intBase),
+			spirit: ToStat(spiBase),
+			vitality: ToStat(vitBase),
+			luck: ToStat(lukBase));
+	}
+
+	private void EquipStarterWeapon(Player player)
+	{
+		if (player == null)
+		{
+			return;
+		}
+
+		if (_db.GetItemFromRepo(StarterWeaponItemId) is not InventoryItem item)
+		{
+			GD.PushWarning($"Starter weapon id {StarterWeaponItemId} was not found in the item repository.");
+			return;
+		}
+
+		item.SetOwner(player);
+		_inventory.AddItem(StarterWeaponItemId);
+		_inventory.UseItem(StarterWeaponItemId);
+	}
+
+	private void EnsureStarterEnemyRegistered()
+	{
+		if (_entity.registeredEnemies.Count > 0)
+		{
+			return;
+		}
+
+		_entity.CreateEnemy(
+			name: "Training Dummy",
+			level: 1,
+			entity: _entity,
+			combat: _combat,
+			fsm: new StateMachine());
+	}
+
+	private static int ToStat(double value)
+	{
+		return Math.Max(0, Mathf.RoundToInt((float)value));
+	}
 
 	public void SpawnPlayerAfterSceneLoad()
 	{
