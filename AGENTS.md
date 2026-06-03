@@ -387,3 +387,69 @@ When in doubt:
 
 If a task involves Godot scenes, you are allowed to help with scene/resource files **as text**, not only C# code.
 However, stay conservative and make structural edits only when the intent is clear.
+
+---
+
+## Local Godot/C# Debugging Setup
+
+This repository includes helper scripts under `tools/`.
+
+Use these scripts instead of inventing new commands:
+
+- `./tools/godot-doctor.ps1`
+  - Checks local Godot, .NET, solution, project, and configured scene paths.
+
+- `./tools/build.ps1`
+  - Builds the C# solution at `E:\GameProject\Godot-Projects\ParksSandbox\parkssandbox\ParksSandbox.sln`.
+
+- `./tools/run-game.ps1`
+  - Launches the full Godot project from `E:\GameProject\Godot-Projects\ParksSandbox\parkssandbox`.
+
+- `./tools/run-test-scene.ps1`
+  - Launches a specific Godot scene.
+  - Default scene: `res://PackedScenes/EthraV1/Core/Debug/CombatDebugScene.tscn`.
+
+- `./tools/run-combat-debug.ps1`
+  - Launches the combat debug scene.
+
+- `./tools/run-movement-debug.ps1`
+  - Launches the movement debug scene.
+
+### Debugging rules
+
+- Always run `./tools/build.ps1` before attempting runtime debugging.
+- If the build fails, fix compile errors before runtime issues.
+- Prefer small debug scenes over the full game when testing focused systems.
+- If an error appears unrelated to the current task, report it and stop.
+- Do not make broad architecture changes just to make a local test pass.
+- Do not add new packages.
+- Temporary debug logs are allowed while investigating, but remove noisy logs before finalizing unless they are behind a clear debug flag.
+- Do not claim a feature works unless it was built or run successfully.
+- Include the exact command run and relevant error output in the final summary.
+
+## Local Project Paths
+
+- Godot executable: `E:\GameProject\Godot\Godot_v4.6-stable_mono_win64\Godot_v4.6-stable_mono_win64.exe`
+- Project root: `E:\GameProject\Godot-Projects\ParksSandbox\parkssandbox`
+- Solution file: `E:\GameProject\Godot-Projects\ParksSandbox\parkssandbox\ParksSandbox.sln`
+- C# project file: `E:\GameProject\Godot-Projects\ParksSandbox\parkssandbox\ParksSandbox.csproj`
+- Main startup scene: `res://PackedScenes/EthraV1/Core/UI/MasterNode.tscn`
+- Main player scene: `res://PackedScenes/EthraV1/Core/Entities/Selene.tscn`
+
+## Codex Environment Expectations
+
+Codex may:
+
+- create helper scripts
+- create debug scenes when requested
+- inspect scenes, resources, and project configuration
+- add temporary logs during debugging
+
+Codex should ask first before modifying existing production scenes unless the user clearly requests the scene change.
+
+Codex must not:
+
+- introduce GDScript
+- add packages without approval
+- rewrite architecture without approval
+- treat pre-existing warnings as failures unless directly related to the task

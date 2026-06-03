@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/CombatDebugSceneRoot.cs" id="1_root"]
+[ext_resource type="PackedScene" uid="uid://dwvl0gweuelai" path="res://PackedScenes/EthraV1/Core/UI/game_manager.tscn" id="2_manager"]
+[ext_resource type="Script" uid="uid://cgqkopdsxrle8" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="3_world"]
+[ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="4_ui"]
+[ext_resource type="PackedScene" uid="uid://cjdjuph42khg1" path="res://PackedScenes/Characters/Enemy/training_dummy.tscn" id="5_dummy"]
+
+[node name="CombatDebugScene" type="Node2D"]
+script = ExtResource("1_root")
+TrainingDummyScene = ExtResource("5_dummy")
+
+[node name="GameManager" parent="." instance=ExtResource("2_manager")]
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("3_world")
+
+[node name="Map" type="Node2D" parent="World"]
+
+[node name="Entities" type="Node2D" parent="World"]
+
+[node name="Player" type="Node2D" parent="World/Entities"]
+
+[node name="Enemies" type="Node2D" parent="World/Entities"]
+
+[node name="NPCs" type="Node2D" parent="World/Entities"]
+
+[node name="SpawnPoints" type="Node2D" parent="World/Entities"]
+
+[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints"]
+
+[node name="Interactables" type="Node2D" parent="World"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_ui")
+PlayerMenuPath = NodePath("Menus/PlayerMenu")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menus" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 1
+
+[node name="MainMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 1
