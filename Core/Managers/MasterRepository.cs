@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Text.Json;
 using Godot;
 
 namespace ethra.V1
@@ -21,11 +22,13 @@ namespace ethra.V1
 		private Dictionary<string, PackedScene> _sceneRepo;
 
 		private Dictionary<int, InventoryItem> _itemRepo;
+		private Dictionary<string, DialogTree> _dialogTreeRepo;
 
 		public MasterRepository()
 		{
 			_sceneRepo = new Dictionary<string, PackedScene>();
 			_itemRepo = new Dictionary<int, InventoryItem>();
+			_dialogTreeRepo = new Dictionary<string, DialogTree>();
 		}
 
 		// dialog repo is a dictionary with and int for id and a DialogNode class object <int, DialogNode>
@@ -110,6 +113,62 @@ namespace ethra.V1
 			}
 		}
 
+		public void FillDialogTreeRepo(string rootPath)
+		{
+			if (string.IsNullOrWhiteSpace(rootPath))
+			{
+				GD.PushError("FillDialogTreeRepo: rootPath is empty.");
+				return;
+			}
+
+			if (!rootPath.EndsWith("/"))
+				rootPath += "/";
+
+			if (!DirAccess.DirExistsAbsolute(rootPath))
+			{
+				GD.PushError($"FillDialogTreeRepo: directory does not exist: {rootPath}");
+				return;
+			}
+
+			_dialogTreeRepo.Clear();
+			int loaded = 0;
+			int skipped = 0;
+
+			using var dir = DirAccess.Open(rootPath);
+			if (dir == null)
+			{
+				GD.PushError($"FillDialogTreeRepo: failed to open directory: {rootPath}");
+				return;
+			}
+
+			dir.ListDirBegin();
+			while (true)
+			{
+				string entry = dir.GetNext();
+				if (string.IsNullOrEmpty(entry))
+					break;
+
+				if (entry is "." or ".." || dir.CurrentIsDir())
+					continue;
+
+				if (!entry.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+					continue;
+
+				if (TryLoadDialogTree(rootPath + entry, out DialogTree tree))
+				{
+					_dialogTreeRepo[tree.TreeId] = tree;
+					loaded++;
+				}
+				else
+				{
+					skipped++;
+				}
+			}
+			dir.ListDirEnd();
+
+			GD.Print($"FillDialogTreeRepo: loaded={loaded} skipped={skipped} source={rootPath}");
+		}
+
 		public PackedScene GetSceneFromRepo(string sceneName)
 		{
 			if (string.IsNullOrWhiteSpace(sceneName)) return null;
@@ -119,6 +178,107 @@ namespace ethra.V1
 		public InventoryItem GetItemFromRepo(int id)
 		{
 			return _itemRepo.TryGetValue(id, out var item) ? item : null;
+		}
+
+		public DialogTree GetDialogTreeFromRepo(string treeId)
+		{
+			if (string.IsNullOrWhiteSpace(treeId))
+			{
+				return null;
+			}
+
+			return _dialogTreeRepo.TryGetValue(treeId, out DialogTree tree) ? tree : null;
+		}
+
+		private bool TryLoadDialogTree(string path, out DialogTree tree)
+		{
+			tree = null;
+			string json = FileAccess.GetFileAsString(path);
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				GD.PushWarning($"TryLoadDialogTree: dialog file was empty: {path}");
+				return false;
+			}
+
+			try
+			{
+				tree = JsonSerializer.Deserialize<DialogTree>(json, new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true
+				});
+			}
+			catch (JsonException ex)
+			{
+				GD.PushWarning($"TryLoadDialogTree: failed to parse {path}: {ex.Message}");
+				return false;
+			}
+
+			return ValidateDialogTree(tree, path);
+		}
+
+		private bool ValidateDialogTree(DialogTree tree, string sourcePath)
+		{
+			if (tree == null)
+			{
+				GD.PushWarning($"ValidateDialogTree: parsed null dialog tree from {sourcePath}.");
+				return false;
+			}
+
+			if (string.IsNullOrWhiteSpace(tree.TreeId))
+			{
+				GD.PushWarning($"ValidateDialogTree: dialog tree in {sourcePath} is missing TreeId.");
+				return false;
+			}
+
+			if (string.IsNullOrWhiteSpace(tree.StartingNodeId))
+			{
+				GD.PushWarning($"ValidateDialogTree: dialog tree '{tree.TreeId}' is missing StartingNodeId.");
+				return false;
+			}
+
+			if (tree.Nodes == null || tree.Nodes.Count == 0)
+			{
+				GD.PushWarning($"ValidateDialogTree: dialog tree '{tree.TreeId}' has no nodes.");
+				return false;
+			}
+
+			HashSet<string> nodeIds = new HashSet<string>();
+			foreach (DialogNode node in tree.Nodes)
+			{
+				if (string.IsNullOrWhiteSpace(node.NodeId))
+				{
+					GD.PushWarning($"ValidateDialogTree: dialog tree '{tree.TreeId}' has a node with empty NodeId.");
+					return false;
+				}
+
+				nodeIds.Add(node.NodeId);
+			}
+
+			if (!nodeIds.Contains(tree.StartingNodeId))
+			{
+				GD.PushWarning($"ValidateDialogTree: dialog tree '{tree.TreeId}' starts at missing node '{tree.StartingNodeId}'.");
+				return false;
+			}
+
+			foreach (DialogNode node in tree.Nodes)
+			{
+				if (node.Choices == null)
+				{
+					node.Choices = new List<DialogChoice>();
+					continue;
+				}
+
+				foreach (DialogChoice choice in node.Choices)
+				{
+					if (!string.IsNullOrWhiteSpace(choice.NextNodeId) && !nodeIds.Contains(choice.NextNodeId))
+					{
+						GD.PushWarning($"ValidateDialogTree: choice '{choice.ChoiceText}' in tree '{tree.TreeId}' points to missing node '{choice.NextNodeId}'.");
+						return false;
+					}
+				}
+			}
+
+			return true;
 		}
 
 		private void ScanDirRecursive(string dirPath, ref int added)

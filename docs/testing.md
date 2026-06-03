@@ -40,12 +40,25 @@ powershell -ExecutionPolicy Bypass -File ./tools/run-combat-debug.ps1
 powershell -ExecutionPolicy Bypass -File ./tools/run-movement-debug.ps1
 ```
 
+### Launch interaction debug scene
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ./tools/run-interaction-debug.ps1
+```
+
+### Launch dialog graph editor tool
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ./tools/run-dialog-graph-editor.ps1
+```
+
 ## Important Note About Debug Scenes
 
 The debug scene commands only work after the matching scenes exist:
 
 - `res://PackedScenes/EthraV1/Core/Debug/CombatDebugScene.tscn`
 - `res://PackedScenes/EthraV1/Core/Debug/MovementDebugScene.tscn`
+- `res://PackedScenes/EthraV1/Core/Debug/InteractionDebugScene.tscn`
 
 If these scenes do not exist yet, Godot will report `Cannot open file` / `Failed loading scene`. That means the script wiring is working, but the scene has not been created yet.
 

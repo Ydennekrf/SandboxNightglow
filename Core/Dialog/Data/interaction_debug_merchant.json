@@ -1,0 +1,76 @@
+{
+  "treeId": "interaction_debug_merchant",
+  "startingNodeId": "start",
+  "nodes": [
+	{
+	  "nodeId": "start",
+	  "speakerName": "Test NPC",
+	  "text": "Hello there. What do you need?",
+	  "choices": [
+		{
+		  "choiceText": "Who are you?",
+		  "nextNodeId": "who_are_you",
+		  "endsDialog": false,
+		  "actionId": "",
+		  "actionPayload": ""
+		},
+		{
+		  "choiceText": "Open shop",
+		  "nextNodeId": "start",
+		  "endsDialog": false,
+		  "actionId": "store_stub",
+		  "actionPayload": ""
+		},
+		{
+		  "choiceText": "Goodbye",
+		  "nextNodeId": "",
+		  "endsDialog": true,
+		  "actionId": "",
+		  "actionPayload": ""
+		},
+		{
+		  "choiceText": "This is ANother option",
+		  "nextNodeId": "node_1",
+		  "endsDialog": false,
+		  "actionId": "",
+		  "actionPayload": ""
+		}
+	  ]
+	},
+	{
+	  "nodeId": "who_are_you",
+	  "speakerName": "Test NPC",
+	  "text": "I am a test NPC for the new dialog tree system.",
+	  "choices": [
+		{
+		  "choiceText": "Back",
+		  "nextNodeId": "start",
+		  "endsDialog": false,
+		  "actionId": "",
+		  "actionPayload": ""
+		},
+		{
+		  "choiceText": "Goodbye",
+		  "nextNodeId": "",
+		  "endsDialog": true,
+		  "actionId": "",
+		  "actionPayload": ""
+		}
+	  ]
+	},
+	{
+	  "nodeId": "node_1",
+	  "speakerName": "NPC",
+	  "text": "New dialog node.",
+	  "choices": [
+		{
+		  "choiceText": "New GOODBYE",
+		  "nextNodeId": "",
+		  "endsDialog": false,
+		  "actionId": "",
+		  "actionPayload": ""
+		}
+	  ]
+	}
+  ]
+}

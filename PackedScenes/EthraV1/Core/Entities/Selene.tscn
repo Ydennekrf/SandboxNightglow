@@ -1,10 +1,11 @@
-[gd_scene format=3 uid="uid://dhy6gmjchq6nj"]
+[gd_scene load_steps=10 format=3 uid="uid://dhy6gmjchq6nj"]
 
 [ext_resource type="Script" uid="uid://t4lcqm1flo0d" path="res://Core/Nodes/Entity/PlayerNode.cs" id="1_w0eyl"]
 [ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="2_m7w1v"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="3_eeh2a"]
 [ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="4_oa31a"]
 [ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="5_q6p3m"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/HitBox.cs" id="6_hitbox"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw6q6"]
 radius = 9.84886
@@ -14,6 +15,9 @@ radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3qtn"]
 radius = 7.07107
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(28, 18)
 
 [node name="Player" type="CharacterBody2D" unique_id=405434149 groups=["Player"]]
 collision_layer = 2
@@ -79,6 +83,16 @@ collision_mask = 0
 position = Vector2(1, -1)
 shape = SubResource("CircleShape2D_dw6q6")
 debug_color = Color(0.901525, 0.140825, 0.678065, 0.42)
+
+[node name="AttackHitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("6_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
+shape = SubResource("RectangleShape2D_attack")
+debug_color = Color(1, 0.28, 0.05, 0.42)
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1838946280]
 position = Vector2(0, 4)

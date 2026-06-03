@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://ddbqliwo0dx22"]
 
-[ext_resource type="Script" path="res://Core/Combat/Tools/ComboProfilePreviewTool.cs" id="1"]
+[ext_resource type="Script" uid="uid://cyb06hf2dc1fa" path="res://Core/Combat/Tools/ComboProfilePreviewTool.cs" id="1"]
 
-[node name="ComboProfilePreviewTool" type="Node"]
+[node name="ComboProfilePreviewTool" type="Node" unique_id=2094241486]
 script = ExtResource("1")
+PreviewPhase = 2
+PreviewInput = 1
+PreviewReport = "Combo: (embedded resource)
+Preview selection: phase=2, input=Magic
+No combo profile assigned.
+"

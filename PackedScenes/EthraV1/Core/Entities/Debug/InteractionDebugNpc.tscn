@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Core/Nodes/Interactable/DebugNpcInteraction.cs" id="1_npc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 24.0
+
+[node name="InteractionDebugNpc" type="Area2D"]
+collision_layer = 32
+collision_mask = 18
+script = ExtResource("1_npc")
+NpcName = "Debug Merchant"
+DialogTreeId = "interaction_debug_merchant"
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.32, 0.62, 0.95, 1)
+polygon = PackedVector2Array(0, -18, 12, -6, 9, 14, -9, 14, -12, -6)
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -48.0
+offset_top = -38.0
+offset_right = 48.0
+offset_bottom = -20.0
+theme_override_font_sizes/font_size = 12
+text = "Debug Merchant"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.273292, 0.670699, 0.910777, 0.42)

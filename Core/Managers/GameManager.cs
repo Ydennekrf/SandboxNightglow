@@ -66,7 +66,8 @@ namespace ethra.V1
 
 	[ExportGroup("Repository Data Sources")]
 
-	[ExportSubgroup("Dialog CSV")]
+	[ExportSubgroup("Dialog Data")]
+	[Export] public string DialogTreeDataFolderPath = "res://Core/Dialog/Data";
 	[Export] public string DialogCsvPath = string.Empty;
 	[ExportSubgroup("Item CSV")]
 	[Export] public string ItemCsvPath = "res://Core/Inventory/Data/items_seed.csv";
@@ -245,13 +246,13 @@ namespace ethra.V1
 		public void GetAllDialog()
 		{
 			// loads all the dialog trees into the master repository
-			if (string.IsNullOrWhiteSpace(DialogCsvPath))
+			if (string.IsNullOrWhiteSpace(DialogTreeDataFolderPath))
 			{
-				GD.PushWarning("GetAllDialog: DialogCsvPath is empty. Skipping dialog csv load.");
+				GD.PushWarning("GetAllDialog: DialogTreeDataFolderPath is empty. Skipping dialog tree load.");
 				return;
 			}
 
-			DB.FillCsvRepo(DialogCsvPath, MasterRepository.RepoLoadType.Dialog);
+			DB.FillDialogTreeRepo(DialogTreeDataFolderPath);
 		}
 		#endregion
 

@@ -268,6 +268,27 @@ namespace ethra.V1
             }
         }
 
+        public float ResolveAttackPayloadHit(AttackPayloadPacket packet, Entity target, out bool isCritical)
+        {
+            isCritical = false;
+            if (packet?.Payload == null || target == null)
+            {
+                return 0f;
+            }
+
+            float damage = ComputeDamage(packet.Source, target, packet.Payload, out isCritical);
+            if (damage > 0f)
+            {
+                DealDamage(target, damage, packet.Payload.DamageType, packet.Source);
+            }
+
+            Log($"ResolveAttackPayloadHit: target={target.Name} damage={damage:0.###} crit={isCritical}");
+            CombatFeedbackBus.EmitHitResolved(packet.Source, target, damage, isCritical, packet.Payload.DamageType, packet.Payload.ElementType);
+            ApplyPayloadEffects(target, packet);
+
+            return damage;
+        }
+
         public void RestoreSnapshot(object snapshot)
         {
             throw new NotImplementedException();
@@ -295,37 +316,34 @@ namespace ethra.V1
 
             foreach (Entity target in targets)
             {
-                float damage = ComputeDamage(packet.Source, target, payload, out bool crit);
-                if (damage > 0f)
-                {
-                    DealDamage(target, damage, payload.DamageType, packet.Source);
-                }
+                ResolveAttackPayloadHit(packet, target, out _);
+            }
+        }
 
-                Log($"ExecuteAttackPayload: target={target.Name} damage={damage:0.###} crit={crit}");
-                CombatFeedbackBus.EmitHitResolved(packet.Source, target, damage, crit, payload.DamageType, payload.ElementType);
+        private void ApplyPayloadEffects(Entity target, AttackPayloadPacket packet)
+        {
+            AttackPayloadResource payload = packet.Payload;
+            if (payload?.EffectIds == null)
+            {
+                return;
+            }
 
-                if (payload.EffectIds == null)
+            foreach (string effectId in payload.EffectIds)
+            {
+                if (string.IsNullOrWhiteSpace(effectId))
                 {
                     continue;
                 }
 
-                foreach (string effectId in payload.EffectIds)
+                if (_effectHandlers.TryGetValue(effectId, out Action<Entity, AttackPayloadPacket, string> effectHandler))
                 {
-                    if (string.IsNullOrWhiteSpace(effectId))
-                    {
-                        continue;
-                    }
-
-                    if (_effectHandlers.TryGetValue(effectId, out Action<Entity, AttackPayloadPacket, string> effectHandler))
-                    {
-                        Log($"ExecuteAttackPayload: applying effect='{effectId}' duration={payload.EffectDurationSeconds:0.###}");
-                        effectHandler(target, packet, effectId);
-                        CombatFeedbackBus.EmitEffectApplied(target, effectId, payload.EffectDurationSeconds);
-                    }
-                    else
-                    {
-                        GD.PushWarning($"CombatManager: unknown effect id '{effectId}' for payload.");
-                    }
+                    Log($"ApplyPayloadEffects: applying effect='{effectId}' duration={payload.EffectDurationSeconds:0.###}");
+                    effectHandler(target, packet, effectId);
+                    CombatFeedbackBus.EmitEffectApplied(target, effectId, payload.EffectDurationSeconds);
+                }
+                else
+                {
+                    GD.PushWarning($"CombatManager: unknown effect id '{effectId}' for payload.");
                 }
             }
         }

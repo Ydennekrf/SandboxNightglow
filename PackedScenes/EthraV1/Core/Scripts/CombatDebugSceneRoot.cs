@@ -1,95 +1,114 @@
 using Godot;
-using CombatEnemy = ethra.V1.Enemy;
 using CombatGameManager = ethra.V1.GameManager;
+using CombatInventoryStats = ethra.V1.IStats;
 using CombatPlayer = ethra.V1.Player;
-using CombatStateMachine = ethra.V1.StateMachine;
-using CombatStats = ethra.V1.IStats;
+using CombatTestEnemyNode = ethra.V1.TestEnemyNode;
 
 public partial class CombatDebugSceneRoot : Node2D
 {
-	private const int DebugWeaponId = 2001;
+    private const int DebugWeaponId = 2001;
 
-	[Export] public PackedScene TrainingDummyScene { get; set; }
-	[Export] public NodePath GameManagerPath { get; set; } = "GameManager";
-	[Export] public NodePath WorldPath { get; set; } = "World";
+    [Export] public PackedScene PlayerScene { get; set; }
+    [Export] public PackedScene TestEnemyScene { get; set; }
+    [Export] public NodePath GameManagerPath { get; set; } = "GameManager";
+    [Export] public NodePath WorldPath { get; set; } = "World";
 
-	public override void _Ready()
-	{
-		CallDeferred(nameof(InitializeDebugScene));
-	}
+    public override void _Ready()
+    {
+        CallDeferred(nameof(InitializeManualDebugScene));
+    }
 
-	private void InitializeDebugScene()
-	{
-		CombatGameManager gameManager = GetNodeOrNull<CombatGameManager>(GameManagerPath) ?? CombatGameManager.Instance;
-		WorldSceneRoot world = GetNodeOrNull<WorldSceneRoot>(WorldPath);
+    private void InitializeManualDebugScene()
+    {
+        CombatGameManager gameManager = GetNodeOrNull<CombatGameManager>(GameManagerPath) ?? CombatGameManager.Instance;
+        WorldSceneRoot world = GetNodeOrNull<WorldSceneRoot>(WorldPath);
 
-		if (gameManager == null)
-		{
-			GD.PushError("CombatDebugSceneRoot: GameManager is missing.");
-			return;
-		}
+        if (gameManager == null)
+        {
+            GD.PushError("[CombatDebug] GameManager is missing.");
+            return;
+        }
 
-		if (world == null)
-		{
-			GD.PushError("CombatDebugSceneRoot: WorldSceneRoot is missing.");
-			return;
-		}
+        if (world == null)
+        {
+            GD.PushError("[CombatDebug] WorldSceneRoot is missing.");
+            return;
+        }
 
-		CombatPlayer player = gameManager.GetPlayer() ?? gameManager.CreatePlayerModel();
-		ConfigureStats(player);
-		gameManager.SetPlayer(player);
+        CombatPlayer player = gameManager.GetPlayer() ?? gameManager.CreatePlayerModel();
+        ConfigurePlayerStats(player);
+        gameManager.SetPlayer(player);
 
-		Marker2D spawn = world.GetSpawn("NewGameSpawn");
-		Vector2 spawnPosition = spawn?.GlobalPosition ?? Vector2.Zero;
-		gameManager.Scene.SpawnPlayerNode(gameManager.PlayerScene, spawnPosition, player, world.GetPlayerContainer() ?? world.Entities);
+        SpawnPlayer(gameManager, world, player);
+        EquipDebugWeapon(gameManager);
 
-		gameManager.Inventory.AddItem(DebugWeaponId);
-		gameManager.Inventory.UseItem(DebugWeaponId);
+        CombatTestEnemyNode testEnemy = SpawnTestEnemy(world);
 
-		CombatEnemy target = gameManager.CreateEnemy("DebugTrainingTarget", 1, gameManager, gameManager, new CombatStateMachine());
-		ConfigureStats(target);
-		target.Facing = ethra.V1.FacingDirection.Left;
+        GD.Print("[CombatDebug] Manual combat debug scene ready.");
+        if (testEnemy != null)
+        {
+            GD.Print($"[CombatDebug] TestEnemy HP: {testEnemy.CurrentHealth}");
+        }
+    }
 
-		if (!gameManager.registeredEnemies.Contains(target))
-		{
-			gameManager.registeredEnemies.Add(target);
-		}
+    private void SpawnPlayer(CombatGameManager gameManager, WorldSceneRoot world, CombatPlayer player)
+    {
+        PackedScene playerScene = PlayerScene ?? gameManager.PlayerScene;
+        if (playerScene == null)
+        {
+            GD.PushError("[CombatDebug] Player scene is missing.");
+            return;
+        }
 
-		SpawnTrainingDummyVisual(world);
-		GD.Print("CombatDebugSceneRoot: combat debug scene initialized.");
-	}
+        Marker2D spawn = world.GetSpawn("NewGameSpawn");
+        Vector2 spawnPosition = spawn?.GlobalPosition ?? Vector2.Zero;
+        gameManager.Scene.SpawnPlayerNode(playerScene, spawnPosition, player, world.GetPlayerContainer() ?? world.Entities);
+    }
 
-	private static void ConfigureStats(CombatStats stats)
-	{
-		if (stats == null)
-		{
-			return;
-		}
+    private CombatTestEnemyNode SpawnTestEnemy(WorldSceneRoot world)
+    {
+        Node parent = world.Entities.GetNodeOrNull<Node>("Enemies") ?? world.Entities;
+        if (TestEnemyScene == null)
+        {
+            GD.PushError("[CombatDebug] TestEnemy scene is missing.");
+            return null;
+        }
 
-		stats.MaxHP = 100;
-		stats.CurHP = 100;
-		stats.MaxMana = 100;
-		stats.CurMana = 100;
-		stats.Strength = 10;
-		stats.Dexterity = 10;
-		stats.Intelligence = 10;
-		stats.Spirit = 10;
-		stats.Vitality = 10;
-		stats.Luck = 10;
-	}
+        CombatTestEnemyNode enemy = TestEnemyScene.Instantiate<CombatTestEnemyNode>();
+        enemy.Name = "TestEnemy";
+        enemy.GlobalPosition = new Vector2(72f, 0f);
+        parent.AddChild(enemy);
+        return enemy;
+    }
 
-	private void SpawnTrainingDummyVisual(WorldSceneRoot world)
-	{
-		if (TrainingDummyScene == null)
-		{
-			GD.PushWarning("CombatDebugSceneRoot: TrainingDummyScene is not set.");
-			return;
-		}
+    private static void EquipDebugWeapon(CombatGameManager gameManager)
+    {
+        if (gameManager.Inventory == null)
+        {
+            GD.PushWarning("[CombatDebug] Inventory manager is missing; debug weapon was not equipped.");
+            return;
+        }
 
-		Node container = world.GetEnemyByName("DebugTrainingDummy") ?? world.Entities.GetNodeOrNull<Node>("Enemies") ?? world.Entities;
-		Node2D dummy = TrainingDummyScene.Instantiate<Node2D>();
-		dummy.Name = "DebugTrainingDummy";
-		dummy.GlobalPosition = new Vector2(96, 0);
-		container.AddChild(dummy);
-	}
+        gameManager.Inventory.AddItem(DebugWeaponId);
+        gameManager.Inventory.UseItem(DebugWeaponId);
+    }
+
+    private static void ConfigurePlayerStats(CombatInventoryStats stats)
+    {
+        if (stats == null)
+        {
+            return;
+        }
+
+        stats.MaxHP = 100;
+        stats.CurHP = 100;
+        stats.MaxMana = 100;
+        stats.CurMana = 100;
+        stats.Strength = 10;
+        stats.Dexterity = 10;
+        stats.Intelligence = 10;
+        stats.Spirit = 10;
+        stats.Vitality = 10;
+        stats.Luck = 10;
+    }
 }

@@ -13,8 +13,11 @@ namespace ethra.V1
 		private Player _player;
 		private AnimationPlayer _anim;
 		private GameManager _gm;
+		private HitBox _attackHitBox;
+		private AttackPayloadPacket _pendingAttackPacket;
 		private string _lastAnim = "";
 		private AttackOverlayMode _lastOverlayMode = AttackOverlayMode.None;
+		private bool _interactionLocked;
 
 		#region Sprites
 
@@ -44,6 +47,8 @@ namespace ethra.V1
 			_clothes = GetNodeOrNull<Sprite2D>("Sprites/Clothes");
 			_body = GetNodeOrNull<Sprite2D>("Sprites/Body");
 			_overlay = GetNodeOrNull<Sprite2D>("Sprites/Overlay");
+			_attackHitBox = GetNodeOrNull<HitBox>("AttackHitBox");
+			CombatFeedbackBus.PayloadQueued += OnPayloadQueued;
 
 			if (_gm != null)
 			{
@@ -51,21 +56,76 @@ namespace ethra.V1
 			}
 		}
 
+		public override void _ExitTree()
+		{
+			CombatFeedbackBus.PayloadQueued -= OnPayloadQueued;
+		}
+
 		public void Bind(Player player)
 		{
 			_player = player ?? throw new ArgumentNullException(nameof(player));
+			if (_attackHitBox != null)
+			{
+				_attackHitBox.Bind(_player);
+			}
+		}
+
+		public void SetInteractionLocked(bool locked)
+		{
+			_interactionLocked = locked;
+
+			if (_player == null)
+			{
+				return;
+			}
+
+			if (locked)
+			{
+				ClearInputState();
+				_player.DesiredVelocity = Vector2.Zero;
+				Velocity = Vector2.Zero;
+			}
+		}
+
+		public async void ActivateHitBox()
+		{
+			if (_attackHitBox == null || _player == null)
+			{
+				return;
+			}
+
+			PositionAttackHitBox();
+			_attackHitBox.Bind(_player);
+			_attackHitBox.ConfigureAttack(_pendingAttackPacket);
+			_attackHitBox.Activate();
+
+			await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+			_attackHitBox.Deactivate();
+		}
+
+		public void DeactivateHitBox()
+		{
+			_attackHitBox?.Deactivate();
 		}
 
 		public override void _PhysicsProcess(double delta)
 		{
 			float dt = (float)delta;
 
-			_player.MoveInput = Input.GetVector("Left", "Right", "Up", "Down");
-			_player.RunPressed = Input.IsActionPressed("Run");
-			_player.DodgePressed = Input.IsActionJustPressed("Dodge");
-			_player.MeleePressed = Input.IsActionJustPressed("Attack");
-			_player.MagicPressed = Input.IsActionJustPressed("MagicAttack");
-			_player.AttackPressed = _player.MeleePressed || _player.MagicPressed;
+			if (_interactionLocked)
+			{
+				ClearInputState();
+			}
+			else
+			{
+				_player.MoveInput = Input.GetVector("Left", "Right", "Up", "Down");
+				_player.RunPressed = Input.IsActionPressed("Run");
+				_player.DodgePressed = Input.IsActionJustPressed("Dodge");
+				_player.MeleePressed = Input.IsActionJustPressed("Attack");
+				_player.MagicPressed = Input.IsActionJustPressed("MagicAttack");
+				_player.AttackPressed = _player.MeleePressed || _player.MagicPressed;
+			}
+
 			if (_player.AttackPressed)
 			{
 				_player.PendingAttackInput = _player.MagicPressed ? AttackInputType.Magic : AttackInputType.Melee;
@@ -81,6 +141,12 @@ namespace ethra.V1
 			if (_gm?.Combat != null)
 			{
 				desiredVelocity = _gm.Combat.ResolveMovementVelocity(_player, desiredVelocity);
+			}
+
+			if (_interactionLocked)
+			{
+				desiredVelocity = Vector2.Zero;
+				_player.DesiredVelocity = Vector2.Zero;
 			}
 
 			Velocity = desiredVelocity;
@@ -105,6 +171,21 @@ namespace ethra.V1
 			}
 		}
 
+		private void ClearInputState()
+		{
+			if (_player == null)
+			{
+				return;
+			}
+
+			_player.MoveInput = Vector2.Zero;
+			_player.RunPressed = false;
+			_player.DodgePressed = false;
+			_player.MeleePressed = false;
+			_player.MagicPressed = false;
+			_player.AttackPressed = false;
+		}
+
 
 		private void ApplyAttackOverlay(AttackOverlayMode mode)
 		{
@@ -121,6 +202,33 @@ namespace ethra.V1
 				GD.Print($"PlayerNode: overlay mode changed {_lastOverlayMode} -> {mode}");
 				_lastOverlayMode = mode;
 			}
+		}
+
+		private void OnPayloadQueued(AttackPayloadPacket packet)
+		{
+			if (packet?.Source != _player)
+			{
+				return;
+			}
+
+			_pendingAttackPacket = packet;
+		}
+
+		private void PositionAttackHitBox()
+		{
+			if (_attackHitBox == null || _player == null)
+			{
+				return;
+			}
+
+			_attackHitBox.Position = _player.Facing switch
+			{
+				FacingDirection.Up => new Vector2(0f, -18f),
+				FacingDirection.Down => new Vector2(0f, 18f),
+				FacingDirection.Left => new Vector2(-18f, 0f),
+				FacingDirection.Right => new Vector2(18f, 0f),
+				_ => new Vector2(0f, 18f)
+			};
 		}
 
 		public void ApplyWeaponSprites(Texture2D upDraw, Texture2D downDraw, Texture2D upStow, Texture2D downStow)

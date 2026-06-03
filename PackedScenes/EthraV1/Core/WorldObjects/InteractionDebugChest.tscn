@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Core/Nodes/Interactable/DebugChestInteraction.cs" id="1_chest"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 22.0
+
+[node name="InteractionDebugChest" type="Area2D"]
+collision_layer = 64
+collision_mask = 18
+script = ExtResource("1_chest")
+
+[node name="ClosedVisual" type="Polygon2D" parent="."]
+color = Color(0.67, 0.42, 0.16, 1)
+polygon = PackedVector2Array(-14, -8, 14, -8, 14, 12, -14, 12)
+
+[node name="ClosedLid" type="Polygon2D" parent="ClosedVisual"]
+color = Color(0.86, 0.63, 0.24, 1)
+polygon = PackedVector2Array(-16, -14, 16, -14, 14, -8, -14, -8)
+
+[node name="OpenedVisual" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.42, 0.25, 0.12, 1)
+polygon = PackedVector2Array(-14, -4, 14, -4, 14, 12, -14, 12)
+
+[node name="OpenedLid" type="Polygon2D" parent="OpenedVisual"]
+color = Color(0.86, 0.63, 0.24, 1)
+polygon = PackedVector2Array(-16, -18, 16, -18, 12, -10, -12, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_interact")
+debug_color = Color(0.906134, 0.639797, 0.17959, 0.42)

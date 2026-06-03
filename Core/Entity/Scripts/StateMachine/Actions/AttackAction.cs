@@ -326,10 +326,9 @@ namespace ethra.V1.Actions
                 ForwardDirection = forward
             };
 
-            gm.Combat.QueueAttackPayload(packet);
             CombatFeedbackBus.EmitPayloadQueued(packet);
 
-            Log($"QueuePayload: queued phase={player.AttackPhase} clip='{animationName}' origin={origin} forward={forward}");
+            Log($"QueuePayload: prepared hitbox payload phase={player.AttackPhase} clip='{animationName}' origin={origin} forward={forward}");
         }
 
         private static WeaponItem GetEquippedMainHandWeapon()
