@@ -54,7 +54,16 @@ namespace ethra.V1
 
         public void SpawnEnemy(Enemy enemy)
         {
-            throw new NotImplementedException();
+            if (enemy == null)
+            {
+                return;
+            }
+
+            registeredEnemies ??= new List<Enemy>();
+            if (!registeredEnemies.Contains(enemy))
+            {
+                registeredEnemies.Add(enemy);
+            }
         }
 
         public void SpawnNPC(NPC npc)
@@ -75,8 +84,21 @@ namespace ethra.V1
        
         public Enemy CreateEnemy(string name,int level, IEntityManager entity, ICombat combat, IStateMachine fsm)
         {
+            registeredEnemies ??= new List<Enemy>();
+
             Enemy enemy = new Enemy(entity, combat, fsm);
-            
+            enemy.SetName(string.IsNullOrWhiteSpace(name) ? "Enemy" : name);
+            enemy.InitializeStats(
+                maxHp: 50,
+                maxMana: 0,
+                strength: 5,
+                dexterity: 5,
+                intelligence: 0,
+                spirit: 0,
+                vitality: 5,
+                luck: 0);
+
+            registeredEnemies.Add(enemy);
             return enemy;
         }
 

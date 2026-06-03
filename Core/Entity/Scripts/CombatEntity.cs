@@ -76,6 +76,29 @@ namespace ethra.V1
         {
             _combat = combat;
         }
+
+        public void InitializeStats(
+            int maxHp,
+            int maxMana,
+            int strength,
+            int dexterity,
+            int intelligence,
+            int spirit,
+            int vitality,
+            int luck)
+        {
+            _maxHP = maxHp;
+            _curHP = maxHp;
+            _maxMana = maxMana;
+            _curMana = maxMana;
+            _str = strength;
+            _dex = dexterity;
+            _int = intelligence;
+            _spi = spirit;
+            _vit = vitality;
+            _luk = luck;
+        }
+
         public void ApplyStatus(Entity target, string statusId, int stacks = 1, float? durationSeconds = null, Entity source = null)
         {
             throw new System.NotImplementedException();
