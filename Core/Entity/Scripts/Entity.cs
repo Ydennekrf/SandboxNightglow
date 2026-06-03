@@ -24,6 +24,11 @@ namespace ethra.V1
 
         public FacingDirection Facing {get; set;}
 
+        public void SetName(string name)
+        {
+            _name = name;
+        }
+
 
         public Vector2 DesiredVelocity { get{return _desiredVelocity;} set{_desiredVelocity = value;} } 
         public string RequestedAnimation { get; set; } = "Idle_Down";
