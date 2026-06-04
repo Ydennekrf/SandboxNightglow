@@ -1,0 +1,16 @@
+{
+  "questId": "quest_test_speak_to_npc",
+  "title": "Go Speak to the Test NPC",
+  "description": "A simple quest used to verify dialog-driven quest starts and speak-to-NPC completion.",
+  "startingObjectiveId": "speak_to_test_npc",
+  "objectives": [
+    {
+      "objectiveId": "speak_to_test_npc",
+      "objectiveType": "SpeakToNpc",
+      "targetId": "test_npc",
+      "requiredCount": 1,
+      "description": "Speak to the Test NPC."
+    }
+  ],
+  "rewards": []
+}

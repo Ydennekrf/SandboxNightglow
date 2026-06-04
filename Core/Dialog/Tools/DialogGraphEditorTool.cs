@@ -6,19 +6,28 @@ using System.Text.Json;
 
 namespace ethra.V1
 {
+    [Tool]
     public partial class DialogGraphEditorTool : Control
     {
         private const string DefaultDataFolder = "res://Core/Dialog/Data";
         private const string DefaultFileName = "interaction_debug_merchant.json";
+        private const string AnchorNameLeft = "left";
+        private const string AnchorNameRight = "right";
+        private const string AnchorNameTop = "top";
+        private const string AnchorNameBottom = "bottom";
 
         private DialogTree _tree;
         private DialogNode _selectedNode;
 
         private LineEdit _folderField;
-        private LineEdit _fileField;
+        private OptionButton _fileSelector;
         private Label _statusLabel;
+        private Label _zoomLabel;
+        private ScrollContainer _graphScroll;
         private DialogGraphCanvas _canvas;
         private VBoxContainer _inspector;
+        private float _zoom = 1f;
+        private bool _isNewUnsavedTree;
 
         public override void _Ready()
         {
@@ -30,43 +39,60 @@ namespace ethra.V1
         {
             AnchorRight = 1f;
             AnchorBottom = 1f;
+            CustomMinimumSize = new Vector2(560f, 520f);
 
             VBoxContainer root = new()
             {
                 AnchorRight = 1f,
                 AnchorBottom = 1f,
+                CustomMinimumSize = new Vector2(560f, 520f),
                 SizeFlagsHorizontal = SizeFlags.ExpandFill,
                 SizeFlagsVertical = SizeFlags.ExpandFill
             };
             AddChild(root);
 
-            HBoxContainer toolbar = new();
+            HFlowContainer toolbar = new()
+            {
+                SizeFlagsHorizontal = SizeFlags.ExpandFill
+            };
             root.AddChild(toolbar);
 
             _folderField = new LineEdit
             {
                 Text = DefaultDataFolder,
-                CustomMinimumSize = new Vector2(260f, 0f)
+                CustomMinimumSize = new Vector2(220f, 0f)
             };
             toolbar.AddChild(_folderField);
 
-            _fileField = new LineEdit
+            _fileSelector = new OptionButton
             {
-                Text = DefaultFileName,
-                CustomMinimumSize = new Vector2(240f, 0f)
+                CustomMinimumSize = new Vector2(220f, 0f)
             };
-            toolbar.AddChild(_fileField);
+            toolbar.AddChild(_fileSelector);
 
+            toolbar.AddChild(MakeButton("Refresh", RefreshFileList));
             toolbar.AddChild(MakeButton("Load", LoadTree));
             toolbar.AddChild(MakeButton("Save", SaveTree));
             toolbar.AddChild(MakeButton("New", NewTree));
             toolbar.AddChild(MakeButton("Add Node", AddNode));
+            toolbar.AddChild(MakeButton("Auto Layout", AutoLayoutTree));
             toolbar.AddChild(MakeButton("Validate", ValidateCurrentTree));
+            toolbar.AddChild(MakeButton("-", () => SetZoom(_zoom * 0.9f)));
+            _zoomLabel = new Label
+            {
+                Text = "100%",
+                CustomMinimumSize = new Vector2(48f, 0f),
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+            toolbar.AddChild(_zoomLabel);
+            toolbar.AddChild(MakeButton("+", () => SetZoom(_zoom * 1.1f)));
+            toolbar.AddChild(MakeButton("Reset", () => SetZoom(1f)));
 
             _statusLabel = new Label
             {
                 Text = "Ready",
-                SizeFlagsHorizontal = SizeFlags.ExpandFill
+                CustomMinimumSize = new Vector2(220f, 0f),
+                ClipText = true
             };
             toolbar.AddChild(_statusLabel);
 
@@ -77,12 +103,13 @@ namespace ethra.V1
             };
             root.AddChild(split);
 
-            ScrollContainer scroll = new()
+            _graphScroll = new ScrollContainer
             {
+                CustomMinimumSize = new Vector2(320f, 360f),
                 SizeFlagsHorizontal = SizeFlags.ExpandFill,
                 SizeFlagsVertical = SizeFlags.ExpandFill
             };
-            split.AddChild(scroll);
+            split.AddChild(_graphScroll);
 
             _canvas = new DialogGraphCanvas
             {
@@ -90,20 +117,24 @@ namespace ethra.V1
                 SizeFlagsVertical = SizeFlags.ExpandFill
             };
             _canvas.NodeSelected += SelectNode;
-            scroll.AddChild(_canvas);
+            _canvas.PanRequested += PanGraph;
+            _canvas.ZoomRequested += factor => SetZoom(_zoom * factor);
+            _graphScroll.AddChild(_canvas);
 
             ScrollContainer inspectorScroll = new()
             {
-                CustomMinimumSize = new Vector2(360f, 0f),
+                CustomMinimumSize = new Vector2(300f, 0f),
                 SizeFlagsVertical = SizeFlags.ExpandFill
             };
             split.AddChild(inspectorScroll);
 
             _inspector = new VBoxContainer
             {
-                CustomMinimumSize = new Vector2(340f, 0f)
+                CustomMinimumSize = new Vector2(280f, 0f)
             };
             inspectorScroll.AddChild(_inspector);
+
+            RefreshFileList();
         }
 
         private Button MakeButton(string text, Action pressed)
@@ -139,6 +170,7 @@ namespace ethra.V1
                 return;
             }
 
+            _isNewUnsavedTree = false;
             _selectedNode = _tree.Nodes.FirstOrDefault(node => node.NodeId == _tree.StartingNodeId)
                 ?? _tree.Nodes.FirstOrDefault();
             RefreshAll();
@@ -161,6 +193,12 @@ namespace ethra.V1
             }
 
             string path = CurrentFilePath();
+            if (_isNewUnsavedTree && FileAccess.FileExists(path))
+            {
+                SetStatus($"New tree target already exists: {path}");
+                return;
+            }
+
             using FileAccess file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
             if (file == null)
             {
@@ -169,12 +207,18 @@ namespace ethra.V1
             }
 
             file.StoreString(JsonSerializer.Serialize(_tree, JsonOptions()));
+            _isNewUnsavedTree = false;
+            string savedFileName = SelectedFileName();
+            RefreshFileList(savedFileName);
             SetStatus($"Saved {path}");
         }
 
         private void NewTree()
         {
-            string id = System.IO.Path.GetFileNameWithoutExtension(_fileField.Text);
+            string newFileName = MakeUniqueDialogFileName("new_dialog_tree");
+            AddOrSelectFileName(newFileName);
+
+            string id = System.IO.Path.GetFileNameWithoutExtension(newFileName);
             if (string.IsNullOrWhiteSpace(id))
             {
                 id = "new_dialog_tree";
@@ -191,14 +235,17 @@ namespace ethra.V1
                         NodeId = "start",
                         SpeakerName = "NPC",
                         Text = "New dialog starts here.",
+                        GraphX = 0f,
+                        GraphY = 0f,
                         Choices = new List<DialogChoice>()
                     }
                 }
             };
 
+            _isNewUnsavedTree = true;
             _selectedNode = _tree.Nodes[0];
             RefreshAll();
-            SetStatus("Created new tree.");
+            SetStatus($"Created new unsaved tree: {newFileName}");
         }
 
         private void AddNode()
@@ -215,6 +262,8 @@ namespace ethra.V1
                 NodeId = nodeId,
                 SpeakerName = "NPC",
                 Text = "New dialog node.",
+                GraphX = (_selectedNode?.GraphX ?? 0f) + 340f,
+                GraphY = _selectedNode?.GraphY ?? NextFreeNodeY(),
                 Choices = new List<DialogChoice>()
             };
 
@@ -227,7 +276,7 @@ namespace ethra.V1
         private void SelectNode(string nodeId)
         {
             _selectedNode = _tree?.Nodes.FirstOrDefault(node => node.NodeId == nodeId);
-            RefreshAll();
+            RenderInspector();
         }
 
         private void RenderInspector()
@@ -246,7 +295,7 @@ namespace ethra.V1
 
             _inspector.AddChild(new Label { Text = "Tree" });
             LineEdit treeIdField = AddLineEdit("Tree ID", _tree.TreeId);
-            treeIdField.TextChanged += value => _tree.TreeId = value;
+            treeIdField.TextChanged += OnTreeIdChanged;
 
             OptionButton startSelector = AddNodeSelector("Starting Node", _tree.StartingNodeId);
             startSelector.ItemSelected += index =>
@@ -268,6 +317,15 @@ namespace ethra.V1
             LineEdit nodeIdField = AddLineEdit("Node ID", _selectedNode.NodeId);
             LineEdit speakerField = AddLineEdit("Speaker", _selectedNode.SpeakerName);
             TextEdit textField = AddTextEdit("Text", _selectedNode.Text);
+            HBoxContainer positionFields = new();
+            LineEdit graphXField = new() { Text = _selectedNode.GraphX.ToString("0.##"), CustomMinimumSize = new Vector2(90f, 0f) };
+            LineEdit graphYField = new() { Text = _selectedNode.GraphY.ToString("0.##"), CustomMinimumSize = new Vector2(90f, 0f) };
+            positionFields.AddChild(new Label { Text = "X" });
+            positionFields.AddChild(graphXField);
+            positionFields.AddChild(new Label { Text = "Y" });
+            positionFields.AddChild(graphYField);
+            _inspector.AddChild(new Label { Text = "Graph Position" });
+            _inspector.AddChild(positionFields);
 
             Button applyNodeButton = MakeButton("Apply Node Fields", () =>
             {
@@ -289,6 +347,16 @@ namespace ethra.V1
                 _selectedNode.NodeId = nextId;
                 _selectedNode.SpeakerName = speakerField.Text;
                 _selectedNode.Text = textField.Text;
+                if (float.TryParse(graphXField.Text, out float graphX))
+                {
+                    _selectedNode.GraphX = Mathf.Max(0f, graphX);
+                }
+
+                if (float.TryParse(graphYField.Text, out float graphY))
+                {
+                    _selectedNode.GraphY = Mathf.Max(0f, graphY);
+                }
+
                 RefreshAll();
                 SetStatus($"Applied node {nextId}.");
             });
@@ -367,9 +435,8 @@ namespace ethra.V1
             box.AddChild(endsDialog);
 
             OptionButton actionSelector = new();
-            actionSelector.AddItem("");
-            actionSelector.AddItem(DialogActionRunner.StoreStubActionId);
-            int actionIndex = choice.ActionId == DialogActionRunner.StoreStubActionId ? 1 : 0;
+            AddActionItems(actionSelector);
+            int actionIndex = FindItemIndex(actionSelector, choice.ActionId);
             actionSelector.Select(actionIndex);
             box.AddChild(new Label { Text = "Action" });
             box.AddChild(actionSelector);
@@ -377,6 +444,27 @@ namespace ethra.V1
             LineEdit payloadField = new() { Text = choice.ActionPayload ?? string.Empty };
             box.AddChild(new Label { Text = "Action Payload" });
             box.AddChild(payloadField);
+
+            OptionButton conditionSelector = new();
+            AddConditionItems(conditionSelector);
+            int conditionIndex = FindItemIndex(conditionSelector, choice.ConditionId);
+            conditionSelector.Select(conditionIndex);
+            box.AddChild(new Label { Text = "Condition" });
+            box.AddChild(conditionSelector);
+
+            LineEdit conditionPayloadField = new() { Text = choice.ConditionPayload ?? string.Empty };
+            box.AddChild(new Label { Text = "Condition Payload" });
+            box.AddChild(conditionPayloadField);
+
+            HBoxContainer anchorFields = new();
+            OptionButton fromAnchorSelector = BuildAnchorSelector(choice.FromAnchor, AnchorNameRight);
+            OptionButton toAnchorSelector = BuildAnchorSelector(choice.ToAnchor, AnchorNameLeft);
+            anchorFields.AddChild(new Label { Text = "From" });
+            anchorFields.AddChild(fromAnchorSelector);
+            anchorFields.AddChild(new Label { Text = "To" });
+            anchorFields.AddChild(toAnchorSelector);
+            box.AddChild(new Label { Text = "Connection Anchors" });
+            box.AddChild(anchorFields);
 
             HBoxContainer buttons = new();
             buttons.AddChild(MakeButton("Apply Choice", () =>
@@ -386,6 +474,10 @@ namespace ethra.V1
                 choice.EndsDialog = endsDialog.ButtonPressed;
                 choice.ActionId = actionSelector.Selected <= 0 ? string.Empty : actionSelector.GetItemText(actionSelector.Selected);
                 choice.ActionPayload = payloadField.Text;
+                choice.ConditionId = conditionSelector.Selected <= 0 ? string.Empty : conditionSelector.GetItemText(conditionSelector.Selected);
+                choice.ConditionPayload = conditionPayloadField.Text;
+                choice.FromAnchor = fromAnchorSelector.GetItemText(fromAnchorSelector.Selected);
+                choice.ToAnchor = toAnchorSelector.GetItemText(toAnchorSelector.Selected);
                 RefreshAll();
                 SetStatus($"Applied choice {index + 1}.");
             }));
@@ -500,6 +592,29 @@ namespace ethra.V1
             }
         }
 
+        private void OnTreeIdChanged(string value)
+        {
+            if (_tree == null)
+            {
+                return;
+            }
+
+            _tree.TreeId = value;
+
+            if (!_isNewUnsavedTree)
+            {
+                return;
+            }
+
+            string safeBaseName = SanitizeFileBaseName(value);
+            if (string.IsNullOrWhiteSpace(safeBaseName))
+            {
+                return;
+            }
+
+            ReplaceSelectedFileName(MakeUniqueDialogFileName(safeBaseName, ignoreSelectedFile: true));
+        }
+
         private string MakeUniqueNodeId(string prefix)
         {
             int index = 1;
@@ -574,6 +689,16 @@ namespace ethra.V1
                     {
                         issues.Add($"Choice '{choice.ChoiceText}' points to missing node '{choice.NextNodeId}'.");
                     }
+
+                    if (!DialogConditionRunner.IsKnownCondition(choice.ConditionId))
+                    {
+                        issues.Add($"Choice '{choice.ChoiceText}' uses unknown condition '{choice.ConditionId}'.");
+                    }
+
+                    if (!DialogActionRunner.IsKnownAction(choice.ActionId))
+                    {
+                        issues.Add($"Choice '{choice.ChoiceText}' uses unknown action '{choice.ActionId}'.");
+                    }
                 }
             }
 
@@ -583,7 +708,12 @@ namespace ethra.V1
         private string CurrentFilePath()
         {
             string folder = _folderField.Text.Trim();
-            string fileName = _fileField.Text.Trim();
+            string fileName = SelectedFileName();
+            return BuildFilePath(folder, fileName);
+        }
+
+        private static string BuildFilePath(string folder, string fileName)
+        {
             if (!folder.EndsWith("/"))
             {
                 folder += "/";
@@ -596,6 +726,258 @@ namespace ethra.V1
         {
             _statusLabel.Text = message;
             GD.Print($"[DialogGraphEditor] {message}");
+        }
+
+        private void AutoLayoutTree()
+        {
+            if (_tree == null)
+            {
+                SetStatus("No tree loaded.");
+                return;
+            }
+
+            _canvas.AutoLayout();
+            RefreshAll();
+            SetStatus("Auto layout applied.");
+        }
+
+        private void SetZoom(float zoom)
+        {
+            _zoom = Mathf.Clamp(zoom, 0.35f, 2.25f);
+            _canvas?.SetZoom(_zoom);
+            if (_zoomLabel != null)
+            {
+                _zoomLabel.Text = $"{Mathf.RoundToInt(_zoom * 100f)}%";
+            }
+        }
+
+        private void PanGraph(Vector2 delta)
+        {
+            if (_graphScroll == null)
+            {
+                return;
+            }
+
+            _graphScroll.ScrollHorizontal = Mathf.Max(0, _graphScroll.ScrollHorizontal + Mathf.RoundToInt(delta.X));
+            _graphScroll.ScrollVertical = Mathf.Max(0, _graphScroll.ScrollVertical + Mathf.RoundToInt(delta.Y));
+        }
+
+        private float NextFreeNodeY()
+        {
+            if (_tree?.Nodes == null || _tree.Nodes.Count == 0)
+            {
+                return 0f;
+            }
+
+            return _tree.Nodes.Max(node => node.GraphY) + 220f;
+        }
+
+        private void RefreshFileList()
+        {
+            RefreshFileList(SelectedFileName());
+        }
+
+        private void RefreshFileList(string preferredFileName)
+        {
+            if (_fileSelector == null)
+            {
+                return;
+            }
+
+            string previouslySelected = string.IsNullOrWhiteSpace(preferredFileName) ? SelectedFileName() : preferredFileName;
+            _fileSelector.Clear();
+
+            string folder = _folderField?.Text?.Trim() ?? DefaultDataFolder;
+            DirAccess dir = DirAccess.Open(folder);
+            if (dir == null)
+            {
+                _fileSelector.AddItem(DefaultFileName);
+                SetStatus($"Folder not found: {folder}");
+                return;
+            }
+
+            string[] files = dir.GetFiles();
+            Array.Sort(files, StringComparer.OrdinalIgnoreCase);
+            foreach (string file in files)
+            {
+                if (file.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+                {
+                    _fileSelector.AddItem(file);
+                }
+            }
+
+            if (_fileSelector.ItemCount == 0)
+            {
+                _fileSelector.AddItem(DefaultFileName);
+            }
+
+            int selectedIndex = FindItemIndex(_fileSelector, string.IsNullOrWhiteSpace(previouslySelected) ? DefaultFileName : previouslySelected);
+            _fileSelector.Select(selectedIndex);
+        }
+
+        private string SelectedFileName()
+        {
+            if (_fileSelector == null || _fileSelector.ItemCount == 0)
+            {
+                return DefaultFileName;
+            }
+
+            int selected = Mathf.Clamp(_fileSelector.Selected, 0, _fileSelector.ItemCount - 1);
+            return _fileSelector.GetItemText(selected);
+        }
+
+        private string MakeUniqueDialogFileName(string baseName, bool ignoreSelectedFile = false)
+        {
+            string safeBaseName = SanitizeFileBaseName(baseName);
+            if (string.IsNullOrWhiteSpace(safeBaseName))
+            {
+                safeBaseName = "new_dialog_tree";
+            }
+
+            string folder = _folderField?.Text?.Trim() ?? DefaultDataFolder;
+            int index = 0;
+            while (true)
+            {
+                string candidate = index == 0 ? $"{safeBaseName}.json" : $"{safeBaseName}_{index}.json";
+                string path = BuildFilePath(folder, candidate);
+                if (!FileAccess.FileExists(path) && !FileSelectorContains(candidate, ignoreSelectedFile))
+                {
+                    return candidate;
+                }
+
+                index++;
+            }
+        }
+
+        private void AddOrSelectFileName(string fileName)
+        {
+            if (_fileSelector == null)
+            {
+                return;
+            }
+
+            int existingIndex = FindItemIndex(_fileSelector, fileName);
+            if (existingIndex == 0 && (_fileSelector.ItemCount == 0 || _fileSelector.GetItemText(0) != fileName))
+            {
+                _fileSelector.AddItem(fileName);
+                existingIndex = _fileSelector.ItemCount - 1;
+            }
+
+            _fileSelector.Select(existingIndex);
+        }
+
+        private void ReplaceSelectedFileName(string fileName)
+        {
+            if (_fileSelector == null)
+            {
+                return;
+            }
+
+            int selected = Mathf.Clamp(_fileSelector.Selected, 0, Math.Max(0, _fileSelector.ItemCount - 1));
+            if (_fileSelector.ItemCount == 0)
+            {
+                _fileSelector.AddItem(fileName);
+                _fileSelector.Select(0);
+                return;
+            }
+
+            _fileSelector.SetItemText(selected, fileName);
+            _fileSelector.Select(selected);
+        }
+
+        private bool FileSelectorContains(string fileName, bool ignoreSelectedFile = false)
+        {
+            if (_fileSelector == null)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < _fileSelector.ItemCount; i++)
+            {
+                if (ignoreSelectedFile && i == _fileSelector.Selected)
+                {
+                    continue;
+                }
+
+                if (_fileSelector.GetItemText(i) == fileName)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static string SanitizeFileBaseName(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return string.Empty;
+            }
+
+            string trimmed = value.Trim();
+            char[] chars = new char[trimmed.Length];
+            for (int i = 0; i < trimmed.Length; i++)
+            {
+                char c = trimmed[i];
+                chars[i] = char.IsLetterOrDigit(c) || c == '_' || c == '-' ? c : '_';
+            }
+
+            string collapsed = new string(chars);
+            while (collapsed.Contains("__", StringComparison.Ordinal))
+            {
+                collapsed = collapsed.Replace("__", "_");
+            }
+
+            return collapsed.Trim('_');
+        }
+
+        private static void AddActionItems(OptionButton selector)
+        {
+            selector.AddItem("");
+            selector.AddItem(DialogActionRunner.StoreStubActionId);
+            selector.AddItem(DialogActionRunner.StartQuestActionId);
+            selector.AddItem(DialogActionRunner.CompleteQuestStubActionId);
+            selector.AddItem(DialogActionRunner.UpdateFriendshipStubActionId);
+        }
+
+        private static void AddConditionItems(OptionButton selector)
+        {
+            selector.AddItem("");
+            selector.AddItem(DialogConditionRunner.DebugTrueConditionId);
+            selector.AddItem(DialogConditionRunner.DebugFalseConditionId);
+            selector.AddItem(DialogConditionRunner.NpcFriendshipGreaterThanStubConditionId);
+            selector.AddItem(DialogConditionRunner.QuestCompleteStubConditionId);
+            selector.AddItem(DialogConditionRunner.ItemInInventoryStubConditionId);
+        }
+
+        private static OptionButton BuildAnchorSelector(string selectedAnchor, string defaultAnchor)
+        {
+            OptionButton selector = new();
+            selector.AddItem(AnchorNameLeft);
+            selector.AddItem(AnchorNameRight);
+            selector.AddItem(AnchorNameTop);
+            selector.AddItem(AnchorNameBottom);
+            selector.Select(FindItemIndex(selector, string.IsNullOrWhiteSpace(selectedAnchor) ? defaultAnchor : selectedAnchor));
+            return selector;
+        }
+
+        private static int FindItemIndex(OptionButton selector, string value)
+        {
+            if (selector == null || selector.ItemCount == 0)
+            {
+                return 0;
+            }
+
+            for (int i = 0; i < selector.ItemCount; i++)
+            {
+                if (selector.GetItemText(i) == value)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
         }
 
         private static JsonSerializerOptions JsonOptions()

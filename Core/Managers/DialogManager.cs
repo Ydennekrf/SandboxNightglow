@@ -38,11 +38,12 @@ namespace ethra.V1
             _activeTree = tree;
             _currentNode = startingNode;
             _panel = panel;
-            _npcName = npcName;
+			_npcName = npcName;
 
-            ShowCurrentNode();
-            return true;
-        }
+			ShowCurrentNode();
+			GameManager.Instance?.Publish(GameEvent.NpcSpokenTo, new NpcSpokenToQuestEvent(npcName));
+			return true;
+		}
 
         public void EndDialog()
         {
@@ -68,7 +69,9 @@ namespace ethra.V1
 
         private IEnumerable<InteractionDialogChoice> BuildChoices(IEnumerable<DialogChoice> choices)
         {
-            List<DialogChoice> choiceList = choices?.ToList() ?? new List<DialogChoice>();
+            List<DialogChoice> choiceList = choices?
+                .Where(choice => DialogConditionRunner.IsMet(choice, _npcName))
+                .ToList() ?? new List<DialogChoice>();
             if (choiceList.Count == 0)
             {
                 return new List<InteractionDialogChoice>

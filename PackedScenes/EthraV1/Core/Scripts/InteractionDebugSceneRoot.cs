@@ -16,7 +16,7 @@ public partial class InteractionDebugSceneRoot : Node2D
 
     private void InitializeManualDebugScene()
     {
-        DebugGameManager gameManager = GetNodeOrNull<DebugGameManager>(GameManagerPath) ?? DebugGameManager.Instance;
+        DebugGameManager gameManager = DebugGameManager.Instance ?? GetNodeOrNull<DebugGameManager>(GameManagerPath);
         WorldSceneRoot world = GetNodeOrNull<WorldSceneRoot>(WorldPath);
 
         if (gameManager == null)
@@ -34,6 +34,7 @@ public partial class InteractionDebugSceneRoot : Node2D
         DebugPlayer player = gameManager.GetPlayer() ?? gameManager.CreatePlayerModel();
         ConfigurePlayerStats(player);
         gameManager.SetPlayer(player);
+        gameManager.InitializeCurrentSceneUi();
 
         SpawnPlayer(gameManager, world, player);
 

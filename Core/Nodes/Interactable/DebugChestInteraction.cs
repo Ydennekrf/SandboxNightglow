@@ -5,6 +5,8 @@ namespace ethra.V1
     public partial class DebugChestInteraction : Area2D
     {
         [Export] public string LootText { get; set; } = "Found: Test Loot";
+        [Export] public int RewardItemId { get; set; } = 3001;
+        [Export] public int RewardQuantity { get; set; } = 1;
         [Export] public NodePath ClosedVisualPath { get; set; } = "ClosedVisual";
         [Export] public NodePath OpenedVisualPath { get; set; } = "OpenedVisual";
 
@@ -45,8 +47,24 @@ namespace ethra.V1
 
             _opened = true;
             SetOpenedVisual(true);
+            AddRewardItems();
             ShowPickupPopup(_player);
             GD.Print("[ChestDebug] Player opened chest and received Test Loot.");
+        }
+
+        private void AddRewardItems()
+        {
+            GameManager gameManager = GameManager.Instance;
+            if (gameManager == null || RewardItemId <= 0)
+            {
+                return;
+            }
+
+            int quantity = RewardQuantity > 0 ? RewardQuantity : 1;
+            for (int i = 0; i < quantity; i++)
+            {
+                gameManager.AddItem(RewardItemId);
+            }
         }
 
         private void ShowPickupPopup(PlayerNode player)

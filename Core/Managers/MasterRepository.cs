@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Godot;
 
 namespace ethra.V1
@@ -23,12 +24,14 @@ namespace ethra.V1
 
 		private Dictionary<int, InventoryItem> _itemRepo;
 		private Dictionary<string, DialogTree> _dialogTreeRepo;
+		private Dictionary<string, QuestDefinition> _questDefinitionRepo;
 
 		public MasterRepository()
 		{
 			_sceneRepo = new Dictionary<string, PackedScene>();
 			_itemRepo = new Dictionary<int, InventoryItem>();
 			_dialogTreeRepo = new Dictionary<string, DialogTree>();
+			_questDefinitionRepo = new Dictionary<string, QuestDefinition>();
 		}
 
 		// dialog repo is a dictionary with and int for id and a DialogNode class object <int, DialogNode>
@@ -169,6 +172,62 @@ namespace ethra.V1
 			GD.Print($"FillDialogTreeRepo: loaded={loaded} skipped={skipped} source={rootPath}");
 		}
 
+		public void FillQuestDefinitionRepo(string rootPath)
+		{
+			if (string.IsNullOrWhiteSpace(rootPath))
+			{
+				GD.PushError("FillQuestDefinitionRepo: rootPath is empty.");
+				return;
+			}
+
+			if (!rootPath.EndsWith("/"))
+				rootPath += "/";
+
+			if (!DirAccess.DirExistsAbsolute(rootPath))
+			{
+				GD.PushError($"FillQuestDefinitionRepo: directory does not exist: {rootPath}");
+				return;
+			}
+
+			_questDefinitionRepo.Clear();
+			int loaded = 0;
+			int skipped = 0;
+
+			using var dir = DirAccess.Open(rootPath);
+			if (dir == null)
+			{
+				GD.PushError($"FillQuestDefinitionRepo: failed to open directory: {rootPath}");
+				return;
+			}
+
+			dir.ListDirBegin();
+			while (true)
+			{
+				string entry = dir.GetNext();
+				if (string.IsNullOrEmpty(entry))
+					break;
+
+				if (entry is "." or ".." || dir.CurrentIsDir())
+					continue;
+
+				if (!entry.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+					continue;
+
+				if (TryLoadQuestDefinition(rootPath + entry, out QuestDefinition definition))
+				{
+					_questDefinitionRepo[definition.QuestId] = definition;
+					loaded++;
+				}
+				else
+				{
+					skipped++;
+				}
+			}
+			dir.ListDirEnd();
+
+			GD.Print($"FillQuestDefinitionRepo: loaded={loaded} skipped={skipped} source={rootPath}");
+		}
+
 		public PackedScene GetSceneFromRepo(string sceneName)
 		{
 			if (string.IsNullOrWhiteSpace(sceneName)) return null;
@@ -188,6 +247,16 @@ namespace ethra.V1
 			}
 
 			return _dialogTreeRepo.TryGetValue(treeId, out DialogTree tree) ? tree : null;
+		}
+
+		public QuestDefinition GetQuestDefinitionFromRepo(string questId)
+		{
+			if (string.IsNullOrWhiteSpace(questId))
+			{
+				return null;
+			}
+
+			return _questDefinitionRepo.TryGetValue(questId, out QuestDefinition definition) ? definition : null;
 		}
 
 		private bool TryLoadDialogTree(string path, out DialogTree tree)
@@ -214,6 +283,33 @@ namespace ethra.V1
 			}
 
 			return ValidateDialogTree(tree, path);
+		}
+
+		private bool TryLoadQuestDefinition(string path, out QuestDefinition definition)
+		{
+			definition = null;
+			string json = FileAccess.GetFileAsString(path);
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				GD.PushWarning($"TryLoadQuestDefinition: quest file was empty: {path}");
+				return false;
+			}
+
+			try
+			{
+				definition = JsonSerializer.Deserialize<QuestDefinition>(json, new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true,
+					Converters = { new JsonStringEnumConverter() }
+				});
+			}
+			catch (JsonException ex)
+			{
+				GD.PushWarning($"TryLoadQuestDefinition: failed to parse {path}: {ex.Message}");
+				return false;
+			}
+
+			return ValidateQuestDefinition(definition, path);
 		}
 
 		private bool ValidateDialogTree(DialogTree tree, string sourcePath)
@@ -276,6 +372,51 @@ namespace ethra.V1
 						return false;
 					}
 				}
+			}
+
+			return true;
+		}
+
+		private bool ValidateQuestDefinition(QuestDefinition definition, string sourcePath)
+		{
+			if (definition == null)
+			{
+				GD.PushWarning($"ValidateQuestDefinition: parsed null quest definition from {sourcePath}.");
+				return false;
+			}
+
+			if (string.IsNullOrWhiteSpace(definition.QuestId))
+			{
+				GD.PushWarning($"ValidateQuestDefinition: quest definition in {sourcePath} is missing QuestId.");
+				return false;
+			}
+
+			if (definition.Objectives == null || definition.Objectives.Count == 0)
+			{
+				GD.PushWarning($"ValidateQuestDefinition: quest '{definition.QuestId}' has no objectives.");
+				return false;
+			}
+
+			HashSet<string> objectiveIds = new HashSet<string>();
+			foreach (QuestObjectiveDefinition objective in definition.Objectives)
+			{
+				if (string.IsNullOrWhiteSpace(objective.ObjectiveId))
+				{
+					GD.PushWarning($"ValidateQuestDefinition: quest '{definition.QuestId}' has an objective with empty ObjectiveId.");
+					return false;
+				}
+
+				if (!objectiveIds.Add(objective.ObjectiveId))
+				{
+					GD.PushWarning($"ValidateQuestDefinition: quest '{definition.QuestId}' has duplicate objective '{objective.ObjectiveId}'.");
+					return false;
+				}
+			}
+
+			if (!string.IsNullOrWhiteSpace(definition.StartingObjectiveId) && !objectiveIds.Contains(definition.StartingObjectiveId))
+			{
+				GD.PushWarning($"ValidateQuestDefinition: quest '{definition.QuestId}' starts at missing objective '{definition.StartingObjectiveId}'.");
+				return false;
 			}
 
 			return true;

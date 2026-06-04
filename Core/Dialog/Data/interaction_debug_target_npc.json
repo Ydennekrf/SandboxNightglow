@@ -1,0 +1,26 @@
+{
+  "treeId": "interaction_debug_target_npc",
+  "startingNodeId": "start",
+  "nodes": [
+    {
+      "nodeId": "start",
+      "speakerName": "Test NPC",
+      "text": "You found me. Quest objective checks should happen as soon as this dialog opens.",
+      "graphX": 0,
+      "graphY": 0,
+      "choices": [
+        {
+          "choiceText": "Goodbye",
+          "nextNodeId": "",
+          "endsDialog": true,
+          "actionId": "",
+          "actionPayload": "",
+          "conditionId": "",
+          "conditionPayload": "",
+          "fromAnchor": "right",
+          "toAnchor": "left"
+        }
+      ]
+    }
+  ]
+}

@@ -6,34 +6,74 @@
 	  "nodeId": "start",
 	  "speakerName": "Test NPC",
 	  "text": "Hello there. What do you need?",
+	  "graphX": 0,
+	  "graphY": 0,
 	  "choices": [
 		{
 		  "choiceText": "Who are you?",
 		  "nextNodeId": "who_are_you",
 		  "endsDialog": false,
 		  "actionId": "",
-		  "actionPayload": ""
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
 		},
 		{
 		  "choiceText": "Open shop",
 		  "nextNodeId": "start",
 		  "endsDialog": false,
 		  "actionId": "store_stub",
-		  "actionPayload": ""
+		  "actionPayload": "",
+		  "conditionId": "debug_true",
+		  "conditionPayload": "",
+		  "fromAnchor": "bottom",
+		  "toAnchor": "top"
+		},
+		{
+		  "choiceText": "Start speak quest",
+		  "nextNodeId": "start",
+		  "endsDialog": false,
+		  "actionId": "start_quest",
+		  "actionPayload": "quest_test_speak_to_npc",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
+		},
+		{
+		  "choiceText": "Start collect quest",
+		  "nextNodeId": "start",
+		  "endsDialog": false,
+		  "actionId": "start_quest",
+		  "actionPayload": "quest_test_collect_item",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
 		},
 		{
 		  "choiceText": "Goodbye",
 		  "nextNodeId": "",
 		  "endsDialog": true,
 		  "actionId": "",
-		  "actionPayload": ""
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
 		},
 		{
 		  "choiceText": "This is ANother option",
 		  "nextNodeId": "node_1",
 		  "endsDialog": false,
 		  "actionId": "",
-		  "actionPayload": ""
+		  "actionPayload": "",
+		  "conditionId": "debug_false",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
 		}
 	  ]
 	},
@@ -41,20 +81,41 @@
 	  "nodeId": "who_are_you",
 	  "speakerName": "Test NPC",
 	  "text": "I am a test NPC for the new dialog tree system.",
+	  "graphX": 364.88165,
+	  "graphY": 4.6653147,
 	  "choices": [
 		{
 		  "choiceText": "Back",
 		  "nextNodeId": "start",
 		  "endsDialog": false,
 		  "actionId": "",
-		  "actionPayload": ""
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "left",
+		  "toAnchor": "right"
 		},
 		{
 		  "choiceText": "Goodbye",
 		  "nextNodeId": "",
 		  "endsDialog": true,
 		  "actionId": "",
-		  "actionPayload": ""
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
+		},
+		{
+		  "choiceText": "New choice",
+		  "nextNodeId": "test_depth2",
+		  "endsDialog": true,
+		  "actionId": "complete_quest_stub",
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
 		}
 	  ]
 	},
@@ -62,15 +123,29 @@
 	  "nodeId": "node_1",
 	  "speakerName": "NPC",
 	  "text": "New dialog node.",
+	  "graphX": 408.4246,
+	  "graphY": 439.2697,
 	  "choices": [
 		{
 		  "choiceText": "New GOODBYE",
 		  "nextNodeId": "",
 		  "endsDialog": false,
 		  "actionId": "",
-		  "actionPayload": ""
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
 		}
 	  ]
+	},
+	{
+	  "nodeId": "test_depth2",
+	  "speakerName": "NPC",
+	  "text": "New dialog node.",
+	  "graphX": 680,
+	  "graphY": 0,
+	  "choices": []
 	}
   ]
 }

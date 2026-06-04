@@ -3,6 +3,7 @@ using System;
 
 public partial class UIRoot : CanvasLayer
 {
+		private const bool DebugMenuInput = true;
 	 	[Export] public NodePath HudPath { get; set; } = "Hud";
 		[Export] public NodePath MainMenuPath { get; set; } = "Menus/MainMenu";
 		[Export] public NodePath PlayerMenuPath { get; set; } = "Hud/PlayerMenu";
@@ -13,8 +14,25 @@ public partial class UIRoot : CanvasLayer
 
 		public void ShowHud(bool show) => SetVisibleSafe(Hud, show);
 		public void ShowMainMenu(bool show) => SetVisibleSafe(MainMenu, show);
-		public void ShowPlayerMenu(bool show) => SetVisibleSafe(PlayerMenu, show);
-		public void TogglePlayerMenu() => ShowPlayerMenu(!IsPlayerMenuVisible);
+		public void ShowPlayerMenu(bool show)
+		{
+			if (DebugMenuInput)
+			{
+				GD.Print($"[UIDebug] ShowPlayerMenu({show}). path='{PlayerMenuPath}' resolved={PlayerMenu?.GetPath().ToString() ?? "null"}");
+			}
+
+			SetVisibleSafe(PlayerMenu, show);
+		}
+
+		public void TogglePlayerMenu()
+		{
+			if (DebugMenuInput)
+			{
+				GD.Print($"[UIDebug] TogglePlayerMenu. currentlyVisible={IsPlayerMenuVisible}");
+			}
+
+			ShowPlayerMenu(!IsPlayerMenuVisible);
+		}
 		public bool IsPlayerMenuVisible => PlayerMenu != null && PlayerMenu.Visible;
 
     public void ShowOnlyHud()
@@ -46,5 +64,9 @@ public partial class UIRoot : CanvasLayer
 				return;
 			}
 			node.Visible = visible;
+			if (DebugMenuInput)
+			{
+				GD.Print($"[UIDebug] SetVisibleSafe: {node.GetPath()} visible={node.Visible}");
+			}
 		}
 }

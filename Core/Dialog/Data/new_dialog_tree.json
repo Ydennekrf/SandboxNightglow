@@ -1,0 +1,14 @@
+{
+  "treeId": "new_dialog_test",
+  "startingNodeId": "start",
+  "nodes": [
+    {
+      "nodeId": "start",
+      "speakerName": "NPC",
+      "text": "New dialog starts here.",
+      "graphX": 0,
+      "graphY": 0,
+      "choices": []
+    }
+  ]
+}

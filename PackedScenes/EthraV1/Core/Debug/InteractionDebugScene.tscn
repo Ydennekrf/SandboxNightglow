@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene format=3 uid="uid://byrnenx2tk612"]
 
-[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/InteractionDebugSceneRoot.cs" id="1_root"]
+[ext_resource type="Script" uid="uid://bac4sy3ufif3y" path="res://PackedScenes/EthraV1/Core/Scripts/InteractionDebugSceneRoot.cs" id="1_root"]
 [ext_resource type="PackedScene" uid="uid://dwvl0gweuelai" path="res://PackedScenes/EthraV1/Core/UI/game_manager.tscn" id="2_manager"]
 [ext_resource type="Script" uid="uid://cgqkopdsxrle8" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="3_world"]
 [ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="4_ui"]
@@ -8,44 +8,49 @@
 [ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Debug/InteractionDebugNpc.tscn" id="6_npc"]
 [ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/WorldObjects/InteractionDebugChest.tscn" id="7_chest"]
 [ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/InteractionDialogPanel.tscn" id="8_dialog"]
+[ext_resource type="PackedScene" uid="uid://yvmcay2n7e48" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="9_player_menu"]
 
-[node name="InteractionDebugScene" type="Node2D"]
+[node name="InteractionDebugScene" type="Node2D" unique_id=1154614047]
 script = ExtResource("1_root")
 PlayerScene = ExtResource("5_player")
 
-[node name="GameManager" parent="." instance=ExtResource("2_manager")]
+[node name="GameManager" parent="." unique_id=1045582074 instance=ExtResource("2_manager")]
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1984765676]
 script = ExtResource("3_world")
 
-[node name="Map" type="Node2D" parent="World"]
+[node name="Map" type="Node2D" parent="World" unique_id=760426071]
 
-[node name="Entities" type="Node2D" parent="World"]
+[node name="Entities" type="Node2D" parent="World" unique_id=1949467097]
 
-[node name="Player" type="Node2D" parent="World/Entities"]
+[node name="Player" type="Node2D" parent="World/Entities" unique_id=1196358452]
 
-[node name="Enemies" type="Node2D" parent="World/Entities"]
+[node name="Enemies" type="Node2D" parent="World/Entities" unique_id=308986726]
 
-[node name="NPCs" type="Node2D" parent="World/Entities"]
+[node name="NPCs" type="Node2D" parent="World/Entities" unique_id=706473944]
 
-[node name="DebugMerchant" parent="World/Entities/NPCs" instance=ExtResource("6_npc")]
+[node name="DebugMerchant" parent="World/Entities/NPCs" unique_id=1249407091 instance=ExtResource("6_npc")]
 position = Vector2(80, 0)
 
-[node name="SpawnPoints" type="Node2D" parent="World/Entities"]
+[node name="TestNpc" parent="World/Entities/NPCs" unique_id=1645156746 instance=ExtResource("6_npc")]
+position = Vector2(160, 0)
+NpcName = "test_npc"
+DialogTreeId = "interaction_debug_target_npc"
 
-[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints"]
-position = Vector2(0, 0)
+[node name="SpawnPoints" type="Node2D" parent="World/Entities" unique_id=1741818557]
 
-[node name="Interactables" type="Node2D" parent="World"]
+[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints" unique_id=777278618]
 
-[node name="DebugChest" parent="World/Interactables" instance=ExtResource("7_chest")]
+[node name="Interactables" type="Node2D" parent="World" unique_id=484288599]
+
+[node name="DebugChest" parent="World/Interactables" unique_id=1293096525 instance=ExtResource("7_chest")]
 position = Vector2(-80, 0)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=937863861]
 script = ExtResource("4_ui")
 PlayerMenuPath = NodePath("Menus/PlayerMenu")
 
-[node name="Hud" type="Control" parent="UI"]
+[node name="Hud" type="Control" parent="UI" unique_id=1183091043]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,9 +58,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InteractionDialogPanel" parent="UI" instance=ExtResource("8_dialog")]
+[node name="InteractionDialogPanel" parent="UI" unique_id=1292091939 instance=ExtResource("8_dialog")]
 
-[node name="Menus" type="Control" parent="UI"]
+[node name="Menus" type="Control" parent="UI" unique_id=1825598848]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,10 +68,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayerMenu" type="Control" parent="UI/Menus"]
+[node name="PlayerMenu" parent="UI/Menus" unique_id=400448532 instance=ExtResource("9_player_menu")]
 visible = false
 layout_mode = 1
 
-[node name="MainMenu" type="Control" parent="UI/Menus"]
+[node name="MainMenu" type="Control" parent="UI/Menus" unique_id=663702921]
 visible = false
 layout_mode = 1
+anchors_preset = 0

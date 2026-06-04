@@ -20,6 +20,7 @@ namespace ethra.V1
 	private EventManager _event;
 	private GameStateManager _gameState;
 	private InventoryManager _inventory;
+	private QuestManager _quest;
 	private SceneManager _scene;
 	private UIManager _ui;
 	private MasterRepository _db;
@@ -34,6 +35,7 @@ namespace ethra.V1
 	public EventManager Events { get { return _event; } }
 	public GameStateManager GameState { get { return _gameState; } }
 	public InventoryManager Inventory { get { return _inventory; } }
+	public QuestManager Quest { get { return _quest; } }
 	public SceneManager Scene { get { return _scene; } }
 	public UIManager UI { get { return _ui; } }
 	public MasterRepository DB { get { return _db; } }
@@ -70,6 +72,8 @@ namespace ethra.V1
 	[ExportSubgroup("Dialog Data")]
 	[Export] public string DialogTreeDataFolderPath = "res://Core/Dialog/Data";
 	[Export] public string DialogCsvPath = string.Empty;
+	[ExportSubgroup("Quest Data")]
+	[Export] public string QuestDefinitionDataFolderPath = "res://Core/Quest/Data";
 	[ExportSubgroup("Item CSV")]
 	[Export] public string ItemCsvPath = "res://Core/Inventory/Data/items_seed.csv";
 	[ExportSubgroup("Item Effects CSV")]
@@ -139,6 +143,14 @@ namespace ethra.V1
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+			if (Instance != null && Instance != this)
+			{
+				GD.PushWarning($"Duplicate GameManager detected at '{GetPath()}'. Disabling duplicate instance; active instance is '{Instance.GetPath()}'.");
+				SetProcess(false);
+				QueueFree();
+				return;
+			}
+
 			Instance = this;
 			Initialize();
 		}
@@ -156,6 +168,7 @@ namespace ethra.V1
 		{
 			base._ExitTree();
 
+			_quest?.Shutdown();
 			unregisterManagers();
 		}
 
@@ -180,6 +193,7 @@ namespace ethra.V1
 			_db = new MasterRepository();
 			_saves = new SaveLoadService(this);
 			_inventory = new InventoryManager(_db);
+			_quest = new QuestManager(_db);
 
 			_scene.Initialize(this, _gameState, _db);
 
@@ -189,21 +203,39 @@ namespace ethra.V1
 			registerManager(_event);
 			registerManager(_gameState);
 			registerManager(_inventory);
+			registerManager(_quest);
 			registerManager(_scene);
 			registerManager(_ui);
 
 			GetAllItems();
 			GetAllItemEffects();
 			GetAllDialog();
+			GetAllQuests();
 			GetAllScenes();
+			_quest.Initialize();
 
+			CallDeferred(nameof(InitializeCurrentSceneUi));
 
-			var uiRoot = GetTree().CurrentScene.GetNodeOrNull<UIRoot>("UI");
+		}
+
+		public void InitializeCurrentSceneUi()
+		{
+			var currentScene = GetTree()?.CurrentScene;
+			if (currentScene == null)
+			{
+				GD.PushWarning("InitializeCurrentSceneUi: CurrentScene is null. UI initialization deferred.");
+				CallDeferred(nameof(InitializeCurrentSceneUi));
+				return;
+			}
+
+			var uiRoot = currentScene.GetNodeOrNull<UIRoot>("UI");
 			if (uiRoot == null)
-				GD.PushError("UIRoot not found at path 'UI' under current scene.");
-			else
-				_ui.Initialize(uiRoot);
+			{
+				GD.PushWarning($"InitializeCurrentSceneUi: UIRoot not found at path 'UI' under scene '{currentScene.Name}'.");
+				return;
+			}
 
+			_ui.Initialize(uiRoot);
 		}
 
 
@@ -254,6 +286,17 @@ namespace ethra.V1
 			}
 
 			DB.FillDialogTreeRepo(DialogTreeDataFolderPath);
+		}
+
+		public void GetAllQuests()
+		{
+			if (string.IsNullOrWhiteSpace(QuestDefinitionDataFolderPath))
+			{
+				GD.PushWarning("GetAllQuests: QuestDefinitionDataFolderPath is empty. Skipping quest definition load.");
+				return;
+			}
+
+			DB.FillQuestDefinitionRepo(QuestDefinitionDataFolderPath);
 		}
 		#endregion
 

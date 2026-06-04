@@ -14,6 +14,8 @@ namespace ethra.V1
         public string NodeId { get; set; } = string.Empty;
         public string SpeakerName { get; set; } = string.Empty;
         public string Text { get; set; } = string.Empty;
+        public float GraphX { get; set; }
+        public float GraphY { get; set; }
         public List<DialogChoice> Choices { get; set; } = new();
     }
 
@@ -24,5 +26,9 @@ namespace ethra.V1
         public bool EndsDialog { get; set; }
         public string ActionId { get; set; } = string.Empty;
         public string ActionPayload { get; set; } = string.Empty;
+        public string ConditionId { get; set; } = string.Empty;
+        public string ConditionPayload { get; set; } = string.Empty;
+        public string FromAnchor { get; set; } = string.Empty;
+        public string ToAnchor { get; set; } = string.Empty;
     }
 }

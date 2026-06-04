@@ -1,12 +1,25 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://cikdpis6puggg"]
 
-[ext_resource type="Script" path="res://Core/Dialog/Tools/DialogGraphEditorTool.cs" id="1_editor"]
+[ext_resource type="Script" uid="uid://cdep435stg1sy" path="res://Core/Dialog/Tools/DialogGraphEditorTool.cs" id="1_editor"]
 
-[node name="DialogGraphEditor" type="Control"]
+[node name="DialogGraphEditor" type="Control" unique_id=4323428 node_paths=PackedStringArray("_folderField", "_fileSelector", "_statusLabel", "_zoomLabel", "_graphScroll", "_canvas", "_inspector")]
+custom_minimum_size = Vector2(900, 600)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 72.0
+offset_right = -5.408081
+offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_editor")
+_folderField = NodePath("@VBoxContainer@18995/@HBoxContainer@18996/@LineEdit@18997")
+_fileSelector = NodePath("@VBoxContainer@18995/@HBoxContainer@18996/@OptionButton@19006")
+_statusLabel = NodePath("@VBoxContainer@18995/@HBoxContainer@18996/@Label@19018")
+_zoomLabel = NodePath("@VBoxContainer@18995/@HBoxContainer@18996/@Label@19015")
+_graphScroll = NodePath("@VBoxContainer@18995/@HSplitContainer@19020/@ScrollContainer@19023")
+_canvas = NodePath("@VBoxContainer@18995/@HSplitContainer@19020/@ScrollContainer@19023/@Control@19024")
+_inspector = NodePath("@VBoxContainer@18995/@HSplitContainer@19020/@ScrollContainer@19027/@VBoxContainer@19028")
+_zoom = 1.0

@@ -43,12 +43,13 @@ namespace ethra.V1
 
             if(_itemDict.TryGetValue(id, out int count))
             {
-                if(count + 1 <= maxAllowed)
-                {
-                     _itemDict[id] = count + 1;
-                     Changed?.Invoke();
-                     return true;
-                }
+				if(count + 1 <= maxAllowed)
+				{
+					 _itemDict[id] = count + 1;
+					 Changed?.Invoke();
+					 PublishItemCollected(id, 1);
+					 return true;
+				}
                 else
                 {
                     GD.Print($"Unable to add item to inventory. max stack exceeded for id:{id}.");
@@ -56,13 +57,19 @@ namespace ethra.V1
                 }
                
             }
-            else
-            {
-                _itemDict.Add(id, 1);
-                Changed?.Invoke();
-                return true;
-            }
-        }
+			else
+			{
+				_itemDict.Add(id, 1);
+				Changed?.Invoke();
+				PublishItemCollected(id, 1);
+				return true;
+			}
+		}
+
+		private static void PublishItemCollected(int id, int quantity)
+		{
+			GameManager.Instance?.Publish(GameEvent.PickupItem, new ItemCollectedQuestEvent(id, quantity));
+		}
 
         public object CaptureSnapshot()
         {

@@ -2,7 +2,7 @@
 
 ## What A Dialog Tree Is
 
-A dialog tree is data that describes one conversation. It has a tree ID, a starting node, and a list of dialog nodes. Each node contains speaker text and player choices. Choices can move to another node, end the dialog, or trigger a lightweight action.
+A dialog tree is data that describes one conversation. It has a tree ID, a starting node, and a list of dialog nodes. Each node contains speaker text and player choices. Choices can move to another node, end the dialog, trigger a lightweight action, or be shown only when a simple condition passes.
 
 This is intended as the foundation for future graph/editor tooling, but the current implementation is simple JSON.
 
@@ -31,10 +31,16 @@ res://Core/Dialog/Data/interaction_debug_merchant.json
       "nodeId": "start",
       "speakerName": "NPC Name",
       "text": "Hello there.",
+      "graphX": 0,
+      "graphY": 0,
       "choices": [
         {
           "choiceText": "Ask a question",
-          "nextNodeId": "question_response"
+          "nextNodeId": "question_response",
+          "conditionId": "debug_true",
+          "conditionPayload": "",
+          "fromAnchor": "right",
+          "toAnchor": "left"
         },
         {
           "choiceText": "Goodbye",
@@ -49,11 +55,12 @@ res://Core/Dialog/Data/interaction_debug_merchant.json
 ## Runtime Classes
 
 - `DialogTree`: tree ID, starting node ID, and nodes.
-- `DialogNode`: node ID, speaker name, text, and choices.
-- `DialogChoice`: choice text, optional next node, optional end flag, optional action ID, and optional action payload.
+- `DialogNode`: node ID, speaker name, text, optional graph editor position, and choices.
+- `DialogChoice`: choice text, optional next node, optional end flag, optional action ID, optional action payload, optional condition ID, optional condition payload, and optional graph connection anchors.
 - `MasterRepository`: loads JSON files from `res://Core/Dialog/Data/` into the dialog tree repo.
-- `DialogManager`: starts a tree, displays nodes, handles choices, branches, actions, and dialog ending.
+- `DialogManager`: starts a tree, displays nodes, filters choices by condition, handles choices, branches, actions, and dialog ending.
 - `DialogActionRunner`: runs known lightweight dialog actions.
+- `DialogConditionRunner`: evaluates known lightweight dialog conditions.
 
 ## Creating A New Dialog Tree
 
@@ -62,6 +69,7 @@ res://Core/Dialog/Data/interaction_debug_merchant.json
 3. Set `startingNodeId` to one of the node IDs in `nodes`.
 4. Add one or more nodes.
 5. Add choices that either set `nextNodeId`, set `endsDialog: true`, or both trigger an action and branch/end.
+6. Optionally set `graphX` and `graphY`, or use the visual graph editor to place nodes and save those fields.
 
 ## Assigning A Tree To An NPC
 
@@ -99,6 +107,32 @@ A choice ends dialog by setting:
 
 Nodes with no choices show a generated `Continue` option that closes the dialog.
 
+## Conditional Choices
+
+A choice can be shown only when a condition passes:
+
+```json
+{
+  "choiceText": "Debug-only visible choice",
+  "nextNodeId": "debug_node",
+  "conditionId": "debug_true",
+  "conditionPayload": ""
+}
+```
+
+Current condition IDs:
+
+- empty or missing: always show the choice
+- `debug_true`: always show the choice
+- `debug_false`: always hide the choice
+- `npc_friendship_greater_than_stub`: known placeholder for `NPC friendship > value`
+- `quest_complete_stub`: known placeholder for `quest is complete`
+- `item_in_inventory_stub`: known placeholder for `item is in inventory`
+
+These are intentionally small placeholders so the graph, JSON, editor, and runtime filtering paths can be tested before quest, friendship, flag, or relationship systems exist.
+
+The placeholder conditions are known to validation but return false at runtime until their backing gameplay providers are wired.
+
 ## Dialog Actions
 
 Choices can run a known action before branching or ending:
@@ -114,8 +148,25 @@ Choices can run a known action before branching or ending:
 Currently supported actions:
 
 - `store_stub`: prints `[StoreStub] Opening store screen for NPC: <npc name>`
+- `complete_quest_stub`: prints a quest completion stub message with the payload
+- `update_friendship_stub`: prints a friendship update stub message with the payload
 
-The action is intentionally small. It proves dialog choices can trigger future systems without building store UI, inventory, pricing, or money yet.
+The actions are intentionally small. They prove dialog choices can trigger future systems without building store UI, quest completion, inventory, pricing, money, or friendship persistence yet.
+
+## Connection Anchors
+
+Choices can set optional graph connection anchors:
+
+```json
+{
+  "choiceText": "Back",
+  "nextNodeId": "start",
+  "fromAnchor": "left",
+  "toAnchor": "right"
+}
+```
+
+Supported anchor values are `left`, `right`, `top`, and `bottom`. These only affect the visual graph editor.
 
 ## Running The Debug Scene
 
@@ -127,13 +178,13 @@ powershell -ExecutionPolicy Bypass -File .\tools\run-interaction-debug.ps1
 
 ## Visual Editing
 
-Phase 1 of the visual graph editor is available as a runtime/debug tool scene:
+The visual graph editor is available as a runtime/debug tool scene:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\run-dialog-graph-editor.ps1
 ```
 
-See `docs/dialog-graph-editor.md` for the current workflow and limitations.
+See `docs/dialog-graph-editor.md` for the current workflow, zoom/pan controls, drag layout, conditions, and limitations.
 
 Manual test flow:
 
@@ -153,12 +204,11 @@ Manual test flow:
 - Choice points to missing node: every `nextNodeId` must match a node in the same tree.
 - Dialog tree ID does not match: the NPC `DialogTreeId` must equal the JSON `treeId`.
 - Action ID is unknown: unsupported `actionId` values log a warning and do nothing.
+- Condition ID is unknown: unsupported `conditionId` values fail editor validation and are hidden at runtime.
 - Dialog UI does not open: confirm the scene has `UI/InteractionDialogPanel` and the NPC can find it.
 
 ## Future Improvements
 
-- visual graph editor
-- conditions
 - flags
 - quest checks
 - friendship checks
