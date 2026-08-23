@@ -1,15 +1,17 @@
 
 
+using System;
 using System.Collections.Generic;
 
 namespace ethra.V1
 {
     public partial class CombatEntity : Entity, ICombatEntity, ICombat , IStats
     {
+        public event Action<int, int> HealthChanged;
+        public event Action<int, int> ManaChanged;
+
          internal ICombat _combat;
 
-          private int _lvl;
-        private int _exp;
         private int _maxHP;
         private int _curHP;
         private int _maxMana;
@@ -27,20 +29,25 @@ namespace ethra.V1
             get { return _curHP; }
             set
             {
+                int previous = _curHP;
                 int next = _curHP + value;
                 if (next > _maxHP)
                 {
                     _curHP = _maxHP;
-                    return;
                 }
-
-                if (next < 0)
+                else if (next < 0)
                 {
                     _curHP = 0;
-                    return;
+                }
+                else
+                {
+                    _curHP = next;
                 }
 
-                _curHP = next;
+                if (_curHP != previous)
+                {
+                    HealthChanged?.Invoke(_curHP, _maxHP);
+                }
             }
         }
         public int MaxMana {get{return _maxMana;} set{_maxMana = value;}}
@@ -49,20 +56,25 @@ namespace ethra.V1
             get { return _curMana; }
             set
             {
+                int previous = _curMana;
                 int next = _curMana + value;
                 if (next > _maxMana)
                 {
                     _curMana = _maxMana;
-                    return;
                 }
-
-                if (next < 0)
+                else if (next < 0)
                 {
                     _curMana = 0;
-                    return;
+                }
+                else
+                {
+                    _curMana = next;
                 }
 
-                _curMana = next;
+                if (_curMana != previous)
+                {
+                    ManaChanged?.Invoke(_curMana, _maxMana);
+                }
             }
         }
         public int Strength {get{return _str;} set {if(_str + value > 99){_str = 99;} else{_str = value;}}}
@@ -97,6 +109,8 @@ namespace ethra.V1
             _spi = spirit;
             _vit = vitality;
             _luk = luck;
+            HealthChanged?.Invoke(_curHP, _maxHP);
+            ManaChanged?.Invoke(_curMana, _maxMana);
         }
 
         public void ApplyStatus(Entity target, string statusId, int stacks = 1, float? durationSeconds = null, Entity source = null)

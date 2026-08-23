@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://components/Loot/Base/LootDropper.cs" id="1_dropper"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Items/item_to_pickup_node.tscn" id="2_pickup"]
+
+[node name="LootDropper" type="Node2D"]
+script = ExtResource("1_dropper")
+PickupScene = ExtResource("2_pickup")

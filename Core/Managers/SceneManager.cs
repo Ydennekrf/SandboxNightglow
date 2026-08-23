@@ -4,10 +4,18 @@ using System.Runtime.CompilerServices;
 
 namespace ethra.V1
 {
+    /// <summary>
+    /// Coordinates world scene loading and player node instancing under the active MasterNode.
+    /// </summary>
+    /// <remarks>
+    /// SceneManager owns scene transitions only. Player model creation and persistent state remain in
+    /// GameManager, EntityManager, and GameStateManager.
+    /// </remarks>
     public partial class SceneManager : ISceneManager
 	{
 		//======== fields and properties ==========//
 		private PackedScene _currentScene;
+		private string _currentSceneKey = string.Empty;
 
 		private Player _playerRef;
 
@@ -18,6 +26,9 @@ namespace ethra.V1
 		private IGameStateManager _gsm;
 		private MasterRepository _db;
 
+        /// <summary>
+        /// Supplies the scene manager with the host node, persistent game state, and scene repository.
+        /// </summary>
 		public void Initialize(Node host, IGameStateManager gsm, MasterRepository db)
         {
             _gameManager = host ?? throw new ArgumentNullException(nameof(host));
@@ -27,10 +38,9 @@ namespace ethra.V1
 
 		//========= Interface Public Methods ============//
 		/// <summary>
-        /// takes a string value representing the scene name you are trying to go to and loads in the new scene.
+        /// Replaces the current world scene with a repository scene key while keeping the MasterNode UI intact.
         /// </summary>
-        /// <param name="sceneToGoTo"></param>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="sceneToGoTo">Scene repository key, usually the .tscn file name without extension.</param>
 		public void GoToScene(string sceneToGoTo)
 		{
 
@@ -47,13 +57,18 @@ namespace ethra.V1
 
             if (world == null) throw new InvalidOperationException("MasterNode is missing node named 'World'.");
 
-            // clear the old scene (keep UI Intact)
+            // World content is replaced while UI remains owned by the current MasterNode.
             foreach (var child in world.GetChildren()) child.QueueFree();
 
             var worldSceneInstance = _sceneToGoTo.Instantiate<Node2D>();
             world.AddChild(worldSceneInstance);
 
             _currentScene = _sceneToGoTo;
+            _currentSceneKey = sceneToGoTo;
+            if (_gsm is GameStateManager gameState)
+            {
+                gameState.SetCurrentLocationWithDisplayName(sceneToGoTo, sceneToGoTo);
+            }
 			
 		}
 
@@ -61,16 +76,16 @@ namespace ethra.V1
 
 		
 		/// <summary>
-        /// pulls the player refrence from the current scene and saves it for persistance
+        /// Reserved for future scene-owned player lookup if multiple player nodes are supported.
         /// </summary>
-        /// <param name="id">the player's unique integer based ID</param>
-        /// <returns>the full player refrence</returns>
-        /// <exception cref="NotImplementedException"></exception>
 		private Player GetPlayerFromCurrentScene(int id)
         {
 			throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Instances the authored PlayerNode scene, attaches it to the target parent, and binds it to the player model.
+        /// </summary>
         public PlayerNode SpawnPlayerNode(PackedScene playerPacked, Vector2 position, Player model, Node parent = null)
         {
             if (_gameManager == null) throw new InvalidOperationException("SceneManager not initialized. Call Initialize(...) first.");
@@ -80,14 +95,38 @@ namespace ethra.V1
             var node = playerPacked.Instantiate<PlayerNode>();
             node.GlobalPosition = position;
 
-            // Prefer an explicit parent; otherwise use the current scene root
+            // Prefer world-provided containers so debug and production scenes share the same spawn path.
             Node attachParent = parent ?? _gameManager.GetTree().CurrentScene;
             attachParent.AddChild(node);
 
             node.Bind(model);
+            node.SetSurfaceResolver(FindWorldSurfaceResolver(attachParent));
             return node;
+        }
+
+        /// <summary>
+        /// Returns the last repository scene key loaded through GoToScene.
+        /// </summary>
+        public string GetCurrentSceneKey()
+        {
+            return _currentSceneKey;
+        }
+
+        private static TileSurfaceResolver FindWorldSurfaceResolver(Node start)
+        {
+            Node current = start;
+            while (current != null)
+            {
+                if (current is WorldSceneRoot worldRoot)
+                {
+                    return worldRoot.SurfaceResolver;
+                }
+
+                current = current.GetParent();
+            }
+
+            return null;
         }
 
     }
 }
-

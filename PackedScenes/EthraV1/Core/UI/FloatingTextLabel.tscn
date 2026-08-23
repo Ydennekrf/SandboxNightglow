@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Core/UI/Scripts/FloatingTextLabel.cs" id="1_label"]
+
+[node name="FloatingTextLabel" type="Label"]
+mouse_filter = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_label")

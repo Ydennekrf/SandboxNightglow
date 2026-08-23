@@ -1,0 +1,23 @@
+[remap]
+
+importer="YATI"
+type="PackedScene"
+uid="uid://c30ykl5i4v6c1"
+path="res://.godot/imported/eternal dungeon header image map (open in Tiled).tmx-5437b80959c195c106cde5f8e2c2277a.tscn"
+
+[deps]
+
+source_file="res://ArtAssets/ManaSeed/TileSets/EnternalDungeon/eternal dungeon header image map (open in Tiled).tmx"
+dest_files=["res://.godot/imported/eternal dungeon header image map (open in Tiled).tmx-5437b80959c195c106cde5f8e2c2277a.tscn"]
+
+[params]
+
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=false
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor=""
+save_tileset_to=""

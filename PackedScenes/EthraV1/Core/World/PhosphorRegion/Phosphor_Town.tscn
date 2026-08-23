@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://tgwum4wvcrv1"]
+
+[sub_resource type="TileSet" id="TileSet_n45fy"]
+
+[node name="PhosphorTown" type="Node2D" unique_id=2098513644]
+
+[node name="Above3" type="TileMapLayer" parent="." unique_id=1830327777]
+
+[node name="Above2" type="TileMapLayer" parent="." unique_id=1753010833]
+
+[node name="Above1" type="TileMapLayer" parent="." unique_id=1687823641]
+
+[node name="AboveCollisions" type="TileMapLayer" parent="." unique_id=1023922735]
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=1620064335]
+tile_set = SubResource("TileSet_n45fy")
+
+[node name="GroundCollisions" type="TileMapLayer" parent="." unique_id=904035735]
+
+[node name="Below1" type="TileMapLayer" parent="." unique_id=288773312]
+
+[node name="Below2" type="TileMapLayer" parent="." unique_id=1639345531]
+
+[node name="Below3" type="TileMapLayer" parent="." unique_id=1494283322]
+
+[node name="BelowCollisions" type="TileMapLayer" parent="." unique_id=2003791249]

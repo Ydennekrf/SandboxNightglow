@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FootstepSurfaceLibraryResource" format=3 uid="uid://c61cfkre6a867"]
+
+[ext_resource type="Script" uid="uid://dtn0flli4uvqv" path="res://Core/Audio/Scripts/FootstepSurfaceLibraryResource.cs" id="1"]
+[ext_resource type="Script" uid="uid://tgdlb0nkybfv" path="res://Core/Audio/Scripts/FootstepSurfaceEntryResource.cs" id="2"]
+
+[sub_resource type="Resource" id="FootstepSurfaceEntryResource_default"]
+script = ExtResource("2")
+SurfaceId = "default"
+SoundId = "sound.player.footstep"
+
+[sub_resource type="Resource" id="FootstepSurfaceEntryResource_grass"]
+script = ExtResource("2")
+SurfaceId = "grass"
+SoundId = "sound.footstep.grass"
+
+[resource]
+script = ExtResource("1")
+Surfaces = Array[ExtResource("2")]([SubResource("FootstepSurfaceEntryResource_default"), SubResource("FootstepSurfaceEntryResource_grass")])

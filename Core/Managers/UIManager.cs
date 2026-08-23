@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 namespace ethra.V1
 {
+	/// <summary>
+	/// Bridges manager-level UI requests to the active scene's UIRoot.
+	/// </summary>
+	/// <remarks>
+	/// UIManager should coordinate HUD/menu visibility and refreshable UI nodes. Specific panel behavior
+	/// belongs in the panel scripts under Core/UI/Scripts.
+	/// </remarks>
 	public partial class UIManager : IResolveable, IUserInterface
 	{
 		private const bool DebugMenuInput = true;
@@ -12,35 +19,65 @@ namespace ethra.V1
 		private bool _inventoryToggleHeld;
 		private ulong _lastInventoryToggleFrame = ulong.MaxValue;
 		public int ResolveOrder => _resolveOrder;
+		/// <summary>
+		/// True when a UIRoot has been bound for the current scene.
+		/// </summary>
 		public bool HasRoot => _root != null;
+		/// <summary>
+		/// True when the player menu is visible and gameplay input should usually pause.
+		/// </summary>
+		public bool IsPlayerMenuVisible => _root?.IsPlayerMenuVisible == true;
+		/// <summary>
+		/// True when any active UI panel should block world interaction input.
+		/// </summary>
+		public bool BlocksGameplayInput => _root?.BlocksGameplayInput == true;
 
 		public List<IUIRefresh> UINodeList { get => _uiNodeList; set => _uiNodeList = value; }
 
 		private UIRoot _root;
 
+		/// <summary>
+		/// Binds this manager to the current scene's UIRoot and refreshes player HUD binding.
+		/// </summary>
 		public void Initialize(UIRoot root)
 		{
 			_root = root;
 			_uiNodeList = new List<IUIRefresh>();
+			BindPlayerHud(GameManager.Instance?.GameState?.GetPlayer());
 			if (DebugMenuInput)
 			{
 				GD.Print($"[UIDebug] UIManager initialized. root={_root?.Name} playerMenu={_root?.PlayerMenu?.GetPath()} mainMenu={_root?.MainMenu?.GetPath()}");
 			}
 		}
 
-		public void ShowOnlyHud() => _root?.ShowOnlyHud();
+		/// <summary>
+		/// Shows gameplay HUD only and binds it to the current player when available.
+		/// </summary>
+		public void ShowOnlyHud()
+		{
+			BindPlayerHud(GameManager.Instance?.GameState?.GetPlayer());
+			_root?.ShowOnlyHud();
+		}
 		public void ShowOnlyMainMenu() => _root?.ShowOnlyMainMenu();
+		public void BindPlayerHud(Player player) => _root?.PlayerHud?.BindPlayer(player);
 		public void ShowPlayerMenu(bool show) => _root?.ShowPlayerMenu(show);
         public void TogglePlayerMenu() => _root?.TogglePlayerMenu();
+		public void OpenCraftingPanel(string stationType) => _root?.OpenCraftingPanel(stationType);
+		public void CloseCraftingPanel() => _root?.CloseCraftingPanel();
+		public bool CloseTopGameplayPanel() => _root?.CloseTopGameplayPanel() == true;
 
+		/// <summary>
+		/// Registers a UI control that participates in manager-driven refresh ticks.
+		/// </summary>
         public void Register(IUIRefresh ui)
 		{
 			if (!_uiNodeList.Contains(ui))
 				_uiNodeList.Add(ui);
 		}
 
-		//=========IUserInterface==========//
-
+		/// <summary>
+		/// Refreshes registered UI nodes that mark themselves dirty.
+		/// </summary>
 		public void RefreshUI()
 		{
 
@@ -56,8 +93,9 @@ namespace ethra.V1
 			}
 		}
 
-		//=========IResolvable=========//
-
+		/// <summary>
+		/// Polls UI input shortcuts and refreshes dirty UI nodes.
+		/// </summary>
 		public void Resolve()
 		{
             HandleMenuInput();

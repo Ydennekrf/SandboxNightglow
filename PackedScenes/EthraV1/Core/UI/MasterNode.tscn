@@ -1,8 +1,14 @@
-[gd_scene format=3 uid="uid://r5ws7i7wpgqr"]
+[gd_scene load_steps=10 format=3 uid="uid://r5ws7i7wpgqr"]
 
 [ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="1_u0jot"]
 [ext_resource type="PackedScene" uid="uid://yvmcay2n7e48" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="3_gvsuk"]
 [ext_resource type="PackedScene" uid="uid://dc4iix4f1il4d" path="res://PackedScenes/EthraV1/Core/UI/MainMenu.tscn" id="4_bofv1"]
+[ext_resource type="Script" path="res://Core/UI/Scripts/HudSaveButton.cs" id="5_savebtn"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/InteractionPromptView.tscn" id="6_prompt"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/FloatingTextManager.tscn" id="7_float"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/NotificationManager.tscn" id="8_notify"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/CraftingPanel.tscn" id="9_crafting"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/PlayerHud.tscn" id="10_player_hud"]
 
 [node name="MasterNode" type="Node2D" unique_id=189862781]
 
@@ -11,6 +17,7 @@
 [node name="UI" type="CanvasLayer" parent="." unique_id=1579572259]
 script = ExtResource("1_u0jot")
 PlayerMenuPath = NodePath("Menus/PlayerMenu")
+CraftingPanelPath = NodePath("Menus/CraftingPanel")
 
 [node name="Hud" type="Control" parent="UI" unique_id=799160224]
 layout_mode = 3
@@ -20,6 +27,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PlayerHud" parent="UI/Hud" instance=ExtResource("10_player_hud")]
+layout_mode = 1
+
+[node name="SaveButton" type="Button" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+text = "Save"
+script = ExtResource("5_savebtn")
+
+[node name="InteractionPromptView" parent="UI/Hud" instance=ExtResource("6_prompt")]
+layout_mode = 1
+
+[node name="FloatingTextManager" parent="UI/Hud" instance=ExtResource("7_float")]
+layout_mode = 1
+
+[node name="NotificationManager" parent="UI/Hud" instance=ExtResource("8_notify")]
+layout_mode = 1
+
 [node name="Menus" type="Control" parent="UI" unique_id=539584969]
 layout_mode = 3
 anchors_preset = 15
@@ -27,8 +59,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="PlayerMenu" parent="UI/Menus" unique_id=1599526513 instance=ExtResource("3_gvsuk")]
+visible = false
+layout_mode = 1
+
+[node name="CraftingPanel" parent="UI/Menus" instance=ExtResource("9_crafting")]
 visible = false
 layout_mode = 1
 

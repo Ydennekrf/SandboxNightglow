@@ -1,18 +1,21 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using ethra.V1;
 
 public partial class WorldSceneRoot : Node2D
 {
-		[Export] public NodePath MapPath { get; set; } = "Map";
-		[Export] public NodePath EntitiesPath { get; set; } = "Entities";
-		[Export] public NodePath SpawnPointsPath { get; set; } = "Entities/SpawnPoints";
-		[Export] public NodePath InteractablesPath { get; set; } = "Interactables";
+		[Export] public NodePath MapPath = "Map";
+		[Export] public NodePath EntitiesPath = "Entities";
+		[Export] public NodePath SpawnPointsPath = "Entities/SpawnPoints";
+		[Export] public NodePath InteractablesPath = "Interactables";
+		[Export] public NodePath SurfaceResolverPath = "TileSurfaceResolver";
 
-		public Node2D Map => GetNode<Node2D>(MapPath);
-		public Node2D Entities => GetNode<Node2D>(EntitiesPath);
-		public Node2D SpawnPoints => GetNode<Node2D>(SpawnPointsPath);
-		public Node2D Interactables => GetNode<Node2D>(InteractablesPath);
+		public Node2D Map => GetNodeWithFallback<Node2D>(MapPath, "Map");
+		public Node2D Entities => GetNodeWithFallback<Node2D>(EntitiesPath, "Entities");
+		public Node2D SpawnPoints => GetNodeWithFallback<Node2D>(SpawnPointsPath, "Entities/SpawnPoints");
+		public Node2D Interactables => GetNodeWithFallback<Node2D>(InteractablesPath, "Interactables");
+		public TileSurfaceResolver SurfaceResolver => GetOptionalNodeWithFallback<TileSurfaceResolver>(SurfaceResolverPath, "TileSurfaceResolver");
 
 		public Marker2D GetSpawn(string name)
 		{
@@ -37,5 +40,38 @@ public partial class WorldSceneRoot : Node2D
 					if (n is Node node && IsAncestorOf(node))
 						yield return node;
 				}
+		}
+
+		private T GetNodeWithFallback<T>(NodePath configuredPath, string fallbackPath) where T : Node
+		{
+			if (!IsEmptyNodePath(configuredPath))
+			{
+				T node = GetNodeOrNull<T>(configuredPath);
+				if (node != null)
+				{
+					return node;
+				}
+			}
+
+			return GetNode<T>(fallbackPath);
+		}
+
+		private T GetOptionalNodeWithFallback<T>(NodePath configuredPath, string fallbackPath) where T : Node
+		{
+			if (!IsEmptyNodePath(configuredPath))
+			{
+				T node = GetNodeOrNull<T>(configuredPath);
+				if (node != null)
+				{
+					return node;
+				}
+			}
+
+			return GetNodeOrNull<T>(fallbackPath);
+		}
+
+		private static bool IsEmptyNodePath(NodePath path)
+		{
+			return path == null || string.IsNullOrWhiteSpace(path.ToString());
 		}
 }

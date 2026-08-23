@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3]
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "Idle"
+length = 0.1
+
+[sub_resource type="Animation" id="Animation_nod"]
+resource_name = "Nod"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.28, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_actor"]
+_data = {
+&"Idle": SubResource("Animation_idle"),
+&"Nod": SubResource("Animation_nod")
+}
+
+[node name="CutsceneDebugActor" type="Node2D"]
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.28, 0.66, 0.82, 1)
+polygon = PackedVector2Array(0, -18, 13, -6, 9, 14, -9, 14, -13, -6)
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -58.0
+offset_top = -42.0
+offset_right = 58.0
+offset_bottom = -22.0
+theme_override_font_sizes/font_size = 12
+text = "Spawned Actor"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("AnimationLibrary_actor")
+autoplay = &"Idle"

@@ -4,18 +4,21 @@ using System.Collections.Generic;
 
 namespace ethra.V1
 {
+    /// <summary>
+    /// Owns runtime entity model registries and entity save snapshot capture.
+    /// </summary>
+    /// <remarks>
+    /// EntityManager creates player/enemy models. SceneManager and scene roots own node instancing, so this
+    /// class should not become a scene placement or visual orchestration layer.
+    /// </remarks>
     public partial class EntityManager : ISaveable, IEntityManager
 	{
-       // this needs a Game manager reference maybe we need a ISprite interface 
 		private string _saveKey = "Player";
 		public string SaveKey => _saveKey;
 
         public List<Player> registeredPlayers { get; set; }
         public List<Enemy> registeredEnemies { get; set; }
         public List<NPC> registeredNPCs { get; set; }
-
-		// Called when the node enters the scene tree for the first time.
-
 
 		public EntityManager()
 		{
@@ -25,26 +28,24 @@ namespace ethra.V1
 			registeredNPCs = new List<NPC>();
 		}
 
+        /// <summary>
+        /// Captures the current player model snapshot for save/load.
+        /// </summary>
 		public object CaptureSnapshot()
         {
-            EntitySave saveFile = new EntitySave();
+            Player player = registeredPlayers != null && registeredPlayers.Count > 0
+                ? registeredPlayers[0]
+                : GameManager.Instance?.GameState?.GetPlayer();
 
-            foreach (Player p in registeredPlayers)
+            return new EntitySave
             {
-                saveFile.players.Add(p);
-            }
-
-            foreach (NPC n in registeredNPCs)
-            {
-                saveFile.npcs.Add(n);
-            }
-
-            return saveFile;
+                Player = SaveLoadService.CreatePlayerSnapshot(player)
+            };
         }
 
         public void RestoreSnapshot(object snapshot)
         {
-            throw new NotImplementedException();
+            // Player scene/node restoration is coordinated by GameManager after the target scene is loaded.
         }
 
         public void SpawnPlayer(Player player)
@@ -52,6 +53,9 @@ namespace ethra.V1
             
         }
 
+        /// <summary>
+        /// Registers an enemy model so combat/debug systems can find active targets.
+        /// </summary>
         public void SpawnEnemy(Enemy enemy)
         {
             if (enemy == null)
@@ -82,12 +86,16 @@ namespace ethra.V1
         }
 
        
+        /// <summary>
+        /// Creates a simple enemy model for debug and early gameplay use.
+        /// </summary>
         public Enemy CreateEnemy(string name,int level, IEntityManager entity, ICombat combat, IStateMachine fsm)
         {
             registeredEnemies ??= new List<Enemy>();
 
             Enemy enemy = new Enemy(entity, combat, fsm);
             enemy.SetName(string.IsNullOrWhiteSpace(name) ? "Enemy" : name);
+            enemy.ConfigureProgression(level, 25 + Math.Max(0, level - 1) * 10);
             enemy.InitializeStats(
                 maxHp: 50,
                 maxMana: 0,
@@ -107,14 +115,15 @@ namespace ethra.V1
             throw new NotImplementedException();
         }
 
+       /// <summary>
+       /// Creates and initializes the player model. Node spawning is handled later by SceneManager.
+       /// </summary>
        public Player CreatePlayer( ICombat combat, IInventory inventory, IStateMachine fsm)
         {
-            // Ensure registries exist
             registeredPlayers ??= new List<Player>();
 
             var player = new Player(this, combat, inventory, fsm);
 
-            // Leaf initializes itself (FSM build)
             player.Initialize();
 
             registeredPlayers.Add(player);
@@ -122,4 +131,3 @@ namespace ethra.V1
         }
     }
 }
-

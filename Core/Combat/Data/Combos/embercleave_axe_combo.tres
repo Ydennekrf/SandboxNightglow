@@ -1,0 +1,106 @@
+[gd_resource type="Resource" script_class="WeaponComboResource" format=3]
+
+[ext_resource type="Script" path="res://Core/Combat/Scripts/WeaponComboResource.cs" id="1"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/ComboPhaseResource.cs" id="2"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/AttackPayloadResource.cs" id="3"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/HitboxProfileResource.cs" id="4"]
+
+[sub_resource type="Resource" id="HitboxProfileResource_step_1"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.embercleave_axe.step_1"
+Offset = Vector2(26, 0)
+Size = Vector2(42, 24)
+ActiveDurationSeconds = 0.11
+
+[sub_resource type="Resource" id="HitboxProfileResource_step_2"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.embercleave_axe.step_2"
+Offset = Vector2(32, 0)
+Size = Vector2(50, 26)
+ActiveDurationSeconds = 0.12
+
+[sub_resource type="Resource" id="HitboxProfileResource_step_3"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.embercleave_axe.step_3"
+Offset = Vector2(38, 0)
+Size = Vector2(58, 32)
+ActiveDurationSeconds = 0.15
+
+[sub_resource type="Resource" id="AttackPayloadResource_step_1"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1
+
+[sub_resource type="Resource" id="AttackPayloadResource_step_2"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1.15
+
+[sub_resource type="Resource" id="AttackPayloadResource_step_3"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1.35
+
+[sub_resource type="Resource" id="ComboPhaseResource_step_1"]
+script = ExtResource("2")
+StepId = "combo_step.embercleave_axe.step_1"
+StepIndex = 1
+DebugLabel = "Hooking Chop"
+DamageMultiplier = 1
+SharedAnimationName = "MaulSweep"
+DurationOverrideSeconds = 0.42
+StartupSeconds = 0.11
+ActiveSeconds = 0.11
+RecoverySeconds = 0.2
+ComboWindowStartSeconds = 0.22
+ComboWindowEndSeconds = 0.4
+MovementImpulse = 18
+HitboxProfile = SubResource("HitboxProfileResource_step_1")
+MeleePayload = SubResource("AttackPayloadResource_step_1")
+
+[sub_resource type="Resource" id="ComboPhaseResource_step_2"]
+script = ExtResource("2")
+StepId = "combo_step.embercleave_axe.step_2"
+StepIndex = 2
+DebugLabel = "Cleave Through"
+DamageMultiplier = 1.1
+SharedAnimationName = "Slash2"
+DurationOverrideSeconds = 0.46
+StartupSeconds = 0.12
+ActiveSeconds = 0.12
+RecoverySeconds = 0.22
+ComboWindowStartSeconds = 0.24
+ComboWindowEndSeconds = 0.44
+MovementImpulse = 24
+HitboxProfile = SubResource("HitboxProfileResource_step_2")
+MeleePayload = SubResource("AttackPayloadResource_step_2")
+
+[sub_resource type="Resource" id="ComboPhaseResource_step_3"]
+script = ExtResource("2")
+StepId = "combo_step.embercleave_axe.step_3"
+StepIndex = 3
+DebugLabel = "Reaver Finish"
+DamageMultiplier = 1.25
+SharedAnimationName = "ChargedSlam"
+DurationOverrideSeconds = 0.54
+StartupSeconds = 0.15
+ActiveSeconds = 0.15
+RecoverySeconds = 0.24
+ComboWindowStartSeconds = 0
+ComboWindowEndSeconds = 0
+MovementImpulse = 34
+HitboxProfile = SubResource("HitboxProfileResource_step_3")
+MeleePayload = SubResource("AttackPayloadResource_step_3")
+
+[resource]
+script = ExtResource("1")
+ComboId = "combo.weapon.embercleave_axe"
+DisplayName = "Embercleave Axe Combo"
+WeaponType = "Axe"
+CompatibleWeaponIds = Array[int]([2122])
+ResetTimeSeconds = 0.85
+Description = "Tier 2 Axe combo profile."
+Phases = Array[ExtResource("2")]([SubResource("ComboPhaseResource_step_1"), SubResource("ComboPhaseResource_step_2"), SubResource("ComboPhaseResource_step_3")])

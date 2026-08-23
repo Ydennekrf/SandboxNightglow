@@ -2,14 +2,21 @@
 
 [ext_resource type="Script" uid="uid://wmfr117kixvl" path="res://Core/Managers/GameManager.cs" id="1_pis2n"]
 [ext_resource type="PackedScene" uid="uid://dhy6gmjchq6nj" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="2_miok2"]
-[ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="7_n87bs"]
-[ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="8_gqjgf"]
-[ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="9_l4q3v"]
+[ext_resource type="Texture2D" uid="uid://b75a8l7gggcv" path="res://ArtAssets/Characters/Selene/new_layers_test/BluePony.png" id="3_fkggi"]
+[ext_resource type="Texture2D" uid="uid://c4qfhrofatvbt" path="res://ArtAssets/Characters/Selene/new_layers_test/Clothes1.png" id="4_xskak"]
+[ext_resource type="Texture2D" uid="uid://43at2hle301p" path="res://ArtAssets/Characters/Selene/new_layers_test/Body.png" id="5_y6ary"]
+[ext_resource type="Texture2D" uid="uid://crn1u6feiu1ae" path="res://ArtAssets/Characters/Selene/new_layers_test/Up_Stow_Sword2.png" id="7_omxcu"]
+[ext_resource type="Texture2D" uid="uid://ctmbyqy6011h4" path="res://ArtAssets/Characters/Selene/new_layers_test/Up_Stow_Sword1.png" id="8_jptfi"]
 [ext_resource type="Texture2D" uid="uid://c5c5l2hln12s2" path="res://ArtAssets/Characters/Emoji/mana seed emojis 16x16.png" id="10_f1clm"]
+[ext_resource type="Script" path="res://Core/Managers/AudioManager.cs" id="11_audio"]
+[ext_resource type="Resource" path="res://Core/Audio/Data/MainAudioLibrary.tres" id="12_audio_library"]
+[ext_resource type="Resource" path="res://Core/Audio/Data/FootstepSurfaceLibrary.tres" id="13_surface_library"]
 
 [node name="GameManager" type="Node" unique_id=737813441]
 script = ExtResource("1_pis2n")
 SceneFolderLocation = "res://PackedScenes/EthraV1/Core/"
+NewGameSceneKey = "PhosphorForest"
+NewGameSpawnName = "NewGameSpawn"
 MoveSpeed = 90.0
 hpGain = 10.0
 mpGain = 10.0
@@ -29,7 +36,14 @@ spiBase = 10.0
 vitBase = 10.0
 lukBase = 10.0
 PlayerScene = ExtResource("2_miok2")
-Hair = ExtResource("7_n87bs")
-Clothes = ExtResource("8_gqjgf")
-Body = ExtResource("9_l4q3v")
+Hair = ExtResource("3_fkggi")
+Clothes = ExtResource("4_xskak")
+Body = ExtResource("5_y6ary")
 Notify = ExtResource("10_f1clm")
+HarvestPickaxeSprite = ExtResource("7_omxcu")
+HarvestAxeSprite = ExtResource("8_jptfi")
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("11_audio")
+AudioLibrary = ExtResource("12_audio_library")
+FootstepSurfaces = ExtResource("13_surface_library")

@@ -1,0 +1,377 @@
+[gd_scene format=3 uid="uid://c8m4runilayer"]
+
+[ext_resource type="Script" uid="uid://fopj4ald4vb6" path="res://PackedScenes/EthraV1/Core/Scripts/MapLayerDebugSceneRoot.cs" id="1_root"]
+[ext_resource type="Script" uid="uid://cgqkopdsxrle8" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="2_world"]
+[ext_resource type="PackedScene" uid="uid://dhy6gmjchq6nj" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="3_player"]
+[ext_resource type="Script" uid="uid://bx5hr4s8l107i" path="res://Core/World/MapLayers/MapLayerController.cs" id="4_controller"]
+[ext_resource type="Script" uid="uid://cfsi6mikcdhq6" path="res://Core/World/MapLayers/MapLayerEntry.cs" id="5_entry"]
+[ext_resource type="Script" uid="uid://dofgjvvq8ecbs" path="res://Core/World/MapLayers/MapLayerState.cs" id="6_state"]
+[ext_resource type="Script" uid="uid://dmdg537n6vbl4" path="res://Core/World/MapLayers/MapLayerFadeOperation.cs" id="7_fade"]
+[ext_resource type="Script" uid="uid://x0et700muo3d" path="res://Core/World/MapLayers/MapLayerTrigger.cs" id="8_trigger"]
+[ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="9_ui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_house_wall"]
+size = Vector2(112, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bridge_block"]
+size = Vector2(14, 176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bridge_side_block"]
+size = Vector2(176, 14)
+
+[sub_resource type="Resource" id="MapLayerEntry_ground"]
+script = ExtResource("5_entry")
+LayerId = "Ground"
+LayerPath = NodePath("Ground")
+
+[sub_resource type="Resource" id="MapLayerEntry_roof"]
+script = ExtResource("5_entry")
+LayerId = "Roof"
+LayerPath = NodePath("Roof")
+
+[sub_resource type="Resource" id="MapLayerEntry_above"]
+script = ExtResource("5_entry")
+LayerId = "AbovePlayer1"
+LayerPath = NodePath("AbovePlayer1")
+
+[sub_resource type="Resource" id="MapLayerEntry_under_bridge"]
+script = ExtResource("5_entry")
+LayerId = "UnderBridgeVisual"
+LayerPath = NodePath("UnderBridgeVisual")
+DefaultVisible = false
+
+[sub_resource type="Resource" id="MapLayerEntry_bridge_cover"]
+script = ExtResource("5_entry")
+LayerId = "BridgeCover"
+LayerPath = NodePath("BridgeCover")
+DefaultVisible = false
+
+[sub_resource type="Resource" id="MapLayerEntry_interior_collision"]
+script = ExtResource("5_entry")
+LayerId = "InteriorCollision"
+LayerPath = NodePath("InteriorCollision")
+IsVisualLayer = false
+IsCollisionLayer = true
+DefaultCollisionEnabled = false
+
+[sub_resource type="Resource" id="MapLayerEntry_bridge_collision"]
+script = ExtResource("5_entry")
+LayerId = "BridgeSideCollision"
+LayerPath = NodePath("BridgeCollision")
+IsVisualLayer = false
+IsCollisionLayer = true
+
+[sub_resource type="Resource" id="MapLayerEntry_tunnel_collision"]
+script = ExtResource("5_entry")
+LayerId = "UnderBridgeSideCollision"
+LayerPath = NodePath("TunnelCollision")
+IsVisualLayer = false
+IsCollisionLayer = true
+DefaultCollisionEnabled = false
+
+[sub_resource type="Resource" id="FadeOperation_roof_show"]
+script = ExtResource("7_fade")
+LayerId = "Roof"
+DurationSeconds = 0.2
+HideWhenTransparent = false
+
+[sub_resource type="Resource" id="MapLayerState_default_outdoor"]
+script = ExtResource("6_state")
+StateId = "DefaultOutdoor"
+FadeOperations = Array[ExtResource("7_fade")]([SubResource("FadeOperation_roof_show")])
+
+[sub_resource type="Resource" id="FadeOperation_roof_hide"]
+script = ExtResource("7_fade")
+LayerId = "Roof"
+TargetAlpha = 0.25
+DurationSeconds = 0.2
+HideWhenTransparent = false
+
+[sub_resource type="Resource" id="MapLayerState_inside_house"]
+script = ExtResource("6_state")
+StateId = "InsideHouse"
+FadeOperations = Array[ExtResource("7_fade")]([SubResource("FadeOperation_roof_hide")])
+
+[sub_resource type="Resource" id="MapLayerState_on_bridge"]
+script = ExtResource("6_state")
+StateId = "OnBridge"
+VisibleLayerIds = Array[String](["BridgeCover"])
+HiddenLayerIds = Array[String](["UnderBridgeVisual"])
+CollisionEnabledLayerIds = Array[String](["BridgeSideCollision"])
+CollisionDisabledLayerIds = Array[String](["UnderBridgeSideCollision"])
+
+[sub_resource type="Resource" id="MapLayerState_under_bridge"]
+script = ExtResource("6_state")
+StateId = "UnderBridge"
+VisibleLayerIds = Array[String](["UnderBridgeVisual", "BridgeCover"])
+CollisionEnabledLayerIds = Array[String](["UnderBridgeSideCollision"])
+CollisionDisabledLayerIds = Array[String](["BridgeSideCollision"])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_house_trigger"]
+size = Vector2(112, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bridge_on_trigger"]
+size = Vector2(64, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bridge_trigger"]
+size = Vector2(56, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_route_reset_trigger"]
+size = Vector2(64, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_under_route_reset_trigger"]
+size = Vector2(40, 64)
+
+[node name="MapLayerDebugScene" type="Node2D" unique_id=742042037]
+script = ExtResource("1_root")
+PlayerScene = ExtResource("3_player")
+
+[node name="World" type="Node2D" parent="." unique_id=1024645421]
+script = ExtResource("2_world")
+
+[node name="Map" type="Node2D" parent="World" unique_id=1434354030]
+
+[node name="Ground" type="Node2D" parent="World/Map" unique_id=1384370262]
+
+[node name="GroundFill" type="Polygon2D" parent="World/Map/Ground" unique_id=383562777]
+color = Color(0.18, 0.34, 0.25, 1)
+polygon = PackedVector2Array(-320, -180, 420, -180, 420, 240, -320, 240)
+
+[node name="HouseFloor" type="Polygon2D" parent="World/Map/Ground" unique_id=31387221]
+color = Color(0.48, 0.39, 0.27, 1)
+polygon = PackedVector2Array(-208, -96, -96, -96, -96, -8, -208, -8)
+
+[node name="BridgeDeck" type="Polygon2D" parent="World/Map/Ground" unique_id=1949327240]
+color = Color(0.55, 0.42, 0.25, 1)
+polygon = PackedVector2Array(80, -96, 144, -96, 144, 96, 80, 96)
+
+[node name="UnderBridgeVisual" type="Node2D" parent="World/Map" unique_id=1225328886]
+visible = false
+
+[node name="TunnelShadow" type="Polygon2D" parent="World/Map/UnderBridgeVisual" unique_id=1380242225]
+color = Color(0.16, 0.12, 0.22, 0.8)
+polygon = PackedVector2Array(24, -32, 200, -32, 200, 32, 24, 32)
+
+[node name="PlayerLayer" type="Node2D" parent="World/Map" unique_id=1714315642]
+
+[node name="AbovePlayer1" type="Node2D" parent="World/Map" unique_id=1532325844]
+
+[node name="BridgeRail" type="Polygon2D" parent="World/Map/AbovePlayer1" unique_id=2028523455]
+color = Color(0.72, 0.58, 0.35, 1)
+polygon = PackedVector2Array(64, -104, 80, -104, 80, 104, 64, 104, 144, -104, 160, -104, 160, 104, 144, 104)
+
+[node name="BridgeCover" type="Polygon2D" parent="World/Map" unique_id=1634626989]
+visible = false
+z_index = 3
+color = Color(0.44, 0.31, 0.18, 0.75)
+polygon = PackedVector2Array(72, -100, 152, -100, 152, 100, 72, 100)
+
+[node name="Roof" type="Node2D" parent="World/Map" unique_id=591058523]
+z_index = 4
+
+[node name="RoofFill" type="Polygon2D" parent="World/Map/Roof" unique_id=1744574487]
+color = Color(0.54, 0.12, 0.14, 1)
+polygon = PackedVector2Array(-224, -112, -80, -112, -80, -16, -224, -16)
+
+[node name="RoofHighlight" type="Polygon2D" parent="World/Map/Roof" unique_id=1252185113]
+color = Color(0.79, 0.24, 0.22, 1)
+polygon = PackedVector2Array(-224, -112, -152, -152, -80, -112)
+
+[node name="InteriorCollision" type="StaticBody2D" parent="World/Map" unique_id=1018165424]
+collision_mask = 0
+
+[node name="BackWall" type="CollisionShape2D" parent="World/Map/InteriorCollision" unique_id=418598690]
+position = Vector2(-152, -92)
+shape = SubResource("RectangleShape2D_house_wall")
+
+[node name="BridgeCollision" type="StaticBody2D" parent="World/Map" unique_id=2091666670]
+collision_mask = 0
+
+[node name="LeftRailCollision" type="CollisionShape2D" parent="World/Map/BridgeCollision" unique_id=558486075]
+position = Vector2(70, 0)
+shape = SubResource("RectangleShape2D_bridge_block")
+
+[node name="RightRailCollision" type="CollisionShape2D" parent="World/Map/BridgeCollision" unique_id=1247348409]
+position = Vector2(154, 0)
+shape = SubResource("RectangleShape2D_bridge_block")
+
+[node name="TunnelCollision" type="StaticBody2D" parent="World/Map" unique_id=1585842181]
+collision_mask = 0
+
+[node name="TunnelTopWall" type="CollisionShape2D" parent="World/Map/TunnelCollision" unique_id=1987011143]
+position = Vector2(112, -40)
+shape = SubResource("RectangleShape2D_bridge_side_block")
+
+[node name="TunnelBottomWall" type="CollisionShape2D" parent="World/Map/TunnelCollision" unique_id=1335479991]
+position = Vector2(112, 40)
+shape = SubResource("RectangleShape2D_bridge_side_block")
+
+[node name="MapLayerController" type="Node" parent="World" unique_id=1799884246]
+script = ExtResource("4_controller")
+Layers = Array[ExtResource("5_entry")]([SubResource("MapLayerEntry_ground"), SubResource("MapLayerEntry_roof"), SubResource("MapLayerEntry_above"), SubResource("MapLayerEntry_under_bridge"), SubResource("MapLayerEntry_bridge_cover"), SubResource("MapLayerEntry_interior_collision"), SubResource("MapLayerEntry_bridge_collision"), SubResource("MapLayerEntry_tunnel_collision")])
+States = Array[ExtResource("6_state")]([SubResource("MapLayerState_default_outdoor"), SubResource("MapLayerState_inside_house"), SubResource("MapLayerState_on_bridge"), SubResource("MapLayerState_under_bridge")])
+
+[node name="Entities" type="Node2D" parent="World" unique_id=156542317]
+
+[node name="Player" type="Node2D" parent="World/Entities" unique_id=1265652347]
+
+[node name="Enemies" type="Node2D" parent="World/Entities" unique_id=867434163]
+
+[node name="NPCs" type="Node2D" parent="World/Entities" unique_id=1732426161]
+
+[node name="SpawnPoints" type="Node2D" parent="World/Entities" unique_id=1378674156]
+
+[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints" unique_id=585575056]
+position = Vector2(-260, 96)
+
+[node name="Interactables" type="Node2D" parent="World" unique_id=888046038]
+
+[node name="HouseRoofTrigger" type="Area2D" parent="World/Interactables" unique_id=1660130082]
+position = Vector2(-152, -52)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "InsideHouse"
+ExitStateId = "DefaultOutdoor"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/HouseRoofTrigger" unique_id=879569553]
+shape = SubResource("RectangleShape2D_house_trigger")
+debug_color = Color(0.12, 0.45, 0.95, 0.35)
+
+[node name="OnBridgeNorthTrigger" type="Area2D" parent="World/Interactables" unique_id=426946561]
+position = Vector2(112, -116)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "OnBridge"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/OnBridgeNorthTrigger" unique_id=2145712798]
+shape = SubResource("RectangleShape2D_bridge_on_trigger")
+debug_color = Color(0.95, 0.72, 0.18, 0.35)
+
+[node name="OnBridgeSouthTrigger" type="Area2D" parent="World/Interactables" unique_id=1620212671]
+position = Vector2(112, 116)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "OnBridge"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/OnBridgeSouthTrigger" unique_id=80801888]
+shape = SubResource("RectangleShape2D_bridge_on_trigger")
+debug_color = Color(0.95, 0.72, 0.18, 0.35)
+
+[node name="UnderBridgeWestTrigger" type="Area2D" parent="World/Interactables" unique_id=649705933]
+position = Vector2(24, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "UnderBridge"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/UnderBridgeWestTrigger" unique_id=1395189240]
+shape = SubResource("RectangleShape2D_bridge_trigger")
+debug_color = Color(0.57, 0.26, 0.91, 0.35)
+
+[node name="UnderBridgeEastTrigger" type="Area2D" parent="World/Interactables" unique_id=229549422]
+position = Vector2(200, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "UnderBridge"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/UnderBridgeEastTrigger" unique_id=317497206]
+shape = SubResource("RectangleShape2D_bridge_trigger")
+debug_color = Color(0.57, 0.26, 0.91, 0.35)
+
+[node name="OutdoorResetNorth" type="Area2D" parent="World/Interactables" unique_id=1289928957]
+position = Vector2(112, -164)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "DefaultOutdoor"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/OutdoorResetNorth" unique_id=2063710650]
+shape = SubResource("RectangleShape2D_route_reset_trigger")
+debug_color = Color(0.2, 0.8, 0.42, 0.25)
+
+[node name="OutdoorResetSouth" type="Area2D" parent="World/Interactables" unique_id=638306485]
+position = Vector2(112, 164)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "DefaultOutdoor"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/OutdoorResetSouth" unique_id=1463156144]
+shape = SubResource("RectangleShape2D_route_reset_trigger")
+debug_color = Color(0.2, 0.8, 0.42, 0.25)
+
+[node name="OutdoorResetWest" type="Area2D" parent="World/Interactables" unique_id=759019909]
+position = Vector2(-24, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "DefaultOutdoor"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/OutdoorResetWest" unique_id=1997172201]
+shape = SubResource("RectangleShape2D_under_route_reset_trigger")
+debug_color = Color(0.2, 0.8, 0.42, 0.25)
+
+[node name="OutdoorResetEast" type="Area2D" parent="World/Interactables" unique_id=84045299]
+position = Vector2(224, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_trigger")
+ControllerPath = NodePath("../../MapLayerController")
+EnterStateId = "DefaultOutdoor"
+RestoreDefaultOnExit = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/OutdoorResetEast" unique_id=1454400155]
+shape = SubResource("RectangleShape2D_under_route_reset_trigger")
+debug_color = Color(0.2, 0.8, 0.42, 0.25)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=5515324]
+script = ExtResource("9_ui")
+MainMenuPath = null
+PlayerMenuPath = NodePath("Menus/PlayerMenu")
+CraftingPanelPath = null
+
+[node name="Hud" type="Control" parent="UI" unique_id=1749694153]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menus" type="Control" parent="UI" unique_id=1270276837]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerMenu" type="Control" parent="UI/Menus" unique_id=150220741]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+
+[node name="MainMenu" type="Control" parent="UI/Menus" unique_id=816620902]
+visible = false
+layout_mode = 1
+anchors_preset = 0

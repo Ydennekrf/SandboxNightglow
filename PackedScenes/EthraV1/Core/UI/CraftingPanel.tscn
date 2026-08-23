@@ -1,0 +1,142 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Core/UI/Scripts/CraftingPanel.cs" id="1_panel"]
+
+[node name="CraftingPanel" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_panel")
+DefaultStationType = "Workbench"
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -230.0
+offset_right = 380.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="Root" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Panel/Margin/Root"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/Margin/Root/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Crafting"
+
+[node name="CloseButton" type="Button" parent="Panel/Margin/Root/Header"]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+text = "Close"
+
+[node name="Body" type="HBoxContainer" parent="Panel/Margin/Root"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="RecipeColumn" type="PanelContainer" parent="Panel/Margin/Root/Body"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeScroll" type="ScrollContainer" parent="Panel/Margin/Root/Body/RecipeColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RecipeList" type="VBoxContainer" parent="Panel/Margin/Root/Body/RecipeColumn/RecipeScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="DetailsColumn" type="VBoxContainer" parent="Panel/Margin/Root/Body"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ResultRow" type="HBoxContainer" parent="Panel/Margin/Root/Body/DetailsColumn"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IconFrame" type="PanelContainer" parent="Panel/Margin/Root/Body/DetailsColumn/ResultRow"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="ResultIcon" type="TextureRect" parent="Panel/Margin/Root/Body/DetailsColumn/ResultRow/IconFrame"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ResultLabel" type="Label" parent="Panel/Margin/Root/Body/DetailsColumn/ResultRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select a recipe"
+autowrap_mode = 3
+
+[node name="DescriptionHeader" type="Label" parent="Panel/Margin/Root/Body/DetailsColumn"]
+layout_mode = 2
+text = "Description"
+
+[node name="DescriptionLabel" type="Label" parent="Panel/Margin/Root/Body/DetailsColumn"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select a recipe to inspect it."
+autowrap_mode = 3
+
+[node name="MaterialsHeader" type="Label" parent="Panel/Margin/Root/Body/DetailsColumn"]
+layout_mode = 2
+text = "Required Materials"
+
+[node name="MaterialsScroll" type="ScrollContainer" parent="Panel/Margin/Root/Body/DetailsColumn"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MaterialsList" type="VBoxContainer" parent="Panel/Margin/Root/Body/DetailsColumn/MaterialsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="MessageLabel" type="Label" parent="Panel/Margin/Root/Body/DetailsColumn"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+text = ""
+autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="Panel/Margin/Root/Body/DetailsColumn"]
+layout_mode = 2
+alignment = 2
+
+[node name="CraftButton" type="Button" parent="Panel/Margin/Root/Body/DetailsColumn/Actions"]
+custom_minimum_size = Vector2(120, 34)
+layout_mode = 2
+text = "Craft"

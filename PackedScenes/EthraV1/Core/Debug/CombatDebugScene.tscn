@@ -1,43 +1,110 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene format=3 uid="uid://v8w2mwp8agol"]
 
-[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/CombatDebugSceneRoot.cs" id="1_root"]
-[ext_resource type="PackedScene" uid="uid://dwvl0gweuelai" path="res://PackedScenes/EthraV1/Core/UI/game_manager.tscn" id="2_manager"]
+[ext_resource type="Script" uid="uid://chkvdt0tof3en" path="res://PackedScenes/EthraV1/Core/Scripts/CombatDebugSceneRoot.cs" id="1_root"]
 [ext_resource type="Script" uid="uid://cgqkopdsxrle8" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="3_world"]
 [ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="4_ui"]
 [ext_resource type="PackedScene" uid="uid://dhy6gmjchq6nj" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="5_player"]
 [ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Debug/TestEnemy.tscn" id="6_enemy"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Debug/EnemySpawnMarker.tscn" id="7_enemy_spawn"]
+[ext_resource type="Script" uid="uid://b2lk7qxtvariu" path="res://Core/UI/Scripts/InteractionPromptView.cs" id="8_prompt"]
+[ext_resource type="Script" uid="uid://cck5fav8kh73e" path="res://Core/UI/Scripts/FloatingTextManager.cs" id="9_float"]
+[ext_resource type="Script" uid="uid://o4sv7m84mnms" path="res://Core/UI/Scripts/NotificationManager.cs" id="10_notify"]
+[ext_resource type="Script" uid="uid://c5y0n5ifeamd8" path="res://Core/UI/Scripts/PlayerHud.cs" id="11_player_hud"]
+[ext_resource type="PackedScene" uid="uid://yvmcay2n7e48" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="12_player_menu"]
 
-[node name="CombatDebugScene" type="Node2D"]
+[node name="CombatDebugScene" type="Node2D" unique_id=1395682487]
 script = ExtResource("1_root")
 PlayerScene = ExtResource("5_player")
 TestEnemyScene = ExtResource("6_enemy")
+GameManagerPath = null
+WorldPath = null
+InitialSpawnName = null
+EnemySpawnerPath = null
+EnemySpawnerParentPath = null
+DebugWeaponItemId = 2004
+EnableDebugEnemyDamageKeys = null
+DebugEnemyDamageAmount = null
+EnableDebugExperienceKey = null
+DebugExperienceGrantAmount = null
+DebugHudParentPath = null
+DebugPlayerMaxHealth = null
+DebugPlayerMaxMana = null
+DebugPlayerStrength = null
+DebugPlayerDexterity = null
+DebugPlayerIntelligence = null
+DebugPlayerSpirit = null
+DebugPlayerVitality = null
+DebugPlayerLuck = null
 
-[node name="GameManager" parent="." instance=ExtResource("2_manager")]
-
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1738918934]
 script = ExtResource("3_world")
+MapPath = null
+EntitiesPath = null
+SpawnPointsPath = null
+InteractablesPath = null
 
-[node name="Map" type="Node2D" parent="World"]
+[node name="Map" type="Node2D" parent="World" unique_id=441136440]
 
-[node name="Entities" type="Node2D" parent="World"]
+[node name="Entities" type="Node2D" parent="World" unique_id=1364917860]
 
-[node name="Player" type="Node2D" parent="World/Entities"]
+[node name="Player" type="Node2D" parent="World/Entities" unique_id=1059296002]
 
-[node name="Enemies" type="Node2D" parent="World/Entities"]
+[node name="Enemies" type="Node2D" parent="World/Entities" unique_id=1640124959]
 
-[node name="NPCs" type="Node2D" parent="World/Entities"]
+[node name="NPCs" type="Node2D" parent="World/Entities" unique_id=970588550]
 
-[node name="SpawnPoints" type="Node2D" parent="World/Entities"]
+[node name="SpawnPoints" type="Node2D" parent="World/Entities" unique_id=1120559227]
 
-[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints"]
+[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints" unique_id=131033702]
 
-[node name="Interactables" type="Node2D" parent="World"]
+[node name="ActiveEnemySpawn" parent="World/Entities/SpawnPoints" unique_id=762498959 instance=ExtResource("7_enemy_spawn")]
+position = Vector2(120, -96)
+EnemyParentPath = null
+SpawnedEnemyName = "ActiveSpawnEnemy"
+SpawnModeValue = 0
+SpawnDelaySeconds = 0.0
+SpawnProximityDistance = null
+PatrolRadius = 72.0
+DetectionRange = 112.0
+LeashRange = 176.0
+AttackRange = 24.0
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="TimedEnemySpawn" parent="World/Entities/SpawnPoints" unique_id=1570008251 instance=ExtResource("7_enemy_spawn")]
+position = Vector2(200, 0)
+EnemyParentPath = null
+SpawnedEnemyName = "TimedSpawnEnemy"
+SpawnModeValue = null
+SpawnDelaySeconds = 2.0
+SpawnProximityDistance = null
+PatrolRadius = null
+DetectionRange = null
+LeashRange = null
+AttackRange = 24.0
+
+[node name="ProximityEnemySpawn" parent="World/Entities/SpawnPoints" unique_id=1106126999 instance=ExtResource("7_enemy_spawn")]
+position = Vector2(320, 96)
+EnemyParentPath = null
+SpawnedEnemyName = "ProximitySpawnEnemy"
+SpawnModeValue = 2
+SpawnDelaySeconds = 0.0
+SpawnProximityDistance = 120.0
+PatrolRadius = 88.0
+DetectionRange = null
+LeashRange = null
+AttackRange = 24.0
+
+[node name="Interactables" type="Node2D" parent="World" unique_id=1864860373]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1605727746]
+follow_viewport_enabled = true
 script = ExtResource("4_ui")
-PlayerMenuPath = NodePath("Menus/PlayerMenu")
+HudPath = null
+PlayerHudPath = null
+MainMenuPath = null
+PlayerMenuPath = null
+CraftingPanelPath = null
 
-[node name="Hud" type="Control" parent="UI"]
+[node name="Hud" type="Control" parent="UI" unique_id=210245399]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +112,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menus" type="Control" parent="UI"]
+[node name="PlayerHud" type="Control" parent="UI/Hud" unique_id=980716810]
+layout_mode = 1
+anchors_preset = 0
+script = ExtResource("11_player_hud")
+
+[node name="InteractionPromptView" type="Control" parent="UI/Hud" unique_id=1357401864]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_prompt")
+
+[node name="FloatingTextManager" type="Control" parent="UI/Hud" unique_id=2132690448]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_float")
+DefaultLabelSize = null
+
+[node name="NotificationManager" type="Control" parent="UI/Hud" unique_id=1296728362]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_notify")
+DefaultDurationSeconds = null
+MaxVisibleNotifications = null
+
+[node name="Menus" type="Control" parent="UI" unique_id=652903128]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,10 +158,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayerMenu" type="Control" parent="UI/Menus"]
+[node name="PlayerMenu" parent="UI/Menus" unique_id=1485516670 instance=ExtResource("12_player_menu")]
 visible = false
 layout_mode = 1
 
-[node name="MainMenu" type="Control" parent="UI/Menus"]
+[node name="MainMenu" type="Control" parent="UI/Menus" unique_id=397585083]
 visible = false
 layout_mode = 1
+anchors_preset = 0

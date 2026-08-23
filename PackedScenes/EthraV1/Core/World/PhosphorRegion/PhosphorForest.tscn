@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b0nhost0vpm5w"]
+
+[ext_resource type="Script" uid="uid://cgqkopdsxrle8" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="1_world"]
+[ext_resource type="PackedScene" uid="uid://yul6s3a5baot" path="res://PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorForest.tmx" id="2_map"]
+[ext_resource type="Script" uid="uid://dfmoj7obqep6q" path="res://Core/World/Surfaces/TileSurfaceResolver.cs" id="3_surface_resolver"]
+
+[node name="PhosphorForest" type="Node2D" unique_id=995367820]
+script = ExtResource("1_world")
+
+[node name="Map" type="Node2D" parent="." unique_id=1678038099]
+
+[node name="PhosphorForestMap" parent="Map" unique_id=1813310302 instance=ExtResource("2_map")]
+
+[node name="Entities" type="Node2D" parent="." unique_id=1609702864]
+
+[node name="Player" type="Node2D" parent="Entities" unique_id=236129887]
+
+[node name="SpawnPoints" type="Node2D" parent="Entities" unique_id=19259005]
+
+[node name="NewGameSpawn" type="Marker2D" parent="Entities/SpawnPoints" unique_id=1318975953]
+position = Vector2(855, 1343)
+
+[node name="Interactables" type="Node2D" parent="." unique_id=1071549689]
+
+[node name="TileSurfaceResolver" type="Node" parent="." unique_id=402709562]
+script = ExtResource("3_surface_resolver")
+SurfaceLayerPaths = Array[NodePath]([NodePath("../Map/PhosphorForestMap/Ground"), NodePath("../Map/PhosphorForestMap/Below1"), NodePath("../Map/PhosphorForestMap/Below2"), NodePath("../Map/PhosphorForestMap/Below3")])

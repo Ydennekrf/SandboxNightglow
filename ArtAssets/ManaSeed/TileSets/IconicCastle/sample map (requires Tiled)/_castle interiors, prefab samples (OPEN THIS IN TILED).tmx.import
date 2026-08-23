@@ -1,0 +1,23 @@
+[remap]
+
+importer="YATI"
+type="PackedScene"
+uid="uid://dych54rqcik42"
+path="res://.godot/imported/_castle interiors, prefab samples (OPEN THIS IN TILED).tmx-73de616755a3578ee7aae5b2e42a3d9d.tscn"
+
+[deps]
+
+source_file="res://ArtAssets/ManaSeed/TileSets/IconicCastle/sample map (requires Tiled)/_castle interiors, prefab samples (OPEN THIS IN TILED).tmx"
+dest_files=["res://.godot/imported/_castle interiors, prefab samples (OPEN THIS IN TILED).tmx-73de616755a3578ee7aae5b2e42a3d9d.tscn"]
+
+[params]
+
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=false
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor=""
+save_tileset_to=""

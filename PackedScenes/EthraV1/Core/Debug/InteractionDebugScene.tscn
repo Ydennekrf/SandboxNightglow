@@ -1,20 +1,38 @@
 [gd_scene format=3 uid="uid://byrnenx2tk612"]
 
 [ext_resource type="Script" uid="uid://bac4sy3ufif3y" path="res://PackedScenes/EthraV1/Core/Scripts/InteractionDebugSceneRoot.cs" id="1_root"]
-[ext_resource type="PackedScene" uid="uid://dwvl0gweuelai" path="res://PackedScenes/EthraV1/Core/UI/game_manager.tscn" id="2_manager"]
 [ext_resource type="Script" uid="uid://cgqkopdsxrle8" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="3_world"]
 [ext_resource type="Script" uid="uid://gfyujpg5x2v" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="4_ui"]
 [ext_resource type="PackedScene" uid="uid://dhy6gmjchq6nj" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="5_player"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Debug/EnemySpawnMarker.tscn" id="6_1lops"]
 [ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Debug/InteractionDebugNpc.tscn" id="6_npc"]
 [ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/WorldObjects/InteractionDebugChest.tscn" id="7_chest"]
 [ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/InteractionDialogPanel.tscn" id="8_dialog"]
 [ext_resource type="PackedScene" uid="uid://yvmcay2n7e48" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="9_player_menu"]
+[ext_resource type="Script" uid="uid://b2lk7qxtvariu" path="res://Core/UI/Scripts/InteractionPromptView.cs" id="10_prompt"]
+[ext_resource type="Script" uid="uid://cck5fav8kh73e" path="res://Core/UI/Scripts/FloatingTextManager.cs" id="11_float"]
+[ext_resource type="Script" uid="uid://o4sv7m84mnms" path="res://Core/UI/Scripts/NotificationManager.cs" id="12_notify"]
+[ext_resource type="PackedScene" uid="uid://5onng3nl4fih" path="res://PackedScenes/EthraV1/Core/UI/PlayerHud.tscn" id="13_4uir6"]
+[ext_resource type="Script" uid="uid://te2l6e2en6wn" path="res://Core/Nodes/Interactable/DebugButtonInteraction.cs" id="13_button"]
+[ext_resource type="Script" uid="uid://dr1h0fluskir2" path="res://Core/Nodes/Interactable/HarvestableInteractable.cs" id="14_harvest"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Debug/TestEnemy.tscn" id="16_enemy"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Interactables/CraftingBench.tscn" id="17_bench"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/CraftingPanel.tscn" id="18_crafting"]
+[ext_resource type="Script" uid="uid://b3xrrpv1saixs" path="res://Core/Nodes/Interactable/DebugRecoveryArea.cs" id="19_recovery"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_button"]
+size = Vector2(34, 22)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_recovery"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_harvest"]
+radius = 18.0
 
 [node name="InteractionDebugScene" type="Node2D" unique_id=1154614047]
 script = ExtResource("1_root")
 PlayerScene = ExtResource("5_player")
-
-[node name="GameManager" parent="." unique_id=1045582074 instance=ExtResource("2_manager")]
+TestEnemyScene = ExtResource("16_enemy")
 
 [node name="World" type="Node2D" parent="." unique_id=1984765676]
 script = ExtResource("3_world")
@@ -40,15 +58,187 @@ DialogTreeId = "interaction_debug_target_npc"
 [node name="SpawnPoints" type="Node2D" parent="World/Entities" unique_id=1741818557]
 
 [node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints" unique_id=777278618]
+position = Vector2(-27, 133)
+
+[node name="EnemySpawnMarker" parent="World/Entities/SpawnPoints" unique_id=527728675 instance=ExtResource("6_1lops")]
+position = Vector2(74, 88)
+SpawnedEnemyName = "InteractionSpawnEnemy"
+SpawnModeValue = 0
+SpawnDelaySeconds = 0.0
+PatrolRadius = 72.0
+DetectionRange = 112.0
+LeashRange = 176.0
+AttackRange = 24.0
+
+[node name="TimedEnemySpawn" parent="World/Entities/SpawnPoints" unique_id=1570008251 instance=ExtResource("6_1lops")]
+position = Vector2(200, 0)
+SpawnedEnemyName = "TimedSpawnEnemy"
+SpawnDelaySeconds = 2.0
+AttackRange = 24.0
+
+[node name="ProximityEnemySpawn" parent="World/Entities/SpawnPoints" unique_id=1106126999 instance=ExtResource("6_1lops")]
+position = Vector2(320, 96)
+SpawnedEnemyName = "ProximitySpawnEnemy"
+SpawnModeValue = 2
+SpawnDelaySeconds = 0.0
+SpawnProximityDistance = 120.0
+PatrolRadius = 88.0
+AttackRange = 24.0
 
 [node name="Interactables" type="Node2D" parent="World" unique_id=484288599]
 
+[node name="CraftingBench" parent="World/Interactables" unique_id=545952803 instance=ExtResource("17_bench")]
+position = Vector2(-208, -122)
+
 [node name="DebugChest" parent="World/Interactables" unique_id=1293096525 instance=ExtResource("7_chest")]
-position = Vector2(-80, 0)
+position = Vector2(213, -112)
+
+[node name="DebugButton" type="Area2D" parent="World/Interactables" unique_id=2103486021]
+position = Vector2(-36, -120)
+collision_layer = 64
+collision_mask = 18
+script = ExtResource("13_button")
+InteractionPromptText = "Press E to Spawn Enemy"
+EnemySpawnMarkerPath = NodePath("../../Entities/SpawnPoints/EnemySpawnMarker")
+
+[node name="Visual" type="Polygon2D" parent="World/Interactables/DebugButton" unique_id=1103108486]
+color = Color(0.31, 0.45, 0.72, 1)
+polygon = PackedVector2Array(-18, -11, 18, -11, 18, 11, -18, 11)
+
+[node name="Label" type="Label" parent="World/Interactables/DebugButton" unique_id=171959]
+offset_left = -52.0
+offset_top = -32.0
+offset_right = 52.0
+offset_bottom = -14.0
+text = "Spawn Enemy"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/DebugButton" unique_id=728051238]
+shape = SubResource("RectangleShape2D_button")
+
+[node name="RecoveryArea" type="Area2D" parent="World/Interactables" unique_id=1096010766]
+position = Vector2(96, -119)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("19_recovery")
+
+[node name="Visual" type="Polygon2D" parent="World/Interactables/RecoveryArea" unique_id=1139288706]
+color = Color(0.2, 0.72, 0.62, 0.65)
+polygon = PackedVector2Array(0, -26, 18, -18, 26, 0, 18, 18, 0, 26, -18, 18, -26, 0, -18, -18)
+
+[node name="Label" type="Label" parent="World/Interactables/RecoveryArea" unique_id=1180192277]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = -28.0
+text = "Recover"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/RecoveryArea" unique_id=463301946]
+position = Vector2(2, -1)
+shape = SubResource("CircleShape2D_recovery")
+
+[node name="CopperOreHarvestable" type="Area2D" parent="World/Interactables" unique_id=68797757]
+position = Vector2(-150, 88)
+collision_layer = 64
+collision_mask = 18
+script = ExtResource("14_harvest")
+StableId = "flag.harvest.debug.copper_ore_01.collected"
+Quantity = 12
+AnimationKey = "Mining"
+ToolType = 1
+InteractionVerb = "Mine"
+InteractionPromptText = "Press E to Mine"
+InteractionPriority = 10
+
+[node name="Visual" type="Polygon2D" parent="World/Interactables/CopperOreHarvestable" unique_id=915674935]
+color = Color(0.68, 0.42, 0.24, 1)
+polygon = PackedVector2Array(-16, -7, -7, -17, 8, -14, 17, -3, 10, 14, -10, 13)
+
+[node name="HarvestedVisual" type="Polygon2D" parent="World/Interactables/CopperOreHarvestable" unique_id=174913183]
+visible = false
+color = Color(0.28, 0.24, 0.22, 1)
+polygon = PackedVector2Array(-14, -5, -4, -11, 12, -5, 10, 8, -10, 9)
+
+[node name="Label" type="Label" parent="World/Interactables/CopperOreHarvestable" unique_id=1186425228]
+offset_left = -36.0
+offset_top = -38.0
+offset_right = 36.0
+offset_bottom = -18.0
+text = "Copper Ore"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/CopperOreHarvestable" unique_id=854956675]
+shape = SubResource("CircleShape2D_harvest")
+
+[node name="TrainingTreeHarvestable" type="Area2D" parent="World/Interactables" unique_id=785698530]
+position = Vector2(-210, 0)
+collision_layer = 64
+collision_mask = 18
+script = ExtResource("14_harvest")
+StableId = "flag.harvest.debug.training_tree_01.collected"
+ItemId = 3002
+Quantity = 3
+AnimationKey = "Mining"
+ToolType = 2
+InteractionVerb = "Chop"
+InteractionPromptText = "Press E to Chop"
+InteractionPriority = 9
+
+[node name="Visual" type="Polygon2D" parent="World/Interactables/TrainingTreeHarvestable" unique_id=728434228]
+color = Color(0.25, 0.52, 0.25, 1)
+polygon = PackedVector2Array(0, -22, 17, -4, 10, 18, -10, 18, -17, -4)
+
+[node name="HarvestedVisual" type="Polygon2D" parent="World/Interactables/TrainingTreeHarvestable" unique_id=117267028]
+visible = false
+color = Color(0.36, 0.24, 0.14, 1)
+polygon = PackedVector2Array(-7, -6, 7, -6, 7, 12, -7, 12)
+
+[node name="Label" type="Label" parent="World/Interactables/TrainingTreeHarvestable" unique_id=884304963]
+offset_left = -40.0
+offset_top = -44.0
+offset_right = 40.0
+offset_bottom = -24.0
+text = "Tree"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/TrainingTreeHarvestable" unique_id=407060724]
+shape = SubResource("CircleShape2D_harvest")
+
+[node name="HerbCollectable" type="Area2D" parent="World/Interactables" unique_id=1880457520]
+position = Vector2(-210, 88)
+collision_layer = 64
+collision_mask = 18
+script = ExtResource("14_harvest")
+StableId = "flag.harvest.debug.herb_01.collected"
+ItemId = 1001
+InteractionVerb = "Collect"
+InteractionPromptText = "Press E to Collect"
+InteractionPriority = 8
+
+[node name="Visual" type="Polygon2D" parent="World/Interactables/HerbCollectable" unique_id=93766578]
+color = Color(0.34, 0.76, 0.38, 1)
+polygon = PackedVector2Array(-15, 8, -6, -14, 0, 8, 8, -16, 15, 8)
+
+[node name="HarvestedVisual" type="Polygon2D" parent="World/Interactables/HerbCollectable" unique_id=1978941225]
+visible = false
+color = Color(0.17, 0.28, 0.16, 1)
+polygon = PackedVector2Array(-10, 8, 10, 8, 6, 13, -6, 13)
+
+[node name="Label" type="Label" parent="World/Interactables/HerbCollectable" unique_id=1048699229]
+offset_left = -40.0
+offset_top = -38.0
+offset_right = 40.0
+offset_bottom = -18.0
+text = "Herb"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/HerbCollectable" unique_id=944162809]
+shape = SubResource("CircleShape2D_harvest")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=937863861]
 script = ExtResource("4_ui")
-PlayerMenuPath = NodePath("Menus/PlayerMenu")
+PlayerHudPath = NodePath("")
 
 [node name="Hud" type="Control" parent="UI" unique_id=1183091043]
 layout_mode = 3
@@ -57,6 +247,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PlayerHud" parent="UI/Hud" unique_id=850265161 instance=ExtResource("13_4uir6")]
+layout_mode = 1
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_left = 0.0
+offset_top = 553.0
+offset_right = -903.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionPromptView" type="Control" parent="UI/Hud" unique_id=595760749]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_prompt")
+
+[node name="FloatingTextManager" type="Control" parent="UI/Hud" unique_id=2065381490]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_float")
+
+[node name="NotificationManager" type="Control" parent="UI/Hud" unique_id=566240656]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("12_notify")
 
 [node name="InteractionDialogPanel" parent="UI" unique_id=1292091939 instance=ExtResource("8_dialog")]
 
@@ -70,6 +302,9 @@ grow_vertical = 2
 
 [node name="PlayerMenu" parent="UI/Menus" unique_id=400448532 instance=ExtResource("9_player_menu")]
 visible = false
+layout_mode = 1
+
+[node name="CraftingPanel" parent="UI/Menus" unique_id=200584775 instance=ExtResource("18_crafting")]
 layout_mode = 1
 
 [node name="MainMenu" type="Control" parent="UI/Menus" unique_id=663702921]

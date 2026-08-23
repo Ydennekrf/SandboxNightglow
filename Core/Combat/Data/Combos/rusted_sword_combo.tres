@@ -12,7 +12,7 @@ DeliveryShapeId = "Cone"
 DamageType = "Elemental"
 ElementType = "Ice"
 BasePower = 1.1
-EffectIds = Array[String](["Slow"])
+EffectIds = Array[String](["status.cold"])
 EffectDurationSeconds = 5.0
 
 [sub_resource type="Resource" id="AttackPayloadResource_melee_1"]
@@ -26,7 +26,7 @@ MagicPayload = SubResource("AttackPayloadResource_magic_1")
 [sub_resource type="Resource" id="AttackPayloadResource_melee_2"]
 script = ExtResource("3")
 BasePower = 1.2
-EffectIds = Array[String](["Knockback"])
+EffectIds = Array[String](["status.knockback"])
 
 [sub_resource type="Resource" id="ComboPhaseResource_b"]
 script = ExtResource("2")

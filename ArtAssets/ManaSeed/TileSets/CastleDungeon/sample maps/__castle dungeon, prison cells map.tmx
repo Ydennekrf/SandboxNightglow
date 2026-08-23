@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" source="castle dungeon.tsx"/>
+ <tileset firstgid="749" source="bonus shadows (desaturated).tsx"/>
+ <layer id="1" name="Layer 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAq0KAPbQLzRQ5STDGAw0hmC9mZqphivwHMkFHYwkqkAj/pwEc2pWv2iMxigCdXvujDHl7exLqkG03TIFHgAgAB4AW5ngBl7gubwW0QOQvJE0B/CaZ/JKXvXCeF28LJ5Hr4X38lQqXmcEIt7Ek3ijd/JCDY9hMwhP4SU80egHWA4539zhKT3/LIiBvI8XxRPwZG7wgq+Ox3GwjLfxNAKXPlGUh5JAEjVNEogjhT6gadVm8hQJCTNV1Oq8HqYxRwltqktD8AYcSagRbRYhZRWlhQNQAlHQnQcRgASQ6ASESUAV53Zv6Cpw37fiKJs28o9nDL33RRnOww7+248NHlLmtsAX3umoYMeFdsGn9+VZcfB+yjx/j/r4NuZLa3NI00HfFcTbFs7ZL+gu01nrw8N8a/Cf09HaDwe790l8VT4k+Y5NMq3oDnuufgPTlfUcZtNlJ+nrfJghn1FV
+  </data>
+ </layer>
+ <layer id="2" name="Layer 2" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAn0FAEIIFyKATVoDW0VD17EGDUk0SwkGZmA6KUis3/IWcuAK2rxDI1KmW2JDnCKHfLpkW2yKTbAdLscbX39sjG3wagM0vGCEhzhF5/lA36fzVTeaL7NymMtnoY6ifJMbSYEPJKDRlRehxfVzcIJEZx434ZgDd7m9J7sJ59y4W5u6mSMdUNwOznA/S9a0O0n/GPauaDZhEpm9a86Tol+ykzQ9KNvkCdjrEcoBXZMmAdrhIAU=
+  </data>
+ </layer>
+ <layer id="4" name="Layer 3" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAArUBALAAAAAABgP2AgCeAMAA7ADkDgEABgEADCAwg2QdwjTM5LxxT8I34Y1iDTUSQlfIRxQIoTGmiw==
+  </data>
+ </layer>
+</map>

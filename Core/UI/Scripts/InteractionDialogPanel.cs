@@ -24,11 +24,13 @@ namespace ethra.V1
 
         [Export] public NodePath PanelPath { get; set; } = "Panel";
         [Export] public NodePath SpeakerLabelPath { get; set; } = "Panel/MarginContainer/VBoxContainer/SpeakerLabel";
+        [Export] public NodePath PortraitTexturePath { get; set; } = "Panel/MarginContainer/VBoxContainer/PortraitTexture";
         [Export] public NodePath BodyLabelPath { get; set; } = "Panel/MarginContainer/VBoxContainer/BodyLabel";
         [Export] public NodePath ChoiceBoxPath { get; set; } = "Panel/MarginContainer/VBoxContainer/ChoiceBox";
 
         private Control _panel;
         private Label _speakerLabel;
+        private TextureRect _portraitTexture;
         private Label _bodyLabel;
         private VBoxContainer _choiceBox;
 
@@ -36,10 +38,11 @@ namespace ethra.V1
 
         public override void _Ready()
         {
-            _panel = GetNodeOrNull<Control>(PanelPath);
-            _speakerLabel = GetNodeOrNull<Label>(SpeakerLabelPath);
-            _bodyLabel = GetNodeOrNull<Label>(BodyLabelPath);
-            _choiceBox = GetNodeOrNull<VBoxContainer>(ChoiceBoxPath);
+            _panel = GetNodeOrFallback<Control>(PanelPath, "Panel");
+            _speakerLabel = GetNodeOrFallback<Label>(SpeakerLabelPath, "Panel/MarginContainer/VBoxContainer/SpeakerLabel");
+            _portraitTexture = GetNodeOrFallback<TextureRect>(PortraitTexturePath, "Panel/MarginContainer/VBoxContainer/PortraitTexture");
+            _bodyLabel = GetNodeOrFallback<Label>(BodyLabelPath, "Panel/MarginContainer/VBoxContainer/BodyLabel");
+            _choiceBox = GetNodeOrFallback<VBoxContainer>(ChoiceBoxPath, "Panel/MarginContainer/VBoxContainer/ChoiceBox");
 
             if (_panel == null || _speakerLabel == null || _bodyLabel == null || _choiceBox == null)
             {
@@ -47,6 +50,17 @@ namespace ethra.V1
             }
 
             HideDialog();
+        }
+
+        private T GetNodeOrFallback<T>(NodePath configuredPath, string fallbackPath) where T : Node
+        {
+            T node = null;
+            if (!IsEmptyNodePath(configuredPath))
+            {
+                node = GetNodeOrNull<T>(configuredPath);
+            }
+
+            return node ?? GetNodeOrNull<T>(fallbackPath);
         }
 
         public override void _UnhandledInput(InputEvent @event)
@@ -76,6 +90,11 @@ namespace ethra.V1
 
         public void ShowDialog(string speaker, string body, IEnumerable<InteractionDialogChoice> choices)
         {
+            ShowDialog(speaker, body, null, choices);
+        }
+
+        public void ShowDialog(string speaker, string body, Texture2D portrait, IEnumerable<InteractionDialogChoice> choices)
+        {
             if (_speakerLabel == null || _bodyLabel == null || _choiceBox == null)
             {
                 return;
@@ -83,6 +102,11 @@ namespace ethra.V1
 
             _speakerLabel.Text = speaker;
             _bodyLabel.Text = body;
+            if (_portraitTexture != null)
+            {
+                _portraitTexture.Texture = portrait;
+                _portraitTexture.Visible = portrait != null;
+            }
 
             foreach (Node child in _choiceBox.GetChildren())
             {
@@ -127,6 +151,11 @@ namespace ethra.V1
             {
                 DialogClosed?.Invoke();
             }
+        }
+
+        private static bool IsEmptyNodePath(NodePath path)
+        {
+            return path == null || string.IsNullOrWhiteSpace(path.ToString());
         }
     }
 }

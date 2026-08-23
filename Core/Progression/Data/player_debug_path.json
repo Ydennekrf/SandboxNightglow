@@ -1,0 +1,111 @@
+{
+  "pathId": "abilitypath.player.debug",
+  "startingNodeId": "abilitypath.player.start",
+  "nodes": [
+	{
+	  "nodeId": "abilitypath.player.start",
+	  "displayName": "Start",
+	  "description": "Selene's starting point on the ability path.",
+	  "connectedNodeIds": [
+		"abilitypath.player.max_health_1",
+        "abilitypath.player.dodge"
+	  ],
+	  "cost": 0,
+	  "nodeType": "Start",
+	  "effects": []
+	},
+	{
+	  "nodeId": "abilitypath.player.max_health_1",
+	  "displayName": "Toughened",
+	  "description": "Increase maximum health by 5.",
+	  "connectedNodeIds": [
+		"abilitypath.player.start",
+        "abilitypath.player.max_mana_1"
+	  ],
+	  "cost": 1,
+	  "nodeType": "StatIncrease",
+	  "effects": [
+		{
+		  "effectId": "effect.player.max_health_5",
+		  "effectType": "StatModifier",
+		  "targetStat": "MaxHealth",
+		  "amount": 5
+		}
+	  ]
+	},
+	{
+	  "nodeId": "abilitypath.player.dodge",
+	  "displayName": "Dodge",
+	  "description": "Unlock the active dodge ability ID for movement systems to consume later.",
+	  "connectedNodeIds": [
+		"abilitypath.player.start",
+        "abilitypath.player.attack_1"
+	  ],
+	  "cost": 1,
+	  "nodeType": "ActiveAbility",
+	  "effects": [
+		{
+		  "effectId": "effect.player.unlock_dodge",
+		  "effectType": "UnlockActiveAbility",
+		  "abilityId": "ability.player.dodge"
+		}
+	  ]
+	},
+	{
+	  "nodeId": "abilitypath.player.max_mana_1",
+	  "displayName": "Deeper Wellspring",
+	  "description": "Increase maximum mana by 3.",
+	  "connectedNodeIds": [
+		"abilitypath.player.max_health_1",
+        "abilitypath.player.combo_knockback"
+	  ],
+	  "cost": 1,
+	  "nodeType": "StatIncrease",
+	  "effects": [
+		{
+		  "effectId": "effect.player.max_mana_3",
+		  "effectType": "StatModifier",
+		  "targetStat": "MaxMana",
+		  "amount": 3
+		}
+	  ]
+	},
+	{
+	  "nodeId": "abilitypath.player.combo_knockback",
+	  "displayName": "Third Beat Knockback",
+	  "description": "Unlock a passive ID for future combo logic: every third attack can cause knockback.",
+	  "connectedNodeIds": [
+		"abilitypath.player.max_mana_1",
+        "abilitypath.player.attack_1"
+	  ],
+	  "cost": 2,
+	  "nodeType": "PassiveAbility",
+	  "effects": [
+		{
+		  "effectId": "effect.player.unlock_combo_knockback",
+		  "effectType": "UnlockPassiveAbility",
+		  "passiveId": "passive.combo.third_hit_knockback"
+		}
+	  ]
+	},
+	{
+	  "nodeId": "abilitypath.player.attack_1",
+	  "displayName": "Sharper Edge",
+	  "description": "Increase attack strength by 1.",
+	  "connectedNodeIds": [
+		"abilitypath.player.dodge",
+        "abilitypath.player.combo_knockback"
+	  ],
+	  "cost": 1,
+	  "nodeType": "StatIncrease",
+	  "effects": [
+		{
+		  "effectId": "effect.player.strength_1",
+		  "effectType": "StatModifier",
+		  "targetStat": "Strength",
+		  "amount": 1
+		}
+	  ]
+	}
+  ]
+}

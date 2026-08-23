@@ -1,0 +1,145 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/SceneInteractionDebugRoot.cs" id="1_root"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="2_world"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="3_player"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="4_ui"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/InteractionDialogPanel.tscn" id="5_dialog"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="6_player_menu"]
+[ext_resource type="Script" path="res://Core/Cutscenes/CutsceneOrchestrator.cs" id="7_orchestrator"]
+[ext_resource type="Script" path="res://Core/Cutscenes/CutsceneDialogNode.cs" id="8_dialog_step"]
+[ext_resource type="Script" path="res://Core/Cutscenes/CutsceneSpawnNode.cs" id="9_spawn_step"]
+[ext_resource type="Script" path="res://Core/Cutscenes/CutsceneMovementNode.cs" id="10_move_step"]
+[ext_resource type="Script" path="res://Core/Cutscenes/CutsceneActionNode.cs" id="11_action_step"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Debug/CutsceneDebugActor.tscn" id="12_actor"]
+
+[node name="CutsceneNodeDebugScene" type="Node2D"]
+script = ExtResource("1_root")
+PlayerScene = ExtResource("3_player")
+ReadyMessage = "[CutsceneNodeDebug] Scene ready."
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("2_world")
+
+[node name="Map" type="Node2D" parent="World"]
+
+[node name="Floor" type="Polygon2D" parent="World/Map"]
+color = Color(0.16, 0.18, 0.2, 1)
+polygon = PackedVector2Array(-260, -150, 300, -150, 300, 160, -260, 160)
+
+[node name="SceneLabel" type="Label" parent="World/Map"]
+offset_left = -230.0
+offset_top = -136.0
+offset_right = 210.0
+offset_bottom = -112.0
+text = "Cutscene Node Debug"
+
+[node name="PathLine" type="Line2D" parent="World/Map"]
+points = PackedVector2Array(-70, 20, 120, 20)
+default_color = Color(0.8, 0.72, 0.38, 1)
+width = 3.0
+
+[node name="Entities" type="Node2D" parent="World"]
+
+[node name="Player" type="Node2D" parent="World/Entities"]
+
+[node name="Enemies" type="Node2D" parent="World/Entities"]
+
+[node name="NPCs" type="Node2D" parent="World/Entities"]
+
+[node name="SpawnPoints" type="Node2D" parent="World/Entities"]
+
+[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(-170, 40)
+
+[node name="ActorStart" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(-70, 20)
+
+[node name="ActorEnd" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(120, 20)
+
+[node name="Interactables" type="Node2D" parent="World"]
+
+[node name="CutsceneOrchestrator" type="Node" parent="."]
+script = ExtResource("7_orchestrator")
+CutsceneId = "cutscene.debug.node_sequence"
+PlayOnReady = true
+CanSkip = true
+DisablePlayerControlDuringCutscene = true
+RestorePlayerControlOnEnd = true
+DebugLogging = true
+
+[node name="Step_001_Dialog" type="Node" parent="CutsceneOrchestrator"]
+script = ExtResource("8_dialog_step")
+StepId = "cutscene.debug.step.intro"
+SpeakerName = "Guide"
+Body = "This line is authored as a reusable CutsceneDialogNode."
+DialogPanelPath = NodePath("../../UI/InteractionDialogPanel")
+
+[node name="Step_002_Spawn" type="Node" parent="CutsceneOrchestrator"]
+script = ExtResource("9_spawn_step")
+StepId = "cutscene.debug.step.spawn_actor"
+EntityScene = ExtResource("12_actor")
+SpawnParentPath = NodePath("../../World/Entities/NPCs")
+SpawnMarkerPath = NodePath("../../World/Entities/SpawnPoints/ActorStart")
+SpawnedEntityId = "CutsceneActor"
+AddToGroupName = "CutsceneDebugActor"
+StoreSpawnedEntityForLaterSteps = true
+
+[node name="Step_003_Move" type="Node" parent="CutsceneOrchestrator"]
+script = ExtResource("10_move_step")
+StepId = "cutscene.debug.step.move_actor"
+TargetEntityId = "CutsceneActor"
+StartMarkerPath = NodePath("../../World/Entities/SpawnPoints/ActorStart")
+EndMarkerPath = NodePath("../../World/Entities/SpawnPoints/ActorEnd")
+MoveSpeed = 80.0
+MovementAnimationName = "Idle"
+IdleAnimationName = "Idle"
+SnapToStartOnBegin = true
+WaitForMovementComplete = true
+
+[node name="Step_004_Action" type="Node" parent="CutsceneOrchestrator"]
+script = ExtResource("11_action_step")
+StepId = "cutscene.debug.step.actor_action"
+TargetEntityId = "CutsceneActor"
+AnimationName = "Nod"
+WaitForAnimationComplete = true
+FallbackDurationSeconds = 0.45
+
+[node name="Step_005_Dialog" type="Node" parent="CutsceneOrchestrator"]
+script = ExtResource("8_dialog_step")
+StepId = "cutscene.debug.step.outro"
+SpeakerName = "Guide"
+Body = "The spawned actor moved to the marker and played its action animation."
+DialogPanelPath = NodePath("../../UI/InteractionDialogPanel")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_ui")
+PlayerMenuPath = NodePath("Menus/PlayerMenu")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionDialogPanel" parent="UI" instance=ExtResource("5_dialog")]
+
+[node name="Menus" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerMenu" parent="UI/Menus" instance=ExtResource("6_player_menu")]
+visible = false
+layout_mode = 1
+
+[node name="MainMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 0

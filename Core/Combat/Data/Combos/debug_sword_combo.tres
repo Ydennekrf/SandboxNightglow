@@ -1,0 +1,101 @@
+[gd_resource type="Resource" script_class="WeaponComboResource" format=3]
+
+[ext_resource type="Script" path="res://Core/Combat/Scripts/WeaponComboResource.cs" id="1"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/ComboPhaseResource.cs" id="2"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/AttackPayloadResource.cs" id="3"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/HitboxProfileResource.cs" id="4"]
+
+[sub_resource type="Resource" id="HitboxProfileResource_slash_1"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.debug_sword.slash_1"
+Offset = Vector2(24, 0)
+Size = Vector2(34, 20)
+ActiveDurationSeconds = 0.1
+
+[sub_resource type="Resource" id="HitboxProfileResource_slash_2"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.debug_sword.slash_2"
+Offset = Vector2(30, 0)
+Size = Vector2(42, 22)
+ActiveDurationSeconds = 0.11
+
+[sub_resource type="Resource" id="HitboxProfileResource_finisher"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.debug_sword.finisher"
+Offset = Vector2(36, 0)
+Size = Vector2(52, 26)
+ActiveDurationSeconds = 0.14
+
+[sub_resource type="Resource" id="AttackPayloadResource_slash"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1.0
+
+[sub_resource type="Resource" id="AttackPayloadResource_finisher"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1.0
+
+[sub_resource type="Resource" id="ComboPhaseResource_slash_1"]
+script = ExtResource("2")
+StepId = "combo_step.debug_sword.slash_1"
+StepIndex = 1
+DebugLabel = "Slash 1"
+DamageMultiplier = 1.0
+SharedAnimationName = "Slash1"
+DurationOverrideSeconds = 0.34
+StartupSeconds = 0.08
+ActiveSeconds = 0.1
+RecoverySeconds = 0.16
+ComboWindowStartSeconds = 0.16
+ComboWindowEndSeconds = 0.32
+MovementImpulse = 20.0
+HitboxProfile = SubResource("HitboxProfileResource_slash_1")
+MeleePayload = SubResource("AttackPayloadResource_slash")
+
+[sub_resource type="Resource" id="ComboPhaseResource_slash_2"]
+script = ExtResource("2")
+StepId = "combo_step.debug_sword.slash_2"
+StepIndex = 2
+DebugLabel = "Slash 2"
+DamageMultiplier = 1.15
+SharedAnimationName = "Slash2"
+DurationOverrideSeconds = 0.38
+StartupSeconds = 0.09
+ActiveSeconds = 0.11
+RecoverySeconds = 0.18
+ComboWindowStartSeconds = 0.18
+ComboWindowEndSeconds = 0.36
+MovementImpulse = 26.0
+HitboxProfile = SubResource("HitboxProfileResource_slash_2")
+MeleePayload = SubResource("AttackPayloadResource_slash")
+
+[sub_resource type="Resource" id="ComboPhaseResource_finisher"]
+script = ExtResource("2")
+StepId = "combo_step.debug_sword.heavy_finisher"
+StepIndex = 3
+DebugLabel = "Heavy Finisher"
+DamageMultiplier = 1.65
+SharedAnimationName = "HeavyFinisher"
+DurationOverrideSeconds = 0.56
+StartupSeconds = 0.14
+ActiveSeconds = 0.14
+RecoverySeconds = 0.28
+ComboWindowStartSeconds = 0.0
+ComboWindowEndSeconds = 0.0
+MovementImpulse = 36.0
+HitboxProfile = SubResource("HitboxProfileResource_finisher")
+StatusEffectsToApply = Array[String](["status.knockback"])
+MeleePayload = SubResource("AttackPayloadResource_finisher")
+
+[resource]
+script = ExtResource("1")
+ComboId = "combo.weapon.debug_sword.basic_three_hit"
+DisplayName = "Debug Sword Three-Hit"
+WeaponType = "Sword"
+CompatibleWeaponIds = Array[int]([2003])
+ResetTimeSeconds = 0.85
+Description = "Debug sword combo: two quick slashes into a knockback finisher."
+Phases = Array[ExtResource("2")]([SubResource("ComboPhaseResource_slash_1"), SubResource("ComboPhaseResource_slash_2"), SubResource("ComboPhaseResource_finisher")])

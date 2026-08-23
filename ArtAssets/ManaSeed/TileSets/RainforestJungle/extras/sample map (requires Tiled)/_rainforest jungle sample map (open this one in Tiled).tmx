@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.6" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="1">
+ <tileset firstgid="1" source="rainforest jungle v1.tsx"/>
+ <tileset firstgid="257" source="bonus shadows.tsx"/>
+ <tileset firstgid="321" source="rainforest jungle, just trees v1.tsx"/>
+ <tileset firstgid="327" source="collision.tsx"/>
+ <layer id="1" name="Under Sprite 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAp0KAOINJy9wT5oD+avtb///f3OS3z29pX0ARNkybUR59WLcL/Wry3Ftzddv27AOumWQaLYmKZynwWwYyJNpG8Y5aOQTyjwXx65ROYdR4RlP6FDc48HhDREDD+ICHN8QWbxp8ILTPKBi4hImU8gF8o+L4QtaBeDcQycE75gQfpBilXyrmbnMY55EfZ5d5Ch/GV3lokt3ectZ/k7yjnXq11c+CmCoUcmhRqksuwEgAkIUg3YDEDCB1Eq1BqsB0KfMg8bZID/S43ioXZ7JN+ZK2X+IPhKf9IpEc/TXF4bMPcIyfI9FbEXoPko7GCp+LrfGOM7UkQxLMduGrvKQLlhn6YFsG8eq/WylP/oDVlE6ZH/uV/TZ8eILP+zFYHwKI84zwnX41a5YuJM/D8/jgw5533zmXZqx1zjhU74sy+Hy3X6G6816lF3cX4PPeSY4lX8WtXPuK3jm1A==
+  </data>
+ </layer>
+ <layer id="9" name="Under Sprite 2" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAo0EAJJJFiGgu2ZgkFokQZ8vNfV9rty3+sKVjcSmd/8Xx+7/rc8a7hR/6oMLDvh3j/EF5pfIIee+XSucMLlE8cSzB17thg76p+edc26ueUZqeeWU0fRxxxuYFfHDDa8BFACjpNbrK+k/jTVKar2+kv7TWAdQvEGKBkdxDDiIP8gUogsUJDAHTkHQ3c2EAacfSIhMjg0=
+  </data>
+ </layer>
+ <layer id="2" name="Sprite Layer" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAj0IAMKPJzEwc9Ia9GvVuxff/kr+yvVSzF2/mNpP2RX5U06Sf8Cn22QW2NY2wgADDAxhRDBkn0wBC07wkIB39Jznw1bH4PjGNZ5xcxsIhzeMOcxPQilHubJtta+Sk3zE5KkjkH/co4jB69bFLV7xQAAjHkZVwHmW4it9op3rPKfKEX7wibbER9re6Qzf5zWn+cxlDlzgC+2srZrwcpe3nKWNfaYBLSBwghTgaB3Ew2Pi4GkydAgUhprzZGjH636FOpbYMdmLoR4iYURseBySAJdOp2AMz93ZEg0Ex7fCGR/ycO4YengYkmc3dIIVbo1BkBUZWMSg8NzY6iBTi0b30LdoOCkBffvkS7aE
+  </data>
+ </layer>
+ <layer id="10" name="Over Sprite 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAqUCAJJEDBjQZw4FIEBEDxLRn5nfTQgQAAKYEriKTAEvThwufO68OfOl8uTIjxvb2QoOvOiQm9QMIFDDRR6HFgNUMCU7gqqQ81IYqmZwvtRyWgIVHZDsCg==
+  </data>
+ </layer>
+ <layer id="11" name="Over Sprite 2" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAkUAAAgAAQC8qZwQ
+  </data>
+ </layer>
+ <layer id="12" name="Collision" width="20" height="12" visible="0">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAi0DAPBHAQAAWAEARwFbTAEAAE1qSElIWFVWAVVHWEhHRwEhoPAadaACNDTmATUxie73zELOhfPD7yacAj1tjCRsgjN23kJODfCHbT1NPPQMi9YL4et3R9PmKDvRitDFzh65kWUHp4QM
+  </data>
+ </layer>
+</map>

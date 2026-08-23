@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/SceneInteractionDebugRoot.cs" id="1_root"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="3_world"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="4_ui"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="5_player"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/InteractionDialogPanel.tscn" id="6_dialog"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="7_player_menu"]
+[ext_resource type="Script" path="res://Core/Nodes/Debug/CutsceneDebugController.cs" id="8_cutscene"]
+
+[node name="CutsceneDebugScene" type="Node2D"]
+script = ExtResource("1_root")
+PlayerScene = ExtResource("5_player")
+ReadyMessage = "[CutsceneDebug] Scene ready."
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("3_world")
+
+[node name="Map" type="Node2D" parent="World"]
+
+[node name="Floor" type="Polygon2D" parent="World/Map"]
+color = Color(0.14, 0.18, 0.21, 1)
+polygon = PackedVector2Array(-230, -130, 280, -130, 280, 150, -230, 150)
+
+[node name="SceneLabel" type="Label" parent="World/Map"]
+offset_left = -205.0
+offset_top = -118.0
+offset_right = 180.0
+offset_bottom = -92.0
+text = "Cutscene Debug"
+
+[node name="Entities" type="Node2D" parent="World"]
+
+[node name="Player" type="Node2D" parent="World/Entities"]
+
+[node name="Enemies" type="Node2D" parent="World/Entities"]
+
+[node name="NPCs" type="Node2D" parent="World/Entities"]
+
+[node name="CharacterB" type="Node2D" parent="World/Entities/NPCs"]
+position = Vector2(120, 25)
+
+[node name="Visual" type="Polygon2D" parent="World/Entities/NPCs/CharacterB"]
+color = Color(0.25, 0.65, 0.8, 1)
+polygon = PackedVector2Array(0, -16, 13, -4, 9, 14, -9, 14, -13, -4)
+
+[node name="NameLabel" type="Label" parent="World/Entities/NPCs/CharacterB"]
+offset_left = -48.0
+offset_top = -38.0
+offset_right = 48.0
+offset_bottom = -18.0
+text = "Character B"
+horizontal_alignment = 1
+
+[node name="SpawnPoints" type="Node2D" parent="World/Entities"]
+
+[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(-145, 25)
+
+[node name="CharacterAMarker" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(-30, 0)
+
+[node name="CharacterASecondMarker" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(20, 45)
+
+[node name="CharacterBMarker" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(70, 0)
+
+[node name="Interactables" type="Node2D" parent="World"]
+
+[node name="CutsceneController" type="Node" parent="."]
+script = ExtResource("8_cutscene")
+CharacterAPath = NodePath("../World/Entities/Player/Player")
+CharacterBPath = NodePath("../World/Entities/NPCs/CharacterB")
+CharacterAMarkerPath = NodePath("../World/Entities/SpawnPoints/CharacterAMarker")
+CharacterASecondMarkerPath = NodePath("../World/Entities/SpawnPoints/CharacterASecondMarker")
+CharacterBMarkerPath = NodePath("../World/Entities/SpawnPoints/CharacterBMarker")
+DialogPanelPath = NodePath("../UI/InteractionDialogPanel")
+PlayerPath = NodePath("../World/Entities/Player/Player")
+MoveSpeed = 70.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_ui")
+PlayerMenuPath = NodePath("Menus/PlayerMenu")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionDialogPanel" parent="UI" instance=ExtResource("6_dialog")]
+
+[node name="Menus" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerMenu" parent="UI/Menus" instance=ExtResource("7_player_menu")]
+visible = false
+layout_mode = 1
+
+[node name="MainMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 0

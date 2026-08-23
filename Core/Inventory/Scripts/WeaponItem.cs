@@ -13,6 +13,8 @@ namespace ethra.V1
         private Texture2D _weaponDownStow;
         private string _comboProfilePath;
         private WeaponComboResource _comboProfile;
+        private int _upgradeRuneSlotCount;
+        private bool _hasElementalRuneSlot;
 
         public string WeaponSlot => "MainHand";
         public bool IsEquipped => _isEquipped;
@@ -22,6 +24,8 @@ namespace ethra.V1
         public Texture2D WeaponDownStow => _weaponDownStow;
         public string ComboProfilePath => _comboProfilePath;
         public WeaponComboResource ComboProfile => _comboProfile ??= LoadComboProfile(_comboProfilePath);
+        public int UpgradeRuneSlotCount => _upgradeRuneSlotCount;
+        public bool HasElementalRuneSlot => _hasElementalRuneSlot;
 
         public WeaponItem(
             int id,
@@ -36,7 +40,9 @@ namespace ethra.V1
             string weaponDownDrawPath = "",
             string weaponUpStowPath = "",
             string weaponDownStowPath = "",
-            string comboProfilePath = "")
+            string comboProfilePath = "",
+            int upgradeRuneSlotCount = 0,
+            bool hasElementalRuneSlot = false)
             : base(id, name, value, description, rarity, effects, category: "Weapon", subtype: "MainHand", maxStack: maxStack, iconPath: iconPath)
         {
             _weaponUpDraw = LoadTexture(weaponUpDrawPath);
@@ -44,6 +50,8 @@ namespace ethra.V1
             _weaponUpStow = LoadTexture(weaponUpStowPath);
             _weaponDownStow = LoadTexture(weaponDownStowPath);
             _comboProfilePath = comboProfilePath;
+            _upgradeRuneSlotCount = Mathf.Max(0, upgradeRuneSlotCount);
+            _hasElementalRuneSlot = hasElementalRuneSlot;
         }
 
         public void Equip()

@@ -3,14 +3,15 @@
   "title": "Collect Copper Ore",
   "description": "A simple quest used to verify item collection progress through inventory events.",
   "startingObjectiveId": "collect_copper_ore",
+  "experienceReward": 200,
   "objectives": [
-    {
-      "objectiveId": "collect_copper_ore",
-      "objectiveType": "CollectItem",
-      "targetId": "3001",
-      "requiredCount": 1,
-      "description": "Collect one Copper Ore."
-    }
+	{
+	  "objectiveId": "collect_copper_ore",
+	  "objectiveType": "CollectItem",
+	  "targetId": "3001",
+	  "requiredCount": 1,
+	  "description": "Collect one Copper Ore."
+	}
   ],
   "rewards": []
 }

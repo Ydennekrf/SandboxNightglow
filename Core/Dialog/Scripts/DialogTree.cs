@@ -13,6 +13,7 @@ namespace ethra.V1
     {
         public string NodeId { get; set; } = string.Empty;
         public string SpeakerName { get; set; } = string.Empty;
+        public string PlayerAnimationKey { get; set; } = string.Empty;
         public string Text { get; set; } = string.Empty;
         public float GraphX { get; set; }
         public float GraphY { get; set; }

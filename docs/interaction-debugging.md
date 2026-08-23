@@ -10,6 +10,9 @@ It demonstrates:
 - a dialog choice that stubs the future store flow
 - an interactable chest that does not use dialog
 - a reusable pickup popup above the player
+- prompt, floating text, and notification events through the shared HUD feedback systems
+
+The scene uses the project autoload `GameManager`. It should not instance a local `GameManager` node.
 
 ## Scene And Object Paths
 
@@ -41,6 +44,8 @@ The current EthraV1 interaction examples follow the existing Area2D pattern used
 5. The chest handles pickup feedback directly and does not open dialog.
 
 The EthraV1 `DialogManager` now handles JSON dialog tree traversal for this debug flow while still using the small `InteractionDialogPanel` UI.
+
+The player scene also has `components/Interact/Base/InteractComponent.cs` attached to its `InteractionArea` for reusable prompt selection around `IInteractable` objects. Current EthraV1 debug/world interactables may still self-detect the player and publish prompt events directly; both paths feed `InteractionPromptView`.
 
 ## NPC Dialog Choices
 
@@ -80,6 +85,12 @@ Repeated interactions print that the chest is already open and do not grant anot
 - inventory insertion
 - save/load state for opened chests
 - polished pickup popup visuals
+
+## Debug Scene Ownership
+
+`InteractionDebugSceneRoot` should stay a test harness. It may spawn the test player and run world-state smoke checks. NPC, chest, button, item pickup, door, prompt, dialog, floating text, and notification behavior should live in reusable components/managers.
+
+See `docs/debug-scene-architecture.md` for the shared debug-scene rules and GameManager/autoload strategy.
 
 ## Future Follow-Up Tasks
 

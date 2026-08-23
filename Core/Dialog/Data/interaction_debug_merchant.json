@@ -21,6 +21,17 @@
 		  "toAnchor": "left"
 		},
 		{
+		  "choiceText": "Player line",
+		  "nextNodeId": "player_line",
+		  "endsDialog": false,
+		  "actionId": "",
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
+		},
+		{
 		  "choiceText": "Open shop",
 		  "nextNodeId": "start",
 		  "endsDialog": false,
@@ -111,6 +122,38 @@
 		  "nextNodeId": "test_depth2",
 		  "endsDialog": true,
 		  "actionId": "complete_quest_stub",
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "right",
+		  "toAnchor": "left"
+		}
+	  ]
+	},
+	{
+	  "nodeId": "player_line",
+	  "speakerName": "Player",
+	  "playerAnimationKey": "Dialog",
+	  "text": "I am checking the player speaker animation hook.",
+	  "graphX": 360,
+	  "graphY": 180,
+	  "choices": [
+		{
+		  "choiceText": "Back",
+		  "nextNodeId": "start",
+		  "endsDialog": false,
+		  "actionId": "",
+		  "actionPayload": "",
+		  "conditionId": "",
+		  "conditionPayload": "",
+		  "fromAnchor": "left",
+		  "toAnchor": "right"
+		},
+		{
+		  "choiceText": "Goodbye",
+		  "nextNodeId": "",
+		  "endsDialog": true,
+		  "actionId": "",
 		  "actionPayload": "",
 		  "conditionId": "",
 		  "conditionPayload": "",

@@ -1,14 +1,19 @@
 using Godot;
+using Game.Interact;
 
 namespace ethra.V1
 {
-    public partial class ItemPickup : Area2D
+    public partial class ItemPickup : Area2D, IInteractionPromptSource
     {
         [Export] public int ItemId { get; set; }
         [Export] public int Quantity { get; set; } = 1;
         [Export] public bool RequireInteract { get; set; } = true;
         [Export] public NodePath SpritePath { get; set; } = "Sprite2D";
         [Export] public Texture2D PickupTexture { get; set; }
+        [Export] public string InteractionVerb { get; set; } = "Pick Up";
+        [Export] public string InteractionPromptText { get; set; } = "Press E to Pick Up";
+        [Export] public int InteractionPriority { get; set; } = 0;
+        public bool CanInteract => RequireInteract;
 
         private bool _playerInside;
         private Sprite2D _sprite;
@@ -31,7 +36,7 @@ namespace ethra.V1
 
         public override void _Process(double delta)
         {
-            if (!RequireInteract || !_playerInside)
+            if (!RequireInteract || !_playerInside || GameManager.Instance?.UI?.BlocksGameplayInput == true)
             {
                 return;
             }
@@ -50,6 +55,10 @@ namespace ethra.V1
             }
 
             _playerInside = true;
+            if (RequireInteract)
+            {
+                PublishPrompt(InteractionPromptText);
+            }
             if (!RequireInteract)
             {
                 TryPickup();
@@ -61,6 +70,7 @@ namespace ethra.V1
             if (body is PlayerNode)
             {
                 _playerInside = false;
+                PublishPrompt(string.Empty);
             }
         }
 
@@ -73,27 +83,36 @@ namespace ethra.V1
                 return;
             }
 
-            int attempts = Quantity > 0 ? Quantity : 1;
-            int added = 0;
-
-            for (int i = 0; i < attempts; i++)
+            int quantity = Mathf.Max(1, Quantity);
+            if (gm.Inventory?.AddItemQuantity(ItemId, quantity) == true)
             {
-                if (!gm.AddItem(ItemId))
-                {
-                    break;
-                }
-
-                added++;
-            }
-
-            if (added == attempts)
-            {
+                Node2D player = GetTree()?.GetFirstNodeInGroup("Player") as Node2D;
+                GameManager.Instance?.Publish(
+                    GameEvent.FloatingTextRequested,
+                    new FloatingTextRequest
+                    {
+                        Text = $"Picked up item {ItemId} x{quantity}",
+                        WorldTarget = player,
+                        WorldPosition = GlobalPosition,
+                        HasWorldPosition = player == null,
+                        Type = FloatingTextType.Pickup,
+                        DurationSeconds = 1.1f
+                    });
+                GameManager.Instance?.Publish(
+                    GameEvent.NotificationRequested,
+                    new NotificationRequest($"Picked up item {ItemId} x{quantity}", NotificationType.Loot));
+                PublishPrompt(string.Empty);
                 QueueFree();
             }
             else
             {
-                GD.Print($"ItemPickup: pickup incomplete for item {ItemId}. added={added}/{attempts}");
+                GD.Print($"ItemPickup: inventory could not accept item {ItemId} x{quantity}.");
             }
+        }
+
+        private void PublishPrompt(string text)
+        {
+            GameManager.Instance?.Publish(GameEvent.InteractionPromptChanged, new InteractionPromptChanged(text, this));
         }
     }
 }

@@ -1,22 +1,32 @@
 using Godot;
+using Game.Interact;
 
 namespace ethra.V1
 {
-    public partial class DebugChestInteraction : Area2D
+    public partial class DebugChestInteraction : Area2D, IPlayerInteractable
     {
-        [Export] public string LootText { get; set; } = "Found: Test Loot";
-        [Export] public int RewardItemId { get; set; } = 3001;
-        [Export] public int RewardQuantity { get; set; } = 1;
+        [Export] public string RequiredQuestId { get; set; } = string.Empty;
+        [Export] public NodePath LootDropperPath { get; set; } = "LootDropper";
+        [Export] public float OpenDurationSeconds { get; set; } = 0.35f;
+        [Export] public string AnimationKey { get; set; } = "Harvest";
         [Export] public NodePath ClosedVisualPath { get; set; } = "ClosedVisual";
         [Export] public NodePath OpenedVisualPath { get; set; } = "OpenedVisual";
+        [Export] public string InteractionVerb { get; set; } = "Open";
+        [Export] public string InteractionPromptText { get; set; } = "Press E to Open";
+        [Export] public int InteractionPriority { get; set; } = 0;
+        public bool CanInteract => !_opened && !_openInProgress && MeetsQuestRequirement();
 
         private PlayerNode _player;
+        private LootDropper _lootDropper;
         private CanvasItem _closedVisual;
         private CanvasItem _openedVisual;
         private bool _opened;
+        private bool _openInProgress;
+        private ulong _lastInteractionFrame;
 
         public override void _Ready()
         {
+            _lootDropper = GetNodeOrNull<LootDropper>(LootDropperPath);
             _closedVisual = GetNodeOrNull<CanvasItem>(ClosedVisualPath);
             _openedVisual = GetNodeOrNull<CanvasItem>(OpenedVisualPath);
             SetOpenedVisual(false);
@@ -29,16 +39,49 @@ namespace ethra.V1
 
         public override void _Process(double delta)
         {
-            if (_player == null || !Input.IsActionJustPressed("Interact"))
+            if (_player == null || GameManager.Instance?.UI?.BlocksGameplayInput == true || !Input.IsActionJustPressed("Interact"))
             {
                 return;
             }
 
-            TryOpen();
+            BeginInteraction(_player);
         }
 
-        private void TryOpen()
+        public void BeginInteraction(PlayerNode player)
         {
+            if (player == null || !CanInteract)
+            {
+                return;
+            }
+
+            ulong currentFrame = Engine.GetProcessFrames();
+            if (_lastInteractionFrame == currentFrame)
+            {
+                return;
+            }
+
+            _lastInteractionFrame = currentFrame;
+
+            PlayerHarvestRequest request = new(this, 0, 0, CompleteOpen)
+            {
+                AnimationKey = string.IsNullOrWhiteSpace(AnimationKey) ? "Harvest" : AnimationKey,
+                DurationSeconds = OpenDurationSeconds > 0f ? OpenDurationSeconds : 0.35f,
+                ToolType = HarvestToolType.None
+            };
+
+            if (!player.RequestHarvest(request))
+            {
+                GD.Print("[ChestDebug] Player could not open chest right now.");
+                return;
+            }
+
+            _openInProgress = true;
+            PublishPrompt(string.Empty);
+        }
+
+        private void CompleteOpen(PlayerHarvestRequest request)
+        {
+            _openInProgress = false;
             if (_opened)
             {
                 GD.Print("[ChestDebug] Chest is already open.");
@@ -47,42 +90,20 @@ namespace ethra.V1
 
             _opened = true;
             SetOpenedVisual(true);
-            AddRewardItems();
-            ShowPickupPopup(_player);
-            GD.Print("[ChestDebug] Player opened chest and received Test Loot.");
+            GameManager.Instance?.Audio?.PlaySceneSound("sound.world.chest_open", this);
+            _lootDropper?.DropLoot();
+            PublishPrompt(string.Empty);
+            GD.Print("[ChestDebug] Player opened chest and dropped its loot.");
         }
 
-        private void AddRewardItems()
+        private bool MeetsQuestRequirement()
         {
-            GameManager gameManager = GameManager.Instance;
-            if (gameManager == null || RewardItemId <= 0)
+            if (string.IsNullOrWhiteSpace(RequiredQuestId))
             {
-                return;
+                return true;
             }
 
-            int quantity = RewardQuantity > 0 ? RewardQuantity : 1;
-            for (int i = 0; i < quantity; i++)
-            {
-                gameManager.AddItem(RewardItemId);
-            }
-        }
-
-        private void ShowPickupPopup(PlayerNode player)
-        {
-            if (player == null)
-            {
-                return;
-            }
-
-            PickupPopupLabel popup = new()
-            {
-                Text = LootText,
-                Position = new Vector2(-56f, -36f),
-                Size = new Vector2(112f, 18f),
-                Modulate = new Color(0.85f, 1f, 0.65f, 1f)
-            };
-
-            player.AddChild(popup);
+            return GameManager.Instance?.Quest?.IsQuestActive(RequiredQuestId) == true;
         }
 
         private void SetOpenedVisual(bool opened)
@@ -103,6 +124,7 @@ namespace ethra.V1
             if (body is PlayerNode player)
             {
                 _player = player;
+                PublishPrompt(CanInteract ? InteractionPromptText : string.Empty);
             }
         }
 
@@ -111,6 +133,7 @@ namespace ethra.V1
             if (body == _player)
             {
                 _player = null;
+                PublishPrompt(string.Empty);
             }
         }
 
@@ -119,6 +142,7 @@ namespace ethra.V1
             if (area.GetParent() is PlayerNode player)
             {
                 _player = player;
+                PublishPrompt(CanInteract ? InteractionPromptText : string.Empty);
             }
         }
 
@@ -127,7 +151,13 @@ namespace ethra.V1
             if (area.GetParent() == _player)
             {
                 _player = null;
+                PublishPrompt(string.Empty);
             }
+        }
+
+        private void PublishPrompt(string text)
+        {
+            GameManager.Instance?.Publish(GameEvent.InteractionPromptChanged, new InteractionPromptChanged(text, this));
         }
     }
 }

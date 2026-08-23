@@ -5,6 +5,13 @@ using System.Linq;
 
 namespace ethra.V1
 {
+    /// <summary>
+    /// Owns quest runtime state and advances objectives from gameplay events.
+    /// </summary>
+    /// <remarks>
+    /// Quest definitions are static data in MasterRepository. QuestManager stores active/completed progress,
+    /// subscribes to relevant GameEvent payloads, and publishes quest change events for UI and feedback.
+    /// </remarks>
     public partial class QuestManager
     {
         private readonly MasterRepository _db;
@@ -15,8 +22,21 @@ namespace ethra.V1
             _db = db;
         }
 
+        /// <summary>
+        /// Current runtime quest states keyed by stable QuestId.
+        /// </summary>
         public IReadOnlyDictionary<string, QuestRuntimeState> QuestStates => _questStates;
 
+        public bool IsQuestActive(string questId)
+        {
+            return !string.IsNullOrWhiteSpace(questId)
+                && _questStates.TryGetValue(questId, out QuestRuntimeState state)
+                && state.Status == QuestStatus.Active;
+        }
+
+        /// <summary>
+        /// Builds quest log rows by combining static definitions with runtime progress.
+        /// </summary>
         public IReadOnlyList<QuestLogEntry> GetQuestLogEntries(bool includeCompleted = true)
         {
             List<QuestLogEntry> entries = new();
@@ -43,18 +63,27 @@ namespace ethra.V1
                 .ToList();
         }
 
+        /// <summary>
+        /// Subscribes to gameplay events that can advance quest objectives.
+        /// </summary>
         public void Initialize()
         {
             GameManager.Instance?.Subscribe<NpcSpokenToQuestEvent>(GameEvent.NpcSpokenTo, OnNpcSpokenTo);
             GameManager.Instance?.Subscribe<ItemCollectedQuestEvent>(GameEvent.PickupItem, OnItemCollected);
         }
 
+        /// <summary>
+        /// Unsubscribes quest event handlers before the owning GameManager exits.
+        /// </summary>
         public void Shutdown()
         {
             GameManager.Instance?.Unsubscribe<NpcSpokenToQuestEvent>(GameEvent.NpcSpokenTo, OnNpcSpokenTo);
             GameManager.Instance?.Unsubscribe<ItemCollectedQuestEvent>(GameEvent.PickupItem, OnItemCollected);
         }
 
+        /// <summary>
+        /// Starts a quest by stable QuestId when it is known and not already active/completed.
+        /// </summary>
         public bool StartQuest(string questId)
         {
             if (string.IsNullOrWhiteSpace(questId))
@@ -252,7 +281,31 @@ namespace ethra.V1
             state.Status = QuestStatus.Completed;
             state.CurrentObjectiveId = string.Empty;
             GD.Print($"[Quest] Completed quest: {state.QuestId}");
+            AwardQuestExperience(definition);
             PublishQuestChanged(GameEvent.QuestCompleted, state.QuestId, progress.ObjectiveId);
+        }
+
+        private static void AwardQuestExperience(QuestDefinition definition)
+        {
+            int reward = Math.Max(0, definition?.ExperienceReward ?? 0);
+            if (reward <= 0)
+            {
+                return;
+            }
+
+            Player player = GameManager.Instance?.GameState?.GetPlayer();
+            if (player == null)
+            {
+                GD.PushWarning($"[Progression] Quest completed: {definition.QuestId}, but no player was available for XP reward.");
+                return;
+            }
+
+            GD.Print($"[Progression] Quest completed: {definition.QuestId}");
+            GD.Print($"[Progression] Awarded quest XP: {reward}");
+            player.GainExperience(reward);
+            GameManager.Instance?.Publish(
+                GameEvent.NotificationRequested,
+                new NotificationRequest($"+{reward} quest XP", NotificationType.Info));
         }
 
         private static QuestObjectiveDefinition GetNextObjective(QuestDefinition definition, string completedObjectiveId)

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="1">
+ <tileset firstgid="1" source="tropical shores.tsx"/>
+ <tileset firstgid="257" source="tropical shores prefabs &amp; samples.tsx"/>
+ <tileset firstgid="997" source="tropical shores, just trees.tsx"/>
+ <layer id="1" name="Under Sprite 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAoUKAPLPKC5wT5oDfGVwUFUV1WLdZWGFByhMZYARAPS0Mqra3GVUobE1a0aS9VZTudLQliQFjVNiFist3F4ISOSiycNCnHfEO+NCoEjcG+MFJ6gGPhxHJLkhGH7wB8/V3ps7vOEin6l4wAFe3INi0gXW/LirjoXF3u29fOMaFeU6TOYxN2H5xCU+d3nLp6vjMA/d4NRHnnKFJxzlJ195yVVuPTrFGegGehNVqDF9E8goWZqN7UACY8yo8xHQBAx2AsGlMbQZJzlbZdFgln2Li06QDP5g+iL0BsSuj8D7dWpe5Iqu17L06sRnrP9WTwU9ZU567MkJ/2TM8NpxpVv/oRfYV3kgs/DcZ/dr7KTbP+/Lu4PfJNrHezn3ZJ/cL/3lOiZ7UcL7r8X02E77csL2gfiQV57crU7/H4pX0NuS+F635VOZ4GZvDN+Ztvv0zQI8ZH3lVA==
+  </data>
+ </layer>
+ <layer id="2" name="Under Sprite 2" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAlUEAGQDGQAAABgAAIAAZQAAAGZMCQAA4AgAAOAAXOToCQAAoAhX+Bi5VxkJAACA8QAZwAgAgQAJGBkZJ6CwHMOcA7ACFEhw9DCw5y1ENsOUL5kDii9JMJ1M/BggnIZkYPRERifdxIeHV+vrup9vib41vcZHgxqn9okOSK6bEhwYHyRNID8j02wQDtmCNg==
+  </data>
+ </layer>
+ <layer id="9" name="Sprite Layer" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAAsUBAMAA5gMA7wMA5+UDAOvpAwDq6QMAgO4D6gMLAC8yXoBi4AhHc14fTmcL2RV8Go4QXQNpGJxDhOqu
+  </data>
+ </layer>
+ <layer id="8" name="Over Sprite 1" width="20" height="12">
+  <data encoding="base64" compression="zstd">
+   KLUv/WDAArUBAHQCAB8AAAAgAKQAAAClAAAApgC0AAAAtQAAALYAxAAAAMUAAADGAAAABAADUDQARdtAVRC5Kw==
+  </data>
+ </layer>
+</map>

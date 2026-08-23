@@ -1,0 +1,277 @@
+[gd_resource type="Resource" script_class="AudioLibraryResource" format=3 uid="uid://b8o2xd3epcp5u"]
+
+[ext_resource type="Script" uid="uid://7e6n4cq42gro" path="res://Core/Audio/Scripts/AudioLibraryResource.cs" id="1"]
+[ext_resource type="Script" uid="uid://lgm1suqtt8x3" path="res://Core/Audio/Scripts/AudioSoundDefinitionResource.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://gaujb1xsesy6" path="res://ArtAssets/Audio/PlayerActions/Footsteps/Grass/01_Step_grass_01.wav" id="2_rwy6g"]
+[ext_resource type="AudioStream" uid="uid://drhia5gbkovew" path="res://ArtAssets/Audio/PlayerActions/Footsteps/Grass/02_Step_grass_02.wav" id="3_xiole"]
+[ext_resource type="AudioStream" uid="uid://ca6q2wm0ny851" path="res://ArtAssets/Audio/PlayerActions/Footsteps/Grass/03_Step_grass_03.wav" id="4_8y356"]
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_music_tree_village"]
+script = ExtResource("2")
+SoundId = "music.tree_village"
+DisplayName = "Tree Village"
+Category = 0
+BusName = "Music"
+Loop = true
+MaxInstances = 1
+DefaultFadeSeconds = 0.75
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_music_combat_debug"]
+script = ExtResource("2")
+SoundId = "music.combat_debug"
+DisplayName = "Combat Debug"
+Category = 0
+BusName = "Music"
+Loop = true
+MaxInstances = 1
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_ui_confirm"]
+script = ExtResource("2")
+SoundId = "sound.ui.confirm"
+DisplayName = "UI Confirm"
+Category = 3
+BusName = "UI"
+RandomPitchMin = 0.98
+RandomPitchMax = 1.02
+MaxInstances = 6
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_ui_cancel"]
+script = ExtResource("2")
+SoundId = "sound.ui.cancel"
+DisplayName = "UI Cancel"
+Category = 3
+BusName = "UI"
+MaxInstances = 6
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_ui_menu_open"]
+script = ExtResource("2")
+SoundId = "sound.ui.menu_open"
+DisplayName = "Menu Open"
+Category = 3
+BusName = "UI"
+MaxInstances = 4
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_ui_menu_close"]
+script = ExtResource("2")
+SoundId = "sound.ui.menu_close"
+DisplayName = "Menu Close"
+Category = 3
+BusName = "UI"
+MaxInstances = 4
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_crafting_craft_success"]
+script = ExtResource("2")
+SoundId = "sound.crafting.craft_success"
+DisplayName = "Craft Success"
+Category = 3
+BusName = "UI"
+MaxInstances = 4
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_idle"]
+script = ExtResource("2")
+SoundId = "sound.player.idle"
+DisplayName = "Player Idle"
+BusName = "Entity"
+MaxInstances = 2
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_walk"]
+script = ExtResource("2")
+SoundId = "sound.player.walk"
+DisplayName = "Player Walk"
+BusName = "Entity"
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_run"]
+script = ExtResource("2")
+SoundId = "sound.player.run"
+DisplayName = "Player Run"
+BusName = "Entity"
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_footstep"]
+script = ExtResource("2")
+SoundId = "sound.player.footstep"
+DisplayName = "Player Footstep Default"
+BusName = "Entity"
+RandomPitchMin = 0.94
+RandomPitchMax = 1.06
+MaxInstances = 6
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_footstep_grass"]
+script = ExtResource("2")
+SoundId = "sound.footstep.grass"
+DisplayName = "Footstep Grass"
+Streams = Array[AudioStream]([ExtResource("2_rwy6g"), ExtResource("3_xiole"), ExtResource("4_8y356")])
+BusName = "Entity"
+VolumeDb = 1.0
+RandomPitchMin = 0.94
+RandomPitchMax = 1.06
+MaxInstances = 6
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_footstep_dirt"]
+script = ExtResource("2")
+SoundId = "sound.footstep.dirt"
+DisplayName = "Footstep Dirt"
+BusName = "Entity"
+RandomPitchMin = 0.94
+RandomPitchMax = 1.06
+MaxInstances = 6
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_footstep_stone"]
+script = ExtResource("2")
+SoundId = "sound.footstep.stone"
+DisplayName = "Footstep Stone"
+BusName = "Entity"
+RandomPitchMin = 0.94
+RandomPitchMax = 1.06
+MaxInstances = 6
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_footstep_water"]
+script = ExtResource("2")
+SoundId = "sound.footstep.water"
+DisplayName = "Footstep Water"
+BusName = "Entity"
+RandomPitchMin = 0.94
+RandomPitchMax = 1.06
+MaxInstances = 6
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_attack"]
+script = ExtResource("2")
+SoundId = "sound.player.attack"
+DisplayName = "Player Attack"
+BusName = "Entity"
+RandomPitchMin = 0.94
+RandomPitchMax = 1.06
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_magic_attack"]
+script = ExtResource("2")
+SoundId = "sound.player.magic_attack"
+DisplayName = "Player Magic Attack"
+BusName = "Entity"
+RandomPitchMin = 0.94
+RandomPitchMax = 1.06
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_dodge"]
+script = ExtResource("2")
+SoundId = "sound.player.dodge"
+DisplayName = "Player Dodge"
+BusName = "Entity"
+MaxInstances = 3
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_hurt"]
+script = ExtResource("2")
+SoundId = "sound.player.hurt"
+DisplayName = "Player Hurt"
+BusName = "Entity"
+MaxInstances = 3
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_harvest"]
+script = ExtResource("2")
+SoundId = "sound.player.harvest"
+DisplayName = "Player Harvest"
+BusName = "Entity"
+RandomPitchMin = 0.95
+RandomPitchMax = 1.05
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_mine"]
+script = ExtResource("2")
+SoundId = "sound.player.mine"
+DisplayName = "Player Mine"
+BusName = "Entity"
+RandomPitchMin = 0.95
+RandomPitchMax = 1.05
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_chop"]
+script = ExtResource("2")
+SoundId = "sound.player.chop"
+DisplayName = "Player Chop"
+BusName = "Entity"
+RandomPitchMin = 0.95
+RandomPitchMax = 1.05
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_player_dialog"]
+script = ExtResource("2")
+SoundId = "sound.player.dialog"
+DisplayName = "Player Dialog"
+BusName = "Entity"
+MaxInstances = 3
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_enemy_attack"]
+script = ExtResource("2")
+SoundId = "sound.enemy.attack"
+DisplayName = "Enemy Attack"
+BusName = "Entity"
+RandomPitchMin = 0.94
+RandomPitchMax = 1.06
+MaxInstances = 6
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_enemy_hurt"]
+script = ExtResource("2")
+SoundId = "sound.enemy.hurt"
+DisplayName = "Enemy Hurt"
+BusName = "Entity"
+MaxInstances = 6
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_enemy_death"]
+script = ExtResource("2")
+SoundId = "sound.enemy.death"
+DisplayName = "Enemy Death"
+BusName = "Entity"
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_world_critters"]
+script = ExtResource("2")
+SoundId = "sound.world.critters"
+DisplayName = "World Critters"
+Category = 1
+BusName = "Scene"
+VolumeDb = -4.0
+Loop = true
+MaxInstances = 2
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_world_door_open"]
+script = ExtResource("2")
+SoundId = "sound.world.door_open"
+DisplayName = "Door Open"
+Category = 1
+BusName = "Scene"
+MaxInstances = 4
+IsPositional = true
+
+[sub_resource type="Resource" id="AudioSoundDefinitionResource_world_chest_open"]
+script = ExtResource("2")
+SoundId = "sound.world.chest_open"
+DisplayName = "Chest Open"
+Category = 1
+BusName = "Scene"
+MaxInstances = 3
+IsPositional = true
+
+[resource]
+script = ExtResource("1")
+Sounds = Array[ExtResource("2")]([SubResource("AudioSoundDefinitionResource_music_tree_village"), SubResource("AudioSoundDefinitionResource_music_combat_debug"), SubResource("AudioSoundDefinitionResource_ui_confirm"), SubResource("AudioSoundDefinitionResource_ui_cancel"), SubResource("AudioSoundDefinitionResource_ui_menu_open"), SubResource("AudioSoundDefinitionResource_ui_menu_close"), SubResource("AudioSoundDefinitionResource_crafting_craft_success"), SubResource("AudioSoundDefinitionResource_player_idle"), SubResource("AudioSoundDefinitionResource_player_walk"), SubResource("AudioSoundDefinitionResource_player_run"), SubResource("AudioSoundDefinitionResource_player_footstep"), SubResource("AudioSoundDefinitionResource_footstep_grass"), SubResource("AudioSoundDefinitionResource_footstep_dirt"), SubResource("AudioSoundDefinitionResource_footstep_stone"), SubResource("AudioSoundDefinitionResource_footstep_water"), SubResource("AudioSoundDefinitionResource_player_attack"), SubResource("AudioSoundDefinitionResource_player_magic_attack"), SubResource("AudioSoundDefinitionResource_player_dodge"), SubResource("AudioSoundDefinitionResource_player_hurt"), SubResource("AudioSoundDefinitionResource_player_harvest"), SubResource("AudioSoundDefinitionResource_player_mine"), SubResource("AudioSoundDefinitionResource_player_chop"), SubResource("AudioSoundDefinitionResource_player_dialog"), SubResource("AudioSoundDefinitionResource_enemy_attack"), SubResource("AudioSoundDefinitionResource_enemy_hurt"), SubResource("AudioSoundDefinitionResource_enemy_death"), SubResource("AudioSoundDefinitionResource_world_critters"), SubResource("AudioSoundDefinitionResource_world_door_open"), SubResource("AudioSoundDefinitionResource_world_chest_open")])

@@ -81,6 +81,11 @@ namespace ethra.V1
             _fsm.SetInitialState(state);
         }
 
+        public void StartStateMachine()
+        {
+            _fsm.Start();
+        }
+
         public void Tick(float delta)
         {
             _fsm.Advance(delta);

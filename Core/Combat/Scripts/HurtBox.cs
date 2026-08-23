@@ -26,31 +26,34 @@ namespace ethra.V1
         public void ShowDamagePopup(int amount)
         {
             LastPopupPhysicsFrame = Engine.GetPhysicsFrames();
-            Node anchor = ResolvePopupAnchor();
-            var popup = new DamagePopupLabel
+            Node2D anchor = ResolvePopupAnchor();
+            if (anchor != null)
             {
-                Text = amount.ToString(),
-                Position = new Vector2(-12f, -10f),
-                Size = new Vector2(24f, 16f),
-                Modulate = new Color(1f, 0.92f, 0.35f, 1f)
-            };
+                GameManager.Instance?.Publish(
+                    GameEvent.FloatingTextRequested,
+                    new FloatingTextRequest
+                    {
+                        Text = amount.ToString(),
+                        WorldTarget = anchor,
+                        Type = FloatingTextType.Damage
+                    });
+            }
 
-            anchor.AddChild(popup);
             EmitSignal(SignalName.DamagePopupShown, amount);
         }
 
-        private Node ResolvePopupAnchor()
+        private Node2D ResolvePopupAnchor()
         {
             if (PopupAnchorPath != null && !PopupAnchorPath.IsEmpty)
             {
-                Node configured = GetNodeOrNull<Node>(PopupAnchorPath);
+                Node2D configured = GetNodeOrNull<Node2D>(PopupAnchorPath);
                 if (configured != null)
                 {
                     return configured;
                 }
             }
 
-            return GetParent() ?? this;
+            return GetParent<Node2D>() ?? this;
         }
     }
 }

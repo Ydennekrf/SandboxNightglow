@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="1" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="TSX files/summer 16x32.tsx"/>
+ <tileset firstgid="7" source="TSX files/summer 32x32.tsx"/>
+ <tileset firstgid="14" source="TSX files/summer 48x32.tsx"/>
+ <tileset firstgid="17" source="TSX files/summer forest wang tiles.tsx"/>
+ <tileset firstgid="2065" source="TSX files/summer forest, tree wall (canopy only).tsx"/>
+ <tileset firstgid="2089" source="TSX files/summer forest, tree wall.tsx"/>
+ <tileset firstgid="2113" source="TSX files/summer forest.tsx"/>
+ <tileset firstgid="2785" source="TSX files/summer trees 80x112.tsx"/>
+ <tileset firstgid="2788" source="TSX files/summer water sparkles.tsx"/>
+ <tileset firstgid="2800" source="TSX files/summer waterfall B.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="30" height="20">
+  <data encoding="csv"/>
+ </layer>
+</map>

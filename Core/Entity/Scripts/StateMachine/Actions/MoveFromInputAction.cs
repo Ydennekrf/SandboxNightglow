@@ -13,31 +13,26 @@ namespace ethra.V1.Actions
 
         public void Enter(Entity owner, BaseState baseState)
         {
-            // no-op
         }
 
         public void Execute(float delta, Entity owner, BaseState baseState)
         {
-            if(owner is Player player)
+            if (owner is not Player player)
             {
-                Vector2 dir = player.MoveInput;
+                return;
+            }
 
-				if (Engine.GetPhysicsFrames() % 30 == 0)
-					GD.Print($"[MoveFromInput] state={baseState.StateID} input={dir} speed={_speed}");
+            Vector2 direction = player.MoveInput;
+            if (direction.LengthSquared() > 0.0001f)
+            {
+                direction = direction.Normalized();
+            }
 
-				if (dir.LengthSquared() > 0.0001f)
-                {
-                    dir = dir.Normalized();
-                }
-                
-
-                owner.DesiredVelocity = dir * _speed;
-            }           
+            owner.DesiredVelocity = direction * _speed;
         }
 
         public void Exit(Entity owner)
         {
-
         }
     }
 }

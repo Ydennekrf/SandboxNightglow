@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ethra.V1;
 using Godot;
+using Game.Interact;
 
 namespace ethra.V1
 {
-	public partial class ButtonActivatedDoorway : Node2D
+	public partial class ButtonActivatedDoorway : Node2D, IInteractionPromptSource
 	{
 
 		[Export] public NodePath ButtonAssembly { get; set; }
@@ -21,6 +22,10 @@ namespace ethra.V1
 		[Export] public bool RequireInteract { get; set; }
 		[Export] public NodePath AnimationPlayerPath { get; set; }
 		[Export] public string ActivateAnimName { get; set; }
+		[Export] public string InteractionVerb { get; set; } = "Activate";
+		[Export] public string InteractionPromptText { get; set; } = "Press E to Activate";
+		[Export] public int InteractionPriority { get; set; } = 0;
+		public bool CanInteract => RequireInteract && !_activated;
 
 
 
@@ -63,7 +68,7 @@ namespace ethra.V1
 
 		public override void _Process(double delta)
 		{
-			if(!_playerInside || _activated || !RequireInteract) return;
+			if(!_playerInside || _activated || !RequireInteract || GameManager.Instance?.UI?.BlocksGameplayInput == true) return;
 
 			if (Input.IsActionJustPressed("Interact"))
 				Activate();
@@ -74,6 +79,10 @@ namespace ethra.V1
 			if(body is PlayerNode)
 			{
 				_playerInside = true;
+				if (RequireInteract && !_activated)
+				{
+					PublishPrompt(InteractionPromptText);
+				}
 				if (!RequireInteract && !_activated)
 					Activate();
 			}
@@ -82,13 +91,17 @@ namespace ethra.V1
 		private void OnBodyExited(Node2D body)
 		{
 			if (body is PlayerNode)
+			{
 				_playerInside = false;
+				PublishPrompt(string.Empty);
+			}
 		}
 
 		private void Activate()
 		{
 			if (_activated) return;
 			_activated = true;
+			PublishPrompt(string.Empty);
 
 			_anim.Play(ActivateAnimName);
 			_anim.AnimationFinished += OnAnimationFinished;
@@ -127,6 +140,11 @@ namespace ethra.V1
 
 			gm.Scene.GoToScene(TargetSceneKey);
 			gm.CallDeferred(nameof(GameManager.SpawnPlayerAtMarker), TargetSpawnName);
+		}
+
+		private void PublishPrompt(string text)
+		{
+			GameManager.Instance?.Publish(GameEvent.InteractionPromptChanged, new InteractionPromptChanged(text, this));
 		}
 	}
 }

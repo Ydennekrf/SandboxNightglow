@@ -6,10 +6,10 @@ uid="uid://p7w3bw6lwvvy"
 
 [deps]
 
-files=["res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation"]
+files=["res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation"]
 
 source_file="res://Core/Inventory/Data/item_effects_seed.csv"
-dest_files=["res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation"]
+dest_files=["res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.effect.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation", "res://Core/Inventory/Data/item_effects_seed.status.translation"]
 
 [params]
 

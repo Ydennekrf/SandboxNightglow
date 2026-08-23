@@ -28,7 +28,7 @@ namespace ethra.V1
 
 		public override void _Process(double delta)
 		{
-			if (!RequireInteract || !_playerInside) return;
+			if (!RequireInteract || !_playerInside || GameManager.Instance?.UI?.BlocksGameplayInput == true) return;
 
 			if (Input.IsActionJustPressed("Interact"))
 				TeleportPlayer();

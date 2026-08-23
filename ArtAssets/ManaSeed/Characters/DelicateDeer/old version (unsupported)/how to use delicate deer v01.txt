@@ -1,0 +1,36 @@
+The top half of this asset requires some assembly to use correctly.
+You can either program the sprite to use two layers (ideal), or use a graphical editor to assemble them manually.
+The first 4 sprites in the first 4 rows are just bodies with no head.
+You'll need to choose a head to the right of those and put it on one of the bodies.
+
+The bodies are in the following poses:
+Column 1: Standing with tail up (the natural idle pose)
+Column 2: Standing with tail down (flash this one briefly for a tail flip)
+Column 3: Leg up (use to show more alertness)
+Column 4: Leg up, tail down (again, just a quick tail flip)
+
+To the right of each row of bodies, is a series of heads made to work on the bodies in that row.
+Column 5: Head down, ears up/down (flash the down ears for a quick flutter)
+Column 6: Head up, ears up/down
+Column 7: Head right, ears forward/back (flash the back ears for a quick flutter or a transition when turning the head)
+Column 8: Head left, ears forward/back
+Column 9: Head eating grass 1
+Column 10: Head eating grass 2 (loop 1 and 2 to create a subtle chewing animation)
+
+I chose to leave these unassembled because there are a lot of possibilities (160 in total).
+You can have the deer look around suspiciously, chew some grass, then pick up a leg while looking around some more.
+All with occasional tail flips or ear twitches, giving it realistic deer-like mannerisms.
+
+
+-------------------------------------------------------------------------------------
+The bottom half of this asset requires no assembly.
+
+The first 4 columns contain a 4-frame walk animation (left to right).
+Each frame should have the same timing, I like 200ms.
+
+The second 4 columns contain the 4-frame run/jump animation (left to right).
+I like the following timing on this animation loop: 100ms/200ms/160ms/100ms
+
+The 3 separate sprites to the right form a death animation (going down from the top).
+These should run pretty quick, maybe 150ms, then hold on the last one for a dead deer.
+

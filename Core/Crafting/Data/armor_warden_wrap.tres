@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Core/Crafting/Scripts/CraftingRecipe.cs" id="1_recipe"]
+[ext_resource type="Script" path="res://Core/Crafting/Scripts/CraftingIngredient.cs" id="2_ingredient"]
+
+[sub_resource type="Resource" id="CraftingIngredient_0"]
+script = ExtResource("2_ingredient")
+ItemId = 3121
+Quantity = 1
+
+[sub_resource type="Resource" id="CraftingIngredient_1"]
+script = ExtResource("2_ingredient")
+ItemId = 3125
+Quantity = 2
+
+[sub_resource type="Resource" id="CraftingIngredient_2"]
+script = ExtResource("2_ingredient")
+ItemId = 3105
+Quantity = 1
+
+[resource]
+script = ExtResource("1_recipe")
+RecipeId = "recipe.armor.warden_wrap"
+DisplayName = "Warden Wrap"
+Category = 1
+ResultItemId = 4201
+ResultQuantity = 1
+RequiredMaterials = Array[Resource]([SubResource("CraftingIngredient_0"), SubResource("CraftingIngredient_1"), SubResource("CraftingIngredient_2")])
+RequiredStationType = "Workbench"
+IsUnlocked = true
+SortOrder = 4501
+Description = "Tailor Warden Wrap from seeded armor materials."

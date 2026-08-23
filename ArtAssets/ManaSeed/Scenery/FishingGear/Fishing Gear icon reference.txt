@@ -1,0 +1,105 @@
+Thank you for buying my Fishing Gear asset pack!
+There are 64 unique 16x16 icons in this pack, and you're probably wondering what some of them are supposed to be.
+Well, you can call them whatever you want, but here's a cell reference to help you decipher my original intent.
+If you slice the sheet at 16x16, the first cell at the top left would be "0", then go left to right, top to bottom.
+
+
+__________
+Row 1
+
+0)	Koi
+1)	Goldfish
+2)	Betta
+3)	Carp
+4)	Catfish
+5)	Sea Bass
+6)	Red Snapper
+7)	Tuna
+
+__________
+Row 2
+
+8)	Marlin
+9)	Mahi Mahi
+10)	Garfish
+11)	Chub
+12)	Bluegill
+13)	Perch
+14)	Tilapia
+15)	Angelfish
+
+__________
+Row 3
+
+16)	Pink Salmon
+17)	Sturgeon
+18)	Pike
+19)	Mako Shark
+20)	Manta Ray
+21)	Puffer Fish
+22)	Anchovy
+23)	Mackerel
+
+__________
+Row 4
+
+24)	Eel
+25)	Rainbow Trout
+26)	Bream
+27)	Clownfish
+28)	Lionfish
+29)	Angler
+30)	Seahorse
+31)	Starfish
+
+__________
+Row 5
+
+32)	Frog
+33)	Snapping Turtle
+34)	Hermit Crab
+35)	Spiral Shell
+36)	Conch Shell
+37)	Oyster
+38)	Clam
+39)	Pearl
+
+__________
+Row 6
+
+40)	Lobster
+41)	Crayfish
+42)	Shrimp
+43)	Crab
+44)	Octopus
+45)	Squid
+46)	Jellyfish
+47)	Sea Slug
+
+__________
+Row 7
+
+48)	Fish Filet
+49)	Fishbone
+50)	Fish Scales
+51)	Shark Tooth
+52)	Tentacle
+53)	Roe
+54)	Earthworm (bait)
+55)	Centipede (bait)
+
+__________
+Row 8
+
+56)	Paring Knife
+57)	Fishing Rod
+58)	Fishing Lure
+59)	Tackle Box
+60)	Old Boot
+61)	Message in a Bottle
+62)	Message not in a Bottle
+63)	Empty Bottle
+
+
+Special Note: If you own my Farmer Sprite System (https://seliel-the-shaper.itch.io/farmer-base),
+you may find it useful that the Paring Knife, Fishing Rod, and Fishing Lure all use the v00 palette for tools.

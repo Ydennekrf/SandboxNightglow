@@ -13,15 +13,23 @@ namespace ethra.V1
         {
             "SingleTarget",
             "Cone",
-            "Linear"
+            "Linear",
+            "ProjectileBolt",
+            "CircleWaveAwayFromPlayer"
         };
 
         public static readonly IReadOnlyList<string> KnownEffectIds = new[]
         {
-            "Knockback",
-            "Slow",
-            "Stun",
-            "Root"
+            StatusEffectCatalog.Knockback,
+            StatusEffectCatalog.Stun,
+            StatusEffectCatalog.ArmorBreak,
+            StatusEffectCatalog.Cold,
+            StatusEffectCatalog.Burn,
+            StatusEffectCatalog.Poison,
+            StatusEffectCatalog.ManaBurn,
+            StatusEffectCatalog.Silence,
+            StatusEffectCatalog.Blind,
+            StatusEffectCatalog.Thorns
         };
 
         public static bool IsKnownDeliveryShape(string shapeId)
@@ -41,7 +49,7 @@ namespace ethra.V1
                 return true;
             }
 
-            return ContainsIgnoreCase(KnownEffectIds, effectId);
+            return ContainsIgnoreCase(KnownEffectIds, StatusEffectCatalog.NormalizeId(effectId));
         }
 
         private static bool ContainsIgnoreCase(IReadOnlyList<string> source, string value)

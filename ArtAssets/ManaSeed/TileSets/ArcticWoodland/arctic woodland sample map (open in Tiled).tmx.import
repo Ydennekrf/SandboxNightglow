@@ -1,0 +1,23 @@
+[remap]
+
+importer="YATI"
+type="PackedScene"
+uid="uid://b0wcavl3ebyh6"
+path="res://.godot/imported/arctic woodland sample map (open in Tiled).tmx-a95e579af593abea345bb1aaf4c82500.tscn"
+
+[deps]
+
+source_file="res://ArtAssets/ManaSeed/TileSets/ArcticWoodland/arctic woodland sample map (open in Tiled).tmx"
+dest_files=["res://.godot/imported/arctic woodland sample map (open in Tiled).tmx-a95e579af593abea345bb1aaf4c82500.tscn"]
+
+[params]
+
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=false
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor=""
+save_tileset_to=""

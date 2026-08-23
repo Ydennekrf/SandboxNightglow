@@ -1,14 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhy6gmjchq6nj"]
+[gd_scene format=3 uid="uid://dhy6gmjchq6nj"]
 
 [ext_resource type="Script" uid="uid://t4lcqm1flo0d" path="res://Core/Nodes/Entity/PlayerNode.cs" id="1_w0eyl"]
-[ext_resource type="Texture2D" uid="uid://c2o8nwoauybyu" path="res://ArtAssets/Characters/Selene/Body/Selene_Body_OneHand.png" id="2_m7w1v"]
 [ext_resource type="AnimationLibrary" uid="uid://bbnwy2a1oolb8" path="res://ArtAssets/AnimationLibraries/playerActions.tres" id="3_eeh2a"]
-[ext_resource type="Texture2D" uid="uid://bm3mc5ll0qh1q" path="res://ArtAssets/Characters/Selene/Clothes/Selene_Clothes_Tunic_Grey.png" id="4_oa31a"]
-[ext_resource type="Texture2D" uid="uid://dv30r0fbocrf5" path="res://ArtAssets/Characters/Selene/Hair/Selene_Hair.png" id="5_q6p3m"]
-[ext_resource type="Script" path="res://Core/Combat/Scripts/HitBox.cs" id="6_hitbox"]
+[ext_resource type="Texture2D" uid="uid://43at2hle301p" path="res://ArtAssets/Characters/Selene/new_layers_test/Body.png" id="3_xo2ps"]
+[ext_resource type="Texture2D" uid="uid://c4qfhrofatvbt" path="res://ArtAssets/Characters/Selene/new_layers_test/Clothes1.png" id="4_0082i"]
+[ext_resource type="Texture2D" uid="uid://b75a8l7gggcv" path="res://ArtAssets/Characters/Selene/new_layers_test/BluePony.png" id="5_7wwo2"]
+[ext_resource type="Texture2D" uid="uid://ctmbyqy6011h4" path="res://ArtAssets/Characters/Selene/new_layers_test/Up_Stow_Sword1.png" id="6_emwww"]
+[ext_resource type="Script" uid="uid://bkx8qvr5qw6sy" path="res://Core/Combat/Scripts/HitBox.cs" id="6_hitbox"]
+[ext_resource type="Script" uid="uid://b5pgpjlwmsd5h" path="res://Core/Combat/Scripts/HurtBox.cs" id="7_hurtbox"]
+[ext_resource type="Script" uid="uid://c31n207ph0i5b" path="res://components/Interact/Base/InteractComponent.cs" id="8_interact"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw6q6"]
 radius = 9.84886
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(32, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_invm3"]
 radius = 24.0
@@ -16,14 +22,13 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3qtn"]
 radius = 7.07107
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
-size = Vector2(28, 18)
-
 [node name="Player" type="CharacterBody2D" unique_id=405434149 groups=["Player"]]
 collision_layer = 2
 collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_w0eyl")
+HarvestToolSpritePath = null
+AttackHitBoxOffset = null
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=679720533]
 position_smoothing_enabled = true
@@ -38,59 +43,65 @@ autoplay = &"Idle_Right"
 [node name="WepDownStow" type="Sprite2D" parent="Sprites" unique_id=1750671181]
 hframes = 65
 vframes = 6
-frame = 21
+frame = 51
 
 [node name="WepDownDraw" type="Sprite2D" parent="Sprites" unique_id=1516418154]
 hframes = 65
 vframes = 6
-frame = 21
 
 [node name="Body" type="Sprite2D" parent="Sprites" unique_id=828766564]
-texture = ExtResource("2_m7w1v")
-hframes = 65
+texture = ExtResource("3_xo2ps")
+hframes = 76
 vframes = 6
 
 [node name="Clothes" type="Sprite2D" parent="Sprites" unique_id=1767162442]
-texture = ExtResource("4_oa31a")
-hframes = 65
+texture = ExtResource("4_0082i")
+hframes = 76
 vframes = 6
-frame = 21
 
 [node name="Hair" type="Sprite2D" parent="Sprites" unique_id=1478631978]
-texture = ExtResource("5_q6p3m")
-hframes = 65
+texture = ExtResource("5_7wwo2")
+hframes = 76
 vframes = 6
-frame = 21
 
 [node name="WepUpStow" type="Sprite2D" parent="Sprites" unique_id=1473269630]
 visible = false
 hframes = 65
 vframes = 6
-frame = 21
+frame = 51
 
 [node name="WepUpDraw" type="Sprite2D" parent="Sprites" unique_id=831553898]
 hframes = 65
 vframes = 6
-frame = 21
 
 [node name="Overlay" type="Sprite2D" parent="Sprites" unique_id=514383377]
+
+[node name="Mining" type="Sprite2D" parent="Sprites" unique_id=1409016742]
+visible = false
+texture = ExtResource("6_emwww")
+hframes = 76
+vframes = 6
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=733734344 groups=["Hurtbox"]]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("7_hurtbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1924251845 groups=["Hurtbox"]]
 position = Vector2(1, -1)
 shape = SubResource("CircleShape2D_dw6q6")
 debug_color = Color(0.901525, 0.140825, 0.678065, 0.42)
 
-[node name="AttackHitBox" type="Area2D" parent="."]
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=1985799834]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
 script = ExtResource("6_hitbox")
+DamageAmount = null
+DamageType = null
+AbilityId = null
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=1238517812]
 shape = SubResource("RectangleShape2D_attack")
 debug_color = Color(1, 0.28, 0.05, 0.42)
 
@@ -98,6 +109,8 @@ debug_color = Color(1, 0.28, 0.05, 0.42)
 position = Vector2(0, 4)
 collision_layer = 16
 collision_mask = 96
+script = ExtResource("8_interact")
+InputAction = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1339445859]
 position = Vector2(1, -4)

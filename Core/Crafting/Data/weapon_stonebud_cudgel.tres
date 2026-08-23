@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Core/Crafting/Scripts/CraftingRecipe.cs" id="1_recipe"]
+[ext_resource type="Script" path="res://Core/Crafting/Scripts/CraftingIngredient.cs" id="2_ingredient"]
+
+[sub_resource type="Resource" id="CraftingIngredient_0"]
+script = ExtResource("2_ingredient")
+ItemId = 3121
+Quantity = 1
+
+[sub_resource type="Resource" id="CraftingIngredient_1"]
+script = ExtResource("2_ingredient")
+ItemId = 3125
+Quantity = 2
+
+[resource]
+script = ExtResource("1_recipe")
+RecipeId = "recipe.weapon.stonebud_cudgel"
+DisplayName = "Stonebud Cudgel"
+Category = 0
+ResultItemId = 2111
+ResultQuantity = 1
+RequiredMaterials = Array[Resource]([SubResource("CraftingIngredient_0"), SubResource("CraftingIngredient_1")])
+RequiredStationType = "Workbench"
+IsUnlocked = true
+SortOrder = 2311
+Description = "Forge Stonebud Cudgel from seeded weapon materials."

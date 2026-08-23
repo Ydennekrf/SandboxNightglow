@@ -1,0 +1,2 @@
+Color palette v5 is designed explicitly to work with my Fortified Keep asset pack: https://seliel-the-shaper.itch.io/fortified-keep
+The brick, cobblestone, and wood colors are all exactly the same as that other pack.

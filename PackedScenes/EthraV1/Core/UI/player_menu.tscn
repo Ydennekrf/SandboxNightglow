@@ -1,11 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://yvmcay2n7e48"]
+[gd_scene load_steps=11 format=3 uid="uid://yvmcay2n7e48"]
 
 [ext_resource type="Theme" uid="uid://bfm0817jb6ei2" path="res://UIThemes/RichTextTheme.tres" id="1_1cogp"]
 [ext_resource type="Script" uid="uid://bj21w5i3ajy51" path="res://Core/UI/Scripts/PlayerMenu.cs" id="1_iopfa"]
 [ext_resource type="PackedScene" uid="uid://ckmusyefdjgen" path="res://PackedScenes/EthraV1/Core/UI/inventory_slot.tscn" id="2_iopfa"]
 [ext_resource type="Script" path="res://Core/UI/Scripts/QuestLogPanel.cs" id="4_questlog"]
+[ext_resource type="Script" path="res://Core/Progression/AbilityPathAuthorGraph.cs" id="5_path_graph"]
+[ext_resource type="Script" path="res://Core/Progression/AbilityPathAuthorNode.cs" id="6_path_node"]
+[ext_resource type="Script" path="res://Core/Progression/AbilityEffectResource.cs" id="7_path_effect"]
 
-[node name="PlayerMenu" type="Control" unique_id=1599526513 node_paths=PackedStringArray("InventoryGrid", "EquippedWeaponSlot", "EquippedArmorSlot", "ToolTip", "StatsStatus")]
+[sub_resource type="Resource" id="Effect_health_5"]
+script = ExtResource("7_path_effect")
+EffectId = "effect.player.max_health_5"
+EffectType = 0
+TargetStat = 1
+Amount = 5
+
+[sub_resource type="Resource" id="Effect_dodge"]
+script = ExtResource("7_path_effect")
+EffectId = "effect.player.unlock_dodge"
+EffectType = 1
+AbilityId = "ability.player.dodge"
+
+[sub_resource type="Resource" id="Effect_mana_3"]
+script = ExtResource("7_path_effect")
+EffectId = "effect.player.max_mana_3"
+EffectType = 0
+TargetStat = 2
+Amount = 3
+
+[sub_resource type="Resource" id="Effect_combo_knockback"]
+script = ExtResource("7_path_effect")
+EffectId = "effect.player.unlock_attack_knockback"
+EffectType = 2
+PassiveId = "passive.attack.knockback"
+
+[sub_resource type="Resource" id="Effect_strength_1"]
+script = ExtResource("7_path_effect")
+EffectId = "effect.player.strength_1"
+EffectType = 0
+TargetStat = 3
+Amount = 1
+
+[node name="PlayerMenu" type="Control" unique_id=1599526513 node_paths=PackedStringArray("InventoryGrid", "EquippedWeaponSlot", "EquippedArmorSlot", "EquippedTrinketSlot1", "EquippedTrinketSlot2", "ToolTip", "StatsStatus", "AbilityPathAuthorGraphPath")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,8 +54,11 @@ script = ExtResource("1_iopfa")
 InventoryGrid = NodePath("Inventory/VBoxContainer2/Inventory")
 EquippedWeaponSlot = NodePath("Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/WeaponEquip")
 EquippedArmorSlot = NodePath("Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/ArmorEquip")
+EquippedTrinketSlot1 = NodePath("Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/TrinketEquip")
+EquippedTrinketSlot2 = NodePath("Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip/TrinketEquip2")
 ToolTip = NodePath("Inventory/VBoxContainer/ToolTip")
 StatsStatus = NodePath("Inventory/VBoxContainer2/Stats_Status")
+AbilityPathAuthorGraphPath = NodePath("AbilityPathAuthorGraph")
 metadata/_edit_use_anchors_ = true
 
 [node name="Inventory" type="HBoxContainer" parent="." unique_id=1378165437]
@@ -86,6 +125,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TrinketEquip" parent="Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip" unique_id=189252268 instance=ExtResource("2_iopfa")]
+layout_mode = 2
+
+[node name="TrinketEquip2" parent="Inventory/VBoxContainer/PlayerView/HBoxContainer/PlayerEquip" instance=ExtResource("2_iopfa")]
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Inventory" unique_id=109437071]
@@ -183,3 +225,74 @@ size_flags_vertical = 3
 theme = ExtResource("1_1cogp")
 text = "No quests tracked."
 fit_content = true
+
+[node name="AbilityPathAuthorGraph" type="Node2D" parent="."]
+visible = false
+script = ExtResource("5_path_graph")
+PathId = "abilitypath.player.debug"
+StartingNodeId = "abilitypath.player.start"
+
+[node name="Start" type="Node2D" parent="AbilityPathAuthorGraph"]
+position = Vector2(260, 220)
+script = ExtResource("6_path_node")
+NodeId = "abilitypath.player.start"
+DisplayName = "Start"
+Description = "Selene's starting point on the ability path."
+ConnectedNodeIds = Array[String](["abilitypath.player.max_health_1", "abilitypath.player.dodge"])
+Cost = 0
+NodeType = 0
+
+[node name="MaxHealth" type="Node2D" parent="AbilityPathAuthorGraph"]
+position = Vector2(410, 150)
+script = ExtResource("6_path_node")
+NodeId = "abilitypath.player.max_health_1"
+DisplayName = "Toughened"
+Description = "Increase maximum health by 5."
+ConnectedNodeIds = Array[String](["abilitypath.player.start", "abilitypath.player.max_mana_1"])
+Cost = 1
+NodeType = 1
+Effects = Array[ExtResource("7_path_effect")]([SubResource("Effect_health_5")])
+
+[node name="Dodge" type="Node2D" parent="AbilityPathAuthorGraph"]
+position = Vector2(410, 290)
+script = ExtResource("6_path_node")
+NodeId = "abilitypath.player.dodge"
+DisplayName = "Dodge"
+Description = "Unlock the active dodge ability ID for movement systems to consume later."
+ConnectedNodeIds = Array[String](["abilitypath.player.start", "abilitypath.player.attack_1"])
+Cost = 1
+NodeType = 2
+Effects = Array[ExtResource("7_path_effect")]([SubResource("Effect_dodge")])
+
+[node name="MaxMana" type="Node2D" parent="AbilityPathAuthorGraph"]
+position = Vector2(570, 120)
+script = ExtResource("6_path_node")
+NodeId = "abilitypath.player.max_mana_1"
+DisplayName = "Deeper Wellspring"
+Description = "Increase maximum mana by 3."
+ConnectedNodeIds = Array[String](["abilitypath.player.max_health_1", "abilitypath.player.combo_knockback"])
+Cost = 1
+NodeType = 1
+Effects = Array[ExtResource("7_path_effect")]([SubResource("Effect_mana_3")])
+
+[node name="ComboKnockback" type="Node2D" parent="AbilityPathAuthorGraph"]
+position = Vector2(720, 210)
+script = ExtResource("6_path_node")
+NodeId = "abilitypath.player.combo_knockback"
+DisplayName = "Knockback"
+Description = "All attacks apply knockback."
+ConnectedNodeIds = Array[String](["abilitypath.player.max_mana_1", "abilitypath.player.attack_1"])
+Cost = 2
+NodeType = 3
+Effects = Array[ExtResource("7_path_effect")]([SubResource("Effect_combo_knockback")])
+
+[node name="Attack" type="Node2D" parent="AbilityPathAuthorGraph"]
+position = Vector2(570, 340)
+script = ExtResource("6_path_node")
+NodeId = "abilitypath.player.attack_1"
+DisplayName = "Sharper Edge"
+Description = "Increase attack strength by 1."
+ConnectedNodeIds = Array[String](["abilitypath.player.dodge", "abilitypath.player.combo_knockback"])
+Cost = 1
+NodeType = 1
+Effects = Array[ExtResource("7_path_effect")]([SubResource("Effect_strength_1")])

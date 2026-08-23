@@ -1,0 +1,110 @@
+[gd_resource type="Resource" script_class="WeaponComboResource" format=3]
+
+[ext_resource type="Script" path="res://Core/Combat/Scripts/WeaponComboResource.cs" id="1"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/ComboPhaseResource.cs" id="2"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/AttackPayloadResource.cs" id="3"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/HitboxProfileResource.cs" id="4"]
+
+[sub_resource type="Resource" id="HitboxProfileResource_step_1"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.twin_reed_blades.step_1"
+Offset = Vector2(18, 0)
+Size = Vector2(26, 16)
+ActiveDurationSeconds = 0.07
+
+[sub_resource type="Resource" id="HitboxProfileResource_step_2"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.twin_reed_blades.step_2"
+Offset = Vector2(22, 0)
+Size = Vector2(30, 18)
+ActiveDurationSeconds = 0.08
+
+[sub_resource type="Resource" id="HitboxProfileResource_step_3"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.twin_reed_blades.step_3"
+Offset = Vector2(30, 0)
+Size = Vector2(38, 20)
+ActiveDurationSeconds = 0.09
+
+[sub_resource type="Resource" id="AttackPayloadResource_step_1"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 0.85
+
+[sub_resource type="Resource" id="AttackPayloadResource_step_2"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1
+
+[sub_resource type="Resource" id="AttackPayloadResource_step_3"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1.1
+
+[sub_resource type="Resource" id="ComboPhaseResource_step_1"]
+script = ExtResource("2")
+StepId = "combo_step.twin_reed_blades.step_1"
+StepIndex = 1
+DebugLabel = "Quick Pair"
+DamageMultiplier = 1
+SharedAnimationName = "KnifeCut1"
+DurationOverrideSeconds = 0.24
+StartupSeconds = 0.05
+ActiveSeconds = 0.07
+RecoverySeconds = 0.12
+ComboWindowStartSeconds = 0.1
+ComboWindowEndSeconds = 0.23
+MovementLock = false
+MovementImpulse = 18
+HitboxProfile = SubResource("HitboxProfileResource_step_1")
+MeleePayload = SubResource("AttackPayloadResource_step_1")
+
+[sub_resource type="Resource" id="ComboPhaseResource_step_2"]
+script = ExtResource("2")
+StepId = "combo_step.twin_reed_blades.step_2"
+StepIndex = 2
+DebugLabel = "Crossing Pair"
+DamageMultiplier = 1.05
+SharedAnimationName = "KnifeCut2"
+DurationOverrideSeconds = 0.27
+StartupSeconds = 0.06
+ActiveSeconds = 0.08
+RecoverySeconds = 0.13
+ComboWindowStartSeconds = 0.11
+ComboWindowEndSeconds = 0.26
+MovementLock = false
+MovementImpulse = 24
+HitboxProfile = SubResource("HitboxProfileResource_step_2")
+MeleePayload = SubResource("AttackPayloadResource_step_2")
+
+[sub_resource type="Resource" id="ComboPhaseResource_step_3"]
+script = ExtResource("2")
+StepId = "combo_step.twin_reed_blades.step_3"
+StepIndex = 3
+DebugLabel = "Twin Finish"
+DamageMultiplier = 1.1
+SharedAnimationName = "KnifeDash"
+DurationOverrideSeconds = 0.35
+StartupSeconds = 0.08
+ActiveSeconds = 0.09
+RecoverySeconds = 0.18
+ComboWindowStartSeconds = 0
+ComboWindowEndSeconds = 0
+MovementLock = false
+MovementImpulse = 58
+HitboxProfile = SubResource("HitboxProfileResource_step_3")
+MeleePayload = SubResource("AttackPayloadResource_step_3")
+
+[resource]
+script = ExtResource("1")
+ComboId = "combo.weapon.twin_reed_blades"
+DisplayName = "Twin Reed Blades Combo"
+WeaponType = "TwinBlade"
+CompatibleWeaponIds = Array[int]([2131])
+ResetTimeSeconds = 0.85
+CanLoop = true
+Description = "Tier 1 Twin Blade combo profile."
+Phases = Array[ExtResource("2")]([SubResource("ComboPhaseResource_step_1"), SubResource("ComboPhaseResource_step_2"), SubResource("ComboPhaseResource_step_3")])

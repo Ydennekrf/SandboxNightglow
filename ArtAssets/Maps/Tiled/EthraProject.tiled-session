@@ -1,0 +1,170 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorForest.tmx",
+    "expandedProjectPaths": [
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion"
+    ],
+    "fileStates": {
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/ArcticWoodland/TSX files/arctic woodland.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1.5
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/BridgesAndMore/sample map/bridges & more v1.tsx": {
+            "scaleInDock": 2
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/_gentle forest sample map.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 152.83333333333331,
+                "y": 75.83333333333333
+            }
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle 32x32 v01.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle forest v01.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle trees 80x96 v01.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle water sparkles A v01.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle waterfall A v01.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/RainforestJungle/palette v2/Jungle.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/bonus bridge.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/bonus shadows.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/collision & alpha.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer 16x32.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer 32x32.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer 48x32.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer forest wang tiles.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer forest, tree wall (canopy only).tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer forest, tree wall.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer forest.tsx": {
+            "scaleInDock": 3
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer trees 80x112.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer water sparkles.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer waterfall B.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/ThatchRoofHome/sample map/TSX files/home exteriors, thatch roof v1.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/ThatchRoofHome/sample map/TSX files/home exteriors, thatch roof v2.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/ThatchRoofHome/sample map/TSX files/home exteriors, thatch roof v3.tsx": {
+            "scaleInDock": 2
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/ThatchRoofHome/sample map/TSX files/home interiors, thatch roof v1.tsx": {
+            "scaleInDock": 2
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/ThatchRoofHome/sample map/TSX files/home interiors, thatch roof v2.tsx": {
+            "scaleInDock": 2
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/WorldTree/WorldTreeExterior.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorForest-Hut.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorForest.tmx": {
+            "expandedObjectLayers": [
+                18,
+                14,
+                15
+            ],
+            "scale": 0.5,
+            "selectedLayer": 11,
+            "viewCenter": {
+                "x": 1103,
+                "y": 1196
+            }
+        },
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorTown.tscn.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 91,
+                "y": 72.66666666666669
+            }
+        }
+    },
+    "last.externalTilesetPath": "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/extras",
+    "last.imagePath": "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/summer animations",
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": "2",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorForest.tmx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorForest-Hut.tmx"
+    ],
+    "project": "EthraProject.tiled-project",
+    "recentFiles": [
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/SummerForest/sample map/TSX files/summer forest wang tiles.tsx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorForest-Hut.tmx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/PackedScenes/EthraV1/Core/World/PhosphorRegion/PhosphorForest.tmx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/RainforestJungle/palette v2/Jungle.tsx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/ArcticWoodland/TSX files/arctic woodland.tsx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle waterfall A v01.tsx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/_gentle forest sample map.tmx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle water sparkles A v01.tsx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle trees 80x96 v01.tsx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle 32x32 v01.tsx",
+        "E:/GameProject/Godot-Projects/ParksSandbox/parkssandbox/ArtAssets/ManaSeed/TileSets/GentleForest/gentle forest v01.tsx"
+    ],
+    "tileset.lastUsedFilter": "All Files (*)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

@@ -6,6 +6,8 @@ namespace ethra.V1.Transitions
     /// </summary>
     public sealed class DodgePressedTransition : IStateTransition
     {
+        private const string DodgeAbilityId = "ability.player.dodge";
+
         public BaseState Target { get; }
 
         public DodgePressedTransition(BaseState target)
@@ -17,7 +19,7 @@ namespace ethra.V1.Transitions
         {
             if (owner is Player player)
             {
-                return player.DodgePressed;
+                return player.DodgePressed && player.AbilityPath.HasActiveAbility(DodgeAbilityId);
             }
 
             return false;

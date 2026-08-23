@@ -4,15 +4,22 @@ using Game.Interact;
 
 public partial class InteractComponent : Area2D
 {
-    [Export] public string InputAction = "Interact";
-    private Entity _player;
+    private const string DefaultInputAction = "Interact";
 
-    // keeps track of every interactable currently inside the bubble
-    private readonly HashSet<IInteractable> _candidates = new();
+    [Export] public string InputAction = "Interact";
+
+    private Entity _legacyPlayer;
+    private Node2D _playerNode;
+    private readonly HashSet<IInteractionPromptSource> _candidates = new();
+    private IInteractionPromptSource _currentPromptTarget;
 
     public override void _Ready()
     {
-        _player = GetParent<Player>();
+        InputAction = ResolveInputAction();
+
+        Node parent = GetParent();
+        _legacyPlayer = parent as Entity;
+        _playerNode = parent as Node2D;
 
         BodyEntered += OnBodyEntered;
         BodyExited += OnBodyExited;
@@ -22,63 +29,146 @@ public partial class InteractComponent : Area2D
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (@event.IsActionPressed("Interact") && _player.fsm._current is not ConversationState)
+        string inputAction = ResolveInputAction();
+        if (!@event.IsActionPressed(inputAction))
         {
-
-            GD.Print($"Candidates: {_candidates.Count}");
-            if (_candidates.Count == 0) return;
-
-            // pick the closest interactable (simple heuristic)
-            IInteractable nearest = null;
-            float bestDist = float.MaxValue;
-
-            foreach (var cand in _candidates)
-            {
-                if (cand is Node2D node)
-                {
-                    var d = node.GlobalPosition.DistanceTo(_player.GlobalPosition);
-                    if (d < bestDist) { bestDist = d; nearest = cand; }
-                }
-            }
-
-              if (nearest is IDialogueProvider)
-    {
-                // NPCs, talking chests, etc.
-                _player.fsm.PushState(new ConversationState(nearest));
-            }
-            else
-            {
-                // Pickups, levers, doors, etc. – run immediately
-                nearest.BeginInteraction(new DialogueStartDTO
-                {
-                    Target    = nearest,
-                    Initiator = _player
-                });
-            }
+            return;
         }
 
+        if (ethra.V1.GameManager.Instance?.UI?.BlocksGameplayInput == true)
+        {
+            return;
+        }
+
+        if (_legacyPlayer?.fsm?._current is ConversationState)
+        {
+            return;
+        }
+
+        IInteractionPromptSource nearest = PickBestInteractable();
+        if (nearest == null)
+        {
+            return;
+        }
+
+        if (_playerNode is ethra.V1.PlayerNode playerNode && nearest is IPlayerInteractable playerInteractable)
+        {
+            playerInteractable.BeginInteraction(playerNode);
+            return;
+        }
+
+        if (_legacyPlayer == null)
+        {
+            return;
+        }
+
+        if (nearest is IDialogueProvider)
+        {
+            _legacyPlayer.fsm.PushState(new ConversationState((IInteractable)nearest));
+            return;
+        }
+
+        if (nearest is IInteractable legacyInteractable)
+        {
+            legacyInteractable.BeginInteraction(new DialogueStartDTO
+            {
+                Target = legacyInteractable,
+                Initiator = _legacyPlayer
+            });
+        }
     }
 
     private void OnBodyEntered(Node body)
     {
-
-        if (body is IInteractable ia)
+        if (body is IInteractionPromptSource interactable)
         {
-            _candidates.Add(ia);
+            _candidates.Add(interactable);
+            RefreshPrompt();
         }
     }
+
     private void OnAreaEntered(Area2D area)
     {
-        if (area is IInteractable target)
-            _candidates.Add(target);   // whatever your list is called
+        if (area is IInteractionPromptSource interactable)
+        {
+            _candidates.Add(interactable);
+            RefreshPrompt();
+        }
     }
 
     private void OnBodyExited(Node body)
     {
-        GD.Print("Exited");
-        if (body is IInteractable ia) _candidates.Remove(ia);
+        if (body is IInteractionPromptSource interactable)
+        {
+            _candidates.Remove(interactable);
+            RefreshPrompt();
+        }
     }
-    private void OnAreaExited(Area2D area) {
-        if (area is IInteractable ia) _candidates.Remove(ia);
+
+    private void OnAreaExited(Area2D area)
+    {
+        if (area is IInteractionPromptSource interactable)
+        {
+            _candidates.Remove(interactable);
+            RefreshPrompt();
+        }
+    }
+
+    private IInteractionPromptSource PickBestInteractable()
+    {
+        IInteractionPromptSource best = null;
+        int bestPriority = int.MinValue;
+        float bestDistance = float.MaxValue;
+
+        foreach (IInteractionPromptSource candidate in _candidates)
+        {
+            if (!candidate.CanInteract || candidate is not Node2D node)
+            {
+                continue;
+            }
+
+            int priority = candidate.InteractionPriority;
+            float distance = _playerNode == null
+                ? 0f
+                : node.GlobalPosition.DistanceTo(_playerNode.GlobalPosition);
+
+            if (priority > bestPriority || (priority == bestPriority && distance < bestDistance))
+            {
+                bestPriority = priority;
+                bestDistance = distance;
+                best = candidate;
+            }
+        }
+
+        return best;
+    }
+
+    private void RefreshPrompt()
+    {
+        IInteractionPromptSource selected = PickBestInteractable();
+        if (selected == _currentPromptTarget)
+        {
+            return;
+        }
+
+        _currentPromptTarget = selected;
+        PublishPrompt(selected?.InteractionPromptText ?? string.Empty, selected as Node);
+    }
+
+    private static void PublishPrompt(string promptText, Node source)
+    {
+        ethra.V1.GameManager gameManager = ethra.V1.GameManager.Instance;
+        if (gameManager != null)
+        {
+            gameManager.Publish(GameEvent.InteractionPromptChanged, new InteractionPromptChanged(promptText, source));
+            return;
+        }
+
+        EventManager.I?.Publish(GameEvent.InteractionPromptChanged, new InteractionPromptChanged(promptText, source));
+    }
+
+    private string ResolveInputAction()
+    {
+        return string.IsNullOrWhiteSpace(InputAction) ? DefaultInputAction : InputAction;
     }
 }

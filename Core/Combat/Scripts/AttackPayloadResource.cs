@@ -12,6 +12,10 @@ namespace ethra.V1
         [Export] public string DamageType { get; set; } = "Physical";
         [Export] public string ElementType { get; set; } = string.Empty;
         [Export] public float BasePower { get; set; } = 1f;
+        [Export] public float MagicCellSize { get; set; } = 24f;
+        [Export] public float ProjectileSpeed { get; set; } = 360f;
+        [Export] public float ProjectileMaxDistance { get; set; } = 288f;
+        [Export] public float ProjectileRadius { get; set; } = 8f;
 
         [Export] public Godot.Collections.Array<string> EffectIds { get; set; } = new();
         [Export] public float EffectDurationSeconds { get; set; } = 0f;

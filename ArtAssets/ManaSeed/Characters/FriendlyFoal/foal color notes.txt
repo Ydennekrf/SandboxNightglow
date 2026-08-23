@@ -1,0 +1,22 @@
+The official color swaps are based on real-world horse colors, here's a list of what they're supposed to be:
+
+	v00 - Wild bay
+	v01 - Chestnut
+	v02 - Red chestnut
+	v03 - Light chestnut
+	v04 - Golden chestnut
+	v05 - Honey chestnut
+	v06 - Dark chestnut
+	v07 - Black chestnut
+	v08 - Golden palomino
+	v09 - Chocolate palomino
+	v10 - Isabella palomino
+	v11 - Black
+	v12 - Champagne black
+	v13 - Classic silver
+	v14 - Red silver
+	v15 - Amber champagne
+	v16 - Amber silver
+	v17 - White
+
+I'll add more in a future update when I add spots and painted color patterns.

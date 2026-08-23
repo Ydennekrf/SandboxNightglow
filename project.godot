@@ -31,9 +31,13 @@ window/stretch/mode="viewport"
 
 project/assembly_name="ParksSandbox"
 
+[editor]
+
+import/use_multiple_threads=false
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/DialogGraphEditor/plugin.cfg", "res://addons/YATI/plugin.cfg")
+enabled=PackedStringArray("res://addons/DialogGraphEditor/plugin.cfg", "res://addons/YATI/plugin.cfg", "res://addons/item_seed_editor/plugin.cfg")
 
 [file_customization]
 

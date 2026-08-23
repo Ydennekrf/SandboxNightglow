@@ -1,9 +1,28 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://Core/Nodes/Interactable/DebugChestInteraction.cs" id="1_chest"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Loot/LootDropper.tscn" id="2_loot_dropper"]
+[ext_resource type="Script" path="res://components/Loot/Base/LootItem.cs" id="3_loot_item"]
+[ext_resource type="Script" path="res://components/Loot/Base/LootTable.cs" id="4_loot_table"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
 radius = 22.0
+
+[sub_resource type="Resource" id="LootItem_guaranteed_ore"]
+script = ExtResource("3_loot_item")
+ItemId = 3001
+Quantity = 1
+DropChancePercent = 100.0
+
+[sub_resource type="Resource" id="LootItem_bonus_potion"]
+script = ExtResource("3_loot_item")
+ItemId = 1001
+Quantity = 1
+DropChancePercent = 25.0
+
+[sub_resource type="Resource" id="LootTable_chest"]
+script = ExtResource("4_loot_table")
+Entries = Array[ExtResource("3_loot_item")]([SubResource("LootItem_guaranteed_ore"), SubResource("LootItem_bonus_potion")])
 
 [node name="InteractionDebugChest" type="Area2D"]
 collision_layer = 64
@@ -30,3 +49,6 @@ polygon = PackedVector2Array(-16, -18, 16, -18, 12, -10, -12, -10)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_interact")
 debug_color = Color(0.906134, 0.639797, 0.17959, 0.42)
+
+[node name="LootDropper" parent="." instance=ExtResource("2_loot_dropper")]
+LootTables = Array[ExtResource("4_loot_table")]([SubResource("LootTable_chest")])

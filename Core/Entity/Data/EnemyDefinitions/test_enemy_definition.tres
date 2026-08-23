@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://cvm17cae8o8mp"]
+
+[ext_resource type="Script" uid="uid://cfta0yoekh7iw" path="res://Core/Entity/Scripts/EnemyDefinitionResource.cs" id="1_definition"]
+
+[resource]
+script = ExtResource("1_definition")
+MaxHealth = 3
+StartingHealth = 3
+AttackRange = 24.0
+AttackCooldownSeconds = 1.1
+AttackDurationSeconds = 0.45
+AttackActiveDurationSeconds = 0.12
+AttackWindupSeconds = 0.16

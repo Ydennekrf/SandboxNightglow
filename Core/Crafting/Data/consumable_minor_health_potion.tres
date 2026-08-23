@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Core/Crafting/Scripts/CraftingRecipe.cs" id="1_recipe"]
+[ext_resource type="Script" path="res://Core/Crafting/Scripts/CraftingIngredient.cs" id="2_ingredient"]
+
+[sub_resource type="Resource" id="CraftingIngredient_0"]
+script = ExtResource("2_ingredient")
+ItemId = 3101
+Quantity = 2
+
+[sub_resource type="Resource" id="CraftingIngredient_1"]
+script = ExtResource("2_ingredient")
+ItemId = 3118
+Quantity = 1
+
+[resource]
+script = ExtResource("1_recipe")
+RecipeId = "recipe.consumable.minor_health_potion"
+DisplayName = "Minor Health Potion"
+Category = 2
+ResultItemId = 1101
+ResultQuantity = 1
+RequiredMaterials = Array[Resource]([SubResource("CraftingIngredient_0"), SubResource("CraftingIngredient_1")])
+RequiredStationType = "Workbench"
+IsUnlocked = true
+SortOrder = 100
+Description = "Craft Minor Health Potion from seeded herbs."

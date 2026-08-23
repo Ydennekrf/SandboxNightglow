@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3 uid="uid://1jpmtttsjl46"]
+
+[ext_resource type="Script" uid="uid://dr26upwjvsfkn" path="res://Core/Crafting/Scripts/CraftingRecipe.cs" id="1_recipe"]
+[ext_resource type="Script" uid="uid://bup8r03pdvwbu" path="res://Core/Crafting/Scripts/CraftingIngredient.cs" id="2_ingredient"]
+
+[sub_resource type="Resource" id="CraftingIngredient_copper"]
+script = ExtResource("2_ingredient")
+ItemId = 3001
+Quantity = 12
+
+[resource]
+script = ExtResource("1_recipe")
+RecipeId = "recipe.weapon.iron_longsword"
+DisplayName = "Iron Longsword"
+Category = 0
+ResultItemId = 2002
+RequiredMaterials = Array[ExtResource("2_ingredient")]([SubResource("CraftingIngredient_copper")])
+RequiredStationType = "Workbench"
+SortOrder = 20
+Description = "Forge a reliable steel blade."

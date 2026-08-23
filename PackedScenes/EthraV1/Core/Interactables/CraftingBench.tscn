@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Core/Nodes/Interactable/CraftingBenchInteractable.cs" id="1_bench"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bench"]
+size = Vector2(42, 30)
+
+[node name="CraftingBench" type="Area2D"]
+collision_layer = 64
+collision_mask = 18
+script = ExtResource("1_bench")
+StationType = "Workbench"
+InteractionVerb = "Craft"
+InteractionPromptText = "Press E to Craft"
+InteractionPriority = 1
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.48, 0.34, 0.2, 1)
+polygon = PackedVector2Array(-24, -16, 24, -16, 24, 16, -24, 16)
+
+[node name="Top" type="Polygon2D" parent="."]
+position = Vector2(0, -10)
+color = Color(0.64, 0.47, 0.27, 1)
+polygon = PackedVector2Array(-28, -8, 28, -8, 22, 8, -22, 8)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -46.0
+offset_top = -46.0
+offset_right = 46.0
+offset_bottom = -24.0
+text = "Crafting Bench"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bench")

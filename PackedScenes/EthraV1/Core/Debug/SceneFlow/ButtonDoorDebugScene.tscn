@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/SceneInteractionDebugRoot.cs" id="1_root"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="3_world"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="4_ui"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="5_player"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/InteractionDialogPanel.tscn" id="6_dialog"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="7_player_menu"]
+[ext_resource type="Script" path="res://Core/Nodes/Debug/DebugButtonDoorButton.cs" id="8_button"]
+[ext_resource type="Script" path="res://Core/Nodes/Debug/DebugDoor.cs" id="9_door"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_button"]
+radius = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(32, 80)
+
+[node name="ButtonDoorDebugScene" type="Node2D"]
+script = ExtResource("1_root")
+PlayerScene = ExtResource("5_player")
+ReadyMessage = "[ButtonDoorDebug] Scene ready."
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("3_world")
+
+[node name="Map" type="Node2D" parent="World"]
+
+[node name="Floor" type="Polygon2D" parent="World/Map"]
+color = Color(0.17, 0.2, 0.18, 1)
+polygon = PackedVector2Array(-230, -130, 280, -130, 280, 150, -230, 150)
+
+[node name="SceneLabel" type="Label" parent="World/Map"]
+offset_left = -205.0
+offset_top = -118.0
+offset_right = 160.0
+offset_bottom = -92.0
+text = "Button Door Debug"
+
+[node name="Entities" type="Node2D" parent="World"]
+
+[node name="Player" type="Node2D" parent="World/Entities"]
+
+[node name="Enemies" type="Node2D" parent="World/Entities"]
+
+[node name="NPCs" type="Node2D" parent="World/Entities"]
+
+[node name="SpawnPoints" type="Node2D" parent="World/Entities"]
+
+[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(-130, 20)
+
+[node name="Interactables" type="Node2D" parent="World"]
+
+[node name="Door" type="Node2D" parent="World/Interactables"]
+position = Vector2(120, 0)
+script = ExtResource("9_door")
+
+[node name="Visual" type="Polygon2D" parent="World/Interactables/Door"]
+color = Color(0.55, 0.32, 0.16, 1)
+polygon = PackedVector2Array(-16, -40, 16, -40, 16, 40, -16, 40)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Interactables/Door"]
+collision_layer = 1
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/Door/StaticBody2D"]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="Button" type="Area2D" parent="World/Interactables"]
+position = Vector2(-20, 40)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_button")
+DoorPath = NodePath("../Door")
+RequireInteract = true
+
+[node name="Visual" type="Polygon2D" parent="World/Interactables/Button"]
+color = Color(0.8, 0.18, 0.18, 1)
+polygon = PackedVector2Array(0, -16, 15, -5, 10, 14, -10, 14, -15, -5)
+
+[node name="Label" type="Label" parent="World/Interactables/Button"]
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 44.0
+text = "Interact button"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Interactables/Button"]
+shape = SubResource("CircleShape2D_button")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_ui")
+PlayerMenuPath = NodePath("Menus/PlayerMenu")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionDialogPanel" parent="UI" instance=ExtResource("6_dialog")]
+
+[node name="Menus" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerMenu" parent="UI/Menus" instance=ExtResource("7_player_menu")]
+visible = false
+layout_mode = 1
+
+[node name="MainMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 0

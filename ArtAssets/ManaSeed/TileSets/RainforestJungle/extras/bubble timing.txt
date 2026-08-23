@@ -1,0 +1,2 @@
+A good timing for the bubble animation is 150ms-150ms-200ms-100ms, then wait around 800ms before running it again.
+Though that last one should probably vary to keep your map interesting.

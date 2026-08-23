@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3 uid="uid://khlcva64vngb"]
+
+[ext_resource type="Script" uid="uid://dr26upwjvsfkn" path="res://Core/Crafting/Scripts/CraftingRecipe.cs" id="1_recipe"]
+[ext_resource type="Script" uid="uid://bup8r03pdvwbu" path="res://Core/Crafting/Scripts/CraftingIngredient.cs" id="2_ingredient"]
+
+[sub_resource type="Resource" id="CraftingIngredient_copper"]
+script = ExtResource("2_ingredient")
+ItemId = 3001
+Quantity = 3
+
+[resource]
+script = ExtResource("1_recipe")
+RecipeId = "recipe.weapon.ember_scepter"
+DisplayName = "Ember Scepter"
+Category = 0
+ResultItemId = 2004
+RequiredMaterials = Array[ExtResource("2_ingredient")]([SubResource("CraftingIngredient_copper")])
+RequiredStationType = "Workbench"
+SortOrder = 20
+Description = "Craft a debug caster weapon with cone and area magic combo steps."

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/SceneFlowDebugHost.cs" id="1_host"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="2_ui"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/InteractionDialogPanel.tscn" id="3_dialog"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="4_player_menu"]
+
+[node name="SceneFlowDebugHost" type="Node2D"]
+script = ExtResource("1_host")
+InitialSceneKey = "SceneFlow_A"
+InitialSpawnName = "NewGameSpawn"
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("2_ui")
+PlayerMenuPath = NodePath("Menus/PlayerMenu")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionDialogPanel" parent="UI" instance=ExtResource("3_dialog")]
+
+[node name="Menus" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerMenu" parent="UI/Menus" instance=ExtResource("4_player_menu")]
+visible = false
+layout_mode = 1
+
+[node name="MainMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 0

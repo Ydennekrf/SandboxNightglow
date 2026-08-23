@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/CraftingDebugSceneRoot.cs" id="1_root"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/WorldSceneRoot.cs" id="2_world"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Selene.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Interactables/CraftingBench.tscn" id="4_bench"]
+[ext_resource type="Script" path="res://PackedScenes/EthraV1/Core/Scripts/UIRoot.cs" id="5_ui"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/player_menu.tscn" id="6_player_menu"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/UI/CraftingPanel.tscn" id="7_crafting_panel"]
+[ext_resource type="Script" path="res://Core/UI/Scripts/InteractionPromptView.cs" id="8_prompt"]
+[ext_resource type="Script" path="res://Core/UI/Scripts/FloatingTextManager.cs" id="9_float"]
+[ext_resource type="Script" path="res://Core/UI/Scripts/NotificationManager.cs" id="10_notify"]
+
+[node name="CraftingDebugScene" type="Node2D"]
+script = ExtResource("1_root")
+PlayerScene = ExtResource("3_player")
+SeedMaterialItemId = 3001
+SeedMaterialQuantity = 5
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("2_world")
+
+[node name="Map" type="Node2D" parent="World"]
+
+[node name="Entities" type="Node2D" parent="World"]
+
+[node name="Player" type="Node2D" parent="World/Entities"]
+
+[node name="Enemies" type="Node2D" parent="World/Entities"]
+
+[node name="NPCs" type="Node2D" parent="World/Entities"]
+
+[node name="SpawnPoints" type="Node2D" parent="World/Entities"]
+
+[node name="NewGameSpawn" type="Marker2D" parent="World/Entities/SpawnPoints"]
+position = Vector2(-64, 72)
+
+[node name="Interactables" type="Node2D" parent="World"]
+
+[node name="CraftingBench" parent="World/Interactables" instance=ExtResource("4_bench")]
+position = Vector2(24, 0)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("5_ui")
+PlayerMenuPath = NodePath("Menus/PlayerMenu")
+CraftingPanelPath = NodePath("Menus/CraftingPanel")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionPromptView" type="Control" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_prompt")
+
+[node name="FloatingTextManager" type="Control" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_float")
+
+[node name="NotificationManager" type="Control" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_notify")
+
+[node name="Menus" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PlayerMenu" parent="UI/Menus" instance=ExtResource("6_player_menu")]
+visible = false
+layout_mode = 1
+
+[node name="CraftingPanel" parent="UI/Menus" instance=ExtResource("7_crafting_panel")]
+visible = false
+layout_mode = 1
+
+[node name="MainMenu" type="Control" parent="UI/Menus"]
+visible = false
+layout_mode = 1

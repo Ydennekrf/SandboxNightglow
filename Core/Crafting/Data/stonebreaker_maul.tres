@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Core/Crafting/Scripts/CraftingRecipe.cs" id="1_recipe"]
+[ext_resource type="Script" path="res://Core/Crafting/Scripts/CraftingIngredient.cs" id="2_ingredient"]
+
+[sub_resource type="Resource" id="CraftingIngredient_copper"]
+script = ExtResource("2_ingredient")
+ItemId = 3001
+Quantity = 4
+
+[resource]
+script = ExtResource("1_recipe")
+RecipeId = "recipe.weapon.stonebreaker_maul"
+DisplayName = "Stonebreaker Maul"
+Category = 0
+ResultItemId = 2005
+ResultQuantity = 1
+RequiredMaterials = Array[Resource]([SubResource("CraftingIngredient_copper")])
+RequiredStationType = "Workbench"
+IsUnlocked = true
+SortOrder = 21
+Description = "Craft a debug heavy weapon with a hold-to-charge slam combo."

@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="WeaponComboResource" format=3]
+
+[ext_resource type="Script" path="res://Core/Combat/Scripts/WeaponComboResource.cs" id="1"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/ComboPhaseResource.cs" id="2"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/AttackPayloadResource.cs" id="3"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/HitboxProfileResource.cs" id="4"]
+
+[sub_resource type="Resource" id="HitboxProfileResource_tap"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.ember_scepter.tap"
+Offset = Vector2(22, 0)
+Size = Vector2(28, 18)
+ActiveDurationSeconds = 0.08
+
+[sub_resource type="Resource" id="AttackPayloadResource_melee_tap"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 0.8
+
+[sub_resource type="Resource" id="AttackPayloadResource_fire_burst"]
+script = ExtResource("3")
+OverlayMode = 2
+ManaCost = 10
+DeliveryShapeId = "CircleWaveAwayFromPlayer"
+DamageType = "Elemental"
+ElementType = "Fire"
+BasePower = 1.2
+MagicCellSize = 28.0
+EffectIds = Array[String](["status.burn"])
+EffectDurationSeconds = 4.0
+
+[sub_resource type="Resource" id="AttackPayloadResource_fire_cone"]
+script = ExtResource("3")
+OverlayMode = 2
+ManaCost = 8
+DeliveryShapeId = "Cone"
+DamageType = "Elemental"
+ElementType = "Fire"
+BasePower = 1.0
+MagicCellSize = 28.0
+EffectIds = Array[String](["status.burn"])
+EffectDurationSeconds = 3.0
+
+[sub_resource type="Resource" id="ComboPhaseResource_spark"]
+script = ExtResource("2")
+StepId = "combo_step.ember_scepter.spark_tap"
+StepIndex = 1
+InputAction = "MagicAttack"
+DebugLabel = "Spark Tap"
+DamageMultiplier = 0.9
+SharedAnimationName = "Cast1"
+DurationOverrideSeconds = 0.34
+StartupSeconds = 0.08
+ActiveSeconds = 0.08
+RecoverySeconds = 0.18
+ComboWindowStartSeconds = 0.14
+ComboWindowEndSeconds = 0.32
+MovementLock = false
+HitboxProfile = SubResource("HitboxProfileResource_tap")
+MeleePayload = SubResource("AttackPayloadResource_melee_tap")
+MagicPayload = SubResource("AttackPayloadResource_fire_cone")
+
+[sub_resource type="Resource" id="ComboPhaseResource_nova"]
+script = ExtResource("2")
+StepId = "combo_step.ember_scepter.cinder_nova"
+StepIndex = 2
+InputAction = "MagicAttack"
+DebugLabel = "Cinder Nova"
+DamageMultiplier = 1.0
+SharedAnimationName = "Cast2"
+DurationOverrideSeconds = 0.52
+StartupSeconds = 0.18
+ActiveSeconds = 0.08
+RecoverySeconds = 0.26
+ComboWindowStartSeconds = 0.28
+ComboWindowEndSeconds = 0.5
+MovementLock = true
+MagicPayload = SubResource("AttackPayloadResource_fire_burst")
+
+[resource]
+script = ExtResource("1")
+ComboId = "combo.weapon.ember_scepter.area_magic"
+DisplayName = "Ember Scepter Area Magic"
+WeaponType = "Staff"
+CompatibleWeaponIds = Array[int]([2004])
+ResetTimeSeconds = 0.9
+Description = "Magic-focused test combo. Magic input casts a cone, then an area nova around the player."
+Phases = Array[ExtResource("2")]([SubResource("ComboPhaseResource_spark"), SubResource("ComboPhaseResource_nova")])

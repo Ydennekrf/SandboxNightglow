@@ -106,7 +106,15 @@ public partial class PlayerManager : Node
 					SavedAt = DateTime.UtcNow
 		};
 
-		
+		if (ethra.V1.GameManager.Instance?.GameState != null)
+		{
+			ethra.V1.GameManager.Instance.GameState.SetPlayerName(ResolvePlayerName(player));
+			ethra.V1.GameManager.Instance.GameState.SetCurrentLocationWithDisplayName(
+				saveData.SceneID,
+				saveData.SceneID,
+				saveData.SpawnID);
+		}
+
 		saveData.WorldState = WorldStateManager.I.ToDto();
 		save.Data = saveData;
 				foreach (var kv in player.Data.EntityStats)
@@ -151,5 +159,15 @@ public partial class PlayerManager : Node
 
 		player.Data = baseData;
 		GD.Print("player base stats set.");
+	}
+
+	private static string ResolvePlayerName(Player player)
+	{
+		if (!string.IsNullOrWhiteSpace(player?.Data?.EntityName))
+		{
+			return player.Data.EntityName;
+		}
+
+		return string.IsNullOrWhiteSpace(player?.Name) ? "Player" : player.Name;
 	}
 }

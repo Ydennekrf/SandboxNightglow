@@ -39,6 +39,7 @@ namespace ethra.V1
             }
 
             sb.AppendLine($"Combo: {label}");
+            sb.AppendLine($"Combo ID: {ComboProfile?.ComboId ?? "(none)"}");
             sb.AppendLine($"Preview selection: phase={PreviewPhase}, input={PreviewInput}");
 
             if (ComboProfile == null)
@@ -59,9 +60,12 @@ namespace ethra.V1
                     ? (phase.MagicPayload ?? phase.MeleePayload)
                     : (phase.MeleePayload ?? phase.MagicPayload);
 
+                sb.AppendLine($"Step: {phase.StepIndex} {phase.StepId} {phase.Label}");
                 sb.AppendLine($"Resolved animation: {phase.SharedAnimationName}");
                 sb.AppendLine($"Resolved payload: {DescribePayload(payload)}");
-                sb.AppendLine($"Windows active=[{phase.ActiveWindowStart:0.###},{phase.ActiveWindowEnd:0.###}] buffer=[{phase.BufferWindowStart:0.###},{phase.BufferWindowEnd:0.###}]");
+                sb.AppendLine($"Timing startup={phase.StartupSeconds:0.###}, active={phase.ActiveSeconds:0.###}, recovery={phase.RecoverySeconds:0.###}");
+                sb.AppendLine($"Windows active=[{phase.ActiveWindowStart:0.###},{phase.ActiveWindowEnd:0.###}] combo=[{phase.ComboWindowStartSeconds:0.###},{phase.ComboWindowEndSeconds:0.###}] legacyBuffer=[{phase.BufferWindowStart:0.###},{phase.BufferWindowEnd:0.###}]");
+                sb.AppendLine($"Hitbox: {phase.HitboxProfile?.ProfileId ?? "(fallback)"}");
             }
 
             var issues = ComboProfileValidator.Validate(ComboProfile, "PreviewCombo");

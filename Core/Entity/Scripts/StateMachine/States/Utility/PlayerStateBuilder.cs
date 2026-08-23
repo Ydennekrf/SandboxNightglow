@@ -79,7 +79,38 @@ namespace ethra.V1
                 },
                 baseTransitions: new List<IStateTransition>()
             );
+
+            BaseState harvest = new BaseState
+            (
+                "Harvest",
+                owner,
+                baseActions: new List<IStateAction>
+                {
+                    new HarvestAction()
+                },
+                baseTransitions: new List<IStateTransition>()
+            );
+
+            BaseState dialog = new BaseState
+            (
+                "Dialog",
+                owner,
+                baseActions: new List<IStateAction>
+                {
+                    new DialogAction()
+                },
+                baseTransitions: new List<IStateTransition>()
+            );
             
+            idle.Transitions.Add(new DialogActiveTransition(dialog));
+            walk.Transitions.Add(new DialogActiveTransition(dialog));
+            run.Transitions.Add(new DialogActiveTransition(dialog));
+            dodge.Transitions.Add(new DialogActiveTransition(dialog));
+            attack.Transitions.Add(new DialogActiveTransition(dialog));
+            harvest.Transitions.Add(new DialogActiveTransition(dialog));
+            idle.Transitions.Add(new HarvestRequestedTransition(harvest));
+            walk.Transitions.Add(new HarvestRequestedTransition(harvest));
+            run.Transitions.Add(new HarvestRequestedTransition(harvest));
             idle.Transitions.Add(new DodgePressedTransition(dodge));
             idle.Transitions.Add(new MoveInputNonZeroTransition(walk));
             idle.Transitions.Add(new RunPressedTransition(run));
@@ -94,8 +125,10 @@ namespace ethra.V1
             run.Transitions.Add(new AttackPressedTransition(attack));
             dodge.Transitions.Add(new DodgeCompleteTransition(idle, walk, run));
             attack.Transitions.Add(new AttackCompleteTransition(idle, walk, run));
+            harvest.Transitions.Add(new HarvestCompleteTransition(idle));
+            dialog.Transitions.Add(new DialogEndedTransition(idle));
 
-            return new List<BaseState> {idle, walk, run, dodge, attack};
+            return new List<BaseState> {idle, walk, run, dodge, attack, harvest, dialog};
 
         }
 

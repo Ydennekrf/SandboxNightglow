@@ -11,6 +11,8 @@ namespace ethra.V1
 
         public int? ItemId { get; private set; }
         public int Count { get; private set; }
+        public string WeaponInstanceId { get; private set; } = string.Empty;
+        public string EquipmentSlotKey { get; private set; } = string.Empty;
         public InventoryItem ItemData { get; private set; }
 
         public event Action<InventorySlotView> Clicked;
@@ -25,6 +27,8 @@ namespace ethra.V1
         {
             ItemId = null;
             Count = 0;
+            WeaponInstanceId = string.Empty;
+            EquipmentSlotKey = string.Empty;
             ItemData = null;
 
             if (QuantityLabel != null)
@@ -43,9 +47,21 @@ namespace ethra.V1
 
         public void SetItem(InventoryItem item, int count)
         {
+            SetItem(item, count, string.Empty);
+        }
+
+        public void SetItem(InventoryItem item, int count, string weaponInstanceId)
+        {
+            SetItem(item, count, weaponInstanceId, string.Empty);
+        }
+
+        public void SetItem(InventoryItem item, int count, string weaponInstanceId, string equipmentSlotKey)
+        {
             ItemData = item;
             ItemId = item?.Id;
             Count = count;
+            WeaponInstanceId = weaponInstanceId ?? string.Empty;
+            EquipmentSlotKey = equipmentSlotKey ?? string.Empty;
 
             if (QuantityLabel != null)
             {

@@ -12,6 +12,7 @@ namespace ethra.V1
         public static bool DebugLoggingEnabled { get; set; } = true;
 
         public static event Action<Player, int, string, AttackOverlayMode> AttackPhaseStarted;
+        public static event Action<Player, string, int, string, string> ComboStepStarted;
         public static event Action<Player, bool, float, float> ActiveWindowChanged;
         public static event Action<Player, bool, float, float> BufferWindowChanged;
         public static event Action<AttackPayloadPacket> PayloadQueued;
@@ -23,6 +24,12 @@ namespace ethra.V1
         {
             Log($"AttackPhaseStarted: source={player?.Name} phase={phase} clip='{clip}' overlay={overlay}");
             AttackPhaseStarted?.Invoke(player, phase, clip, overlay);
+        }
+
+        public static void EmitComboStepStarted(Player player, string comboId, int phase, string stepLabel, string hitboxProfileId)
+        {
+            Log($"ComboStepStarted: source={player?.Name} combo={comboId} phase={phase} step='{stepLabel}' hitbox={hitboxProfileId}");
+            ComboStepStarted?.Invoke(player, comboId, phase, stepLabel, hitboxProfileId);
         }
 
         public static void EmitActiveWindowChanged(Player player, bool isOpen, float elapsed, float duration)
@@ -39,7 +46,7 @@ namespace ethra.V1
 
         public static void EmitPayloadQueued(AttackPayloadPacket packet)
         {
-            Log($"PayloadQueued: source={packet?.Source?.Name} phase={packet?.ComboPhase} shape={packet?.Payload?.DeliveryShapeId}");
+            Log($"PayloadQueued: source={packet?.Source?.Name} combo={packet?.ComboId} phase={packet?.ComboPhase} step='{packet?.ComboStepLabel}' shape={packet?.Payload?.DeliveryShapeId} hitbox={packet?.HitboxProfile?.ProfileId}");
             PayloadQueued?.Invoke(packet);
         }
 

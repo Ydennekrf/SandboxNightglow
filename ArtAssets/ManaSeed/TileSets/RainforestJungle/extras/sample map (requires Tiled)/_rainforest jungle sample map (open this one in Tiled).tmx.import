@@ -1,0 +1,23 @@
+[remap]
+
+importer="YATI"
+type="PackedScene"
+uid="uid://1oqape8sl5p0"
+path="res://.godot/imported/_rainforest jungle sample map (open this one in Tiled).tmx-44b33e25814a2462408706889cd19cd0.tscn"
+
+[deps]
+
+source_file="res://ArtAssets/ManaSeed/TileSets/RainforestJungle/extras/sample map (requires Tiled)/_rainforest jungle sample map (open this one in Tiled).tmx"
+dest_files=["res://.godot/imported/_rainforest jungle sample map (open this one in Tiled).tmx-44b33e25814a2462408706889cd19cd0.tscn"]
+
+[params]
+
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=false
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor=""
+save_tileset_to=""

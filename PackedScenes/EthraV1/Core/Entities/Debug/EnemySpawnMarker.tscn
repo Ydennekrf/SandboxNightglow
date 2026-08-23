@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Core/Nodes/Entity/EnemySpawnMarker.cs" id="1_marker"]
+[ext_resource type="PackedScene" path="res://PackedScenes/EthraV1/Core/Entities/Debug/TestEnemy.tscn" id="2_enemy"]
+
+[node name="EnemySpawnMarker" type="Marker2D"]
+script = ExtResource("1_marker")
+EnemyScene = ExtResource("2_enemy")
+EnemyParentPath = NodePath("../Enemies")
+SpawnedEnemyName = "TestEnemy"
+SpawnModeValue = 1
+SpawnDelaySeconds = 1.0
+SpawnProximityDistance = 96.0
+PatrolRadius = 96.0
+DetectionRange = 128.0
+LeashRange = 192.0
+AttackRange = 28.0

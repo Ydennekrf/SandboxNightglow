@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://5onng3nl4fih"]
+
+[ext_resource type="Script" uid="uid://c5y0n5ifeamd8" path="res://Core/UI/Scripts/PlayerHud.cs" id="1_player_hud"]
+[ext_resource type="Texture2D" uid="uid://xgnnmrrr31xu" path="res://ArtAssets/UI/Dialog/DialogFrame.png" id="2_ync2q"]
+[ext_resource type="Texture2D" uid="uid://ba83vx1to5ssg" path="res://ArtAssets/UI/Health_01.png" id="3_qk25m"]
+[ext_resource type="Texture2D" uid="uid://boeuc842g4vyw" path="res://ArtAssets/UI/Health_01_Bar01.png" id="4_x2hcl"]
+[ext_resource type="Texture2D" uid="uid://dtnhnug4fjpbo" path="res://ArtAssets/UI/Health_03.png" id="5_h82fe"]
+[ext_resource type="Texture2D" uid="uid://bkek7hdx1s707" path="res://ArtAssets/UI/Health_03_Bar03.png" id="6_dmy6p"]
+[ext_resource type="FontFile" uid="uid://cs75xv6dlxgj8" path="res://ArtAssets/Fonts/ManaSeedBody.ttf" id="7_v56a4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_02mb4"]
+texture = ExtResource("2_ync2q")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8tty"]
+bg_color = Color(0.14472234, 0.08519039, 0.030892253, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3h5v"]
+bg_color = Color(0.07201565, 0.69900167, 0.5739874, 1)
+
+[node name="PlayerHud" type="Control" unique_id=1576334767]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -112.0
+offset_right = 280.0
+offset_bottom = -16.0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_player_hud")
+HealthLabelPath = NodePath("Panel/MarginContainer/Stack/TopRow/HealthLabel")
+ManaLabelPath = NodePath("Panel/MarginContainer/Stack/TopRow/ManaLabel")
+LevelLabelPath = NodePath("Panel/MarginContainer/Stack/BottomRow/LevelLabel")
+ExperienceLabelPath = NodePath("")
+ExperienceBarPath = NodePath("Panel/MarginContainer/Stack/BottomRow/ExperienceBar")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=772081619]
+custom_minimum_size = Vector2(264, 96)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.05
+anchor_right = 0.89800006
+anchor_bottom = 0.88900006
+offset_left = -26.824001
+offset_top = -12.8
+offset_right = 26.927979
+offset_bottom = 10.655991
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_02mb4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1464091716]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Stack" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=659716601]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="TopRow" type="HBoxContainer" parent="Panel/MarginContainer/Stack" unique_id=901597055]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthLabel" type="TextureProgressBar" parent="Panel/MarginContainer/Stack/TopRow" unique_id=1822421982]
+custom_minimum_size = Vector2(112, 22)
+layout_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("3_qk25m")
+texture_progress = ExtResource("4_x2hcl")
+
+[node name="ManaLabel" type="TextureProgressBar" parent="Panel/MarginContainer/Stack/TopRow" unique_id=1641055919]
+custom_minimum_size = Vector2(112, 22)
+layout_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("5_h82fe")
+texture_progress = ExtResource("6_dmy6p")
+
+[node name="BottomRow" type="HBoxContainer" parent="Panel/MarginContainer/Stack" unique_id=1036655963]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="Panel/MarginContainer/Stack/BottomRow" unique_id=2135930066]
+custom_minimum_size = Vector2(32, 22)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_v56a4")
+theme_override_font_sizes/font_size = 16
+text = "LV 1"
+vertical_alignment = 1
+
+[node name="ExperienceBar" type="ProgressBar" parent="Panel/MarginContainer/Stack/BottomRow" unique_id=1014981320]
+custom_minimum_size = Vector2(150, 8)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_m8tty")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y3h5v")
+max_value = 50.0
+show_percentage = false

@@ -12,7 +12,7 @@ public partial class PlayerSaveData
 	public List<ItemStack?> Inventory { get; set; } = new();
 
 	// public Dictionary<ItemType, string> EquippedItems {get; set;} = new();
-	 public WorldStateDto WorldState { get; set; }
+	 public WorldStateDto WorldState { get; set; } = new();
 
 	public string SceneID { get; set; }
 

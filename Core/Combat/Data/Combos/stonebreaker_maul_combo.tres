@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="WeaponComboResource" format=3]
+
+[ext_resource type="Script" path="res://Core/Combat/Scripts/WeaponComboResource.cs" id="1"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/ComboPhaseResource.cs" id="2"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/AttackPayloadResource.cs" id="3"]
+[ext_resource type="Script" path="res://Core/Combat/Scripts/HitboxProfileResource.cs" id="4"]
+
+[sub_resource type="Resource" id="HitboxProfileResource_sweep"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.stonebreaker_maul.sweep"
+Offset = Vector2(28, 0)
+Size = Vector2(44, 24)
+ActiveDurationSeconds = 0.12
+
+[sub_resource type="Resource" id="HitboxProfileResource_charged"]
+script = ExtResource("4")
+ProfileId = "hitbox_profile.stonebreaker_maul.charged_slam"
+Offset = Vector2(34, 0)
+Size = Vector2(58, 34)
+ActiveDurationSeconds = 0.16
+
+[sub_resource type="Resource" id="AttackPayloadResource_sweep"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1.25
+
+[sub_resource type="Resource" id="AttackPayloadResource_slam"]
+script = ExtResource("3")
+DeliveryShapeId = "SingleTarget"
+DamageType = "Physical"
+BasePower = 1.45
+EffectIds = Array[String](["status.armor_break"])
+EffectDurationSeconds = 4.0
+
+[sub_resource type="Resource" id="ComboPhaseResource_sweep"]
+script = ExtResource("2")
+StepId = "combo_step.stonebreaker_maul.sweep"
+StepIndex = 1
+DebugLabel = "Weighty Sweep"
+DamageMultiplier = 1.0
+SharedAnimationName = "MaulSweep"
+DurationOverrideSeconds = 0.48
+StartupSeconds = 0.14
+ActiveSeconds = 0.12
+RecoverySeconds = 0.22
+ComboWindowStartSeconds = 0.26
+ComboWindowEndSeconds = 0.46
+MovementImpulse = 14.0
+HitboxProfile = SubResource("HitboxProfileResource_sweep")
+MeleePayload = SubResource("AttackPayloadResource_sweep")
+
+[sub_resource type="Resource" id="ComboPhaseResource_charged"]
+script = ExtResource("2")
+StepId = "combo_step.stonebreaker_maul.charged_slam"
+StepIndex = 2
+DebugLabel = "Charged Slam"
+DamageMultiplier = 1.25
+SharedAnimationName = "ChargedSlam"
+DurationOverrideSeconds = 0.5
+StartupSeconds = 0.12
+ActiveSeconds = 0.16
+RecoverySeconds = 0.22
+ComboWindowStartSeconds = 0.0
+ComboWindowEndSeconds = 0.0
+ChargeSeconds = 0.75
+MaxChargeSeconds = 1.4
+ChargedDamageMultiplier = 1.8
+MovementImpulse = 34.0
+HitboxProfile = SubResource("HitboxProfileResource_charged")
+StatusEffectsToApply = Array[String](["status.knockback"])
+ChargedStatusEffectsToApply = Array[String](["status.stun"])
+MeleePayload = SubResource("AttackPayloadResource_slam")
+
+[resource]
+script = ExtResource("1")
+ComboId = "combo.weapon.stonebreaker_maul.charge_slam"
+DisplayName = "Stonebreaker Charge Slam"
+WeaponType = "Maul"
+CompatibleWeaponIds = Array[int]([2005])
+ResetTimeSeconds = 1.0
+Description = "Heavy two-hit combo. Hold Attack on step 2 to charge the slam; release early for an uncharged hit."
+Phases = Array[ExtResource("2")]([SubResource("ComboPhaseResource_sweep"), SubResource("ComboPhaseResource_charged")])

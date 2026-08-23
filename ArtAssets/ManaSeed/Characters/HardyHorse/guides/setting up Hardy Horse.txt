@@ -1,0 +1,50 @@
+
+Hardy Horse comes in 3 parts:
+
+1)	"hardy horse bottom v01"
+	This is the main part of the sprite, slice it into cells of 64x64.
+	When you have a riding character sprite, make sure it renders on top of this layer.
+	The version number denotes the color palette (breed of horse), be sure to match the versions for the "top" and "bottom" layers.
+
+2)	"hardy horse top v01"
+	This is the head when it needs to be in front of the rider.
+	Make sure you render this layer above the "bottom" AND any riding character sprites.
+	Like the "bottom" you need to slice this into cells of 64x64, the placement of each cell alligns with the "bottom" automatically.
+
+3)	"hardy horse extras 32x32"
+	These are the shadow sprites, and should always be rendered below all other layers.
+	Refer to the animation guide image to know which frame to use for a given animation.
+	Note: when jumping, you can set your own desired height, make sure the shadow maintains the same speed an trajectory while the horse is airborne.
+
+
+
+Please examine the "hardy horse animation guide" image to help you put together all the animations.
+Here's a breif explanation of the info on the animation guide:
+
+Cell reference (purple)
+	The purple 3-digit number (at the top left of each cell) is the cell reference number.
+	Use this number to help find the animation frame in your animation editor.
+
+Frame timing (yellow)
+	The yellow 3-digit number (below the purple one) is the timing, in milliseconds, for that particular frame.
+	If there's an infinity symbol, then you can leave it on that frame as long as you like.
+
+Shadow cell reference (green)
+	The green single-digit number (to the right of the purple one) is the cell reference of the shadow sprite from "hardy horse extras 32x32".
+	Since there are only 4 cells, I did not bother including a separate guide for that sheet.
+	The cells start at zero, so from left to right, the shadows are 0, 1, 2, and 3.
+	The shadows are centered and positioned perfectly in the bottom-middle 32x32 space of the larger horse cell (64x64).
+	Line them up in that spot and you never need to move it.
+
+Animation names & frames (pink)
+	The pink names and arrows (at the bottom of each frame) show you which frames are part of each animation.
+	Some are meant to loop as long as you want, or play only once, and will be marked as such.
+
+Farmer sprite reference (blue)
+	The blue data (at the top right of each frame) has 4 lines:
+		A 3-digit number referring to the Farmer Sprite System cell reference, so you know which frame of that asset to use.
+		Transform X positioning, this is horizontal movement by pixel (line up the farmer sprite's 64x64 cell with the horse's, then make this adjustment).
+		Transform Y positioning, this is vertical movement by pixel.
+		Flip status, this is a horizontal flip, from facing right to facing left.
+	Use this information to perfectly position your rider as intended.
+	The animation guide for mounting or soothing your mount can be found in the Farmer Sprite System animation guide.
